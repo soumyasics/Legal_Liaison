@@ -7,7 +7,13 @@ const userSchema=mongoose.Schema({
         required:true,
        
     },
-    lname:{
+    city:{
+        type:String,
+      
+        required:true,
+       
+    },
+    state:{
         type:String,
       
         required:true,
@@ -30,13 +36,11 @@ const userSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    image:{
-        type:Object
+    district:{
+        type:String,
+        required:true
     },
-    imgUrl:{
-        type:String
-
-    },
+    
     isActive:{
         type:Boolean,
         default:true
