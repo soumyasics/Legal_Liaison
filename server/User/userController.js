@@ -27,20 +27,19 @@ const upload = multer({ storage: storage }).single("image");
 //User Registration 
 
 const registerUser = async (req, res) => {
-  let imgUrl = null
-  if (req.file != null) {
-    imgUrl = `${url.baseUrl}/${req.file.filename}`
-  }
+
 
   const newUser = new Users({
-    fname: req.body.fname,
-    lname: req.body.lname,
+    name: req.body.fname,
+
 
     contact: req.body.contact,
     password: req.body.password,
     email: req.body.email,
-    image: req.file,
-    imgUrl: imgUrl
+    
+    district: req.body.district,
+    city: req.body.city,
+    state: req.body.state
 
   })
   let dat = await Users.findOne({ phone: req.body.phone })
@@ -271,8 +270,9 @@ const editUserById =async (req, res) => {
   lname: req.body.lname,
   contact: req.body.contact,
   email: req.body.email,
-  image: req.file,
-  imgUrl: imgUrl
+  district: req.body.district,
+  city: req.body.city,
+  state: req.body.state
   })
       .exec()
       .then(data => {
