@@ -1,6 +1,7 @@
 const Users = require('./UserSchema')
 const url = require('../url')
 const multer = require('multer')
+const jwt = require('jsonwebtoken');
 
 // const storage = multer.diskStorage({
 //   destination: function (req, res, cb) {
@@ -30,7 +31,7 @@ const registerUser = async (req, res) => {
 
 
   const newUser = new Users({
-    name: req.body.fname,
+    name: req.body.name,
 
 
     contact: req.body.contact,
@@ -42,7 +43,8 @@ const registerUser = async (req, res) => {
     state: req.body.state
 
   })
-  let dat = await Users.findOne({ phone: req.body.phone })
+  let dat = await Users.findOne({ contact: req.body.contact })
+  console.log(dat);
   if (dat == null) {
     await newUser.save().then(data => {
       return res.json({
