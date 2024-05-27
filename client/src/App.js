@@ -2,6 +2,7 @@ import LandingCarousel from './Components/LandingPage/LandingCarousel';
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'remixicon/fonts/remixicon.css'
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingNavbar from './Components/LandingPage/LandingNavbar';
@@ -13,6 +14,8 @@ import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
 import AdminLogin from './Components/Admin/AdminLogin';
 import FormHead from './Components/Common/FormHead';
+import UserNavbar from './Components/User/UserNavbar';
+import UserHome from './Components/User/UserHome';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -23,6 +26,7 @@ function App() {
       <Route path='/' element={(<LandingNavbar/>,<LandingCarousel/>)} />
       <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
       <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
+      <Route path='/user_home' element={[<UserNavbar/>,<UserHome/>]} />
 
       {/* Advocate routes */}
 
