@@ -19,6 +19,7 @@ router.post('/viewAdvocates',advocates.viewAdvocates)
 
 
 router.post('/registerUser',user.registerUser)
+router.post('/loginUser',user.login)
 router.post('/editUserById/:id',user.editUserById)
 router.post('/viewUserById/:id',user.viewUserById)
 router.post('/forgotPassword',user.forgotPassword)

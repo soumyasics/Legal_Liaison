@@ -92,7 +92,7 @@
 
 .user_features_cards{
     width: 29%;
-  height: 15vh;
+  min-height: 15vh;
   background: #ffffff;
   border-radius: 5px;
   display: flex;

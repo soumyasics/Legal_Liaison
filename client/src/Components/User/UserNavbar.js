@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import img1 from '../../Assets/logo2.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function UserNavbar() {
+
+    const navigate=useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('userId'==null)){
+            navigate('/')
+        }
+    })
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/");
+        window.location.reload(false);
+      };
+
   return (
     <div>
        <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar">
@@ -39,7 +54,7 @@ function UserNavbar() {
               <i class="ri-account-circle-fill"></i>
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to='' className="dropdown-item" >Logout</Link>
+                <Link onClick={handleLogout} className="dropdown-item" >Logout</Link>
                 {/* <Link className="dropdown-item" >Advocates</Link>
                 <Link className="dropdown-item" >Students</Link> */}
               </div>

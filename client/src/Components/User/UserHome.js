@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./UserHome.css";
 import icon1 from "../../Assets/userBannerIcon1.png";
 import icon2 from "../../Assets/userBannerIcon2.png";
@@ -8,8 +8,18 @@ import img from "../../Assets/userHomeAboutImage.png";
 import ficon1 from "../../Assets/userFeaturesIcon1.png";
 import ficon2 from "../../Assets/userFeaturesIcon2.png";
 import ficon3 from "../../Assets/userFeaturesIcon3.png";
+import { useNavigate } from "react-router-dom";
 
 function UserHome() {
+
+    const navigate=useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('userId'==null)){
+            navigate('/')
+        }
+    })
+
   return (
     <div>
       <div className="user_home bg-dark">

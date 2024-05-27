@@ -2,7 +2,7 @@ const Users = require('./UserSchema')
 const url = require('../url')
 const multer = require('multer')
 const jwt = require('jsonwebtoken');
-
+const secret="user"
 // const storage = multer.diskStorage({
 //   destination: function (req, res, cb) {
 //     cb(null, "./upload");
