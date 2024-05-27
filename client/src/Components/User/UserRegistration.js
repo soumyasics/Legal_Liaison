@@ -1,174 +1,197 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './UserRegistration.css';
-import img1 from "../../Assets/lawimg9.avif";
+// UserRegistration.js
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import "./UserRegistration.css";
+import img from '../../Assets/userRegPic.png';
+import axiosInstance from "../Constants/BaseUrl";
+import { UserRegistrationSchema } from "../Constants/Schema";
+import { toast } from "react-toastify";
 
 function UserRegistration() {
-  const [data, setData] = useState({ email: '', 
-  password: '',
-  fname: '',
-  lname: '',
-  contact: '' });
-  const [errors, setErrors] = useState({ email: '', password: '',
-  fname: '',
-  contact: '' });
+    const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      [name]: ''
-    }));
-  };
 
-  const validateField = (fieldName, value) => {
-    if (!value.trim()) {
-      return `${fieldName} is required`;
-    }
-    return '';
-  };
+    const [isToastVisible, setToastVisible] = useState(false);
 
-  const handleContactValidation = () => {
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      contact: validateContact('Contact', data.contact)
-    }));
-  };
-  const validateContact = (fieldName, value) => {
-    if (!value.trim()) {
-      return `${fieldName} is required`;
-    } else if (value.length !== 10) {
-      return `Please enter a valid Contact Number (10 digits)`;
-    }
-    return '';
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    const onSubmit = (values) => {
+        console.log(values);
 
-    let errors = {};
-    let formIsValid = true;
+        axiosInstance.post('/registerUser', values)
+            .then((res) => {
+                console.log(res);
+                if (res.data.status === 200) {
+                    if (!isToastVisible) {
+                        setToastVisible(true);
+                        toast.success("Registration Successful", {
+                            onClose: () => setToastVisible(false),
+                        });
+                    }
+                    navigate('/UserLogin');
+                } else if (res.data.status === 409) {
+                    if (!isToastVisible) {
+                        setToastVisible(true);
+                        toast.warning(res.data.msg, {
+                            onClose: () => setToastVisible(false),
+                        });
+                    }
+                } else {
+                    if (!isToastVisible) {
+                        setToastVisible(true);
+                        toast.error('Registration Failed', {
+                            onClose: () => setToastVisible(false),
+                        });
+                    }
+                }
+            })
+            .catch(() => {
+                if (!isToastVisible) {
+                    setToastVisible(true);
+                    toast.error('Registration Failed', {
+                        onClose: () => setToastVisible(false),
+                    });
+                }
+            });
+    };
 
-    errors.email = validateField('Email', data.email);
-    errors.password = validateField('Password', data.password);
-    errors.fname = validateField('First Name', data.fname);
-    errors.contact = validateField('Contact Number', data.contact);
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+        useFormik({
+            initialValues: {
+                name: "",
+                contact: "",
+                email: "",
+                password: "",
+                state: "",
+                district: "",
+                city: "",
+            },
+            validationSchema: UserRegistrationSchema,
+            onSubmit,
+        });
 
-    setErrors(errors);
-
-    if (formIsValid) {
-      console.log("data", data);
-    }
-  };
-
-  return (
-    <>
-      <div className='container'>
-        <div className='userRegistrationmaindiv'>
-          <div className='userRegistrationimgdiv'>
-            <img src={img1} className='userRegistrationimgdiv' alt="Registration" />
-          </div>
-          <div className='container'>
-            <form onSubmit={handleSubmit}>
-              <h2 className="userRegistrationtitle">Registration Form</h2>
-              <div className="row">
-                <div className="col-3">
-                  <label className="form-label userRegistrationlabel">First Name </label>
+    return (
+        <div className="user_registration">
+            <div className="user_registration_container">
+                <div className="user_registration_box1">
+                    <div className="user_registration_input_group">
+                        <form onSubmit={(e)=>{handleSubmit(e)}}>
+                            <div className="user_registration_input">
+                                <label>Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your name"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.name && touched.name && (
+                                    <span className="text-danger">{errors.name}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your email"
+                                    name="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.email && touched.email && (
+                                    <span className="text-danger">{errors.email}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>Contact</label>
+                                <input
+                                    type="number"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your contact"
+                                    name="contact"
+                                    value={values.contact}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.contact && touched.contact && (
+                                    <span className="text-danger">{errors.contact}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>City</label>
+                                <input
+                                    type="text"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your city"
+                                    name="city"
+                                    value={values.city}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.city && touched.city && (
+                                    <span className="text-danger">{errors.city}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>State</label>
+                                <input
+                                    type="text"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your state"
+                                    name="state"
+                                    value={values.state}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.state && touched.state && (
+                                    <span className="text-danger">{errors.state}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>District</label>
+                                <input
+                                    type="text"
+                                    className="form-control border border-dark"
+                                    placeholder="Enter your district"
+                                    name="district"
+                                    value={values.district}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.district && touched.district && (
+                                    <span className="text-danger">{errors.district}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    className="form-control border border-dark"
+                                    placeholder="Password"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.password && touched.password && (
+                                    <span className="text-danger">{errors.password}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_button text-center mt-3">
+                                <button type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div className="col-9">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="First Name Here"
-                    name="fname"
-                    value={data.fname}
-                    onChange={handleChange}
-                  />
-                                    {errors.fname && <div className="text-danger">{errors.fname}</div>}
-
+                <div className="user_registration_box2">
+                    <img src={img} className="img-fluid" alt="user_reg_img" />
                 </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-3">
-                  <label className="form-label userRegistrationlabel">Last Name </label>
-                </div>
-                <div className="col-9">
-                  <input
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Last Name Here"
-                    name="lname"
-                  />
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-3">
-                  <label className="form-label userRegistrationlabel">Email </label>
-                </div>
-                <div className="col-9">
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    placeholder="Email"
-                    name="email"
-                    value={data.email}
-                    onChange={handleChange}
-                  />
-                  {errors.email && <div className="text-danger">{errors.email}</div>}
-                </div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-3">
-                  <label className="form-label userRegistrationlabel">Contact Number</label>
-                </div>
-                <div className="col-9">
-                  <input
-                    type="number"
-                    className="form-control form-control-lg"
-                    id="exampleFormControlInput1"
-                    placeholder="Contact Number"
-                    name="contact"
-                    value={data.contact}
-                    onChange={handleChange}
-                    onBlur={handleContactValidation} // Add onBlur for contact
-                  />
-                  {errors.contact && <div className="text-danger">{errors.contact}</div>}
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-3">
-                  <label className="form-label userRegistrationlabel">Password </label>
-                </div>
-                <div className="col-9">
-                  <input
-                    type="password"
-                    className="form-control form-control-lg"
-                    placeholder="Password"
-                    name="password"
-                    value={data.password}
-                    onChange={handleChange}
-                  />
-                  {errors.password && <div className="text-danger">{errors.password}</div>}
-                </div>
-              </div>
-              <div className="row mt-3">
-                <button type="submit" className="btn btn-secondary userRegistrationbutton mt-3">
-                  Register
-                </button>
-                <div className='userRegistrationdivlast'>Already have an account?
-                  <Link to='/UserLogin' className='userRegistrationdivlink'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login Now</Link>
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
-    </>
-  );
+    );
 }
 
 export default UserRegistration;

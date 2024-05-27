@@ -1,95 +1,117 @@
-import React, { useState } from 'react'
-import img2 from "../../Assets/img22.jpeg"
-import LandingNavbar from '../LandingPage/LandingNavbar'
-import './UserLogin.css'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from 'formik';
+import "./UserLogin.css";
+import img from "../../Assets/userLogin.png";
+import { toast } from "react-toastify";
+import axiosInstance from "../Constants/BaseUrl";
+import { LoginSchema } from "../Constants/Schema";
 
 function UserLogin() {
 
-    const [data, setData] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
+    const [isToastVisible, setToastVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const onSubmit = (values) => {
+    axiosInstance.post('/registerUser', values)
+        .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+                if (!isToastVisible) {
+                    setToastVisible(true);
+                    toast.success("Registration Successful", {
+                        onClose: () => setToastVisible(false),
+                    });
+                }
+                navigate('/UserLogin');
+            } else if (res.data.status === 409) {
+                if (!isToastVisible) {
+                    setToastVisible(true);
+                    toast.warning(res.data.msg, {
+                        onClose: () => setToastVisible(false),
+                    });
+                }
+            } else {
+                if (!isToastVisible) {
+                    setToastVisible(true);
+                    toast.error('Registration Failed', {
+                        onClose: () => setToastVisible(false),
+                    });
+                }
+            }
+        })
+        .catch(() => {
+            if (!isToastVisible) {
+                setToastVisible(true);
+                toast.error('Registration Failed', {
+                    onClose: () => setToastVisible(false),
+                });
+            }
+        });
+};
 
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [name]: ''
-        }));
-    };
-    const validateField = (fieldName, value) => {
-        if (!value.trim()) {
-            return `${fieldName} is required`;
-        }
-        return '';
-    };
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: LoginSchema,
+    onSubmit: onSubmit
+  });
 
-        let errors = {};
-        let formIsValid = true;
-
-        errors.email = validateField('Email', data.email);
-        errors.password = validateField('Password', data.email);
-
-
-
-        setErrors(errors);
-
-        if (formIsValid) {
-            console.log("data", data);
-        }
-    };
-    return (
-        <div>
-
-<div className="container userlogindiv1">
-    <div className="card-header mx-auto  bg-img1">
-        <h3 className="mx-auto  userloginformhead d-flex justify-content-center"> User Login  </h3>
-    </div>
-    <div className="container d-flex flex-row bd-highlight mb-3 userlogindiv2 ">
-        <form onSubmit={handleSubmit}>
-            <div className="form-group mb-3">
-                <input type="text" name="email"
-                    value={data.email}
-                    onChange={handleChange}
-                    className="form-control form-control-lg" placeholder="Username" />
-              <div>{errors.email && <div className="text-danger">{errors.email}</div>}</div>
-
-            </div>             
-            
-
-
-            <div className=" form-group">
-                <input type="password"
-                    value={data.password}
-                    onChange={handleChange}
-                    name="password" className="form-control form-control-lg userloginform1" placeholder="Password" />
-                <div>{errors.password && <div className="text-danger">{errors.password}</div>}</div>
+  return (
+    <div className="user_registration">
+      <div className="user_registration_container">
+        <div className="user_registration_box1">
+          <div className="user_registration_input_group">
+            <form onSubmit={(e)=>{handleSubmit(e)}}>
+              <div className="user_registration_input mt-5">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control border border-dark"
+                  placeholder="Enter your email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.email && touched.email && (<span className="text-danger">{errors.email}</span>)}
+              </div>
+              <div className="user_registration_input mt-4">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control border border-dark"
+                  placeholder="Password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.password && touched.password && (<span className="text-danger">{errors.password}</span>)}
+              </div>
+              <div className="user_registration_forgot_pass text-end mt-3 fs-6">
+                <Link to='/forgot-password' className="text-decoration-none text-dark"><p>Forgot Password?</p></Link>
+              </div>
+              <div className="user_registration_button text-center mt-4 d-flex justify-content-evenly">
+                  <button type="submit">Submit</button>
+                  <button type="reset">Reset</button>
+                </div>
+            </form>
+            <div className="mt-4">
+              <p>Don't have an account? <Link to='/UserRegistration' className="text-decoration-none text-gold">Register here.</Link></p>
             </div>
-
-            <div className="form-group">
-                <input type="submit" name="btn" value="Login" className="btn  btn-outline-danger float-right login_btn userloginbtn" />
-            </div>
-            <div className='userlogindiv3'>
-                Don't have an Account ?
-                <Link to='/UserRegistration' > Register here</Link>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-
-
-
+          </div>
         </div>
-    )
+        <div className="user_registration_box2 justify-content-center">
+          <img src={img} className="img-fluid" alt="user_reg_img" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default UserLogin
+export default UserLogin;

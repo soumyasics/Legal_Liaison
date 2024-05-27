@@ -1,112 +1,126 @@
-import React, { useState } from 'react'
-import img2 from "../../Assets/adv3.avif"
-import './AdminLogin.css'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import "./AdminLogin.css";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import { AdminSchema } from "../Constants/Schema";
+import img from "../../Assets/adminLogin.png";
+
 function AdminLogin() {
-    const [data, setData] = useState({
-        email: '',
-        password: ''
-      });
-    
-      const [errors, setErrors] = useState({
-        email: '',
-        password: ''
-      });
-    
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-        setData(prevData => ({
-          ...prevData,
-          [name]: value
-        }));
-    
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [name]: ''
-        }));
-      };
-    
-      const validateEmail = (value) => {
-        if (!value.trim()) {
-          return 'Email is required';
-        }
-        // Add more email validation logic if needed
-        return '';
-      };
-    
-      const validatePassword = (value) => {
-        if (!value.trim()) {
-          return 'Password is required';
-        }
-        // Add more password validation logic if needed
-        return '';
-      };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-    
-        let errors = {};
-    
-        errors.email = validateEmail(data.email);
-        errors.password = validatePassword(data.password);
-    
-        setErrors(errors);
-    
-        // Proceed with login if there are no errors
-        if (Object.values(errors).every(error => error === '')) {
-          // Perform login logic here
-        }
-}
+  const [isToastVisible, setToastVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const onSubmit = (values) => {
+    if (values.email === "Admin" && values.password === "admin123") {
+      if (!isToastVisible) {
+        setToastVisible(true);
+        toast.success("Login Successful", {
+          onClose: () => setToastVisible(false),
+        });
+      }
+      //             navigate('/UserLogin');
+    } else if (values.email === "Admin") {
+      if (!isToastVisible) {
+        setToastVisible(true);
+        toast.warning("Password Mismatch", {
+          onClose: () => setToastVisible(false),
+        });
+      }
+    } else {
+      if (!isToastVisible) {
+        setToastVisible(true);
+        toast.warning("Username Not Found", {
+          onClose: () => setToastVisible(false),
+        });
+      }
+    }
+  };
+
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: AdminSchema,
+      onSubmit: onSubmit,
+    });
+
   return (
     <div>
-    <div class="container adminlogindiv1">
-                    <div class="card-header mx-auto  bg-img1">
-                        <h3 class="mx-auto  adminloginformhead d-flex justify-content-center"> Admin Login  </h3>
-    
-                    </div>
-                    <div className="container d-flex flex-row bd-highlight mb-3 adminlogindiv2 ">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group mb-3">
-                            <input
-                                type="text"
-                                name="email"
-                                value={data.email}
-                                onChange={handleChange}
-                                className="form-control form-control-lg"
-                                placeholder="Your Email Here"
-                            />
-                            {errors.email && <div className="text-danger">{errors.email}</div>}
-                        </div>
-
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                name="password"
-                                value={data.password}
-                                onChange={handleChange}
-                                className="form-control form-control-lg advocateloginform1"
-                                placeholder="Password Here"
-                            />
-                            {errors.password && <div className="text-danger">{errors.password}</div>}
-                        </div>
-
-                        <div className="form-group">
-                            <input
-                                type="submit"
-                                name="btn"
-                                value="Login"
-                                className="btn  btn-outline-danger float-right login_btn advocateloginbtn"
-                            />
-                        </div>
-                        
-                    </form>
-
+      <div className="user_registration">
+        <div className="user_registration_container">
+          <div className="user_registration_box1">
+            <div className="user_registration_input_group">
+              <form
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                <div className="user_registration_input mt-5">
+                  <label>Username</label>
+                  <input
+                    type="text"
+                    className="form-control border border-dark"
+                    placeholder="Enter Username"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.email && touched.email && (
+                    <span className="text-danger">{errors.email}</span>
+                  )}
                 </div>
+                <div className="user_registration_input mt-4">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control border border-dark"
+                    placeholder="Password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.password && touched.password && (
+                    <span className="text-danger">{errors.password}</span>
+                  )}
                 </div>
-    
-    
+                {/* <div className="user_registration_forgot_pass text-end mt-3 fs-6">
+                  <Link
+                    to="/forgot-password"
+                    className="text-decoration-none text-dark"
+                  >
+                    <p>Forgot Password?</p>
+                  </Link>
+                </div> */}
+                <div className="user_registration_button text-center mt-5 d-flex justify-content-evenly">
+                  <button type="submit">Submit</button>
+                  <button type="reset">Reset</button>
+                </div>
+              </form>
+              {/* <div className="mt-4">
+                <p>
+                  Don't have an account?{" "}
+                  <Link
+                    to="/UserRegistration"
+                    className="text-decoration-none text-gold"
+                  >
+                    Register here.
+                  </Link>
+                </p>
+              </div> */}
+            </div>
+          </div>
+          <div className="user_registration_box2 justify-content-center">
+            <img src={img} className="img-fluid w-100" alt="user_reg_img" />
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default AdminLogin
+export default AdminLogin;

@@ -2,7 +2,7 @@ import LandingCarousel from './Components/LandingPage/LandingCarousel';
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingNavbar from './Components/LandingPage/LandingNavbar';
 import LandingServices from './Components/LandingPage/LandingServices';
@@ -12,16 +12,17 @@ import AdvcateReg from './Components/Advocates/AdvocateReg';
 import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
 import AdminLogin from './Components/Admin/AdminLogin';
+import FormHead from './Components/Common/FormHead';
 function App() {
   return (
-      <BrowserRouter>
+      <BrowserRouter basename='legal_liaison' >
     <div>
       <Routes>
         {/* User routes */}
 
       <Route path='/' element={(<LandingNavbar/>,<LandingCarousel/>)} />
-      <Route path='/UserLogin' element={[<LandingNavbar/>,<UserLogin/>]} />
-      <Route path='/UserRegistration' element={[<LandingNavbar/>,<UserRegistration/>]} />
+      <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
+      <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
 
       {/* Advocate routes */}
 
@@ -33,7 +34,7 @@ function App() {
       <Route path='/BarCouncilLogin' element={[<LandingNavbar/>,<BarCouncilLogin/>]} />
 
 {/* Admin routes */}
-      <Route path='/AdminLogin' element={[<LandingNavbar/>,<AdminLogin/>]} />
+      <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
 
 
       </Routes>
