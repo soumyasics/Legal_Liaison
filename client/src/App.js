@@ -13,6 +13,9 @@ import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
 import AdminLogin from './Components/Admin/AdminLogin';
 import FormHead from './Components/Common/FormHead';
+import AdminSidebar from './Components/Admin/AdminSidebar';
+import AdminFooter from './Components/Admin/AdminFooter';
+import UserFooter from './Components/Common/UserFooter';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -23,18 +26,22 @@ function App() {
       <Route path='/' element={(<LandingNavbar/>,<LandingCarousel/>)} />
       <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
       <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
+      <Route path='/userfooter' element={<UserFooter/>}/>
 
       {/* Advocate routes */}
 
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
       <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
 
-{/* Bar council routes */}
+    {/* Bar council routes */}
 
       <Route path='/BarCouncilLogin' element={[<LandingNavbar/>,<BarCouncilLogin/>]} />
 
-{/* Admin routes */}
+    {/* Admin routes */}
       <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
+      <Route path='/adminsidebar' element={<AdminSidebar/>}/>
+      <Route path='/adminfooter' element={<AdminFooter/>}/>
+
 
 
       </Routes>
