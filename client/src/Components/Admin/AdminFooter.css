@@ -33,5 +33,6 @@
 .footer-logo-text{
     color: white;
     font-size: x-large;
-    font-family: 'Poppins', Arial, sans-serif
+    font-family: 'Poppins', Arial, sans-serif;
+    padding-left: 20px;
 }

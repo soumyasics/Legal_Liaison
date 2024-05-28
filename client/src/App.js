@@ -16,6 +16,7 @@ import FormHead from './Components/Common/FormHead';
 import AdminSidebar from './Components/Admin/AdminSidebar';
 import AdminFooter from './Components/Admin/AdminFooter';
 import UserFooter from './Components/Common/UserFooter';
+import AdminDashboard from './Components/Admin/AdminDashboard';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -39,6 +40,8 @@ function App() {
 
     {/* Admin routes */}
       <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
+      <Route path='/dashboard' element={[<AdminDashboard/>]}/>
+
       <Route path='/admin-dashboard' element={[<LandingNavbar/>,<AdminSidebar/>,<AdminFooter/>]}/>
       <Route path='/adminsidebar' element={<AdminSidebar/>}/>
       <Route path='/adminfooter' element={<AdminFooter/>}/>
