@@ -38,7 +38,7 @@
 .user_home_cards {
   width: 24%;
   height: 20vh;
-  background: #aa9166;
+  background-color: #aa9166;
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
 .user_features_cards{
     width: 29%;
   min-height: 15vh;
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 5px;
   display: flex;
   align-items: center;

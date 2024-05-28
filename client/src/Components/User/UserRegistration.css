@@ -27,8 +27,7 @@
 .user_registration_button button {
   padding: 10px 40px;
   border-radius: 27.09px;
-  opacity: 0px;
-  background: #986f06;
+  background-color: #986f06;
   color: #ffffff;
   font-size: 16.11px;
   font-weight: 900;
