@@ -14,36 +14,42 @@ function AdminSidebar() {
     <div className='row-4'>
         <div className='admin-sidebar'>
             <div className='profile-div'>
-                <img className='img-style' src={profile}/>
-                <label className='profile-label'>Administrator</label>
+                <div className='row'>
+                    <div className='col-2'>
+                    <img className='img-style' src={profile}/>
+                    </div>
+                    <div className='col-8'>
+                    <label className='profile-label'>Administrator</label>
+                    </div>
+                </div>
             </div>
             <div className='content-div'>
                 <div className='div-style'>
                 <div>
                 <label className='label'>General</label>
-                <div>
-                <img src={userimg} className='image-adjust' alt='User image'/>{' '},{' '}
+                <div className='adjust space'>
+                <img src={userimg} className='image-adjust' alt='User image'/>{' '},{' '},{' '}
                     <label className='label-sub'>Users</label>
                 </div>
-                <div>
-                <img src={advocateimg} alt='User image'/>{' '},{' '}
-                    <label className='label-sub '>Advocate</label>
+                <div className='space'>
+                <img src={advocateimg} className='image-adjust-1 padding2' alt='User image'/>{' '},{' '}
+                    <label className='label-sub'>Advocate</label>
                 </div>
-                <div>
-                <img src={casesimg} className='image-adjust' alt='User image'/>{' '},{' '}
+                <div className='adjust space'>
+                <img src={casesimg} className='image-adjust' alt='User image'/>{' '},{' '},{' '}
                     <label className='label-sub'>View Cases</label>
                 </div>
-                <div>
-                <img src={enquiryimg} className='image-adjust' alt='User image'/>{' '},{' '}
+                <div className='adjust space'>
+                <img src={enquiryimg} className='image-adjust-3' alt='User image'/>{' '},{' '},{' '}
                     <label className='label-sub'>View Enquires</label>
                 </div>
-                <div>
-                <img src={juniorimg} className='image-adjust' alt='User image'/>{' '},{' '}
-                    <label className='label-sub'>Manage Junior Advocates</label>
+                <div className='adjust space'>
+                <img src={juniorimg} className='image-adjust' alt='User image'/>{' '},{' '},{' '}
+                    <label className='label-sub '>Manage Junior Advocates</label>
                 </div>
-                <div>
-                <img src={internimg} alt='User image'/>{' '},
-                    <label className='label-sub'>Manage Interns</label>
+                <div className='adjust space'>
+                <img src={internimg} className='image-adjust-2' alt='User image'/>{' '},{' '}
+                    <label className='label-sub padding'>Manage Interns</label>
                 </div>
                 </div>
                 </div>

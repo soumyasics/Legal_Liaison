@@ -39,6 +39,7 @@ function App() {
 
     {/* Admin routes */}
       <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
+      <Route path='/admin-dashboard' element={[<LandingNavbar/>,<AdminSidebar/>,<AdminFooter/>]}/>
       <Route path='/adminsidebar' element={<AdminSidebar/>}/>
       <Route path='/adminfooter' element={<AdminFooter/>}/>
 
