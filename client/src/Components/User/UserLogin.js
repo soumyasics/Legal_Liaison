@@ -14,7 +14,7 @@ function UserLogin() {
   const navigate = useNavigate();
 
   const onSubmit = (values) => {
-    axiosInstance.post('/registerUser', values)
+    axiosInstance.post('/loginUser', values)
         .then((res) => {
             console.log(res);
             if (res.data.status === 200) {
@@ -24,8 +24,9 @@ function UserLogin() {
                         onClose: () => setToastVisible(false),
                     });
                 }
-                navigate('/UserLogin');
-            } else if (res.data.status === 409) {
+                localStorage.setItem('userId',res.data.data._id)
+                navigate('/user_home');
+            } else if (res.data.status === 405) {
                 if (!isToastVisible) {
                     setToastVisible(true);
                     toast.warning(res.data.msg, {

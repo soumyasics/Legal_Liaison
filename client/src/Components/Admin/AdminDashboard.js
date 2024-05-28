@@ -4,24 +4,23 @@ import userimg from '../../Assets/Vector (1).png'
 import casesimg from '../../Assets/Vector (2).png'
 import adimg from '../../Assets/image 19.png'
 import complaintimg from '../../Assets/codiconbriefcase.png'
-import axios from 'axios';
-
-
+import axiosInstance from "../Constants/BaseUrl";
 
 function AdminDashboard() {
     const [userCount, setUserCount] = useState(0);
 
-  useEffect(() => {
-    axios.get('/api/users')
-      .then(response => {
-        if (response.data.status === 200 && response.data.data) {
-          setUserCount(response.data.data.length);
-        }
-      })
-      .catch(error => {
-        console.error('There was an error fetching the user data!', error);
-      });
-  }, []);
+    useEffect(() => {
+        axiosInstance.post('/viewUsers')
+            .then(response => {
+                console.log('Response from backend:', response.data);
+                if (response.data.status === 200 && response.data.data) {
+                    setUserCount(response.data.data.length);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error fetching the user data!', error);
+            });
+    }, []);
   
   return (
     <div className='row-8'>
@@ -42,7 +41,7 @@ function AdminDashboard() {
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={casesimg}/>
                 <div className='text-container'>
-                    <label className='count-label'>123.50</label>
+                    <label className='count-label'>0</label>
                     <label className='content-label'>Cases</label>
                 </div>
                 </div>
@@ -52,7 +51,7 @@ function AdminDashboard() {
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={adimg}/>
                 <div className='text-container'>
-                    <label className='count-label'>1,805</label>
+                    <label className='count-label'>0</label>
                     <label className='content-label'>Advocates</label>
                 </div>
                 </div>
@@ -62,7 +61,7 @@ function AdminDashboard() {
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={complaintimg}/>
                 <div className='text-container'>
-                    <label className='count-label'>54</label>
+                    <label className='count-label'>0</label>
                     <label className='content-label'>Complaints</label>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import img from '../../Assets/userRegPic.png';
 import axiosInstance from "../Constants/BaseUrl";
 import { UserRegistrationSchema } from "../Constants/Schema";
 import { toast } from "react-toastify";
-
+ 
 function UserRegistration() {
     const navigate = useNavigate();
 
