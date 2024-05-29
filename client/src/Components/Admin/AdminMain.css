@@ -1,0 +1,14 @@
+.adminmain-container{
+    display: flex;
+}
+
+.adminmain-sidebar{
+    flex: 1;
+    width: 40%; 
+}
+
+.adminmain-content{
+    flex: 3;
+    padding-left: 1px;
+    padding-right: 40px;
+}

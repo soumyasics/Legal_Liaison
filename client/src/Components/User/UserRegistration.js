@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 function UserRegistration() {
     const navigate = useNavigate();
 
-
     const [isToastVisible, setToastVisible] = useState(false);
 
     const onSubmit = (values) => {
