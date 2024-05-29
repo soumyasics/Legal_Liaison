@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     cb(null, filename);
   },
 });
-const upload = multer({ storage: storage }).single('idProof')
+const upload = multer({ storage: storage }).array("files", 2);
 
 
 // Register Advocate
@@ -41,7 +41,8 @@ const registerAdvocate = async (req, res) => {
             professionalExperience,
             dateOfEnrollment,
             specialization,
-            idProof:req.file
+            idProof:req.files[1],
+            profilePic:req.files[0]
         });
 
         let existingAdvocate = await Advocate.findOne({ bcNo });
@@ -89,7 +90,7 @@ const registerAdvocate = async (req, res) => {
 
 // View all advocates
 const viewAdvocates = (req, res) => {
-    Advocate.find({isActive:'active'})
+    Advocate.find({adminApproved:true})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -117,7 +118,7 @@ const viewAdvocates = (req, res) => {
 
 // View all advocate Reqs
 const viewAdvocateReqs = (req, res) => {
-    Advocate.find({isActive:'pending'})
+    Advocate.find({adminApproved:false})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -145,7 +146,7 @@ const viewAdvocateReqs = (req, res) => {
 
 // approve Advocate
 const approveAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:'active'})
+    Advocate.findByIdAndUpdate({_id:req.params.id},{adminApproved:true})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -173,13 +174,13 @@ const approveAdvocateById = (req, res) => {
 
 // reject Advocate
 const rejectAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:'rejected'})
+    Advocate.findByIdAndDelete({_id:req.params.id})
         .exec()
         .then(data => {
             if (data.length > 0) {
                 res.json({
                     status: 200,
-                    msg: "Data obtained successfully",
+                    msg: "Data Removed successfully",
                     data: data
                 });
             } else {
@@ -369,7 +370,9 @@ const login = (req, res) => {
         if (user.password != password) {
             return res.json({ status: 405, msg: 'Password Mismatch !!' });
         }
-
+        if (user.adminApproved==false) {
+            return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
+        }
         const token = createToken(user);
 
         res.json({
