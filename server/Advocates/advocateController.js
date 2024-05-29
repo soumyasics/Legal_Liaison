@@ -89,7 +89,7 @@ const registerAdvocate = async (req, res) => {
 
 // View all advocates
 const viewAdvocates = (req, res) => {
-    Advocate.find({isActive:'active'})
+    Advocate.find()
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -113,7 +113,6 @@ const viewAdvocates = (req, res) => {
             });
         });
 };
-
 
 // View all advocate Reqs
 const viewAdvocateReqs = (req, res) => {
