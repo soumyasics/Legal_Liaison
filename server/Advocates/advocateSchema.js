@@ -20,7 +20,7 @@ const advSchema=mongoose.Schema({
        
     },
     contact:{
-        type:String,
+        type:Number,
         
         required:true,
        
@@ -58,7 +58,7 @@ const advSchema=mongoose.Schema({
         required:true
 
     },qualification:{
-        type:Number,
+        type:String,
         required:true
 
     },
@@ -67,8 +67,8 @@ const advSchema=mongoose.Schema({
         required:true
 
     },
-    professionalExperience:{
-        type:String,
+    profilePic:{
+        type:Object,
         required:true
 
     },
@@ -88,7 +88,11 @@ const advSchema=mongoose.Schema({
     },
     isActive:{
         type:String,
-        default:'pending'
+        default:true
+    },
+    adminApproved:{
+        type:Boolean,
+        default:false
     }
 });
 module.exports=mongoose.model('advocates',advSchema)
