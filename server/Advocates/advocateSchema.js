@@ -79,7 +79,7 @@ const advSchema=mongoose.Schema({
         required:true
     },
     isActive:{
-        type:String,
+        type:Boolean,
         default:true
     },
     adminApproved:{
