@@ -171,6 +171,62 @@ const approveAdvocateById = (req, res) => {
 };
 
 
+// approve Advocate
+const activateAdvocateById = (req, res) => {
+    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:true})
+        .exec()
+        .then(data => {
+            if (data.length > 0) {
+                res.json({
+                    status: 200,
+                    msg: "Data obtained successfully",
+                    data: data
+                });
+            } else {
+                res.json({
+                    status: 200,
+                    msg: "No Data obtained"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not obtained",
+                Error: err
+            });
+        });
+};
+
+
+// approve Advocate
+const deactivateAdvocateById = (req, res) => {
+    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:false})
+        .exec()
+        .then(data => {
+            if (data.length > 0) {
+                res.json({
+                    status: 200,
+                    msg: "Data obtained successfully",
+                    data: data
+                });
+            } else {
+                res.json({
+                    status: 200,
+                    msg: "No Data obtained"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not obtained",
+                Error: err
+            });
+        });
+};
+
+
 // reject Advocate
 const rejectAdvocateById = (req, res) => {
     Advocate.findByIdAndDelete({_id:req.params.id})
@@ -416,5 +472,7 @@ module.exports = {
     upload,
     viewAdvocateReqs,
     approveAdvocateById,
-    rejectAdvocateById
+    rejectAdvocateById,
+    activateAdvocateById,
+    deactivateAdvocateById
 };
