@@ -51,14 +51,14 @@ function App() {
       {/* <Route path='/dashboard' element={[<AdminDashboard/>]}/> */}
 
       <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
-      <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+      <Route path='/admin-viewalladvocates' element={[<AdminNav/>,<AdminMain data="adminviewalladvocates"/>,<AdminFooter/>]}/>
 
       <Route path='/adminsidebar' element={<AdminSidebar/>}/>
       <Route path='/adminfooter' element={<AdminFooter/>}/>
 
       <Route path='/adminnav' element={<AdminNav/>}/>
       <Route path='/recentenquries' element={<RecentEnquries/>}/>
-      <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/>
+      {/* <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/> */}
 
 
 

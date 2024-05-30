@@ -7,15 +7,42 @@ import axiosInstance from "../Constants/BaseUrl";
 function ViewAllAdvocates() {
   const [data, setData] = useState([]);
 
-  //   const [isActive,setIsActive]=useState(false)
+  const handleActivate = (id) => {
+    axiosInstance.post(`/activateAdvocateById/${id}`)
+      .then(res => {
+        if (res.data.status === 200) {
+          const updatedData = data.map(advocate => {
+            if (advocate._id === id) {
+              advocate.isActive = true;
+            }
+            return advocate;
+          });
+          setData(updatedData);
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error);
+      });
+  };
 
-  // const handleActivate=(a)=>{
-  //   setIsActive(true)
-  // }
+  const handleDeactivate = (id) => {
+    axiosInstance.post(`/deactivateAdvocateById/${id}`)
+      .then(res => {
+        if (res.data.status === 200) {
+          const updatedData = data.map(advocate => {
+            if (advocate._id === id) {
+              advocate.isActive = false;
+            }
+            return advocate;
+          });
+          setData(updatedData);
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error);
+      });
+  };
 
-  // const handleDeactivate=(a)=>{
-  //   setIsActive(false)
-  // }
 
   useEffect(() => {
     axiosInstance.post('/viewAdvocates')
@@ -65,9 +92,19 @@ function ViewAllAdvocates() {
                   </td> {console.log(advocate.isActive)}
                   <td className='table-data'>
                   {(advocate.isActive)?(
-                        <button className="btn btn-outline-primary" >Deactivate</button>
-                    ):(
-                        <button className="btn btn-outline-danger">Activate</button>
+                        <button 
+                        className="btn btn-outline-danger button-size" 
+                        onClick={() => handleDeactivate(advocate._id)}
+                      >
+                        Deactivate
+                      </button>
+                    ) : (
+                      <button 
+                        className="btn btn-outline-success button-size" 
+                        onClick={() => handleActivate(advocate._id)}
+                      >
+                        Activate
+                      </button>
                     )}
                   </td>
                 </tr>

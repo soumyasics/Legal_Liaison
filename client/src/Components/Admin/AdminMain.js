@@ -3,6 +3,7 @@ import '../Admin/AdminMain.css'
 import AdminSidebar from './AdminSidebar'
 import AdminDashboard from './AdminDashboard'
 import AdminLogin from './AdminLogin'
+import ViewAllAdvocates from './ViewAllAdvocates'
 
 function AdminMain({data}) {
   return (
@@ -13,6 +14,7 @@ function AdminMain({data}) {
         </div>
         <div className="adminmain-content">
         {data==="admindashboard" ?(<AdminDashboard/>
+        ):data==="adminviewalladvocates" ?(<ViewAllAdvocates/>
         ):<AdminLogin/>}
         </div>
 
