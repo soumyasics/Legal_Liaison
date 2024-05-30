@@ -65,9 +65,9 @@ function ViewAllAdvocates() {
                   </td> {console.log(advocate.isActive)}
                   <td className='table-data'>
                   {advocate.isActive ?(
-                        <button className="btn btn-outline-primary" >Deactivate</button>
+                        <button className="btn btn-outline-primary">Deactivate</button>
                     ):(
-                        <button className="btn btn-outline-danger" >Activate</button>
+                        <button className="btn btn-outline-danger">Activate</button>
                     )}
                   </td>
                 </tr>
