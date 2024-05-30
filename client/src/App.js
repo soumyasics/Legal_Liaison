@@ -21,6 +21,9 @@ import AdminFooter from './Components/Admin/AdminFooter';
 import UserFooter from './Components/Common/UserFooter';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import AdminMain from './Components/Admin/AdminMain';
+import AdminNav from './Components/Admin/AdminNav';
+import RecentEnquries from './Components/Admin/RecentEnquries';
+import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -45,11 +48,19 @@ function App() {
 
     {/* Admin routes */}
       <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
-      <Route path='/dashboard' element={[<AdminDashboard/>]}/>
+      {/* <Route path='/dashboard' element={[<AdminDashboard/>]}/> */}
 
-      <Route path='/admin-dashboard' element={[<LandingNavbar/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+      <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+      <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+
       <Route path='/adminsidebar' element={<AdminSidebar/>}/>
       <Route path='/adminfooter' element={<AdminFooter/>}/>
+
+      <Route path='/adminnav' element={<AdminNav/>}/>
+      <Route path='/recentenquries' element={<RecentEnquries/>}/>
+      <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/>
+
+
 
 
 

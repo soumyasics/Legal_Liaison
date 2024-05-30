@@ -115,7 +115,6 @@ const viewAdvocates = (req, res) => {
         });
 };
 
-
 // View all advocate Reqs
 const viewAdvocateReqs = (req, res) => {
     Advocate.find({adminApproved:false})

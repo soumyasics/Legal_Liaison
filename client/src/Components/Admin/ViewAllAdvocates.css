@@ -1,0 +1,59 @@
+.main-div{
+    margin: 30px;
+}
+
+.table-container {
+    padding: 20px ;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+  
+.table-header{
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    font-size: 19px;
+    font-weight: 400;
+    /* line-height: 1.5 */
+}
+
+.main-div{
+    border: 2px;
+    border-color: black;
+    border-radius: 5px;
+}
+
+/* .table-change{
+    border-color: aliceblue;
+    table-layout:unset;
+} */
+
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+} */
+  
+th, td {
+    padding: 20px;
+    text-align: center;
+}
+  
+.table-data{
+    text-align: left;
+}
+
+.table-data{
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.btn1{
+    border-color:#986F06;
+}
+
+.btn:hover{
+    background-color: rgba(0, 0, 0, 0.164);
+}

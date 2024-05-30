@@ -3,33 +3,26 @@ const mongoose= require("mongoose");
 const advSchema=mongoose.Schema({
     name:{
         type:String,
-       
         required:true,
-       
     },
     bcNo:{
         type:String,
-      
         required:true,
-       
     },
     bcState:{
         type:String,
-      
         required:true,
-       
     },
+
     contact:{
         type:Number,
         
         required:true,
-       
     },
     email:{
         type:String,
         unique:true,
         required:true,
-       
         dropDups: true
     },
   
@@ -41,7 +34,6 @@ const advSchema=mongoose.Schema({
     gender:{
         type:String,
         required:true
-
     },
     address:{
         type:String,
