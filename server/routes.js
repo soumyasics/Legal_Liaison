@@ -16,7 +16,8 @@ router.post('/rejectAdvocateById/:id',advocates.rejectAdvocateById)
 router.post('/requireAuth',advocates.requireAuth)
 router.post('/viewAdvocateReqs',advocates.viewAdvocateReqs)
 router.post('/viewAdvocates',advocates.viewAdvocates)
-
+router.post('/activateAdvocateById/:id',advocates.activateAdvocateById)
+router.post('/deactivateAdvocateById/:id',advocates.deactivateAdvocateById)
 
 router.post('/registerUser',user.registerUser)
 router.post('/loginUser',user.login)
