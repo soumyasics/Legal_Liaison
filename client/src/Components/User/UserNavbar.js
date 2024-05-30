@@ -49,16 +49,19 @@ function UserNavbar() {
             <li className="nav-item">
               <Link className="nav-link" to="#contact">Contact</Link>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item">
+              <Link className="nav-link" to="#logout">Logout</Link>
+            </li>
+            {/* <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="ri-account-circle-fill"></i>
-              </Link>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link onClick={handleLogout} className="dropdown-item" >Logout</Link>
+              </Link> */}
+              {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown"> */}
+                {/* <Link onClick={handleLogout} className="dropdown-item" >Logout</Link> */}
                 {/* <Link className="dropdown-item" >Advocates</Link>
                 <Link className="dropdown-item" >Students</Link> */}
-              </div>
-            </li>
+              {/* </div> */}
+            {/* </li> */}
           </ul>
         </div>
       </div>
