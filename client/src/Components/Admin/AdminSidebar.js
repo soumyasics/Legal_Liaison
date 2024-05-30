@@ -7,6 +7,7 @@ import enquiryimg from '../../Assets/Vector5.png'
 import juniorimg from '../../Assets/arcticons.png'
 import internimg from '../../Assets/material.png'
 import profile from '../../Assets/5856.jpg'
+import { Link } from 'react-router-dom'
 
 
 function AdminSidebar() {
@@ -33,7 +34,9 @@ function AdminSidebar() {
                 </div>
                 <div className='adjust-space'>
                 <img src={advocateimg} className='padding2' alt='User image'/>{' '},{' '},{' '}
+                    <Link to='/admin-viewalladvocates'>
                     <label className='label-sub'>Advocate</label>
+                    </Link>
                 </div>
                 <div className='adjust-space'>
                 <img src={casesimg} className='image-adjust-1 padding each' alt='User image'/>{' '},{' '},{' '}

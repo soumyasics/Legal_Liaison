@@ -13,7 +13,6 @@ const advSchema=mongoose.Schema({
         type:String,
         required:true,
     },
-
     contact:{
         type:Number,
         
