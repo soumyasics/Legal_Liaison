@@ -24,6 +24,8 @@ import AdminMain from './Components/Admin/AdminMain';
 import AdminNav from './Components/Admin/AdminNav';
 import RecentEnquries from './Components/Admin/RecentEnquries';
 import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
+import AdvocateRegister from './Components/Advocates/AdvocateRegister';
+import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -35,12 +37,15 @@ function App() {
       <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
       <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
       <Route path='/user_home' element={[<UserNavbar/>,<UserHome/>]} />
+
       <Route path='/userfooter' element={<UserFooter/>}/>
 
       {/* Advocate routes */}
 
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
       <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
+      <Route path='/AdvcateRegister' element={[<LandingNavbar/>,<AdvocateRegister/>,<UserFooter/>]} />
+
 
     {/* Bar council routes */}
 
@@ -59,6 +64,9 @@ function App() {
       <Route path='/adminnav' element={<AdminNav/>}/>
       <Route path='/recentenquries' element={<RecentEnquries/>}/>
       {/* <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/> */}
+
+      <Route path='/adminviewadvocaterequest' element={<ApproveRejectAdvocate data='approvereject'/>}/>
+
 
 
 

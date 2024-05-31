@@ -1,6 +1,7 @@
 .main-div{
     margin-top: 20px;
     padding-left: 10px;
+    padding-bottom: 20px;
 }
 
 .table-container {
@@ -46,9 +47,21 @@ th, td {
 
 .btn1{
     border-color:#986F06;
+    height: 46px;
+    width: 55px;
 }
 
 .btn1:hover{
     border-color: #986F06;
     background-color: #986f0668 ;
+}
+
+.btn-outline-success{
+    height: 46px;
+    width: 55px;
+}
+
+
+.button-size1{
+    width: 100px;
 }
