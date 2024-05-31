@@ -11,8 +11,8 @@ function LandingNavbar() {
           <img
             alt="Logo"
             src={img1}
-            width="50"
-            height="50"
+            width="70"
+            height="80"
             className="d-inline-block align-top"
           />{' '}
           LEGAL LIAISON

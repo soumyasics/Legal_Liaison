@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import './ViewAllAdvocates.css';
 import img from '../../Assets/Vecto(2).png';
 import axiosInstance from "../Constants/BaseUrl";
+import { Link } from 'react-router-dom';
 
 function ViewAllAdvocates() {
   const [data, setData] = useState([]);
@@ -61,6 +61,7 @@ function ViewAllAdvocates() {
 
   return (
     <div className='main-div'>
+      <Link to='/adminviewadvocaterequest'>View Advocate request</Link>
       <div className="table-container table-striped">
         <table className='table-change container-fluid'>
           <thead>
@@ -93,14 +94,14 @@ function ViewAllAdvocates() {
                   <td className='table-data'>
                   {(advocate.isActive)?(
                         <button 
-                        className="btn btn-outline-danger button-size" 
+                        className="btn btn-outline-danger button-size1" 
                         onClick={() => handleDeactivate(advocate._id)}
                       >
                         Deactivate
                       </button>
                     ) : (
                       <button 
-                        className="btn btn-outline-success button-size" 
+                        className="btn btn-outline-success button-size1" 
                         onClick={() => handleActivate(advocate._id)}
                       >
                         Activate

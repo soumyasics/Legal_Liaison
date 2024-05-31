@@ -3,6 +3,7 @@ const url = require('../url')
 const multer = require('multer')
 const jwt = require('jsonwebtoken');
 const secret="user"
+
 // const storage = multer.diskStorage({
 //   destination: function (req, res, cb) {
 //     cb(null, "./upload");
@@ -110,8 +111,6 @@ const deleteUserById = (req, res) => {
           });
       })
       .catch(err => {
-
-
 
           res.status(500).json({
               status: 500,
@@ -232,7 +231,8 @@ const login = (req, res) => {
         
   })
 };
-   
+
+
 //validate
 
 const requireAuth = (req, res, next) => {
