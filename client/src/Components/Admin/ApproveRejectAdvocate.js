@@ -4,6 +4,7 @@ import img from '../../Assets/Vecto(2).png';
 import img1 from '../../Assets/Vectorsymbol.png';
 import img2 from '../../Assets/raphael_cross.png';
 import axiosInstance from "../Constants/BaseUrl";
+import { Link } from 'react-router-dom';
 
 function ApproveRejectAdvocate() {
     const [data, setData] = useState([]);
@@ -86,9 +87,11 @@ function ApproveRejectAdvocate() {
                                     <td className='table-data'>{advocate.qualification}</td>
                                     <td className='table-data'>{advocate.experience}</td>
                                     <td className='table-data'>
+                                    <Link to={`/adminviewrequest/${advocate._id}`}>
                                         <button className="btn1 btn btn-outline-secondary">
-                                            <img src={img} alt="View Details" />
+                                        <img src={img} alt="View Details" />
                                         </button>
+                                    </Link>
                                     </td>
                                     <td className='table-data'>
                                         <button className="btn btn-outline-success" onClick={() => handleApprove(advocate._id)}>

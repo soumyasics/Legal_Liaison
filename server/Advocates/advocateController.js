@@ -413,6 +413,7 @@ const createToken = (user) => {
     return jwt.sign({ userId: user._id }, secret, { expiresIn: '1h' });
 };
 
+//advocate login
 const login = (req, res) => {
     const { email, password } = req.body;
 

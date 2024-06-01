@@ -27,6 +27,7 @@ import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
 import AdvocateRegister from './Components/Advocates/AdvocateRegister';
 import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 import AdvocateHome from './Components/Advocates/AdvocateHome';
+import ViewProfile_AR from './Components/Admin/ViewProfile_AR';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -44,7 +45,7 @@ function App() {
       {/* Advocate routes */}
 
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
-      <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
+      <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>,<UserFooter/>]} />
       <Route path='/AdvcateRegister' element={[<LandingNavbar/>,<AdvocateRegister/>,<UserFooter/>]} />
 
       <Route path='/advocate_home' element={[<UserNavbar/>,<AdvocateHome/>]} />
@@ -69,11 +70,7 @@ function App() {
       {/* <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/> */}
 
       <Route path='/adminviewadvocaterequest' element={<ApproveRejectAdvocate data='approvereject'/>}/>
-
-
-
-
-
+      <Route path='/adminviewrequest/:id' element={<ViewProfile_AR/>}/>
 
       </Routes>
 </div>

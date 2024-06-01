@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import img2 from "../../Assets/adv3.avif";
+import img from "../../Assets/image23.png";
 import './AdvocateLogin.css';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../Constants/BaseUrl';
 
 function AdvocateLogin() {
     const [data, setData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
-    let formIsValid = true
+    const [formIsValid, setFormIsValid] = useState(true);
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setData(prevData => ({
@@ -18,77 +20,115 @@ function AdvocateLogin() {
             [name]: ''
         }));
     };
+
     const validateField = (fieldName, value) => {
         if (!value.trim()) {
-            formIsValid = false
-
+            setFormIsValid(false);
             return `${fieldName} is required`;
         }
         return '';
     };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-
         let errors = {};
+        let formIsValid = true;
 
         errors.email = validateField('Email', data.email);
+        if (errors.email) formIsValid = false;
+
         errors.password = validateField('Password', data.password);
-
-
+        if (errors.password) formIsValid = false;
 
         setErrors(errors);
-console.log("form is valid",formIsValid);
+        setFormIsValid(formIsValid);
+
         if (formIsValid) {
             console.log("data", data);
+            axiosInstance.post('/loginAdvocate', data)
+                .then(response => {
+                    console.log("Response:", response.data);
+                    if (response.data.status === 200) {
+                        console.log("Login Successful");
+                        alert("Login Successful");
+                    } else {
+                        console.log("Login Failed");
+                        alert("Login Failed");
+                    }
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
         }
+    };
+
+    const handleReset = () => {
+        setData({ email: '', password: '' });
+        setErrors({ email: '', password: '' });
+        setFormIsValid(true);
     };
 
     return (
         <div>
-            <div className="container advocatelogindiv1">
-                <div className="card-header mx-auto  bg-img1">
-                    <h3 className="mx-auto  advocateloginformhead d-flex justify-content-center"> advocate Login  </h3>
-                </div>
-                <div className="container d-flex flex-row bd-highlight mb-3 advocatelogindiv2 ">
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group mb-3">
-                            <input
-                                type="text"
-                                name="email"
-                                value={data.email}
-                                onChange={handleChange}
-                                className="form-control form-control-lg"
-                                placeholder="Your Email Here"
-                            />
-                            {errors.email && <div className="text-danger">{errors.email}</div>}
+            <div className="user_registration">
+                <div className="user_registration_container">
+                    <div className="user_registration_box1">
+                        <div className="user_registration_input_group">
+                            <form onSubmit={handleSubmit}>
+                                <label className='text-edit'>Login Here</label>
+                                <div className="user_registration_input mt-5">
+                                    <label>Email Id</label>
+                                    <input
+                                        type="text"
+                                        className="form-control border border-dark"
+                                        placeholder="Email Id"
+                                        name="email"
+                                        value={data.email}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.email && <div className="text-danger">{errors.email}</div>}
+                                </div>
+                                <div className="user_registration_input mt-4">
+                                    <label>Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control border border-dark"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={data.password}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.password && <div className="text-danger">{errors.password}</div>}
+                                </div>
+                                <div className="user_registration_forgot_pass text-end mt-3 fs-6">
+                                    <Link
+                                        to="/forgot-password"
+                                        className="text-decoration-none text-dark"
+                                    >
+                                        <p>Forgot Password?</p>
+                                    </Link>
+                                </div>
+                                <div className="user_registration_button text-center mt-5 d-flex justify-content-evenly">
+                                    <button type="submit">Submit</button>
+                                    <button type="button" onClick={handleReset}>Reset</button>
+                                </div>
+                            </form>
+                            <div className="mt-4">
+                                <p>
+                                    Don't have an account?{" "}
+                                    <Link
+                                        to="/AdvcateRegister"
+                                        className="text-decoration-none text-gold"
+                                    >
+                                        Register here.
+                                    </Link>
+                                </p>
+                            </div>
                         </div>
-
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                name="password"
-                                value={data.password}
-                                onChange={handleChange}
-                                className="form-control form-control-lg advocateloginform1"
-                                placeholder="Password Here"
-                            />
-                            {errors.password && <div className="text-danger">{errors.password}</div>}
-                        </div>
-
-                        <div className="form-group">
-                            <input
-                                type="submit"
-                                name="btn"
-                                value="Login"
-                                className="btn  btn-outline-danger float-right login_btn advocateloginbtn"
-                            />
-                        </div>
-                        <div className='advocatelogindiv3'>
-                            Don't have an Account ?
-                            <Link to='/AdvcateReg' > Register here</Link>
-                        </div>
-                    </form>
-
+                    </div>
+                    <div className="user_registration_box2 justify-content-center">
+                        <img src={img} className="img-fluid w-100" alt="user_reg_img" />
+                    </div>
                 </div>
             </div>
         </div>

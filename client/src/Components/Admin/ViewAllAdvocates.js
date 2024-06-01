@@ -87,9 +87,11 @@ function ViewAllAdvocates() {
                   <td className='table-data'>{advocate.qualification}</td>
                   <td className='table-data'>{advocate.experience}</td>
                   <td className='table-data'>
+                  <Link to={`/adminviewrequest/${advocate._id}`}>
                     <button className="btn1 btn btn-outline-secondary">
                       <img src={img} alt="View Details" />
                     </button>
+                  </Link>
                   </td> {console.log(advocate.isActive)}
                   <td className='table-data'>
                   {(advocate.isActive)?(
