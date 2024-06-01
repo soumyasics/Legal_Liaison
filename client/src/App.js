@@ -21,6 +21,7 @@ import AdminFooter from './Components/Admin/AdminFooter';
 import UserFooter from './Components/Common/UserFooter';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import AdminMain from './Components/Admin/AdminMain';
+import AdvocateHome from './Components/Advocates/AdvocateHome';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -38,6 +39,8 @@ function App() {
 
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
       <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
+      <Route path='/advocate_home' element={[<UserNavbar/>,<AdvocateHome/>]} />
+
 
     {/* Bar council routes */}
 
