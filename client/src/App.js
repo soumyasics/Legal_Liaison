@@ -26,6 +26,7 @@ import RecentEnquries from './Components/Admin/RecentEnquries';
 import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
 import AdvocateRegister from './Components/Advocates/AdvocateRegister';
 import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
+import AdvocateHome from './Components/Advocates/AdvocateHome';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -45,6 +46,8 @@ function App() {
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
       <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
       <Route path='/AdvcateRegister' element={[<LandingNavbar/>,<AdvocateRegister/>,<UserFooter/>]} />
+
+      <Route path='/advocate_home' element={[<UserNavbar/>,<AdvocateHome/>]} />
 
 
     {/* Bar council routes */}
