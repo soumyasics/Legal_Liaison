@@ -7,16 +7,15 @@ function AdminFooter() {
     <div className='admin-footer'>
       <div className='container'>
         <div className='row'>
-            <div className='col-6'>
+            <div className='col-6 col-adjust'>
                 <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>
                 <label className='footer-logo-text'>LEGAL LIAISON</label>
             </div>
-            <div className='col-6'>            
+            <div className='col-6 col-adjust'>            
                 <label className='footer-text'>© Copyright | All Right Reserved</label>
             </div>
         </div>
       </div>
-        
     </div>
   )
 }

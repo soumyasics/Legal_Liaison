@@ -1,4 +1,4 @@
-.advocateloginform1{
+/* .advocateloginform1{
     width:370px!important;
 }
 .advocateloginformhead{
@@ -35,4 +35,11 @@ margin-top:15px;
 
 margin-left: 3px;
 font-size: 20px;
-    }
+    } */
+
+.text-edit{
+    padding-left: 40%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
