@@ -13,5 +13,5 @@ const route=require('./routes')
 app.use('/legal_liaison_api',route)
 
 app.listen(4043,()=>{
-    console.log("Server created successfully at 4004");
+    console.log("Server created successfully at 4043");
 })

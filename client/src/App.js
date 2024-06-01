@@ -21,6 +21,11 @@ import AdminFooter from './Components/Admin/AdminFooter';
 import UserFooter from './Components/Common/UserFooter';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import AdminMain from './Components/Admin/AdminMain';
+import AdminNav from './Components/Admin/AdminNav';
+import RecentEnquries from './Components/Admin/RecentEnquries';
+import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
+import AdvocateRegister from './Components/Advocates/AdvocateRegister';
+import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 import AdvocateHome from './Components/Advocates/AdvocateHome';
 function App() {
   return (
@@ -33,12 +38,15 @@ function App() {
       <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
       <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
       <Route path='/user_home' element={[<UserNavbar/>,<UserHome/>]} />
+
       <Route path='/userfooter' element={<UserFooter/>}/>
 
       {/* Advocate routes */}
 
       <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
       <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>]} />
+      <Route path='/AdvcateRegister' element={[<LandingNavbar/>,<AdvocateRegister/>,<UserFooter/>]} />
+
       <Route path='/advocate_home' element={[<UserNavbar/>,<AdvocateHome/>]} />
 
 
@@ -48,11 +56,22 @@ function App() {
 
     {/* Admin routes */}
       <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
-      <Route path='/dashboard' element={[<AdminDashboard/>]}/>
+      {/* <Route path='/dashboard' element={[<AdminDashboard/>]}/> */}
 
-      <Route path='/admin-dashboard' element={[<LandingNavbar/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+      <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
+      <Route path='/admin-viewalladvocates' element={[<AdminNav/>,<AdminMain data="adminviewalladvocates"/>,<AdminFooter/>]}/>
+
       <Route path='/adminsidebar' element={<AdminSidebar/>}/>
       <Route path='/adminfooter' element={<AdminFooter/>}/>
+
+      <Route path='/adminnav' element={<AdminNav/>}/>
+      <Route path='/recentenquries' element={<RecentEnquries/>}/>
+      {/* <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/> */}
+
+      <Route path='/adminviewadvocaterequest' element={<ApproveRejectAdvocate data='approvereject'/>}/>
+
+
+
 
 
 

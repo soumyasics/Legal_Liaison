@@ -46,6 +46,7 @@ function UserFooter() {
                 <li className='list-style'>Become an Afflicate</li>
             </ul>
             </div>
+            <br/><br/>
         </div>
     </div>
   )

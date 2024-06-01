@@ -5,6 +5,7 @@ import logo from '../../Assets/logo2.png'
 function AdminFooter() {
   return (
     <div className='admin-footer'>
+      <div className='container'>
         <div className='row'>
             <div className='col-6'>
                 <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>
@@ -14,6 +15,8 @@ function AdminFooter() {
                 <label className='footer-text'>© Copyright | All Right Reserved</label>
             </div>
         </div>
+      </div>
+        
     </div>
   )
 }

@@ -1,8 +1,9 @@
-const Users = require('./UserSchema')
+const Users = require('./userSchema')
 const url = require('../url')
 const multer = require('multer')
 const jwt = require('jsonwebtoken');
 const secret="user"
+
 // const storage = multer.diskStorage({
 //   destination: function (req, res, cb) {
 //     cb(null, "./upload");
@@ -111,8 +112,6 @@ const deleteUserById = (req, res) => {
       })
       .catch(err => {
 
-
-
           res.status(500).json({
               status: 500,
               msg: "No Data obtained",
@@ -215,7 +214,9 @@ const login = (req, res) => {
       if (User.password!=password) {
         return res.json({ status:405,msg: 'Password Mismatch !!' });
       }
-
+      if (User.password!=password) {
+        return res.json({ status:405,msg: 'Password Mismatch !!' });
+      }
     
       const token = createToken(User);
 
@@ -230,7 +231,8 @@ const login = (req, res) => {
         
   })
 };
-   
+
+
 //validate
 
 const requireAuth = (req, res, next) => {
