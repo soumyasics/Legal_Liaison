@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AdvocateEditProfile.css'
 import img from '../../Assets/advocateBanner.png'
 import tick from '../../Assets/editPofileCheckmark.png'
@@ -44,6 +44,24 @@ function AdvocateEditProfile() {
         profilePic: '',
         idProof: '',
       });
+
+      useEffect(() => {
+          const ReadData = async () => {
+              try {
+                  const res = await axiosMultipartInstance.post(`/viewAdvocateById/${id}`);
+                  if (res.data.status === 200) {
+                    console.log(res.data);
+                      setData(res.data.data);
+                  } else {
+                      alert(`Failed to view advocate data: ${res.data.msg}`);
+                  }
+              } catch (error) {
+                  console.error('There was an error read the advocate data!', error);
+                  alert('Error view advocate data');
+              }
+          };
+          ReadData();
+      }, [id]);
     
       const handleChange = (event) => {
         const { name, value, files } = event.target;
@@ -65,13 +83,22 @@ function AdvocateEditProfile() {
       };
     
       function validateField(fieldName, value) {
-        if (!value.trim()) {
+        
+        if (!(value).toString().trim()) {
           return `${fieldName} is required`;
         }
         return '';
       }
     
       function validateContact(fieldName, value) {
+        if (!(value).toString().trim()) {
+          return `${fieldName} is required`;
+        } else if (value.length !== 10) {
+          return 'Please enter a valid Contact Number';
+        }
+        return '';
+      }
+      function validateExperience(fieldName, value) {
         if (!value.trim()) {
           return `${fieldName} is required`;
         } else if (value.length !== 10) {
@@ -79,7 +106,6 @@ function AdvocateEditProfile() {
         }
         return '';
       }
-    
       const handleSubmit = async (event) => {
         event.preventDefault();
     
@@ -98,53 +124,54 @@ function AdvocateEditProfile() {
         errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
         errors.bcState = validateField('State Bar Council', data.bcState);
         errors.specialization = validateField('Specialization Areas', data.specialization);
+        console.log("data before",data.experience);
         errors.experience = validateField('Years of Experience', data.experience);
         errors.qualification = validateField('Educational Qualification', data.qualification);
-        errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
-        errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
+        // errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
+        // errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
     
         setErrors(errors);
     
         for (let key in errors) {
-          if (errors[key]) {
-            formIsValid = false;
-            break;
-          }
+            if (errors[key]) {
+                formIsValid = false;
+                break;
+            }
         }
     
         if (formIsValid) {
-          const formData = new FormData();
-          formData.append('name', data.name);
-          formData.append('dob', data.dob);
-          formData.append('gender', data.gender);
-          formData.append('nationality', data.nationality);
-          formData.append('address', data.address);
-          formData.append('contact', data.contact);
-          formData.append('email', data.email);
-          formData.append('password', data.password);
-          formData.append('bcNo', data.bcNo);
-          formData.append('dateOfEnrollment', data.dateOfEnrollment);
-          formData.append('bcState', data.bcState);
-          formData.append('specialization', data.specialization);
-          formData.append('experience', data.experience);
-          formData.append('qualification', data.qualification);
-          formData.append('files', data.profilePic);
-          formData.append('files', data.idProof);
+            const formData = new FormData();
+            formData.append('name', data.name);
+            formData.append('dob', data.dob);
+            formData.append('gender', data.gender);
+            formData.append('nationality', data.nationality);
+            formData.append('address', data.address);
+            formData.append('contact', data.contact);
+            formData.append('email', data.email);
+            formData.append('password', data.password);
+            formData.append('bcNo', data.bcNo);
+            formData.append('dateOfEnrollment', data.dateOfEnrollment);
+            formData.append('bcState', data.bcState);
+            formData.append('specialization', data.specialization);
+            formData.append('experience', data.experience);
+            formData.append('qualification', data.qualification);
+            formData.append('files', data.profilePic);
+            formData.append('files', data.idProof);
     
-          try {
-            const res = await axiosMultipartInstance.post('/registerAdvocate', formData);
-            if (res.data.status === 200) {
-                alert('Advocate registered successfully');
-                // navigate('/AdvocateLogin')
-            } else {
-                alert(`Advocate Registration Failed: ${res.data.msg}`);
+            try {
+                const res = await axiosMultipartInstance.post(`/editAdvocateById/${id}`,formData);
+                if (res.data.status === 200) {
+                    alert('Advocate profile updated successfully');
+                } else {
+                    alert(`Advocate Profile Update Failed: ${res.data.msg}`);
+                }
+            } catch (error) {
+                console.error('There was an error!', error);
+                alert('Error updating advocate profile');
             }
-        } catch (error) {
-            console.error('There was an error!', error);
-            alert('Error');
         }
-        }
-      };
+    };
+    
 
   return (
     <div>
@@ -209,11 +236,12 @@ function AdvocateEditProfile() {
               <div className="row mt-3">
                 <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
+                  {console.log((data.dob).slice(0,10))}
                   <input
                     type="date"
                     className="form-control form-control-lg"
                     name="dob"
-                    value={data.dob}
+                    value={(data.dob).slice(0,10)}
                     onChange={handleChange}
                   />
                   {errors.dob && <div className="text-danger">{errors.dob}</div>}
@@ -318,7 +346,7 @@ function AdvocateEditProfile() {
                 <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
                   <input
-                    type="number"
+                    type="text"
                     className="form-control form-control-lg"
                     placeholder="Enter your years of experience"
                     name="experience"
@@ -356,7 +384,7 @@ function AdvocateEditProfile() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-6">
+              {/* <div className="col-6"> */}
                   <label className="form-label advocateRegistrationlabel">Email :</label>
                   <input
                     type="email"
@@ -367,8 +395,8 @@ function AdvocateEditProfile() {
                     onChange={handleChange}
                   />
                   {errors.email && <div className="text-danger">{errors.email}</div>}
-                </div>
-                <div className="col-6">
+                {/* </div> */}
+                {/* <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
                   <input
                     type="file"
@@ -377,7 +405,7 @@ function AdvocateEditProfile() {
                     onChange={handleChange}
                   />
                   {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
-                </div>
+                </div> */}
               </div>
               <div className="row mt-3">
                 <div className="col-6">
@@ -393,19 +421,19 @@ function AdvocateEditProfile() {
                   {errors.password && <div className="text-danger">{errors.password}</div>}
                 </div>
                 <div className="col-6">
-                  <label className="form-label advocateRegistrationlabel">ID Proof Document :</label>
+                  <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
                   <input
                     type="file"
                     className="form-control form-control-lg"
-                    name="idProof"
+                    name="profilePic"
                     onChange={handleChange}
                   />
-                  {errors.idProof && <div className="text-danger">{errors.idProof}</div>}
+                  {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-12">
-                  <button type="submit" className="btn btn-primary btn-lg">Register</button>
+                  <button type="submit" className="btn btn-primary btn-lg">Update</button>
                 </div>
               </div>
             </form>

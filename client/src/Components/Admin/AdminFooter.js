@@ -15,10 +15,11 @@ function AdminFooter() {
 
   return (
     <div className='admin-footer'>
-      <div className='container'>
+      <div className=''>
         <div className='row'>
             <div className='col-6 col-adjust'>
-                <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>
+            <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>
+            {/* <img  className='footer-img' src={logo1} alt='Admin Footer Logo name'/>              */}
                 <label className='footer-logo-text'>LEGAL LIAISON</label>
             </div>
             <div className='col-6 col-adjust'>            
