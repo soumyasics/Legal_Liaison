@@ -43,7 +43,6 @@ function ViewAllAdvocates() {
       });
   };
 
-
   useEffect(() => {
     axiosInstance.post('/viewAdvocates')
       .then(res => {
@@ -62,23 +61,23 @@ function ViewAllAdvocates() {
   return (
     <div className='main-div'>
       <Link to='/adminviewadvocaterequest'>View Advocate request</Link>
-      <div className="table-container table-striped">
-        <table className='table-change container-fluid'>
-          <thead>
-            <tr>
-              <th className='table-header'>Bar council Enrolment No</th>
-              <th className='table-header'>Advocate Name</th>
-              <th className='table-header'>Specialization areas</th>
-              <th className='table-header'>Bar Council Area</th>
-              <th className='table-header'>Educational qualification</th>
-              <th className='table-header'>Years of Experience</th>
-              <th className='table-header'>View full Details</th>
-              <th className='table-header'>User Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length ? (
-              data.map((advocate) => (
+      {data.length ? (
+        <div className="table-container table-striped">
+          <table className='table-change container-fluid'>
+            <thead>
+              <tr>
+                <th className='table-header'>Bar council Enrolment No</th>
+                <th className='table-header'>Advocate Name</th>
+                <th className='table-header'>Specialization areas</th>
+                <th className='table-header'>Bar Council Area</th>
+                <th className='table-header'>Educational qualification</th>
+                <th className='table-header'>Years of Experience</th>
+                <th className='table-header'>View full Details</th>
+                <th className='table-header'>User Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((advocate) => (
                 <tr>
                   <td className='table-data'>{advocate.bcNo}</td>
                   <td className='table-data'>{advocate.name}</td>
@@ -87,23 +86,23 @@ function ViewAllAdvocates() {
                   <td className='table-data'>{advocate.qualification}</td>
                   <td className='table-data'>{advocate.experience}</td>
                   <td className='table-data'>
-                  <Link to={`/adminviewrequest/${advocate._id}`}>
-                    <button className="btn1 btn btn-outline-secondary">
-                      <img src={img} alt="View Details" />
-                    </button>
-                  </Link>
-                  </td> {console.log(advocate.isActive)}
+                    <Link to={`/adminviewalladvocate/${advocate._id}`}>
+                      <button className="btn1 btn btn-outline-secondary">
+                        <img src={img} alt="View Details" />
+                      </button>
+                    </Link>
+                  </td>
                   <td className='table-data'>
-                  {(advocate.isActive)?(
-                        <button 
-                        className="btn btn-outline-danger button-size1" 
+                    {advocate.isActive ? (
+                      <button
+                        className="btn btn-outline-danger button-size1"
                         onClick={() => handleDeactivate(advocate._id)}
                       >
                         Deactivate
                       </button>
                     ) : (
-                      <button 
-                        className="btn btn-outline-success button-size1" 
+                      <button
+                        className="btn btn-outline-success button-size1"
                         onClick={() => handleActivate(advocate._id)}
                       >
                         Activate
@@ -111,15 +110,13 @@ function ViewAllAdvocates() {
                     )}
                   </td>
                 </tr>
-              ))
-            ) : (
-              <h1>
-               No Data obtained
-            </h1>
-            )}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <h1>No Data obtained</h1>
+      )}
     </div>
   );
 }

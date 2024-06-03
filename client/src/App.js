@@ -28,6 +28,7 @@ import AdvocateRegister from './Components/Advocates/AdvocateRegister';
 import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 import AdvocateHome from './Components/Advocates/AdvocateHome';
 import ViewProfile_AR from './Components/Admin/ViewProfile_AR';
+import ViewProfile_AllAdvocate from './Components/Admin/ViewProfile_AllAdvocate';
 function App() {
   return (
       <BrowserRouter basename='legal_liaison' >
@@ -71,6 +72,8 @@ function App() {
 
       <Route path='/adminviewadvocaterequest' element={<ApproveRejectAdvocate data='approvereject'/>}/>
       <Route path='/adminviewrequest/:id' element={<ViewProfile_AR/>}/>
+      <Route path='/adminviewalladvocate/:id' element={<ViewProfile_AllAdvocate/>}/>
+
 
       </Routes>
 </div>
