@@ -8,6 +8,7 @@ import axiosInstance from "../Constants/BaseUrl";
 
 function AdminDashboard() {
     const [userCount, setUserCount] = useState(0);
+    const [advocateCount, setAdvocateCount] = useState(0);
 
     useEffect(() => {
         axiosInstance.post('/viewUsers')
@@ -15,6 +16,16 @@ function AdminDashboard() {
                 console.log('Response from backend:', response.data);
                 if (response.data.status === 200 && response.data.data) {
                     setUserCount(response.data.data.length);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error fetching the user data!', error);
+            });
+        axiosInstance.post('/viewAdvocates')
+            .then(response => {
+                console.log('Response from backend:', response.data);
+                if (response.data.status === 200 && response.data.data) {
+                    setAdvocateCount(response.data.data.length);
                 }
             })
             .catch(error => {
@@ -51,7 +62,7 @@ function AdminDashboard() {
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={adimg}/>
                 <div className='text-container'>
-                    <label className='count-label'>0</label>
+                    <label className='count-label'>{advocateCount}</label>
                     <label className='content-label'>Advocates</label>
                 </div>
                 </div>

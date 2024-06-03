@@ -1,12 +1,22 @@
-import React from "react";
-import "../Admin/AdminMain.css";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 import AdminDashboard from "./AdminDashboard";
 import AdminLogin from "./AdminLogin";
 import ViewAllAdvocates from "./ViewAllAdvocates";
 import ApproveRejectAdvocate from "./ApproveRejectAdvocate";
+import ViewProfile_AR from "./ViewProfile_AR";
+import "../Admin/AdminMain.css";
 
 function AdminMain({ data }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("adminId") == null) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   return (
     <div>
       <div className="adminmain-container">
@@ -20,6 +30,10 @@ function AdminMain({ data }) {
             <ViewAllAdvocates />
           ) : data === "approvereject" ? (
             <ApproveRejectAdvocate />
+          ) : data === "adminviewrequest" ? (
+            <ViewProfile_AR view='request'  />
+          ) : data === "adminviewsingleadvocate" ? (
+            <ViewProfile_AR view='view' />
           ) : (
             <AdminLogin />
           )}

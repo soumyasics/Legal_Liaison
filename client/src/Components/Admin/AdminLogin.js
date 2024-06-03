@@ -18,8 +18,10 @@ function AdminLogin() {
         toast.success("Login Successful", {
           onClose: () => setToastVisible(false),
         });
+
       }
-      //             navigate('/UserLogin');
+      navigate('/admin-dashboard');
+      localStorage.setItem('adminId',1)
     } else if (values.email === "Admin") {
       if (!isToastVisible) {
         setToastVisible(true);

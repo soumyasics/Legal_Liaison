@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './AdminFooter.css'
 import logo from '../../Assets/logo2.png'
+import { useNavigate } from 'react-router-dom';
 
 function AdminFooter() {
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("adminId" == null)) {
+      navigate("/");
+    }
+  });
+
   return (
     <div className='admin-footer'>
       <div className='container'>

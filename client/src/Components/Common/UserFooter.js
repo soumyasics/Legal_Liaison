@@ -6,7 +6,8 @@ import logo from '../../Assets/logo2.png'
 function UserFooter() {
   return (
     <div className='user-footer'>
-        <div className='row'>
+        <div className='container'>
+          <div className='row'>
             <div className='col-3'>
             <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>{''}{''}{''}{''}{''}
                 <label className='footer-logo-text'>LEGAL LIAISON</label>
@@ -47,7 +48,9 @@ function UserFooter() {
             </ul>
             </div>
             <br/><br/>
+        </div>  
         </div>
+        
     </div>
   )
 }

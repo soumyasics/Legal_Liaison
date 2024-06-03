@@ -1,14 +1,14 @@
 import LandingCarousel from './Components/LandingPage/LandingCarousel';
 import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'remixicon/fonts/remixicon.css'
+import 'remixicon/fonts/remixicon.css';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingNavbar from './Components/LandingPage/LandingNavbar';
 import LandingServices from './Components/LandingPage/LandingServices';
 import UserLogin from './Components/User/UserLogin';
-import UserRegistration from './Components/User/UserRegistration'
+import UserRegistration from './Components/User/UserRegistration';
 import AdvcateReg from './Components/Advocates/AdvocateReg';
 import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
@@ -28,54 +28,48 @@ import AdvocateRegister from './Components/Advocates/AdvocateRegister';
 import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 import AdvocateHome from './Components/Advocates/AdvocateHome';
 import ViewProfile_AR from './Components/Admin/ViewProfile_AR';
+import AdvocateNavbar from './Components/Advocates/AdvocateNavbar';
+import AdvocateEditProfile from './Components/Advocates/AdvocateEditProfile';
+
 function App() {
   return (
-      <BrowserRouter basename='legal_liaison' >
-    <div>
-      <Routes>
-        {/* User routes */}
+    <BrowserRouter basename="legal_liaison">
+      <div>
+        <Routes>
+          {/* User routes */}
+          <Route path="/" element={(<LandingNavbar />, <LandingCarousel />)} />
+          <Route path="/UserLogin" element={[<LandingNavbar />, <FormHead title="Home / User Login" />, <UserLogin />]} />
+          <Route path="/UserRegistration" element={[<LandingNavbar />, <FormHead title="User Registration Form" />, <UserRegistration />]} />
+          <Route path="/user_home" element={[<UserNavbar />, <UserHome />]} />
+          <Route path="/userfooter" element={<UserFooter />} />
 
-      <Route path='/' element={(<LandingNavbar/>,<LandingCarousel/>)} />
-      <Route path='/UserLogin' element={[<LandingNavbar/>,<FormHead title='Home / User Login' />,<UserLogin/>]} />
-      <Route path='/UserRegistration' element={[<LandingNavbar/>,<FormHead title='User Registration Form' />,<UserRegistration/>]} />
-      <Route path='/user_home' element={[<UserNavbar/>,<UserHome/>]} />
+          {/* Advocate routes */}
+          <Route path="/AdvcateReg" element={[<LandingNavbar />, <AdvcateReg />]} />
+          <Route path="/AdvocateLogin" element={[<LandingNavbar />, <AdvocateLogin />, <UserFooter />]} />
+          <Route path="/AdvcateRegister" element={[<LandingNavbar />, <AdvocateRegister />, <UserFooter />]} />
+          <Route path="/advocate_home" element={[<AdvocateNavbar />, <AdvocateHome />]} />
+          <Route path="/advocate_edit_profile" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
 
-      <Route path='/userfooter' element={<UserFooter/>}/>
+          {/* Bar council routes */}
+          <Route path="/BarCouncilLogin" element={[<LandingNavbar />, <BarCouncilLogin />]} />
 
-      {/* Advocate routes */}
+          {/* Admin routes */}
+          <Route path="/AdminLogin" element={[<LandingNavbar />, <FormHead title="Admin Login" />, <AdminLogin />]} />
+          <Route path="/admin-dashboard" element={[<AdminNav />, <AdminMain data="admindashboard" />, <AdminFooter />]} />
+          <Route path="/admin-viewalladvocates" element={[<AdminNav />, <AdminMain data="adminviewalladvocates" />, <AdminFooter />]} />
+          <Route path="/adminviewadvocaterequest" element={[<AdminNav />, <AdminMain data="approvereject" />, <AdminFooter />]} />
+          <Route path="/adminviewrequest/:id" element={[<AdminNav />, <AdminMain data="adminviewrequest" />, <AdminFooter />]} />
+          <Route path="/admin_view_single_advocate/:id" element={[<AdminNav />, <AdminMain data="adminviewsingleadvocate" />, <AdminFooter />]} />
 
-      <Route path='/AdvcateReg' element={[<LandingNavbar/>,<AdvcateReg/>]} />
-      <Route path='/AdvocateLogin' element={[<LandingNavbar/>,<AdvocateLogin/>,<UserFooter/>]} />
-      <Route path='/AdvcateRegister' element={[<LandingNavbar/>,<AdvocateRegister/>,<UserFooter/>]} />
-
-      <Route path='/advocate_home' element={[<UserNavbar/>,<AdvocateHome/>]} />
-
-
-    {/* Bar council routes */}
-
-      <Route path='/BarCouncilLogin' element={[<LandingNavbar/>,<BarCouncilLogin/>]} />
-
-    {/* Admin routes */}
-      <Route path='/AdminLogin' element={[<LandingNavbar/>,<FormHead title='Admin Login' />,<AdminLogin/>]} />
-      {/* <Route path='/dashboard' element={[<AdminDashboard/>]}/> */}
-
-      <Route path='/admin-dashboard' element={[<AdminNav/>,<AdminMain data="admindashboard"/>,<AdminFooter/>]}/>
-      <Route path='/admin-viewalladvocates' element={[<AdminNav/>,<AdminMain data="adminviewalladvocates"/>,<AdminFooter/>]}/>
-
-      <Route path='/adminsidebar' element={<AdminSidebar/>}/>
-      <Route path='/adminfooter' element={<AdminFooter/>}/>
-
-      <Route path='/adminnav' element={<AdminNav/>}/>
-      <Route path='/recentenquries' element={<RecentEnquries/>}/>
-      {/* <Route path='/viewalladvocates' element={<ViewAllAdvocates/>}/> */}
-
-      <Route path='/adminviewadvocaterequest' element={<ApproveRejectAdvocate data='approvereject'/>}/>
-      <Route path='/adminviewrequest/:id' element={<ViewProfile_AR/>}/>
-
-      </Routes>
-</div>
-</BrowserRouter>
-
+          <Route path="/adminsidebar" element={<AdminSidebar />} />
+          <Route path="/adminfooter" element={<AdminFooter />} />
+          <Route path="/adminnav" element={<AdminNav />} />
+          <Route path="/recentenquries" element={<RecentEnquries />} />
+          <Route path="/adminviewadvocaterequest" element={<ApproveRejectAdvocate data="approvereject" />} />
+          <Route path="/adminviewrequest/:id" element={<ViewProfile_AR />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

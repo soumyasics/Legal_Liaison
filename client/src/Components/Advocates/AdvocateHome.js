@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AdvocateHome.css";
 import icon from "../../Assets/policeHomeCaseIcon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../Constants/BaseUrl";
 
 function AdvocateHome() {
+
+  const [advocate, setAdvocate] = useState({});
+
+  const navigate=useNavigate();
+
+
+  useEffect(()=>{
+    if(localStorage.getItem('advocateId'==null)){
+        navigate('/')
+    }
+})
+
+const id=localStorage.getItem('advocateId')
+
+useEffect(() => {
+  axiosInstance
+    .post(`/viewAdvocateById/${id}`)
+    .then((response) => {
+      console.log(response);
+      setAdvocate(response.data.data);
+    })
+    .catch((error) => {
+      console.error("There was an error fetching the advocate details!", error);
+    });
+}, [id]);
+
   return (
     <div className="advocate_home">
       <div className="advocate_home_banner">
@@ -123,13 +150,13 @@ function AdvocateHome() {
               <div className="container">
                 <div className="advocate_home_profile_container_head">
                   <p className="advocate_home_profile_container_head_title">
-                    Shafali Lora
+                    {advocate.name}
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
-                    <span className="text-gold">Senior Advocate</span> of Kerala
+                    <span className="text-gold">Senior Advocate</span> of {advocate.bcState}
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
-                    <span className="text-gold">3+</span> Years Of Experience
+                    <span className="text-gold">{advocate.experience}</span> Years Of Experience
                   </p>
                 </div>
                 <div className="advocate_home_profile_container_body mt-5">
@@ -137,31 +164,31 @@ function AdvocateHome() {
                     <thead>
                       <tr>
                         <td scope="col">Email Address</td>
-                        <td scope="col">: Subi@gmail.com</td>
+                        <td scope="col">: {advocate.email}</td>
                       </tr>
                       <tr>
                         <td scope="col">Contact Number</td>
-                        <td scope="col">: 1234567890</td>
+                        <td scope="col">: {advocate.contact}</td>
                       </tr>
                       <tr>
                         <td scope="col">Bar Council Enrollment Number</td>
-                        <td scope="col">: 67890</td>
+                        <td scope="col">: {advocate.bcNo}</td>
                       </tr>
                       <tr>
                         <td scope="col">Date of Enrollment</td>
-                        <td scope="col">: 02-02-2222</td>
+                        <td scope="col">: {advocate.dateOfEnrollment}</td>
                       </tr>
                       <tr>
                         <td scope="col">State Bar Council</td>
-                        <td scope="col">: Kerala</td>
+                        <td scope="col">: {advocate.bcState}</td>
                       </tr>
                       <tr>
                         <td scope="col">Specialization Areas</td>
-                        <td scope="col">: Civil Law</td>
+                        <td scope="col">: {advocate.specialization}</td>
                       </tr>
                       <tr>
                         <td scope="col">Educational Qualification</td>
-                        <td scope="col">: Master of Law</td>
+                        <td scope="col">: {advocate.qualification}</td>
                       </tr>
                     </thead>
                     <caption className="px-1">
