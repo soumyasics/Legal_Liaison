@@ -107,7 +107,7 @@ function ViewProfile_AR({ view }) {
     <div className="container-fluid mt-5">
       <div className="row justify-content-center">
         <div className="col-lg-4 col-md-6 col-sm-12 text-center">
-          <img src={`${imageUrl}${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
+          <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
           <br />
           <label className="advocate-name d-block mt-3">{advocate.name}</label>
           <label className="practice-area d-block">Practice Area</label>
@@ -165,7 +165,7 @@ function ViewProfile_AR({ view }) {
                   </td>
                   <td className="left-alignn"> : </td>
                   <td className="left-alignn">
-                    <label className="sub-label">{advocate.experience}</label>
+                    <label className="sub-label">{advocate.experience} years</label>
                   </td>
                 </tr>
                 <tr>

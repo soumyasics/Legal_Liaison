@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import '../Admin/ViewProfile_AR.css'; // Make sure this is the correct path to your CSS file
 import img from '../../Assets/image 21.png'; // Update this with the correct path to your image file
+import { imageUrl } from '../Constants/Image_Url';
 
 function ViewProfile_AllAdvocate() {
     const [advocate, setAdvocate] = useState(null);
@@ -50,7 +51,9 @@ function ViewProfile_AllAdvocate() {
         <div className="container-fluid mt-5">
             <div className="row justify-content-center">
                 <div className="col-4 text-center">
-                    <img src={img} className="img-fluid rounded" alt="Advocate" /><br />
+                    {/* <img src={img} className="img-fluid rounded" alt="Advocate" /><br /> */}
+                    <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
+
                     <label className="advocate-name d-block mt-3">{advocate.name}</label>
                     <label className="practice-area d-block">Practice Area</label>
                     <label className="experience-label d-block">{advocate.experience} Years of Experience in Various Cases</label><br />
@@ -93,7 +96,7 @@ function ViewProfile_AllAdvocate() {
                                 <tr>
                                     <td className='left-alignn'><label className="sub-label">Professional Experience</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="sub-label">{advocate.experience}</label></td>
+                                    <td className='left-alignn'><label className="sub-label">{advocate.experience} years</label></td>
                                 </tr>
                                 
                                     

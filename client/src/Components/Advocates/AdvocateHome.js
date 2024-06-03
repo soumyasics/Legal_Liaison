@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdvocateHome.css";
 import icon from "../../Assets/policeHomeCaseIcon.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
 
 function AdvocateHome() {
@@ -149,7 +149,7 @@ useEffect(() => {
             <div className="col-lg-4 col-md-6 col-sm-12 mt-3 advocate_home_profile_container">
               <div className="container">
                 <div className="advocate_home_profile_container_head">
-                  <p className="advocate_home_profile_container_head_title">
+?                  <p className="advocate_home_profile_container_head_title">
                     {advocate.name}
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
@@ -196,7 +196,10 @@ useEffect(() => {
                     </caption>
                   </table>
                   <div className="advocate_home_edit_btn text-center mt-3">
-                    <button type="submit">Edit</button>
+                    <Link to={`/advocate_edit_profile/${id}`}>
+                    <button type="submit">Edit
+                    </button>      
+                    </Link>        
                   </div>
                 </div>
               </div>
