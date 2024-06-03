@@ -1,16 +1,17 @@
 import React from 'react'
 import './UserFooter.css'
 import logo from '../../Assets/logo2.png'
+import { Link } from 'react-router-dom'
 
 
 function UserFooter() {
   return (
     <div className='user-footer'>
-        <div className='container'>
+        <div>
           <div className='row'>
             <div className='col-3'>
-            <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>{''}{''}{''}{''}{''}
-                <label className='footer-logo-text'>LEGAL LIAISON</label>
+            <img  className='d-inline-block align-top footer-img' src={logo} alt='Admin Footer Logo'/>
+            <label className='footer-logo-text'>LEGAL LIAISON</label>
             </div>
             <div className='col-3'>
                 <h2 className='footer-title'>Lawyer</h2>

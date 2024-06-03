@@ -3,6 +3,7 @@ import "./AdvocateHome.css";
 import icon from "../../Assets/policeHomeCaseIcon.png";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
+import { imageUrl } from "../Constants/Image_Url";
 
 function AdvocateHome() {
 
@@ -148,8 +149,10 @@ useEffect(() => {
             </div>
             <div className="col-lg-4 col-md-6 col-sm-12 mt-3 advocate_home_profile_container">
               <div className="container">
-                <div className="advocate_home_profile_container_head">
-?                  <p className="advocate_home_profile_container_head_title">
+                <div className="advocate_home_profile_container_head cont_center">
+                {/* <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" /> */}
+                <img src={`${imageUrl}/${advocate.profilePic?.filename}`} className="img-fluid rounded" alt="Advocate" />
+                  <p className="advocate_home_profile_container_head_title">
                     {advocate.name}
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
