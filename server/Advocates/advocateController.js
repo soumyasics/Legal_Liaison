@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage }).array("files", 2);
 
+const uploadProfile = multer({ storage: storage }).single('profilePic');
 
 // Register Advocate
 const registerAdvocate = async (req, res) => {
@@ -257,7 +258,7 @@ const rejectAdvocateById = (req, res) => {
 // Update advocate by ID
 const editAdvocateById = async (req, res) => {
     const { name, bcNo, bcState, contact, email, password, gender, address, experience, nationality, qualification, dob, professionalExperience, dateOfEnrollment, specialization } = req.body;
-
+console.log("contact",req.body.contact);
     Advocate.findByIdAndUpdate({ _id: req.params.id }, {
         name,
         bcNo,
@@ -274,7 +275,7 @@ const editAdvocateById = async (req, res) => {
         professionalExperience,
         dateOfEnrollment,
         specialization,
-        idProof:req.file
+        profilePic:req.file
     })
         .exec()
         .then(data => {
@@ -475,5 +476,6 @@ module.exports = {
     approveAdvocateById,
     rejectAdvocateById,
     activateAdvocateById,
-    deactivateAdvocateById
+    deactivateAdvocateById,
+    uploadProfile
 };
