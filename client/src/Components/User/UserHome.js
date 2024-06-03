@@ -29,10 +29,10 @@ function UserHome() {
             <div className="col-6">
               <div className="user_home_container">
                 <div className="user_home_content_box">
-                  <p className="user_home_title">
+                  <p className="user_home_title text-justify">
                     Reputation. Respect, Results.
                   </p>
-                  <p className="user_home_content mt-4">
+                  <p className="user_home_content mt-4 text-justify">
                     We know what is to defend rights.We work with people for,and
                     with the full respect to the law.
                   </p>
@@ -65,7 +65,7 @@ function UserHome() {
           <div className="row">
             <div className="col-8 pt-5 pb-4">
               <p className="user_home_about_title">Learn About Us</p>
-              <p className="user_home_about_content">
+              <p className="user_home_about_content text-justify">
                 welcome to our platform, where innovation meets efficiency in
                 the legal landscape, wpride ourselves on offering a cutting-edge
                 solution designed to simplfy and streamlinethe complexities of
@@ -74,7 +74,7 @@ function UserHome() {
                 providing intitute tols and resources tallored to their
                 respective roles
               </p>
-              <p className="user_home_about_content">
+              <p className="user_home_about_content text-justify">
                 For administrators, our feature-rich dashboard empovers seamless
                 management of useraccounts, including the addition and removal
                 of judges, verification of advocates credentials, and
@@ -100,21 +100,21 @@ function UserHome() {
                     <img src={ficon1}/>
                     <div className="mx-4" >
                         <p className="user_features_card_title" >Results you deserve</p>
-                        <p className="user_features_card_content" >ensuring that you receive the outcomes you rightfully meritthrough our dedicaed efforts and commitment to inevery aspect of our service.</p>
+                        <p className="user_features_card_content text-justify" >ensuring that you receive the outcomes you rightfully meritthrough our dedicaed efforts and commitment to inevery aspect of our service.</p>
                     </div>
                 </div>
                 <div className="user_features_cards">
                     <img src={ficon2}/>
                     <div className="mx-4" >
                         <p className="user_features_card_title" >Efficiency & Trust</p>
-                        <p className="user_features_card_content" >Delivering services with a focus on botheffectiveness and reliability, ensuring that you can acheive your goals efficiently and with unwavering trust.</p>
+                        <p className="user_features_card_content text-justify" >Delivering services with a focus on botheffectiveness and reliability, ensuring that you can acheive your goals efficiently and with unwavering trust.</p>
                     </div>
                 </div>
                 <div className="user_features_cards">
                     <img src={ficon3}/>
                     <div className="mx-4" >
                         <p className="user_features_card_title" >Best Law Practices</p>
-                        <p className="user_features_card_content" >implementing superior methods and strategies to provideexceptional legal services and uphold the higheststandards of client satisfaction.</p>
+                        <p className="user_features_card_content text-justify" >implementing superior methods and strategies to provideexceptional legal services and uphold the higheststandards of client satisfaction.</p>
                     </div>
                 </div>
                 
