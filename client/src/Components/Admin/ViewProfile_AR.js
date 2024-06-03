@@ -106,7 +106,7 @@ function ViewProfile_AR({ view }) {
   return (
     <div className="container-fluid mt-5">
       <div className="row justify-content-center">
-        <div className="col-lg-4 col-md-6 col-sm-12 text-center">
+        <div className="admin_view_advocate_img col-lg-4 col-md-6 col-sm-12 text-center">
           <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
           <br />
           <label className="advocate-name d-block mt-3">{advocate.name}</label>

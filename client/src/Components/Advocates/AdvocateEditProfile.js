@@ -3,6 +3,7 @@ import './AdvocateEditProfile.css'
 import img from '../../Assets/advocateBanner.png'
 import tick from '../../Assets/editPofileCheckmark.png'
 import axiosMultipartInstance from '../Constants/FormDataUrl'
+import { imageUrl } from '../Constants/Image_Url'
 
 function AdvocateEditProfile() {
     
@@ -22,7 +23,7 @@ function AdvocateEditProfile() {
         specialization: '',
         experience: '',
         qualification: '',
-        profilePic: null,
+        profilePic: {},
         idProof: null,
       });
     
@@ -171,7 +172,7 @@ function AdvocateEditProfile() {
             }
         }
     };
-    
+     
 
   return (
     <div>
@@ -180,7 +181,7 @@ function AdvocateEditProfile() {
             <div className='row'>
                 <div className=' col-5'>
                     <div className='advocate_edit_profile_img d-flex justify-content-center'>
-                        <img src={img} className='img-fluid'/>
+                        <img src={`${imageUrl}/${data.profilePic.filename}`} className='img-fluid'/>
                     </div>
                     <p className='advocate_edit_profile_title mt-5' >Stay Ahead <span className='text-gold' >: Keep Your Profile Updated!</span></p>
                     <p className='advocate_edit_profile_sub_title mt-4' >Regularly updating your information ensures you;</p>
