@@ -1,158 +1,183 @@
-import React, { useState } from 'react';
-import './AdvocateRegister.css';
-import axiosMultipartInstance from "../Constants/FormDataUrl";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import './AdvocateEditProfile.css'
+import img from '../../Assets/advocateBanner.png'
+import tick from '../../Assets/editPofileCheckmark.png'
+import axiosMultipartInstance from '../Constants/FormDataUrl'
 
-function AdvocateRegister() {
-
-  const navigate=useNavigate()
-
-  const [data, setData] = useState({
-    name: '',
-    dob: '',
-    gender: '',
-    nationality: '',
-    address: '',
-    contact: '',
-    email: '',
-    password: '',
-    bcNo: '',
-    dateOfEnrollment: '',
-    bcState: '',
-    specialization: '',
-    experience: '',
-    qualification: '',
-    profilePic: null,
-    idProof: null,
-  });
-
-  const [errors, setErrors] = useState({
-    name: '',
-    dob: '',
-    gender: '',
-    nationality: '',
-    address: '',
-    contact: '',
-    email: '',
-    password: '',
-    bcNo: '',
-    dateOfEnrollment: '',
-    bcState: '',
-    specialization: '',
-    experience: '',
-    qualification: '',
-    profilePic: '',
-    idProof: '',
-  });
-
-  const handleChange = (event) => {
-    const { name, value, files } = event.target;
-    if (files) {
-      setData(prevData => ({
-        ...prevData,
-        [name]: files[0]
-      }));
-    } else {
-      setData(prevData => ({
-        ...prevData,
-        [name]: value
-      }));
-    }
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      [name]: ''
-    }));
-  };
-
-  function validateField(fieldName, value) {
-    if (!value.trim()) {
-      return `${fieldName} is required`;
-    }
-    return '';
-  }
-
-  function validateContact(fieldName, value) {
-    if (!value.trim()) {
-      return `${fieldName} is required`;
-    } else if (value.length !== 10) {
-      return 'Please enter a valid Contact Number';
-    }
-    return '';
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    let errors = {};
-    let formIsValid = true;
-
-    errors.name = validateField('Full Name', data.name);
-    errors.dob = validateField('Date of Birth', data.dob);
-    errors.gender = validateField('Gender', data.gender);
-    errors.nationality = validateField('Nationality', data.nationality);
-    errors.address = validateField('Address', data.address);
-    errors.contact = validateContact('Contact', data.contact);
-    errors.email = validateField('Email', data.email);
-    errors.password = validateField('Password', data.password);
-    errors.bcNo = validateField('Bar Council Enrollment Number', data.bcNo);
-    errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
-    errors.bcState = validateField('State Bar Council', data.bcState);
-    errors.specialization = validateField('Specialization Areas', data.specialization);
-    errors.experience = validateField('Years of Experience', data.experience);
-    errors.qualification = validateField('Educational Qualification', data.qualification);
-    errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
-    errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
-
-    setErrors(errors);
-
-    for (let key in errors) {
-      if (errors[key]) {
-        formIsValid = false;
-        break;
-      }
-    }
-
-    if (formIsValid) {
-      const formData = new FormData();
-      formData.append('name', data.name);
-      formData.append('dob', data.dob);
-      formData.append('gender', data.gender);
-      formData.append('nationality', data.nationality);
-      formData.append('address', data.address);
-      formData.append('contact', data.contact);
-      formData.append('email', data.email);
-      formData.append('password', data.password);
-      formData.append('bcNo', data.bcNo);
-      formData.append('dateOfEnrollment', data.dateOfEnrollment);
-      formData.append('bcState', data.bcState);
-      formData.append('specialization', data.specialization);
-      formData.append('experience', data.experience);
-      formData.append('qualification', data.qualification);
-      formData.append('files', data.profilePic);
-      formData.append('files', data.idProof);
-
-      try {
-        const res = await axiosMultipartInstance.post('/registerAdvocate', formData);
-        if (res.data.status === 200) {
-            alert('Advocate registered successfully');
-            navigate('/AdvocateLogin')
+function AdvocateEditProfile() {
+    
+    const id=localStorage.getItem('advocateId')
+    const [data, setData] = useState({
+        name: '',
+        dob: '',
+        gender: '',
+        nationality: '',
+        address: '',
+        contact: '',
+        email: '',
+        password: '',
+        bcNo: '',
+        dateOfEnrollment: '',
+        bcState: '',
+        specialization: '',
+        experience: '',
+        qualification: '',
+        profilePic: null,
+        idProof: null,
+      });
+    
+      const [errors, setErrors] = useState({
+        name: '',
+        dob: '',
+        gender: '',
+        nationality: '',
+        address: '',
+        contact: '',
+        email: '',
+        password: '',
+        bcNo: '',
+        dateOfEnrollment: '',
+        bcState: '',
+        specialization: '',
+        experience: '',
+        qualification: '',
+        profilePic: '',
+        idProof: '',
+      });
+    
+      const handleChange = (event) => {
+        const { name, value, files } = event.target;
+        if (files) {
+          setData(prevData => ({
+            ...prevData,
+            [name]: files[0]
+          }));
         } else {
-            alert(`Advocate Registration Failed: ${res.data.msg}`);
+          setData(prevData => ({
+            ...prevData,
+            [name]: value
+          }));
         }
-    } catch (error) {
-        console.error('There was an error!', error);
-        alert('Error');
-    }
-    }
-  };
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          [name]: ''
+        }));
+      };
+    
+      function validateField(fieldName, value) {
+        if (!value.trim()) {
+          return `${fieldName} is required`;
+        }
+        return '';
+      }
+    
+      function validateContact(fieldName, value) {
+        if (!value.trim()) {
+          return `${fieldName} is required`;
+        } else if (value.length !== 10) {
+          return 'Please enter a valid Contact Number';
+        }
+        return '';
+      }
+    
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        let errors = {};
+        let formIsValid = true;
+    
+        errors.name = validateField('Full Name', data.name);
+        errors.dob = validateField('Date of Birth', data.dob);
+        errors.gender = validateField('Gender', data.gender);
+        errors.nationality = validateField('Nationality', data.nationality);
+        errors.address = validateField('Address', data.address);
+        errors.contact = validateContact('Contact', data.contact);
+        errors.email = validateField('Email', data.email);
+        errors.password = validateField('Password', data.password);
+        errors.bcNo = validateField('Bar Council Enrollment Number', data.bcNo);
+        errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
+        errors.bcState = validateField('State Bar Council', data.bcState);
+        errors.specialization = validateField('Specialization Areas', data.specialization);
+        errors.experience = validateField('Years of Experience', data.experience);
+        errors.qualification = validateField('Educational Qualification', data.qualification);
+        errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
+        errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
+    
+        setErrors(errors);
+    
+        for (let key in errors) {
+          if (errors[key]) {
+            formIsValid = false;
+            break;
+          }
+        }
+    
+        if (formIsValid) {
+          const formData = new FormData();
+          formData.append('name', data.name);
+          formData.append('dob', data.dob);
+          formData.append('gender', data.gender);
+          formData.append('nationality', data.nationality);
+          formData.append('address', data.address);
+          formData.append('contact', data.contact);
+          formData.append('email', data.email);
+          formData.append('password', data.password);
+          formData.append('bcNo', data.bcNo);
+          formData.append('dateOfEnrollment', data.dateOfEnrollment);
+          formData.append('bcState', data.bcState);
+          formData.append('specialization', data.specialization);
+          formData.append('experience', data.experience);
+          formData.append('qualification', data.qualification);
+          formData.append('files', data.profilePic);
+          formData.append('files', data.idProof);
+    
+          try {
+            const res = await axiosMultipartInstance.post('/registerAdvocate', formData);
+            if (res.data.status === 200) {
+                alert('Advocate registered successfully');
+                // navigate('/AdvocateLogin')
+            } else {
+                alert(`Advocate Registration Failed: ${res.data.msg}`);
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
+            alert('Error');
+        }
+        }
+      };
 
   return (
     <div>
-      <div className='heading-div container-fluid'>
-        <label className='reg-title'>Advocate Registration Form</label>
-      </div>
-      <div className='container-fluid bckcolor'>
-        <div className='advocateRegistrationmaindiv'>
+      <div className='advocate_edit_profile'>
+        <div className='container'>
+            <div className='row'>
+                <div className=' col-5'>
+                    <div className='advocate_edit_profile_img d-flex justify-content-center'>
+                        <img src={img} className='img-fluid'/>
+                    </div>
+                    <p className='advocate_edit_profile_title mt-5' >Stay Ahead <span className='text-gold' >: Keep Your Profile Updated!</span></p>
+                    <p className='advocate_edit_profile_sub_title mt-4' >Regularly updating your information ensures you;</p>
+                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                        <img src={tick} className='img-fluid'/>
+                        <p>Present your most recent experiences and specialization.</p>
+                    </div>
+                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                        <img src={tick} className='img-fluid'/>
+                        <p>Reflect your ongoing professional devolepment and education.</p>
+                    </div>
+                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                        <img src={tick} className='img-fluid'/>
+                        <p>Provide potential clients with up-to-date contact information.</p>
+                    </div>
+                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                        <img src={tick} className='img-fluid'/>
+                        <p>Ensure accuracy in your areas of expertise and practice.</p>
+                    </div>
+                    
+                </div>
+                <div className='col-7'>
+                <div className='container-fluid bckcolor'>
+        <div className=''>
           <div className='container'>
             <form onSubmit={handleSubmit}>
               <div className="row mt-3">
@@ -387,8 +412,12 @@ function AdvocateRegister() {
           </div>
         </div>
       </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default AdvocateRegister;
+export default AdvocateEditProfile

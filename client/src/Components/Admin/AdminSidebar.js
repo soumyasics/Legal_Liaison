@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './AdminSidebar.css'
 import userimg from './../../Assets/carbondashboard.png'
 import advocateimg from './../../Assets/openmoji.png'
@@ -7,10 +7,19 @@ import enquiryimg from '../../Assets/Vector5.png'
 import juniorimg from '../../Assets/arcticons.png'
 import internimg from '../../Assets/material.png'
 import profile from '../../Assets/5856.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function AdminSidebar() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (localStorage.getItem("adminId" == null)) {
+        navigate("/");
+      }
+    });
+
   return (
     <div className='row-4'>
         <div className='admin-sidebar'>

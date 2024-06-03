@@ -9,3 +9,8 @@
 .text-gold{
   color: #986F06;
 }
+
+.no_data_animation{
+  width: 100%;
+  height: 80vh;
+}

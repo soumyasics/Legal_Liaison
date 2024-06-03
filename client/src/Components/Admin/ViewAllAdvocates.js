@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import './ViewAllAdvocates.css';
-import img from '../../Assets/Vecto(2).png';
+import React, { useEffect, useState } from "react";
+import "./ViewAllAdvocates.css";
+import img from "../../Assets/Vecto(2).png";
 import axiosInstance from "../Constants/BaseUrl";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import noData from "../../Assets/noDataFound.json";
+import Lottie from "lottie-react";
 
 function ViewAllAdvocates() {
   const [data, setData] = useState([]);
 
   const handleActivate = (id) => {
-    axiosInstance.post(`/activateAdvocateById/${id}`)
-      .then(res => {
+    axiosInstance
+      .post(`/activateAdvocateById/${id}`)
+      .then((res) => {
         if (res.data.status === 200) {
-          const updatedData = data.map(advocate => {
+          const updatedData = data.map((advocate) => {
             if (advocate._id === id) {
               advocate.isActive = true;
             }
@@ -20,16 +23,17 @@ function ViewAllAdvocates() {
           setData(updatedData);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error!", error);
       });
   };
 
   const handleDeactivate = (id) => {
-    axiosInstance.post(`/deactivateAdvocateById/${id}`)
-      .then(res => {
+    axiosInstance
+      .post(`/deactivateAdvocateById/${id}`)
+      .then((res) => {
         if (res.data.status === 200) {
-          const updatedData = data.map(advocate => {
+          const updatedData = data.map((advocate) => {
             if (advocate._id === id) {
               advocate.isActive = false;
             }
@@ -38,14 +42,15 @@ function ViewAllAdvocates() {
           setData(updatedData);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error!", error);
       });
   };
 
   useEffect(() => {
-    axiosInstance.post('/viewAdvocates')
-      .then(res => {
+    axiosInstance
+      .post("/viewAdvocates")
+      .then((res) => {
         if (res.data.status === 200) {
           console.log(res);
           setData(res.data.data || []);
@@ -53,69 +58,77 @@ function ViewAllAdvocates() {
           setData([]);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error!", error);
       });
   }, []);
 
   return (
-    <div className='main-div'>
-      <Link to='/adminviewadvocaterequest'>View Advocate request</Link>
-      {data.length ? (
+    <div className="main-div">
+      <Link to="/adminviewadvocaterequest">View Advocate request</Link>
+
+      {data.length !== 0 ? (
         <div className="table-container table-striped">
-          <table className='table-change container-fluid'>
+          <table className="table-change container-fluid">
             <thead>
               <tr>
-                <th className='table-header'>Bar council Enrolment No</th>
-                <th className='table-header'>Advocate Name</th>
-                <th className='table-header'>Specialization areas</th>
-                <th className='table-header'>Bar Council Area</th>
-                <th className='table-header'>Educational qualification</th>
-                <th className='table-header'>Years of Experience</th>
-                <th className='table-header'>View full Details</th>
-                <th className='table-header'>User Status</th>
+                <th className="table-header">Bar council Enrolment No</th>
+                <th className="table-header">Advocate Name</th>
+                <th className="table-header">Specialization areas</th>
+                <th className="table-header">Bar Council Area</th>
+                <th className="table-header">Educational qualification</th>
+                <th className="table-header">Years of Experience</th>
+                <th className="table-header">View full Details</th>
+                <th className="table-header">User Status</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((advocate) => (
-                <tr>
-                  <td className='table-data'>{advocate.bcNo}</td>
-                  <td className='table-data'>{advocate.name}</td>
-                  <td className='table-data'>{advocate.specialization}</td>
-                  <td className='table-data'>{advocate.bcState}</td>
-                  <td className='table-data'>{advocate.qualification}</td>
-                  <td className='table-data'>{advocate.experience}</td>
-                  <td className='table-data'>
-                    <Link to={`/adminviewalladvocate/${advocate._id}`}>
-                      <button className="btn1 btn btn-outline-secondary">
-                        <img src={img} alt="View Details" />
-                      </button>
-                    </Link>
-                  </td>
-                  <td className='table-data'>
-                    {advocate.isActive ? (
-                      <button
-                        className="btn btn-outline-danger button-size1"
-                        onClick={() => handleDeactivate(advocate._id)}
-                      >
-                        Deactivate
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-outline-success button-size1"
-                        onClick={() => handleActivate(advocate._id)}
-                      >
-                        Activate
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
+              {data.length ? (
+                data.map((advocate) => (
+                  <tr>
+                    <td className="table-data">{advocate.bcNo}</td>
+                    <td className="table-data">{advocate.name}</td>
+                    <td className="table-data">{advocate.specialization}</td>
+                    <td className="table-data">{advocate.bcState}</td>
+                    <td className="table-data">{advocate.qualification}</td>
+                    <td className="table-data">{advocate.experience}</td>
+                    <td className="table-data">
+                      <Link to={`/admin_view_single_advocate/${advocate._id}`}>
+                        <button className="btn1 btn btn-outline-secondary">
+                          <img src={img} alt="View Details" />
+                        </button>
+                      </Link>
+                    </td>{" "}
+                    {console.log(advocate.isActive)}
+                    <td className="table-data">
+                      {advocate.isActive ? (
+                        <button
+                          className="btn btn-outline-danger button-size1"
+                          onClick={() => handleDeactivate(advocate._id)}
+                        >
+                          Deactivate
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-outline-success button-size1"
+                          onClick={() => handleActivate(advocate._id)}
+                        >
+                          Activate
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <h1>No Data obtained</h1>
+              )}
             </tbody>
           </table>
         </div>
       ) : (
-        <h1>No Data obtained</h1>
+        <div className="no_data_animation">
+          <Lottie animationData={noData} className="no_data_animation" />
+        </div>
       )}
     </div>
   );

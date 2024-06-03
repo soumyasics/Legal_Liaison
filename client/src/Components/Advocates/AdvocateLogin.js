@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import img from "../../Assets/image23.png";
 import './AdvocateLogin.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 
 function AdvocateLogin() {
     const [data, setData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
     const [formIsValid, setFormIsValid] = useState(true);
+
+    const navigate =useNavigate()
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -47,10 +49,12 @@ function AdvocateLogin() {
             console.log("data", data);
             axiosInstance.post('/loginAdvocate', data)
                 .then(response => {
-                    console.log("Response:", response.data);
+                    console.log("Response:", response);
                     if (response.data.status === 200) {
                         console.log("Login Successful");
                         alert("Login Successful");
+                        navigate('/advocate_home')
+                        localStorage.setItem('advocateId',response.data.data._id)
                     } else {
                         console.log("Login Failed");
                         alert("Login Failed");
