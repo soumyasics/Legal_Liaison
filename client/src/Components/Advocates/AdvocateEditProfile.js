@@ -68,20 +68,21 @@ function AdvocateEditProfile() {
         const { name, value, files } = event.target;
         if (files) {
           setData(prevData => ({
-            ...prevData,
-            [name]: files[0]
-          }));
+             ...prevData, 
+             [name]: files[0] 
+            }));
         } else {
-          setData(prevData => ({
-            ...prevData,
-            [name]: value
-          }));
+            setData(prevData => ({
+                ...prevData,
+                [name]: value
+            }));
         }
         setErrors(prevErrors => ({
-          ...prevErrors,
-          [name]: ''
+            ...prevErrors,
+            [name]: ''
         }));
-      };
+    };
+
     
       function validateField(fieldName, value) {
         
@@ -99,14 +100,7 @@ function AdvocateEditProfile() {
         }
         return '';
       }
-      function validateExperience(fieldName, value) {
-        if (!value.trim()) {
-          return `${fieldName} is required`;
-        } else if (value.length !== 10) {
-          return 'Please enter a valid Contact Number';
-        }
-        return '';
-      }
+
       const handleSubmit = async (event) => {
         event.preventDefault();
     
@@ -118,7 +112,7 @@ function AdvocateEditProfile() {
         errors.gender = validateField('Gender', data.gender);
         errors.nationality = validateField('Nationality', data.nationality);
         errors.address = validateField('Address', data.address);
-        errors.contact = validateContact('Contact', data.contact);
+        // errors.contact = validateContact('Contact', data.contact);
         errors.email = validateField('Email', data.email);
         errors.password = validateField('Password', data.password);
         errors.bcNo = validateField('Bar Council Enrollment Number', data.bcNo);
@@ -156,9 +150,8 @@ function AdvocateEditProfile() {
             formData.append('specialization', data.specialization);
             formData.append('experience', data.experience);
             formData.append('qualification', data.qualification);
-            formData.append('files', data.profilePic);
-            formData.append('files', data.idProof);
-    
+            formData.append('profilePic', data.profilePic);
+                
             try {
                 const res = await axiosMultipartInstance.post(`/editAdvocateById/${id}`,formData);
                 if (res.data.status === 200) {
@@ -237,7 +230,7 @@ function AdvocateEditProfile() {
               <div className="row mt-3">
                 <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
-                  {console.log((data.dob).slice(0,10))}
+                  {/* {console.log((data.dob).slice(0,10))} */}
                   <input
                     type="date"
                     className="form-control form-control-lg"
@@ -385,7 +378,6 @@ function AdvocateEditProfile() {
                 </div>
               </div>
               <div className="row mt-3">
-              {/* <div className="col-6"> */}
                   <label className="form-label advocateRegistrationlabel">Email :</label>
                   <input
                     type="email"
@@ -395,18 +387,7 @@ function AdvocateEditProfile() {
                     value={data.email}
                     onChange={handleChange}
                   />
-                  {errors.email && <div className="text-danger">{errors.email}</div>}
-                {/* </div> */}
-                {/* <div className="col-6">
-                  <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
-                  <input
-                    type="file"
-                    className="form-control form-control-lg"
-                    name="profilePic"
-                    onChange={handleChange}
-                  />
-                  {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
-                </div> */}
+                  {errors.email && <div className="text-danger">{errors.email}</div>}              
               </div>
               <div className="row mt-3">
                 <div className="col-6">
@@ -422,7 +403,9 @@ function AdvocateEditProfile() {
                   {errors.password && <div className="text-danger">{errors.password}</div>}
                 </div>
                 <div className="col-6">
+                  {/* {console.log(.filename)} */}
                   <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
+                  {console.log(data.profilePic)}
                   <input
                     type="file"
                     className="form-control form-control-lg"
@@ -434,7 +417,7 @@ function AdvocateEditProfile() {
               </div>
               <div className="row mt-3">
                 <div className="col-12">
-                  <button type="submit" className="btn btn-primary btn-lg">Update</button>
+                  <button type="submit" className="btn btn-warning btn-lg">Update</button>
                 </div>
               </div>
             </form>
