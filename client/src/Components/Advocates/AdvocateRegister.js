@@ -302,7 +302,6 @@ function AdvocateRegister() {
                   />
                   {errors.experience && <div className="text-danger">{errors.experience}</div>}
                 </div>
-                
               </div>
               <div className="row mt-3">
               <div className="col-6">

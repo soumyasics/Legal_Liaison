@@ -17,7 +17,7 @@ function LandingServices() {
       <img class=" card-img-top landinserviceimg" src={img2} alt="Card image cap"/>
     <div class="card-body">
     <h5 class="card-title">Expert Legal Advice</h5>
-    <p class="card-text">Our experienced advocates provide expert legal advice on various legal matters. Whether you need guidance on family law, business law, or criminal law, we've got you covered.</p>
+    <p class="card-text text-justify">Our experienced advocates provide expert legal advice on various legal matters. Whether you need guidance on family law, business law, or criminal law, we've got you covered.</p>
     
     </div>      </div>
     </div>
@@ -26,7 +26,7 @@ function LandingServices() {
       <img class="card-img-top landinserviceimg" src={img1} alt="Card image cap"/>
     <div class="card-body">
     <h5 class="card-title">Case Representation</h5>
-      <p class="card-text">Hire our skilled advocates to represent you in court. We handle cases with professionalism and dedication, ensuring the best possible outcome for our clients.</p>
+      <p class="card-text text-justify">Hire our skilled advocates to represent you in court. We handle cases with professionalism and dedication, ensuring the best possible outcome for our clients.</p>
   
     </div></div>
     </div>
@@ -35,7 +35,7 @@ function LandingServices() {
       <img class="card-img-top landinserviceimg" src={img3} alt="Card image cap"/>
     <div class="card-body">
     <h5 class="card-title">Case Tracking</h5>
-      <p class="card-text">Track the status of your case in real-time through our online portal. Receive updates, court dates, and documentation, ensuring you are informed every step of the way.</p>
+      <p class="card-text text-justify">Track the status of your case in real-time through our online portal. Receive updates, court dates, and documentation, ensuring you are informed every step of the way.</p>
    
    
     </div>      </div>

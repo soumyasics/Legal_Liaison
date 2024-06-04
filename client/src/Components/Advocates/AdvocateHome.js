@@ -5,9 +5,9 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
 import { imageUrl } from "../Constants/Image_Url";
 
-function AdvocateHome() {
+function AdvocateHome() { 
 
-  const [advocate, setAdvocate] = useState({});
+  const [advocate, setAdvocate] = useState({profilePic:{}});
 
   const navigate=useNavigate();
 
@@ -137,7 +137,23 @@ useEffect(() => {
                           <button
                             type="button"
                             className="btn btn-outline px-3"
-                          >
+                          > 
+                            <img src={icon} className="img-fluid" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>@twitter</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-outline px-3"
+                          > 
                             <img src={icon} className="img-fluid" />
                           </button>
                         </td>
@@ -149,9 +165,10 @@ useEffect(() => {
             </div>
             <div className="col-lg-4 col-md-6 col-sm-12 mt-3 advocate_home_profile_container">
               <div className="container">
-                <div className="advocate_home_profile_container_head cont_center">
-                {/* <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" /> */}
-                <img src={`${imageUrl}/${advocate.profilePic?.filename}`} className="img-fluid rounded" alt="Advocate" />
+                <div className="advocate_home_profile_container_img mb-3">
+                  <img src={`${imageUrl}/${advocate.profilePic.filename}`} />
+                </div>
+                <div className="advocate_home_profile_container_head">
                   <p className="advocate_home_profile_container_head_title">
                     {advocate.name}
                   </p>
@@ -162,7 +179,7 @@ useEffect(() => {
                     <span className="text-gold">{advocate.experience}</span> Years Of Experience
                   </p>
                 </div>
-                <div className="advocate_home_profile_container_body mt-5">
+                <div className="advocate_home_profile_container_body mt-3">
                   <table className="w-100">
                     <thead>
                       <tr>

@@ -167,6 +167,18 @@
   line-height: 18.69px;
 }
 
+.advocate_home_profile_container_img{
+  display: flex;
+  justify-content: center;
+}
+
+.advocate_home_profile_container_img img{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /* --------------media query---------------- */
 
 /* for large screen */

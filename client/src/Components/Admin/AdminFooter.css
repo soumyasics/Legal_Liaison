@@ -1,7 +1,6 @@
 .admin-footer{
     width: 100%;
     height: 110px;
-    /* top: 806px; */
     background: #2A2A2A;
 }
 
@@ -9,33 +8,24 @@
     padding-top: 20px;
     padding-left: 50px;
     margin-top: 2px;
-    /* padding-bottom: 20px; */
 }
 
 .footer-text{
     color: white;
     font-family: 'Inter', Arial, sans-serif;
 }
-
-.row {
-    display: flex;
-    align-items: center;
-  }
-
-.col-4 {
-    padding-left: 50px;
-}
-
-.col-8 {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-
 .footer-logo-text{
     color: white;
     font-size: x-large;
     font-family: 'Poppins', Arial, sans-serif;
     padding-left: 10px;
-    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.footer-logo-text-change{
+    color: white;
+    font-size: x-large;
+    font-family: 'Poppins', Arial, sans-serif;
+    padding-left: 10px;
+    margin-top: 20px;
 }

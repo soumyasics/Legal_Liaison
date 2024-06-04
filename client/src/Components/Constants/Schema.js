@@ -14,7 +14,7 @@ export const AdminSchema = yup.object().shape({
   });
 
 export const UserRegistrationSchema  = yup.object().shape({
-    name: yup.string().min(2,"Enter minimum 2 characters").required("Required"),
+    name: yup.string().matches(/^[a-zA-Z\s]+$/, "Only letters are allowed").min(2,"Enter minimum 2 characters").required("Required"),
     contact: yup.number().min(1000000000,"Phone number must be 10 digit number").max(9999999999, "Phone number must be 10 digit number").required("Required"),
     email: yup.string().email("Please enter a valid email").required("Required"),
     password: yup.string().min(5,"1 uppercase, 1 number, 1 symbol").max(16).matches(passwordRule,"1 uppercase, 1 number, 1 symbol").required("Required"),

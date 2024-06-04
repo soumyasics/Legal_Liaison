@@ -9,7 +9,7 @@ import { LoginSchema } from "../Constants/Schema";
 
 function UserLogin() {
 
-    const [isToastVisible, setToastVisible] = useState(false);
+  const [isToastVisible, setToastVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,10 +50,9 @@ function UserLogin() {
                 });
             }
         });
-};
+  };
 
-
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, resetForm } = useFormik({
     initialValues: {
       email: '',
       password: ''
@@ -67,7 +66,7 @@ function UserLogin() {
       <div className="user_registration_container">
         <div className="user_registration_box1">
           <div className="user_registration_input_group">
-            <form onSubmit={(e)=>{handleSubmit(e)}}>
+            <form onSubmit={(e)=>{handleSubmit(e)}} onReset={resetForm}>
               <div className="user_registration_input mt-5">
                 <label>Email</label>
                 <input
@@ -100,7 +99,7 @@ function UserLogin() {
               <div className="user_registration_button text-center mt-4 d-flex justify-content-evenly">
                   <button type="submit">Submit</button>
                   <button type="reset">Reset</button>
-                </div>
+              </div>
             </form>
             <div className="mt-4">
               <p>Don't have an account? <Link to='/UserRegistration' className="text-decoration-none text-gold">Register here.</Link></p>

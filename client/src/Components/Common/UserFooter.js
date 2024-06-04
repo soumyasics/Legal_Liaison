@@ -20,7 +20,7 @@ function UserFooter() {
                     We are a team of dedicated and experienced legal professionals commited to providing high-quality legal solutions tailored to your needs.</p>
             </div>
 
-            <div className='col-2'>
+            <div className='col-2 quick-margin'>
             <h2 className='footer-title quick-link'>Quick Links</h2>
             <ul className='footer-list'>
                 <li className='list-style'>Home</li>
@@ -30,7 +30,7 @@ function UserFooter() {
                 </ul>
             </div>
 
-            <div className='col-2'>
+            <div className='col-2 legal-margin'>
             <h2 className='footer-title legal'>Our Legal</h2>
                 <ul className='footer-list'>
                 <li className='list-style'>Civil Law</li>
