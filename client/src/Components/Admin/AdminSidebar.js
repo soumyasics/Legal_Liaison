@@ -34,10 +34,10 @@ function AdminSidebar() {
             </div>
         </div>
 
-            <div className='content-div '>
+            <div className='content-div'>
                 <div className='div-style'>
                 <div>
-                <label className='label'>General</label>
+                <label className='label-general'>General</label>
                 <div className='adjust-space'>
                 <img src={userimg} className='image-adjust-1 img1-padding each' alt='User image'/>{' '},{' '},{' '}
                     <label className='label-sub'>Users</label>
