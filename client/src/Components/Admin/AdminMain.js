@@ -19,11 +19,11 @@ function AdminMain({ data }) {
 
   return (
     <div>
-      <div className="adminmain-container">
-        <div className="adminmain-sidebar">
+      <div className="row">
+        <div className="col-4 adminmain-sidebar">
           <AdminSidebar />
         </div>
-        <div className="adminmain-content">
+        <div className=" col-8 adminmain-content">
           {data === "admindashboard" ? (
             <AdminDashboard />
           ) : data === "adminviewalladvocates" ? (
