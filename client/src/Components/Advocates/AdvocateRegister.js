@@ -170,7 +170,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Full Name :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your Full Name"
                     name="name"
                     value={data.name}
@@ -182,7 +182,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Bar Council Enrollment Number :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your Bar Council enrollment number"
                     name="bcNo"
                     value={data.bcNo}
@@ -196,7 +196,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
                   <input
                     type="date"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     name="dob"
                     value={data.dob}
                     onChange={handleChange}
@@ -207,7 +207,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Date of Enrollment :</label>
                   <input
                     type="date"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     name="dateOfEnrollment"
                     value={data.dateOfEnrollment}
                     onChange={handleChange}
@@ -219,7 +219,7 @@ function AdvocateRegister() {
                 <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">Gender :</label>
                   <select
-                    className="form-select form-control-lg"
+                    className="form-select form-control-lg specialization-form-select"
                     name="gender"
                     value={data.gender}
                     onChange={handleChange}
@@ -236,7 +236,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">State Bar Council :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your State Bar Council"
                     name="bcState"
                     value={data.bcState}
@@ -250,7 +250,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Nationality :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your Nationality"
                     name="nationality"
                     value={data.nationality}
@@ -262,7 +262,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Specialization Areas :</label>
                   <div className="select-container">
                     <select
-                      className="form-select form-control-lg"
+                      className="form-select form-control-lg specialization-form-select"
                       name="specialization"
                       value={data.specialization}
                       onChange={handleChange}
@@ -292,7 +292,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Address :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your address"
                     name="address"
                     value={data.address}
@@ -304,7 +304,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
                   <input
                     type="number"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your years of experience"
                     name="experience"
                     value={data.experience}
@@ -318,7 +318,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Contact Number :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your contact number"
                     name="contact"
                     value={data.contact}
@@ -330,7 +330,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your educational qualification"
                     name="qualification"
                     value={data.qualification}
@@ -344,7 +344,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Email :</label>
                   <input
                     type="email"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your email"
                     name="email"
                     value={data.email}
@@ -356,7 +356,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
                   <input
                     type="file"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     name="profilePic"
                     onChange={handleChange}
                   />
@@ -368,7 +368,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">Password :</label>
                   <input
                     type="password"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     placeholder="Enter your password"
                     name="password"
                     value={data.password}
@@ -380,7 +380,7 @@ function AdvocateRegister() {
                   <label className="form-label advocateRegistrationlabel">ID Proof Document :</label>
                   <input
                     type="file"
-                    className="form-control form-control-lg"
+                    className="form-control form-control-lg form-input-style"
                     name="idProof"
                     onChange={handleChange}
                   />
@@ -388,8 +388,8 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col-12">
-                  <button type="submit" className="btn btn-primary btn-lg">Register</button>
+                <div className="col-12 submit-btn-div">
+                  <button type="submit" className="btn btn-primary btn-lg button-submit">Register</button>
                 </div>
               </div>
             </form>
