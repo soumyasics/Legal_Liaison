@@ -25,10 +25,10 @@ function AdminSidebar() {
         <div className='admin-sidebar'>
         <div className='profile-div'>
             <div className='row'>
-                <div className='col-md-5 col-sm-12'>
+                <div className='col-md-4 col-sm-12'>
                     <img className='img-style' src={profile} alt='Profile' />
                 </div>
-                <div className='col-md-7 col-sm-12'>
+                <div className='col-md-8 col-sm-12'>
                     <label className='profile-label'>Administrator</label>
                 </div>
             </div>

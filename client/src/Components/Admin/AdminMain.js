@@ -18,12 +18,12 @@ function AdminMain({ data }) {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="" >
       <div className="row">
-        <div className="col-4 adminmain-sidebar">
+        <div className="col-lg-3 col-md-6 col-sm-12 adminmain-sidebar" style={{padding:0}}>
           <AdminSidebar />
         </div>
-        <div className=" col-8 adminmain-content">
+        <div className=" col-lg-9 col-md-6 col-sm-12 adminmain-content"  >
           {data === "admindashboard" ? (
             <AdminDashboard />
           ) : data === "adminviewalladvocates" ? (
