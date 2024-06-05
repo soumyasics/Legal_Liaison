@@ -64,6 +64,16 @@ function AdvocateRegister() {
     }));
   };
 
+  function validateString(fieldName, value) {
+    if(typeof value!=='string'){
+      return `${fieldName} is must be a string`
+    }
+    else if (!value.trim()) {
+      return `${fieldName} is required`;
+    }
+    return '';
+  }
+
   function validateField(fieldName, value) {
     if (!value.trim()) {
       return `${fieldName} is required`;
@@ -86,20 +96,20 @@ function AdvocateRegister() {
     let errors = {};
     let formIsValid = true;
 
-    errors.name = validateField('Full Name', data.name);
+    errors.name = validateString('Full Name', data.name);
     errors.dob = validateField('Date of Birth', data.dob);
     errors.gender = validateField('Gender', data.gender);
-    errors.nationality = validateField('Nationality', data.nationality);
+    errors.nationality = validateString('Nationality', data.nationality);
     errors.address = validateField('Address', data.address);
     errors.contact = validateContact('Contact', data.contact);
     errors.email = validateField('Email', data.email);
     errors.password = validateField('Password', data.password);
     errors.bcNo = validateField('Bar Council Enrollment Number', data.bcNo);
     errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
-    errors.bcState = validateField('State Bar Council', data.bcState);
+    errors.bcState = validateString('State Bar Council', data.bcState);
     errors.specialization = validateField('Specialization Areas', data.specialization);
     errors.experience = validateField('Years of Experience', data.experience);
-    errors.qualification = validateField('Educational Qualification', data.qualification);
+    errors.qualification = validateString('Educational Qualification', data.qualification);
     errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
     errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
 

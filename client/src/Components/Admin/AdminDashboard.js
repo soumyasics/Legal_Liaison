@@ -38,7 +38,7 @@ function AdminDashboard() {
     <div className='container-fluid'>
         <label className='main-label'>Dashboard</label>
         <div className='row'>
-            <div className='col-3'>
+            <div className='col-12 col-sm-6 col-md-3 mb-4 adjust-box'>
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={userimg}/>
                 <div className='text-container'>
@@ -48,7 +48,7 @@ function AdminDashboard() {
                 </div>
             </div>
 
-            <div className='col-3'>
+            <div className='col-12 col-sm-6 col-md-3 mb-4'>
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={casesimg}/>
                 <div className='text-container'>
@@ -58,7 +58,7 @@ function AdminDashboard() {
                 </div>
             </div>
 
-            <div className='col-3'>
+            <div className='col-12 col-sm-6 col-md-3 mb-4'>
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={adimg}/>
                 <div className='text-container'>
@@ -68,7 +68,7 @@ function AdminDashboard() {
                 </div>
             </div>
 
-            <div className='col-3'>
+            <div className='col-12 col-sm-6 col-md-3 mb-4'>
                 <div className='dashbord-box'>
                 <img className='image-adjust' src={complaintimg}/>
                 <div className='text-container'>
