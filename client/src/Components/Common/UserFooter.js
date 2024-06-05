@@ -38,7 +38,6 @@ function UserFooter() {
                 <li className='list-style'>Business Law</li>
                 <li className='list-style'>Criminal Law</li>
             </ul>
-
             </div>
 
             <div className='col-2 help-div'>

@@ -64,12 +64,49 @@ function AdvocateRegister() {
     }));
   };
 
+  // function validateString(fieldName, value) {
+  //   if(typeof value!=='string'){
+  //     return `${fieldName} is must be a string`
+  //   }
+  //   else if (!value.trim()) {
+  //     return `${fieldName} is required`;
+  //   }
+  //   return '';
+  // }
+
+  // function validateField(fieldName, value) {
+  //   if (!value.trim()) {
+  //     return `${fieldName} is required`;
+  //   }
+  //   return '';
+  // }
+
+  // function validateContact(fieldName, value) {
+  //   if (!value.trim()) {
+  //     return `${fieldName} is required`;
+  //   } else if (value.length !== 10) {
+  //     return 'Please enter a valid Contact Number';
+  //   }
+  //   return '';
+  // }
+
   function validateString(fieldName, value) {
-    if(typeof value!=='string'){
-      return `${fieldName} is must be a string`
-    }
-    else if (!value.trim()) {
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    if (!value.trim()) {
       return `${fieldName} is required`;
+    } else if (!nameRegex.test(value)) {
+      return `Please enter a valid ${fieldName}`;
+    }
+    return '';
+  }
+
+  function validateNumber(fieldName, value, length = null) {
+    if (!value.trim()) {
+      return `${fieldName} is required`;
+    } else if (isNaN(value)) {
+      return `${fieldName} must be a number`;
+    } else if (length && value.length !== length) {
+      return `${fieldName} must be ${length} digits long`;
     }
     return '';
   }
@@ -82,10 +119,30 @@ function AdvocateRegister() {
   }
 
   function validateContact(fieldName, value) {
+    const contactRegex = /^[0-9]+$/;
     if (!value.trim()) {
       return `${fieldName} is required`;
-    } else if (value.length !== 10) {
+    } else if (!contactRegex.test(value) || value.length !== 10) {
       return 'Please enter a valid Contact Number';
+    }
+    return '';
+  }
+
+  function validateEmail(fieldName, value) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!value.trim()) {
+      return `${fieldName} is required`;
+    } else if (!emailPattern.test(value)) {
+      return 'Invalid email format';
+    }
+    return '';
+  }
+
+  function validatePassword(fieldName, value) {
+    if (!value.trim()) {
+      return `${fieldName} is required`;
+    } else if (value.length < 6) {
+      return `${fieldName} must be at least 6 characters long`;
     }
     return '';
   }
@@ -102,13 +159,13 @@ function AdvocateRegister() {
     errors.nationality = validateString('Nationality', data.nationality);
     errors.address = validateField('Address', data.address);
     errors.contact = validateContact('Contact', data.contact);
-    errors.email = validateField('Email', data.email);
-    errors.password = validateField('Password', data.password);
-    errors.bcNo = validateField('Bar Council Enrollment Number', data.bcNo);
+    errors.email = validateEmail('Email', data.email);
+    errors.password = validatePassword('Password', data.password);
+    errors.bcNo = validateNumber('Bar Council Enrollment Number', data.bcNo);
     errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
     errors.bcState = validateString('State Bar Council', data.bcState);
     errors.specialization = validateField('Specialization Areas', data.specialization);
-    errors.experience = validateField('Years of Experience', data.experience);
+    errors.experience = validateNumber('Years of Experience', data.experience);
     errors.qualification = validateString('Educational Qualification', data.qualification);
     errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
     errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
@@ -231,7 +288,6 @@ function AdvocateRegister() {
                   </select>
                   {errors.gender && <div className="text-danger">{errors.gender}</div>}
                 </div>
-
                 <div className="col-6">
                   <label className="form-label advocateRegistrationlabel">State Bar Council :</label>
                   <input
