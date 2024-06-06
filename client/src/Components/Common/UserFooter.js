@@ -21,7 +21,7 @@ function UserFooter() {
             </div>
 
             <div className='col-2'>
-            <h2 className='footer-title'>Quick Links</h2>
+            <h2 className='footer-title quick'>Quick Links</h2>
             <ul className='footer-list'>
                 <li className='list-style'>Home</li>
                 <li className='list-style'>About Us</li>

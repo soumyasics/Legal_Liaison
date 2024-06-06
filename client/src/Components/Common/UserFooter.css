@@ -49,3 +49,7 @@ margin-bottom: 60px;
 .legal-margin, .quick-margin, .help-div{
     margin-top: 40px;
 }
+
+.quick{
+    padding-left: 20px;
+}

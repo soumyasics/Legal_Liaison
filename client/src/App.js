@@ -30,6 +30,8 @@ import AdvocateHome from './Components/Advocates/AdvocateHome';
 import ViewProfile_AR from './Components/Admin/ViewProfile_AR';
 import AdvocateNavbar from './Components/Advocates/AdvocateNavbar';
 import AdvocateEditProfile from './Components/Advocates/AdvocateEditProfile';
+import AboutUs from './Components/LandingPage/AboutUs';
+import JuniorAdvocateRegistration from './Components/JuniorAdvocates/JuniorAdvocateRegistration';
 
 function App() {
   return (
@@ -54,7 +56,7 @@ function App() {
           <Route path="/BarCouncilLogin" element={[<LandingNavbar />, <BarCouncilLogin />]} />
 
           {/* Admin routes */}
-          <Route path="/AdminLogin" element={[<LandingNavbar />, <FormHead title="Admin Login" />, <AdminLogin />]} />
+          <Route path="/AdminLogin" element={[<LandingNavbar />, <FormHead title="Admin Login" />, <AdminLogin />, <AdminFooter />]} />
           <Route path="/admin-dashboard" element={[<AdminNav />, <AdminMain data="admindashboard" />, <AdminFooter />]} />
           <Route path="/admin-viewalladvocates" element={[<AdminNav />, <AdminMain data="adminviewalladvocates" />, <AdminFooter />]} />
           <Route path="/adminviewadvocaterequest" element={[<AdminNav />, <AdminMain data="approvereject" />, <AdminFooter />]} />
@@ -67,6 +69,17 @@ function App() {
           <Route path="/recentenquries" element={<RecentEnquries />} />
           <Route path="/adminviewadvocaterequest" element={<ApproveRejectAdvocate data="approvereject" />} />
           <Route path="/adminviewrequest/:id" element={<ViewProfile_AR />} />
+
+          {/* Advocate routes */}
+          <Route path="/JuniorAdvocateRegister" element={[<LandingNavbar />,<JuniorAdvocateRegistration/>,<UserFooter />]} />
+
+
+          {/* Landing Page routes */}
+          <Route path="/aboutus" element={[<LandingNavbar />,<AboutUs />,<UserFooter />]} />
+          <Route path="/services" element={[<LandingNavbar />,<LandingServices />,<UserFooter />]} />
+
+
+
         </Routes>
       </div>
     </BrowserRouter>

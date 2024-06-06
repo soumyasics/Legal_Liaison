@@ -7,6 +7,7 @@ import './LandingCarousel.css'
 import LandingNavbar from './LandingNavbar'
 import AboutUs from './AboutUs'
 import Footer from './Footer'
+import UserFooter from '../Common/UserFooter'
 function Landingcarousel() {
   return (
     <div>
@@ -26,7 +27,8 @@ function Landingcarousel() {
 
       <LandingServices />
       <AboutUs />
-      <Footer />
+      {/* <Footer /> */}
+      <UserFooter />
     </div>
   )
 }
