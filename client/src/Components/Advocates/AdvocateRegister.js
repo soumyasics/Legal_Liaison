@@ -235,7 +235,7 @@ function AdvocateRegister() {
                   />
                   {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Bar Council Enrollment Number :</label>
                   <input
                     type="text"
@@ -249,7 +249,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
                   <input
                     type="date"
@@ -260,7 +260,7 @@ function AdvocateRegister() {
                   />
                   {errors.dob && <div className="text-danger">{errors.dob}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Date of Enrollment :</label>
                   <input
                     type="date"
@@ -273,7 +273,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Gender :</label>
                   <select
                     className="form-select form-control-lg specialization-form-select"
@@ -288,7 +288,7 @@ function AdvocateRegister() {
                   </select>
                   {errors.gender && <div className="text-danger">{errors.gender}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">State Bar Council :</label>
                   <input
                     type="text"
@@ -302,7 +302,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Nationality :</label>
                   <input
                     type="text"
@@ -314,7 +314,7 @@ function AdvocateRegister() {
                   />
                   {errors.nationality && <div className="text-danger">{errors.nationality}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Specialization Areas :</label>
                   <div className="select-container">
                     <select
@@ -344,7 +344,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-6">
+              <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Address :</label>
                   <input
                     type="text"
@@ -356,7 +356,7 @@ function AdvocateRegister() {
                   />
                   {errors.address && <div className="text-danger">{errors.address}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
                   <input
                     type="number"
@@ -370,7 +370,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-6">
+              <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Contact Number :</label>
                   <input
                     type="text"
@@ -382,7 +382,7 @@ function AdvocateRegister() {
                   />
                   {errors.contact && <div className="text-danger">{errors.contact}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
                   <input
                     type="text"
@@ -396,7 +396,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-6">
+              <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Email :</label>
                   <input
                     type="email"
@@ -408,7 +408,7 @@ function AdvocateRegister() {
                   />
                   {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
                   <input
                     type="file"
@@ -420,7 +420,7 @@ function AdvocateRegister() {
                 </div>
               </div>
               <div className="row mt-3">
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">Password :</label>
                   <input
                     type="password"
@@ -432,7 +432,7 @@ function AdvocateRegister() {
                   />
                   {errors.password && <div className="text-danger">{errors.password}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label advocateRegistrationlabel">ID Proof Document :</label>
                   <input
                     type="file"
@@ -442,12 +442,12 @@ function AdvocateRegister() {
                   />
                   {errors.idProof && <div className="text-danger">{errors.idProof}</div>}
                 </div>
-              </div>
+              </div><br/>
               <div className="row mt-3">
                 <div className="col-12 submit-btn-div">
                   <button type="submit" className="btn btn-primary btn-lg button-submit">Register</button>
                 </div>
-              </div>
+              </div><br/><br/>
             </form>
           </div>
         </div>
