@@ -33,7 +33,7 @@ function AdminSidebar() {
                 </div>
             </div>
         </div>
-
+        
             <div className='content-div'>
                 <div className='div-style'>
                 <div>
@@ -58,7 +58,9 @@ function AdminSidebar() {
                 </div>
                 <div className='adjust-space'>
                 <img src={juniorimg} className='image-adjust-1 padding each' alt='User image'/>{' '},{' '},{' '}
+                    <Link to='/adminviewalljunioradvocates'>
                     <label className='label-sub '>Junior Advocates</label>
+                    </Link>
                 </div>
                 <div className='adjust-space'>
                 <img src={internimg} className='image-adjust-1 padding each-1' alt='User image'/>{' '},{' '}

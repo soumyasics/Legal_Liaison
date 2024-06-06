@@ -32,6 +32,9 @@ import AdvocateNavbar from './Components/Advocates/AdvocateNavbar';
 import AdvocateEditProfile from './Components/Advocates/AdvocateEditProfile';
 import AboutUs from './Components/LandingPage/AboutUs';
 import JuniorAdvocateRegistration from './Components/JuniorAdvocates/JuniorAdvocateRegistration';
+import AdminApproveRejectJuniorAdvocate from './Components/Admin/AdminApproveRejectJuniorAdvocate';
+import AdminViewAllJuniorAdvocate from './Components/Admin/AdminViewAllJuniorAdvocate';
+import JuniorAdvocateLogin from './Components/JuniorAdvocates/JuniorAdvocateLogin';
 
 function App() {
   return (
@@ -67,11 +70,14 @@ function App() {
           <Route path="/adminfooter" element={<AdminFooter />} />
           <Route path="/adminnav" element={<AdminNav />} />
           <Route path="/recentenquries" element={<RecentEnquries />} />
-          <Route path="/adminviewadvocaterequest" element={<ApproveRejectAdvocate data="approvereject" />} />
+          {/* <Route path="/adminviewadvocaterequest" element={<ApproveRejectAdvocate data="approvereject" />} /> */}
           <Route path="/adminviewrequest/:id" element={<ViewProfile_AR />} />
 
-          {/* Advocate routes */}
+          {/* Junior Advocate routes */}
           <Route path="/JuniorAdvocateRegister" element={[<LandingNavbar />,<JuniorAdvocateRegistration/>,<UserFooter />]} />
+          <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />
+          <Route path="/adminviewjunioradvocaterequest" element={[<AdminNav />,<AdminMain data='approverejectjunioradvocate'/>, <AdminFooter />]} />
+          <Route path="/adminviewalljunioradvocates" element={[<AdminNav />,<AdminMain data="adminviewalljunioradvocates"/>, <AdminFooter />]} />
 
 
           {/* Landing Page routes */}

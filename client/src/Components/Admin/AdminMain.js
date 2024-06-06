@@ -7,6 +7,8 @@ import ViewAllAdvocates from "./ViewAllAdvocates";
 import ApproveRejectAdvocate from "./ApproveRejectAdvocate";
 import ViewProfile_AR from "./ViewProfile_AR";
 import "../Admin/AdminMain.css";
+import AdminViewAllJuniorAdvocate from "./AdminViewAllJuniorAdvocate";
+import AdminApproveRejectJuniorAdvocate from "./AdminApproveRejectJuniorAdvocate";
 
 function AdminMain({ data }) {
   const navigate = useNavigate();
@@ -34,7 +36,11 @@ function AdminMain({ data }) {
             <ViewProfile_AR view='request'  />
           ) : data === "adminviewsingleadvocate" ? (
             <ViewProfile_AR view='view' />
-          ) : (
+          ) : data === "adminviewalljunioradvocates" ? (
+            <AdminViewAllJuniorAdvocate />
+          ): data === "approverejectjunioradvocate" ? (
+            <AdminApproveRejectJuniorAdvocate />
+          ): (
             <AdminLogin />
           )}
         </div>

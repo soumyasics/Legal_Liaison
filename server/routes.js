@@ -1,6 +1,8 @@
 const router=require('express').Router()
 const user=require('./User/userController')
 const advocates=require('./Advocates/advocateController')
+const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
+
 
 
 //advocate routes
@@ -19,6 +21,25 @@ router.post('/viewAdvocates',advocates.viewAdvocates)
 router.post('/activateAdvocateById/:id',advocates.activateAdvocateById)
 router.post('/deactivateAdvocateById/:id',advocates.deactivateAdvocateById)
 
+
+//junior advocate routes
+router.post('/registerJuniorAdvocate',junioradvocates.upload,junioradvocates.registerJuniorAdvocate)
+router.post('/viewJuniorAdvocates',junioradvocates.viewJuniorAdvocates)
+router.post('/viewJuniorAdvocateReqs',junioradvocates.viewJuniorAdvocateReqs)
+router.post('/approveJuniorAdvocateById/:id',junioradvocates.approveJuniorAdvocateById)
+router.post('/rejectJuniorAdvocateById/:id',junioradvocates.rejectJuniorAdvocateById)
+router.post('/activateJuniorAdvocateById/:id',junioradvocates.activateJuniorAdvocateById)
+router.post('/deactivateJuniorAdvocateById/:id',junioradvocates.deactivateJuniorAdvocateById)
+router.post('/editJuniorAdvocateById/:id',junioradvocates.uploadProfile,junioradvocates.editJuniorAdvocateById)
+router.post('/viewJuniorAdvocateById/:id',junioradvocates.viewJuniorAdvocateById)
+router.post('/deleteJuniorAdvocateById/:id',junioradvocates.deleteJuniorAdvocateById)
+router.post('/junioradvocateforgotPassword',junioradvocates.forgotPassword)
+router.post('/junioradvocateresetPassword/:id',junioradvocates.resetPassword)
+router.post('/loginJuniorAdvocate',junioradvocates.login)
+router.post('/requireAuth',junioradvocates.requireAuth)
+
+
+//users routers
 router.post('/registerUser',user.registerUser)
 router.post('/loginUser',user.login)
 router.post('/editUserById/:id',user.editUserById)

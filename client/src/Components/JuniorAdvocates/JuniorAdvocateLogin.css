@@ -1,0 +1,27 @@
+.junior-reg-title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 10px;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.junior-heading-div{
+    height: 90px;
+    width: 100%;
+    background-color: #AA9166;
+    text-align: center;
+    padding-top: 18px;
+}
+
+.junior-text-edit{
+    font-family: 'Poppins',Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 40%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* .junior-border-dark{
+    border-width: 40px;
+    border-color: black;
+} */
+ 

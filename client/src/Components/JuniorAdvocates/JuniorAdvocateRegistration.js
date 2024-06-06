@@ -19,7 +19,8 @@ function JuniorAdvocateRegistration() {
     dateOfEnrollment: '',
     bcState: '',
     specialization: '',
-    experience: '',
+    institute:'',
+    percentage: '',
     qualification: '',
     profilePic: null,
     idProof: null,
@@ -38,7 +39,8 @@ function JuniorAdvocateRegistration() {
     dateOfEnrollment: '',
     bcState: '',
     specialization: '',
-    experience: '',
+    institute:'',
+    percentage: '',
     qualification: '',
     profilePic: '',
     idProof: '',
@@ -138,7 +140,8 @@ function JuniorAdvocateRegistration() {
     errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
     errors.bcState = validateString('State Bar Council', data.bcState);
     errors.specialization = validateField('Specialization Areas', data.specialization);
-    errors.experience = validateNumber('Years of Experience', data.experience);
+    errors.institute=validateString('Institute Name',data.institute)
+    errors.experience = validateNumber('Percentage', data.percentage);
     errors.qualification = validateString('Educational Qualification', data.qualification);
     errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
     errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
@@ -166,18 +169,19 @@ function JuniorAdvocateRegistration() {
       formData.append('dateOfEnrollment', data.dateOfEnrollment);
       formData.append('bcState', data.bcState);
       formData.append('specialization', data.specialization);
-      formData.append('experience', data.experience);
+      formData.append('institute',data.institute);
+      formData.append('percentage', data.percentage);
       formData.append('qualification', data.qualification);
       formData.append('files', data.profilePic);
       formData.append('files', data.idProof);
 
       try {
-        const res = await axiosMultipartInstance.post('/registerAdvocate', formData);
+        const res = await axiosMultipartInstance.post('/registerJuniorAdvocate', formData);
         if (res.data.status === 200) {
-            alert('Advocate registered successfully');
+            alert('Junior Advocate registered successfully');
             navigate('/AdvocateLogin')
         } else {
-            alert(`Advocate Registration Failed: ${res.data.msg}`);
+            alert(`Junior Advocate Registration Failed: ${res.data.msg}`);
         }
     } catch (error) {
         console.error('There was an error!', error);
@@ -373,11 +377,11 @@ function JuniorAdvocateRegistration() {
                     type="text"
                     className="form-control form-control-lg junior-form-input-style"
                     placeholder="Enter your educational qualification"
-                    name="qualification"
-                    value={data.qualification}
+                    name="institute"
+                    value={data.institute}
                     onChange={handleChange}
                   />
-                  {errors.qualification && <div className="text-danger">{errors.qualification}</div>}
+                  {errors.institute && <div className="text-danger">{errors.institute}</div>}
                 </div>
               </div>
               <div className="row mt-3">
@@ -398,12 +402,12 @@ function JuniorAdvocateRegistration() {
                   <input
                     type="number"
                     className="form-control form-control-lg junior-form-input-style"
-                    placeholder="Enter your years of experience"
-                    name="experience"
-                    value={data.experience}
+                    placeholder="Enter your Percentage of Marks"
+                    name="percentage"
+                    value={data.percentage}
                     onChange={handleChange}
                   />
-                  {errors.experience && <div className="text-danger">{errors.experience}</div>}
+                  {errors.percentage && <div className="text-danger">{errors.percentage}</div>}
                 </div>
               </div>
               <div className="row mt-3">

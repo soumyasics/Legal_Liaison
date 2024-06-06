@@ -37,9 +37,11 @@ margin-left: 3px;
 font-size: 20px;
     } */
 
-.text-edit{
-    padding-left: 40%;
-    font-size: 20px;
-    font-weight: 700;
-}
+.advocate-text-edit{
+        font-family: 'Poppins',Tahoma, Geneva, Verdana, sans-serif;
+        padding-left: 40%;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
 
