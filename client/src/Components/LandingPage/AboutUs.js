@@ -36,7 +36,7 @@ function AboutUs() {
       </div>
 
       <div className="row">
-        <div className="col-6">
+        <div className="col-lg-6 col-md-6 col-sm-12">
           <div>
             <h3>Why Choose Us?</h3>
             <p className="text-justify" >
@@ -68,7 +68,7 @@ function AboutUs() {
             </ul>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-lg-6 col-md-6 col-sm-12">
           <div className="">
             <img className="aboutusimg2" src={img2} alt="Card image cap" />
           </div>
@@ -133,70 +133,11 @@ function AboutUs() {
                 </div>{" "}
               </div>
             </div>
-          </div>
+          </div><br/>
         </div>
       </div>
 
-      <div className="mt-5">
-        <h3>Contact Us</h3>
-        <div class="container">
-          <p>
-            Ready to get started? Contact [Your Legal Practice] today to discuss
-            your legal needs. Whether you're seeking legal advice,
-            representation, or case management services, we're here to help you
-            navigate the complexities of the legal system.
-          </p>
-
-          <p>We look forward to serving you!</p>
-          <div class="m-1">
-            <div class="fs-6  mb-2">
-              Post your message below. We will get back to you ASAP
-            </div>
-            <form id="contact_form" name="contact_form" onSubmit={()=>{alert('Posted Succesfully')}} >
-              <div class="mb-5">
-                <label for="message">Message</label>
-                <textarea
-                  class="form-control"
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                ></textarea>
-              </div>
-              <div class="mb-5 row">
-                <div class="col">
-                  <label>Your Name:</label>
-                  <input
-                    type="text"
-                    required
-                    maxlength="50"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                  />
-                </div>
-                <div class="col">
-                  <label for="email_addr">Your Email:</label>
-                  <input
-                    type="email"
-                    required
-                    maxlength="50"
-                    class="form-control"
-                    id="email_addr"
-                    name="email"
-                    placeholder="name@example.com"
-                  />
-                </div>
-              </div>
-              <div class="d-grid">
-                <button type="submit"  class="btn btn-success">
-                  Post
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }

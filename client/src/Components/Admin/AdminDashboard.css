@@ -1,20 +1,9 @@
-/* .container-fluid {
-    padding: 20px;
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .col-3 {
-    flex: 1 1 25%;
-    padding: 40px;
-  } */
-  
+.dashboard-adjust{
+  margin-left: 35px;
+}
   .dashbord-box {
     background-color:#2A2A2A;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
     /* border: 1px solid #dee2e6; */
@@ -61,6 +50,7 @@
     font-weight: 400;
     line-height: 44.46px;
     text-align: left; 
+    margin-left: 35px;
   }
 
   @media (max-width: 1200px) {

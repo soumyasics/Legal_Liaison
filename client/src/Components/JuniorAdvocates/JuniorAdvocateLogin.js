@@ -78,15 +78,15 @@ function JuniorAdvocateLogin() {
         <label className='junior-reg-title'>Junior Advocate Login</label>
       </div>
                 <div className="user_registration_container">
-                    <div className="user_registration_box1">
+                    <div className="user_registration_box ">
                         <div className="user_registration_input_group">
                             <form onSubmit={handleSubmit}>
-                                <label className='junior-text-edit'>Login Here</label>
+                                <label className='junior-text-loginhere'>Login Here</label>
                                 <div className="user_registration_input mt-5">
                                     <label>Email Id</label>
                                     <input
                                         type="text"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Email Id"
                                         name="email"
                                         value={data.email}
@@ -98,7 +98,7 @@ function JuniorAdvocateLogin() {
                                     <label>Password</label>
                                     <input
                                         type="password"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Password"
                                         name="password"
                                         value={data.password}
@@ -132,7 +132,7 @@ function JuniorAdvocateLogin() {
                             </div>
                         </div>
                     </div>
-                    <div className="user_registration_box2 justify-content-center">
+                    <div className="user_registration_box2 justify-content-center ">
                         <img src={img} className="img-fluid w-100" alt="user_reg_img" />
                     </div>
                 </div>

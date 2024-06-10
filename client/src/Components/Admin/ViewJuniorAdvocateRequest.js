@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './AdminApproveRejectJuniorAdvocate.css'
+import './ViewJuniorAdvocateRequest.css'
 import img from "../../Assets/Vecto(2).png";
 import img1 from "../../Assets/Vectorsymbol.png";
 import img2 from "../../Assets/raphael_cross.png";
@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import noReqFound from "../../Assets/noReqFound.json";
 import Lottie from "lottie-react";
 
-function AdminApproveRejectJuniorAdvocate() {
+function ViewJuniorAdvocateRequest() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -104,9 +104,9 @@ function AdminApproveRejectJuniorAdvocate() {
                     <td className="table-data">{junioradvocate.bcState}</td>
                     <td className="table-data">{junioradvocate.qualification}</td>
                     <td className="table-data">{junioradvocate.institute}</td>
-                    <td className="table-data">{junioradvocate.percentage}</td>
+                    <td className="table-data">{junioradvocate.percentage}%</td>
                     <td className="table-data">
-                      <Link to={`/adminviewrequest/${junioradvocate._id}`}>
+                      <Link to={`/JuniorAdvocate-profile-request/${junioradvocate._id}`}>
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />
                         </button>
@@ -149,4 +149,4 @@ function AdminApproveRejectJuniorAdvocate() {
   )
 }
 
-export default AdminApproveRejectJuniorAdvocate
+export default ViewJuniorAdvocateRequest

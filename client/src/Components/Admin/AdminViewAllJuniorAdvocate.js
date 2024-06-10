@@ -96,13 +96,12 @@ function AdminViewAllJuniorAdvocate() {
                     <td className="table-data">{junioradvocate.percentage} %</td>
 
                     <td className="table-data">
-                      <Link to={`/admin_view_single_advocate/${junioradvocate._id}`}>
+                      <Link to={`/JuniorAdvocateViewProfile/${junioradvocate._id}`}>
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />
                         </button>
                       </Link>
                     </td>{" "}
-                    {/* Activate and deactivatebutton cannot work properly */}
                     <td className="table-data">
                       {junioradvocate.isActive ? (
                         <button

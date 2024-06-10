@@ -8,7 +8,11 @@ import ApproveRejectAdvocate from "./ApproveRejectAdvocate";
 import ViewProfile_AR from "./ViewProfile_AR";
 import "../Admin/AdminMain.css";
 import AdminViewAllJuniorAdvocate from "./AdminViewAllJuniorAdvocate";
-import AdminApproveRejectJuniorAdvocate from "./AdminApproveRejectJuniorAdvocate";
+import AdminApproveRejectJuniorAdvocate from "./ViewJuniorAdvocateRequest";
+import ViewJuniorAdvocateRequest from "./ViewJuniorAdvocateRequest";
+import ViewProfile_AllJuniorAdvocates from "./ViewProfile_AllJuniorAdvocates";
+import ViewProfile_JuniorAdvocate from "./ViewProfile_JuniorAdvocate";
+import ViewProfile_JuniorAdvocateRequest from "./ViewProfile_JuniorAdvocateRequest";
 
 function AdminMain({ data }) {
   const navigate = useNavigate();
@@ -20,7 +24,7 @@ function AdminMain({ data }) {
   }, [navigate]);
 
   return (
-    <div className="" >
+    <div className="container-fluid" >
       <div className="row">
         <div className="col-lg-3 col-md-6 col-sm-12 adminmain-sidebar" style={{padding:0}}>
           <AdminSidebar />
@@ -39,8 +43,12 @@ function AdminMain({ data }) {
           ) : data === "adminviewalljunioradvocates" ? (
             <AdminViewAllJuniorAdvocate />
           ): data === "approverejectjunioradvocate" ? (
-            <AdminApproveRejectJuniorAdvocate />
-          ): (
+            <ViewJuniorAdvocateRequest />
+          ): data === "adminviewprofile-alladvocates" ? (
+            <ViewProfile_AllJuniorAdvocates />
+          ): data === "adminviewprofile-requests" ? (
+            <ViewProfile_JuniorAdvocateRequest />
+          ):(
             <AdminLogin />
           )}
         </div>
