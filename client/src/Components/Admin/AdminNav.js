@@ -26,7 +26,7 @@ function AdminNav() {
               alt="Logo"
               src={img1}
               width="70"
-              height="90"
+              height="75"
               className="d-inline-block align-top logo-adjust"
             />{" "}
             LEGAL LIAISON

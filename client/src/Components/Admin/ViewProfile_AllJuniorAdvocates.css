@@ -73,3 +73,9 @@
     height: 100px;
     width: 100px;
 }
+
+.admin_view_junioradvocate_img img{
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+}

@@ -1,84 +1,67 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
+import './ViewProfile_AllJuniorAdvocates.css'
+
+
+import Lottie from 'lottie-react';
+import noData from "../../Assets/noDataFound.json";
+import img from "../../Assets/Vecto(2).png";
 
 function ViewProfile_JuniorAdvocateRequest() {
-  const [junioradvocate, setJuniorAdvocate] = useState(null);
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
-  const { id } = useParams();
+    const [advocate, setAdvocate] = useState(null);
+    const [data,setData]=useState([])
+    const { id } = useParams();
 
-  useEffect(() => {
-    if (localStorage.getItem("adminId") == null) {
-      navigate("/");
+    useEffect(() => {
+        axiosInstance.post(`/viewJuniorAdvocateById/${id}`)
+            .then(response => {
+                setAdvocate(response.data.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the advocate details!', error);
+            });
+    }, [id]);
+
+    const handleApprove = (id) => {
+        axiosInstance.post(`/approveJuniorAdvocateById/${id}`)
+            .then(res => {
+                if (res.data.status === 200) {
+                    setAdvocate(prevState => ({ ...prevState, isActive: true }));
+                }
+            })
+            .catch(error => {
+                console.error("Error!", error);
+            });
+    };
+
+    const handleReject = (id) => {
+        axiosInstance.post(`/rejectJuniorAdvocateById/${id}`)
+            .then(res => {
+                if (res.data.status === 200) {
+                    setAdvocate(prevState => ({ ...prevState, isActive: false }));
+                }
+                
+            })
+            .catch(error => {
+                console.error("Error!", error);
+            });
+    };
+
+    if (!advocate) {
+        return '';
     }
-  }, [navigate]);
-
-  useEffect(() => {
-    axiosInstance
-      .post(`/viewJuniorAdvocateById/${id}`)
-      .then((response) => {
-        setJuniorAdvocate(response.data.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the advocate details!", error);
-      });
-  }, [id]);
-
-  const handleApprove = (id) => {
-    axiosInstance
-      .post(`/approveJuniorAdvocateById/${id}`)
-      .then((res) => {
-        if (res.data.status === 200) {
-          const updatedData = data.map((junioradvocate) => {
-            if (junioradvocate._id === id) {
-              junioradvocate.adminApproved = true;
-            }
-            return junioradvocate;
-          });
-          setData(updatedData);
-          navigate("/adminviewalljunioradvocates");
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
-      });
-  };
-
-  const handleReject = (id) => {
-    axiosInstance
-      .post(`/rejectJuniorAdvocateById/${id}`)
-      .then((res) => {
-        if (res.data.status === 200) {
-          const updatedData = data.map((junioradvocate) => {
-            if (junioradvocate._id === id) {
-              junioradvocate.adminApproved = false;
-            }
-            return junioradvocate;
-          });
-          setData(updatedData);
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
-      });
-  };
-
-
-  if (!junioradvocate) {
-    return "";
-  }
   return (
     <div>
-        {/* <div className="container-fluid mt-5">
+        <div className="container-fluid mt-5">
             <div className="row justify-content-center">
-                <div className=" text-center col-sm-6 col-lg-6">
+                <div className="admin_view_junioradvocate_img col-lg-4 col-md-6 col-sm-12 text-center">
                     <br/>
-                    <img src={`${imageUrl}/${junioradvocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
+                    <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded image-size" alt="Advocate" />
 
-                    <label className="ju-advocate-name d-block mt-3">{junioradvocate.name}</label>
-                    <label className="ju-practice-area d-block">{junioradvocate.specialization}</label>
+                    <label className="ju-advocate-name d-block mt-3">{advocate.name}</label>
+                    <label className="ju-practice-area d-block">{advocate.specialization}</label>
                     <Link className="ju-link-label" to="">View Id Proof</Link>
                 </div>
                 <div className="col-sm-6 col-lg-6">
@@ -88,61 +71,62 @@ function ViewProfile_JuniorAdvocateRequest() {
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Bar Council Enrollment Number</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.bcNo}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.bcNo}</label></td>
                                 </tr>
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Date of Enrollment</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.dateOfEnrollment}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.dateOfEnrollment}</label></td>
                                 </tr>
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">State Bar Council</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.bcState}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.bcState}</label></td>
                                 </tr>
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Specialization Areas</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.specialization}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.specialization}</label></td>
                                 </tr>
                                 
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Educational Qualification</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.qualification}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.qualification}</label></td>
                                 </tr>
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Institute Name</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.institute}</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.institute}</label></td>
                                 </tr>
                                 <tr>
                                     <td className='left-alignn'><label className="ju-sub-label">Percentage of Marks</label></td>
                                     <td className='left-alignn'>:</td>
-                                    <td className='left-alignn'><label className="ju-sub-label">{junioradvocate.percentage} %</label></td>
+                                    <td className='left-alignn'><label className="ju-sub-label">{advocate.percentage}%</label></td>
                                 </tr>
                                     <br/>
-                                    {junioradvocate.isActive ? (
-                                            <button
-                                                className="btn btn-warning ju-button-size1"
-                                                onClick={() => handleApprove(junioradvocate._id)}
-                                            >
-                                                Accept
-                                            </button>
-                                         ) : ( 
-                                            <button
-                                                className="btn btn-warning ju-button-size1"
-                                                onClick={() => handleReject(junioradvocate._id)}
-                                            >
-                                                Reject
-                                            </button>
-                                         )}
+                                    <div className="row justify-content-center mt-4 arr">
+                                        <div className="col-auto">
+                                        <button
+                                            className="btn btn-warning btn-style  me-2"
+                                            onClick={() => handleApprove(advocate._id)}
+                                        >
+                                            Approve
+                                        </button>
+                                        <button
+                                            className="btn btn-style btn-warning"
+                                            onClick={() => handleReject(advocate._id)}
+                                        >
+                                            Reject
+                                        </button>
+                                        </div>
+                                    </div>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div> */}
+        </div>
     </div>
   )
 }

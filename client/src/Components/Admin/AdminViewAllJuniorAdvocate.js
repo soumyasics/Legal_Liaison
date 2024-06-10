@@ -73,7 +73,7 @@ function AdminViewAllJuniorAdvocate() {
             <thead>
               <tr>
                 <th className="juniorad-table-header">Bar council Enrolment No</th>
-                <th className="juniorad-table-header">Advocate Name</th>
+                <th className="juniorad-table-header">Junior Advocate Name</th>
                 <th className="juniorad-table-header">Specialization areas</th>
                 <th className="juniorad-table-header">Bar Council Area</th>
                 <th className="juniorad-table-header">Educational qualification</th>
@@ -87,15 +87,15 @@ function AdminViewAllJuniorAdvocate() {
               {data.length ? (
                 data.map((junioradvocate) => (
                   <tr>
-                    <td className="table-data">{junioradvocate.bcNo}</td>
-                    <td className="table-data">{junioradvocate.name}</td>
-                    <td className="table-data">{junioradvocate.specialization}</td>
-                    <td className="table-data">{junioradvocate.bcState}</td>
-                    <td className="table-data">{junioradvocate.qualification}</td>
-                    <td className="table-data">{junioradvocate.institute}</td>
-                    <td className="table-data">{junioradvocate.percentage} %</td>
+                    <td className="ju-table-data">{junioradvocate.bcNo}</td>
+                    <td className="ju-table-data">{junioradvocate.name}</td>
+                    <td className="ju-table-data">{junioradvocate.specialization}</td>
+                    <td className="ju-table-data">{junioradvocate.bcState}</td>
+                    <td className="ju-table-data">{junioradvocate.qualification}</td>
+                    <td className="ju-table-data">{junioradvocate.institute}</td>
+                    <td className="ju-table-data">{junioradvocate.percentage} %</td>
 
-                    <td className="table-data">
+                    <td className="ju-table-data">
                       <Link to={`/JuniorAdvocateViewProfile/${junioradvocate._id}`}>
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />

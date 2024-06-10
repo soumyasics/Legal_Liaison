@@ -49,7 +49,7 @@ function ViewProfile_AllJuniorAdvocates() {
     <div>
         <div className="container-fluid mt-5">
             <div className="row justify-content-center">
-                <div className=" text-center col-sm-6 col-lg-6">
+                <div className="admin_view_junioradvocate_img col-lg-4 col-md-6 col-sm-12 text-center">
                     <br/>
                     <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded image-size" alt="Advocate" />
 

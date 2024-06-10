@@ -39,6 +39,7 @@ import ContactUs from './Components/LandingPage/ContactUs';
 import ViewProfile_AllJuniorAdvocates from './Components/Admin/ViewProfile_AllJuniorAdvocates';
 import ViewProfile_JuniorAdvocate from './Components/Admin/ViewProfile_JuniorAdvocate';
 import ViewProfile_JuniorAdvocateRequest from './Components/Admin/ViewProfile_JuniorAdvocateRequest';
+import JuniorAdvocateHome from './Components/JuniorAdvocates/JuniorAdvocateHome';
 
 function App() {
   return (
@@ -78,18 +79,12 @@ function App() {
           <Route path="/adminviewjunioradvocaterequest" element={[<AdminNav />,<AdminMain data='approverejectjunioradvocate'/>, <AdminFooter />]} />
           <Route path="/adminviewalljunioradvocates" element={[<AdminNav />,<AdminMain data="adminviewalljunioradvocates"/>, <AdminFooter />]} />
           <Route path="/JuniorAdvocateViewProfile/:id" element={[<AdminNav />,<AdminMain data='adminviewprofile-alladvocates'/>,<AdminFooter />]} />
-          <Route path="/JuniorAdvocate-profile-request:id" element={[<LandingNavbar />,<AdminMain data='adminviewprofile-requests'/>,<UserFooter />]} />
-
-
-{/* 
-          <Route path="/adminviewjuniorrequest/:id" element={[<AdminNav />, <AdminMain data="adminviewrequest" />, <AdminFooter />]} />
-          <Route path="/admin_view_single_junioradvocate/:id" element={[<AdminNav />, <AdminMain data="adminviewsingleadvocate" />, <AdminFooter />]} /> */}
+          <Route path="/JuniorAdvocate-profile-request/:id" element={[<LandingNavbar />,<AdminMain data='adminviewprofile-requests'/>,<UserFooter />]} />
 
           {/* Junior Advocate routes */}
           <Route path="/JuniorAdvocateRegister" element={[<LandingNavbar />,<JuniorAdvocateRegistration/>,<UserFooter />]} />
-          <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />
-          <Route path="/JuniorAdvocate-profile-request:id" element={[<LandingNavbar />,<ViewProfile_JuniorAdvocateRequest/>,<UserFooter />]} />
-          
+          <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />          
+          <Route path="/JuniorAdvocate-homepage" element={[<LandingNavbar />,<JuniorAdvocateHome />,<UserFooter />]} />          
 
           
           {/* Landing Page routes */}

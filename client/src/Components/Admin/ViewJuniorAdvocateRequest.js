@@ -82,39 +82,39 @@ function ViewJuniorAdvocateRequest() {
           <table className="table-change container-fluid">
             <thead>
               <tr>
-                <th className="table-header">Bar council Enrolment No</th>
-                <th className="table-header">Junior Advocate Name</th>
-                <th className="table-header">Specialization areas</th>
-                <th className="table-header">Bar Council Area</th>
-                <th className="table-header">Educational qualification</th>
-                <th className="table-header">Institute Name</th>
-                <th className="table-header">Percentage of Marks</th>
-                <th className="table-header">View full Details</th>
-                <th className="table-header">Accept</th>
-                <th className="table-header">Reject</th>
+                <th className="ju-table-header">Bar council Enrolment No</th>
+                <th className="ju-table-header">Junior Advocate Name</th>
+                <th className="ju-table-header">Specialization areas</th>
+                <th className="ju-table-header">Bar Council Area</th>
+                <th className="ju-table-header">Educational qualification</th>
+                <th className="ju-table-header">Institute Name</th>
+                <th className="ju-table-header">Percentage of Marks</th>
+                <th className="ju-table-header">View full Details</th>
+                <th className="ju-table-header">Accept</th>
+                <th className="ju-table-header">Reject</th>
               </tr>
             </thead>
             <tbody>
               {data.length ? (
                 data.map((junioradvocate) => (
                   <tr>
-                    <td className="table-data">{junioradvocate.bcNo}</td>
-                    <td className="table-data">{junioradvocate.name}</td>
-                    <td className="table-data">{junioradvocate.specialization}</td>
-                    <td className="table-data">{junioradvocate.bcState}</td>
-                    <td className="table-data">{junioradvocate.qualification}</td>
-                    <td className="table-data">{junioradvocate.institute}</td>
-                    <td className="table-data">{junioradvocate.percentage}%</td>
-                    <td className="table-data">
+                    <td className="ju-table-data">{junioradvocate.bcNo}</td>
+                    <td className="ju-table-data">{junioradvocate.name}</td>
+                    <td className="ju-table-data">{junioradvocate.specialization}</td>
+                    <td className="ju-table-data">{junioradvocate.bcState}</td>
+                    <td className="ju-table-data">{junioradvocate.qualification}</td>
+                    <td className="ju-table-data">{junioradvocate.institute}</td>
+                    <td className="ju-table-data">{junioradvocate.percentage}%</td>
+                    <td className="ju-table-data">
                       <Link to={`/JuniorAdvocate-profile-request/${junioradvocate._id}`}>
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />
                         </button>
                       </Link>
                     </td>
-                    <td className="table-data">
+                    <td className="ju-table-data">
                       <button
-                        className="btn btn-outline-success"
+                        className="btn btn-outline-success success-size"
                         onClick={() => handleApprove(junioradvocate._id)}
                       >
                         <img src={img1} alt="Approve Advocate" />

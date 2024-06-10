@@ -2,6 +2,7 @@
     margin-top: 20px;
     padding-left: 10px;
     padding-bottom: 20px;
+    margin-left: 20px;
 }
 
 .table-container {
@@ -14,10 +15,10 @@
 }
   
 .juniorad-table-header{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
     font-size: 12.5px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .main-div{
@@ -39,8 +40,8 @@ th, td {
     text-align: left;
 }
 
-.table-data{
-    font-family: 'Poppins', Arial, sans-serif;
+.ju-table-data{
+    font-family:'Poppins', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
     font-weight: 500;
     text-align: left;
