@@ -171,8 +171,8 @@ function AdvocateEditProfile() {
     <div>
       <div className='advocate_edit_profile'>
         <div className='container'>
-            <div className='row'>
-                <div className=' col-5'>
+            <div className='row '>
+                <div className=' col-5 mt-5'> 
                     <div className='advocate_edit_profile_img d-flex justify-content-center'>
                         <img src={`${imageUrl}/${data.profilePic.filename}`} className='img-fluid'/>
                     </div>
@@ -206,7 +206,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Full Name :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control"
                               placeholder="Enter your Full Name"
                               name="name"
                               value={data.name}
@@ -218,7 +218,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Bar Council Enrollment Number :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your Bar Council enrollment number"
                               name="bcNo"
                               value={data.bcNo}
@@ -227,13 +227,13 @@ function AdvocateEditProfile() {
                             {errors.bcNo && <div className="text-danger">{errors.bcNo}</div>}
                           </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                           <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
                             {/* {console.log((data.dob).slice(0,10))} */}
                             <input
                               type="date"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               name="dob"
                               value={(data.dob).slice(0,10)}
                               onChange={handleChange}
@@ -244,7 +244,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Date of Enrollment :</label>
                             <input
                               type="date"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               name="dateOfEnrollment"
                               value={data.dateOfEnrollment}
                               onChange={handleChange}
@@ -252,11 +252,11 @@ function AdvocateEditProfile() {
                             {errors.dateOfEnrollment && <div className="text-danger">{errors.dateOfEnrollment}</div>}
                           </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                           <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Gender :</label>
                             <select
-                              className="form-select form-control-lg"
+                              className="form-select "
                               name="gender"
                               value={data.gender}
                               onChange={handleChange}
@@ -273,7 +273,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">State Bar Council :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your State Bar Council"
                               name="bcState"
                               value={data.bcState}
@@ -282,12 +282,12 @@ function AdvocateEditProfile() {
                             {errors.bcState && <div className="text-danger">{errors.bcState}</div>}
                           </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                           <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Nationality :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your Nationality"
                               name="nationality"
                               value={data.nationality}
@@ -299,7 +299,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Specialization Areas :</label>
                             <div className="select-container">
                               <select
-                                className="form-select form-control-lg"
+                                className="form-select "
                                 name="specialization"
                                 value={data.specialization}
                                 onChange={handleChange}
@@ -324,12 +324,12 @@ function AdvocateEditProfile() {
                             </div>
                           </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                         <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Address :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your address"
                               name="address"
                               value={data.address}
@@ -341,7 +341,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your years of experience"
                               name="experience"
                               value={data.experience}
@@ -351,12 +351,12 @@ function AdvocateEditProfile() {
                           </div>
                           
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                         <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Contact Number :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your contact number"
                               name="contact"
                               value={data.contact}
@@ -368,7 +368,7 @@ function AdvocateEditProfile() {
                             <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
                             <input
                               type="text"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your educational qualification"
                               name="qualification"
                               value={data.qualification}
@@ -377,11 +377,11 @@ function AdvocateEditProfile() {
                             {errors.qualification && <div className="text-danger">{errors.qualification}</div>}
                           </div>
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                             <label className="form-label advocateRegistrationlabel">Email :</label>
                             <input
                               type="email"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your email"
                               name="email"
                               value={data.email}
@@ -389,12 +389,12 @@ function AdvocateEditProfile() {
                             />
                             {errors.email && <div className="text-danger">{errors.email}</div>}              
                         </div>
-                        <div className="row mt-3">
+                        <div className="row mt-2">
                           <div className="col-6">
                             <label className="form-label advocateRegistrationlabel">Password :</label>
                             <input
                               type="password"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               placeholder="Enter your password"
                               name="password"
                               value={data.password}
@@ -408,7 +408,7 @@ function AdvocateEditProfile() {
                             {console.log(data.profilePic)}
                             <input
                               type="file"
-                              className="form-control form-control-lg"
+                              className="form-control "
                               name="profilePic"
                               onChange={handleChange}
                             />
@@ -417,7 +417,7 @@ function AdvocateEditProfile() {
                         </div>
                         <div className="row mt-3">
                           <div className="col-12">
-                            <button type="submit" className="btn btn-warning btn-lg">Update</button>
+                            <button type="submit" className="btn btn-warning">Update</button>
                           </div>
                         </div>
                       </form>

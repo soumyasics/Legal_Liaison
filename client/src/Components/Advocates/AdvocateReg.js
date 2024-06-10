@@ -184,7 +184,7 @@ function AdvcateReg() {
                       }))}
                     /></div>
                     {errors.contact && <div className="text-danger">{errors.contact}</div>}
-                </div>
+                </div> 
               </div>
               <div className="row mt-3">
 
