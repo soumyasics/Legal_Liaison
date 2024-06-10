@@ -38,8 +38,8 @@ function AdminDashboard() {
   return (
  
       <div className="container">
-        <label className="main-label">Dashboard</label>
-        <div className="row">
+        <label className="main-label container">Dashboard</label>
+        <div className="row dashboard-adjust">
           <div className="col-12 col-sm-6 col-md-3 mb-4 adjust-box">
             <div className="dashbord-box">
               <img className="image-adjust" src={userimg} />

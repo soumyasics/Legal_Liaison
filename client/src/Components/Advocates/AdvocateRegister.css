@@ -1,4 +1,4 @@
-.advocateRegistrationmaindiv{
+/* .advocateRegistrationmaindiv{
     height:auto;
     width:1000px;
     margin-top: 20px;
@@ -29,7 +29,7 @@ padding-bottom: 30px;
 .advocateRegistrationdivlink{
     text-decoration: none;
 
-}
+} */
 .form-input-style{
     font-size: 15px;
     border-radius: 10px;
@@ -44,6 +44,7 @@ padding-bottom: 30px;
     width: 100%;
     background-color: #AA9166;
     text-align: center;
+    padding-top: 18px;
 }
 
 .reg-title{

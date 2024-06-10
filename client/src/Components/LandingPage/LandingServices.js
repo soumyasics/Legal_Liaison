@@ -36,11 +36,10 @@ function LandingServices() {
     <div class="card-body">
     <h5 class="card-title">Case Tracking</h5>
       <p class="card-text text-justify">Track the status of your case in real-time through our online portal. Receive updates, court dates, and documentation, ensuring you are informed every step of the way.</p>
-   
-   
+
     </div>      </div>
     </div>
-  </div>
+  </div><br/>
 </div>
 
     </div>

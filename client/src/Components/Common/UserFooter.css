@@ -12,11 +12,19 @@
     font-weight: bolder;
 }
 
-.footer-logo-text{
+/* .footer-logo-text{
+    padding-top: 20px;
     font-family: 'Poppins', Arial, sans-serif;
     width: 100px;
     font-weight: 700;
-}
+} */
+
+.footer-logo-text-change1 {
+    font-size: 23px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: white;
+  }
 
 .footer-list{
     color:rgba(252, 249, 249, 0.216);
@@ -40,4 +48,14 @@ margin-bottom: 60px;
 
 .legal-margin, .quick-margin, .help-div{
     margin-top: 40px;
+}
+
+.quick{
+    padding-left: 20px;
+}
+
+.lawyer, .lawyer-intro{
+    padding-left: 20px;
+    padding-right: 30px;
+
 }

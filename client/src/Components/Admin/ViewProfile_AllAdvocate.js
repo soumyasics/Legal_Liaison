@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
-import '../Admin/ViewProfile_AR.css'; // Make sure this is the correct path to your CSS file
-import img from '../../Assets/image 21.png'; // Update this with the correct path to your image file
+import '../Admin/ViewProfile_AR.css';
 import { imageUrl } from '../Constants/Image_Url';
 
 function ViewProfile_AllAdvocate() {

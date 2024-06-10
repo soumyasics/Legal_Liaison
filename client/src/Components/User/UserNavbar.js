@@ -21,7 +21,7 @@ function UserNavbar() {
   return (
     <div>
        <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar">
-      <div className="container">
+      <div className="container-fluid">
         <Link className="navbar-brand" to="#home">
           <img
             alt="Logo"

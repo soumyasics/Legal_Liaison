@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import img from "../../Assets/image23.png";
-import './AdvocateLogin.css';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
+import img from '../../Assets/junioradvocate-loginimg.png'
+import './JuniorAdvocateLogin.css'
 
-function AdvocateLogin() {
+function JuniorAdvocateLogin() {
     const [data, setData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
     const [formIsValid, setFormIsValid] = useState(true);
@@ -47,13 +47,13 @@ function AdvocateLogin() {
 
         if (formIsValid) {
             console.log("data", data);
-            axiosInstance.post('/loginAdvocate', data)
+            axiosInstance.post('/loginJuniorAdvocate', data)
                 .then(response => {
                     console.log("Response:", response);
                     if (response.data.status === 200) {
                         console.log("Login Successful");
                         alert("Login Successful");
-                        navigate('/advocate_home')
+                        // navigate('')
                         localStorage.setItem('advocateId',response.data.data._id)
                     } else {
                         console.log("Login Failed");
@@ -71,23 +71,22 @@ function AdvocateLogin() {
         setErrors({ email: '', password: '' });
         setFormIsValid(true);
     };
-
-    return (
-        <div>
-            <div className="user_registration">
-            <div className='heading-div container-fluid'>
-        <label className='reg-title'>Advocate Login</label>
+  return (
+    <div>
+        <div className="user_registration">
+        <div className='junior-heading-div container-fluid'>
+        <label className='junior-reg-title'>Junior Advocate Login</label>
       </div>
                 <div className="user_registration_container">
-                    <div className="user_registration_box1">
+                    <div className="user_registration_box ">
                         <div className="user_registration_input_group">
                             <form onSubmit={handleSubmit}>
-                                <label className='advocate-text-edit'>Login Here</label>
+                                <label className='junior-text-loginhere'>Login Here</label>
                                 <div className="user_registration_input mt-5">
                                     <label>Email Id</label>
                                     <input
                                         type="text"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Email Id"
                                         name="email"
                                         value={data.email}
@@ -99,7 +98,7 @@ function AdvocateLogin() {
                                     <label>Password</label>
                                     <input
                                         type="password"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Password"
                                         name="password"
                                         value={data.password}
@@ -133,13 +132,13 @@ function AdvocateLogin() {
                             </div>
                         </div>
                     </div>
-                    <div className="user_registration_box2 justify-content-center">
+                    <div className="user_registration_box2 justify-content-center ">
                         <img src={img} className="img-fluid w-100" alt="user_reg_img" />
                     </div>
                 </div>
             </div>
-        </div>
-    );
+    </div>
+  )
 }
 
-export default AdvocateLogin;
+export default JuniorAdvocateLogin

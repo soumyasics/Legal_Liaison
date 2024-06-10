@@ -14,17 +14,24 @@ function AdminFooter() {
   });
 
   return (
-    <div className='admin-footer'>
-      <div className='container'>
-        <div className='row'>
-            <div className='col-6'>
-            <img  className='footer-img' src={logo} alt='Admin Footer Logo'/>
-            {/* <img  className='footer-img' src={logo1} alt='Admin Footer Logo name'/>              */}
-                <label className='footer-logo-text-change'>LEGAL LIAISON</label>
-            </div>
-            <div className='col-6 d-flex'>            
-                <label className='footer-text mt-5'>© Copyright | All Right Reserved</label>
-            </div>
+    <div className="admin-footer bg-dark text-white">
+      <div className="container-fluid">
+        <div className="row align-items-center">
+          <div className="col-4 col-md-6 d-flex align-items-center">
+            <img
+              className="footer-img"
+              src={logo}
+              alt="Admin Footer Logo"
+              width="70"
+              height="90"
+            />
+            <span className="footer-logo-text-change ml-2">LEGAL LIAISON</span>
+          </div>
+          <div className="col-8 col-md-6  text-md-left mt-3 mt-md-0">
+            <span className="footer-text">
+              © Copyright | All Rights Reserved
+            </span>
+          </div>
         </div>
       </div>
     </div>
