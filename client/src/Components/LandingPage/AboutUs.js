@@ -9,7 +9,7 @@ import "./AboutUs.css";
 function AboutUs() {
   return (
     <div className="container">
-      <h1 className="aboutush1">AboutUs</h1>
+      <h1 className="aboutush1">About Us</h1>
       <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12">
           <img className="aboutusimg1" src={img1} alt="Card image cap" />

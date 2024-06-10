@@ -21,10 +21,10 @@ function AdminMain({ data }) {
     if (localStorage.getItem("adminId") == null) {
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate]); 
 
   return (
-    <div className="container-fluid" >
+    <div className="container-fluid admin_main" >
       <div className="row">
         <div className="col-lg-3 col-md-6 col-sm-12 adminmain-sidebar" style={{padding:0}}>
           <AdminSidebar />
