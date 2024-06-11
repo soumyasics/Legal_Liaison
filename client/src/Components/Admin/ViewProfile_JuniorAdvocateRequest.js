@@ -27,26 +27,39 @@ function ViewProfile_JuniorAdvocateRequest() {
     const handleApprove = (id) => {
         axiosInstance.post(`/approveJuniorAdvocateById/${id}`)
             .then(res => {
-                if (res.data.status === 200) {
-                    setAdvocate(prevState => ({ ...prevState, isActive: true }));
-                }
+            if (res.data.status === 200) {
+                const updatedData = data.map((advocate) => {
+                  if (advocate._id === id) {
+                    return { ...advocate, adminApproved: true };
+                  }
+                  return advocate;
+                });
+                setData(updatedData);
+                Navigate("/adminviewalljunioradvocates");
+              }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error("Error!", error);
-            });
+              });
     };
 
     const handleReject = (id) => {
         axiosInstance.post(`/rejectJuniorAdvocateById/${id}`)
-            .then(res => {
-                if (res.data.status === 200) {
-                    setAdvocate(prevState => ({ ...prevState, isActive: false }));
+        .then((res) => {
+            if (res.data.status === 200) {
+              const updatedData = data.map((advocate) => {
+                if (advocate._id === id) {
+                  return { ...advocate, adminApproved: false };
                 }
-                
-            })
-            .catch(error => {
-                console.error("Error!", error);
-            });
+                return advocate;
+              });
+              setData(updatedData);
+              window.location.reload()
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
     };
 
     if (!advocate) {
