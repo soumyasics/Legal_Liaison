@@ -41,6 +41,7 @@ function LandingNavbar() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/UserLogin' className="dropdown-item" >Client</Link>
                 <Link to={'/AdvocateLogin'}  className="dropdown-item" >Advocates</Link>
+                <Link to='/JuniorAdvocateLogin'  className="dropdown-item" >Junior Advocates</Link>
                 <Link className="dropdown-item" >Students</Link>
               </div>
             </li>
