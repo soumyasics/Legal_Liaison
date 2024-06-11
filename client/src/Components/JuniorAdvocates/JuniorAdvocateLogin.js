@@ -53,7 +53,7 @@ function JuniorAdvocateLogin() {
                     if (response.data.status === 200) {
                         console.log("Login Successful");
                         alert("Login Successful");
-                        // navigate('')
+                        navigate('/JuniorAdvocate-homepage')
                         localStorage.setItem('advocateId',response.data.data._id)
                     } else {
                         console.log("Login Failed");
@@ -123,7 +123,7 @@ function JuniorAdvocateLogin() {
                                 <p>
                                     Don't have an account?{" "}
                                     <Link
-                                        to="/AdvcateRegister"
+                                        to="/JuniorAdvocateRegister"
                                         className="text-decoration-none text-gold"
                                     >
                                         Register here.
