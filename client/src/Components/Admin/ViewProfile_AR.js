@@ -8,6 +8,7 @@ import { imageUrl } from '../Constants/Image_Url'
 function ViewProfile_AR({ view }) {
   const [advocate, setAdvocate] = useState(null);
   const [data, setData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -99,12 +100,14 @@ function ViewProfile_AR({ view }) {
       });
   };
 
+  const toggleModal = () => setShowModal(!showModal);
+
   if (!advocate) {
     return "";
   }
 
   return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid mt-4">
       <div className="row justify-content-center">
         <div className="admin_view_advocate_img col-lg-4 col-md-6 col-sm-12 text-center">
           <img src={`${imageUrl}/${advocate.profilePic.filename}`} className="img-fluid rounded" alt="Advocate" />
@@ -115,11 +118,11 @@ function ViewProfile_AR({ view }) {
             {advocate.experience} Years of Experience in Various Cases
           </label>
           <br />
-          <Link className="link-label" to="">
+          <Link className="link-label" to="#!" onClick={toggleModal}>
             View Id Proof
           </Link>
         </div>
-        <div className="col-lg-8 col-md-6 col-sm-12 mt-5 ">
+        <div className="col-lg-8 col-md-6 col-sm-12 ">
           <div>
             <table className="table custom-table">
               <tbody>
@@ -232,6 +235,29 @@ function ViewProfile_AR({ view }) {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">ID Proof</h5>
+              <button type="button" className="close" onClick={toggleModal} aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <img src={`${imageUrl}/${advocate.idProof.filename}`} className="img-fluid" alt="ID Proof" />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={toggleModal}>Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {showModal && <div className="modal-backdrop fade show" />}
     </div>
   );
 }
