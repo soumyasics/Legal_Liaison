@@ -48,3 +48,10 @@ line-height: 19.52px;
 .advocateRegistrationlabel{
   margin: 0;
 }
+
+.textbox-style{
+  height: 50px;
+  width: 100%;
+  border-color: black;
+  border-width: 2px;
+}
