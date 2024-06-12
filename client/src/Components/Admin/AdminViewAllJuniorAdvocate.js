@@ -65,8 +65,8 @@ function AdminViewAllJuniorAdvocate() {
   return (
     <div>
 <div className="main-div">
+  
       <Link to="/adminviewjunioradvocaterequest">View Junior Advocate request</Link>
-
       {data.length !== 0 ? (
         <div className="table-container table-striped">
           <table className="table-change container-fluid">

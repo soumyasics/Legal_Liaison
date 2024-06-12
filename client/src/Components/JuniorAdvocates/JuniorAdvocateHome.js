@@ -52,7 +52,7 @@ function JuniorAdvocateHome() {
             <div className="card p-3 cards-position">
               <div className='row'>
                 <div className='col-2'>
-                  <VscLaw className='icon-style' />
+                  <VscLaw className='icon-style'/>
                 </div>
                 <div className='col-10'>
                   <h5 className="card-title main-card-title">Criminal Law</h5>
