@@ -54,7 +54,7 @@ function JuniorAdvocateLogin() {
                         console.log("Login Successful");
                         alert("Login Successful");
                         navigate('/JuniorAdvocate-homepage')
-                        localStorage.setItem('advocateId',response.data.data._id)
+                        localStorage.setItem('junioradvocateId',response.data.data._id)
                     } else {
                         console.log("Login Failed");
                         alert("Login Failed");
