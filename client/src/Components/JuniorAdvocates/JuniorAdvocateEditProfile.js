@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import './AdvocateEditProfile.css'
-import img from '../../Assets/advocateBanner.png'
+import './JuniorAdvocateEditProfile.css'
+import img from '../../Assets/logo2.png'
 import tick from '../../Assets/editPofileCheckmark.png'
-import axiosMultipartInstance from '../Constants/FormDataUrl'
-import { imageUrl } from '../Constants/Image_Url'
+import axiosMultipartInstance from '../Constants/FormDataUrl';
+import { imageUrl } from '../Constants/Image_Url';
 
-function AdvocateEditProfile() {
-    
-    const id=localStorage.getItem('advocateId')
+
+function JuniorAdvocateEditProfile() {
+    const id=localStorage.getItem('junioradvocateId')
     const [data, setData] = useState({
         name: '',
         dob: '',
@@ -21,7 +21,8 @@ function AdvocateEditProfile() {
         dateOfEnrollment: '',
         bcState: '',
         specialization: '',
-        experience: '',
+        percentage: '',
+        institute:'',
         qualification: '',
         profilePic: {},
         idProof: null,
@@ -40,7 +41,8 @@ function AdvocateEditProfile() {
         dateOfEnrollment: '',
         bcState: '',
         specialization: '',
-        experience: '',
+        percentage: '',
+        institute:'',
         qualification: '',
         profilePic: '',
         idProof: '',
@@ -49,16 +51,16 @@ function AdvocateEditProfile() {
       useEffect(() => {
           const ReadData = async () => {
               try {
-                  const res = await axiosMultipartInstance.post(`/viewAdvocateById/${id}`);
+                  const res = await axiosMultipartInstance.post(`/viewJuniorAdvocateById/${id}`);
                   if (res.data.status === 200) {
                     console.log(res.data);
                       setData(res.data.data);
                   } else {
-                      alert(`Failed to view advocate data: ${res.data.msg}`);
+                      alert(`Failed to view junior advocate data: ${res.data.msg}`);
                   }
               } catch (error) {
-                  console.error('There was an error read the advocate data!', error);
-                  alert('Error view advocate data');
+                  console.error('There was an error read the junior advocate data!', error);
+                  alert('Error view junior advocate data');
               }
           };
           ReadData();
@@ -85,7 +87,6 @@ function AdvocateEditProfile() {
 
     
       function validateField(fieldName, value) {
-        
         if (!(value).toString().trim()) {
           return `${fieldName} is required`;
         }
@@ -119,9 +120,8 @@ function AdvocateEditProfile() {
         errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
         errors.bcState = validateField('State Bar Council', data.bcState);
         errors.specialization = validateField('Specialization Areas', data.specialization);
-        console.log("data before",data.experience);
-        errors.experience = validateField('Years of Experience', data.experience);
-        errors.qualification = validateField('Educational Qualification', data.qualification);
+        errors.percentage = validateField('Years of Experience', data.percentage);
+        errors.institute = validateField('Institute Name', data.qualification);
         // errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
         // errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
     
@@ -148,51 +148,59 @@ function AdvocateEditProfile() {
             formData.append('dateOfEnrollment', data.dateOfEnrollment);
             formData.append('bcState', data.bcState);
             formData.append('specialization', data.specialization);
-            formData.append('experience', data.experience);
+            formData.append('percentage', data.percentage);
+            formData.append('institute', data.institute);
             formData.append('qualification', data.qualification);
             formData.append('profilePic', data.profilePic);
                 
             try {
-                const res = await axiosMultipartInstance.post(`/editAdvocateById/${id}`,formData);
+                const res = await axiosMultipartInstance.post(`/editJuniorAdvocateById/${id}`,formData);
                 if (res.data.status === 200) {
-                    alert('Advocate profile updated successfully');
+                    alert('Junior Advocate profile updated successfully');
                 } else {
-                    alert(`Advocate Profile Update Failed: ${res.data.msg}`);
+                    alert(`Junior Advocate Profile Update Failed: ${res.data.msg}`);
                 }
             } catch (error) {
                 console.error('There was an error!', error);
-                alert('Error updating advocate profile');
+                alert('Error updating junior advocate profile');
             }
         }
     };
-     
-
+    
   return (
     <div>
-      <div className='advocate_edit_profile'>
+        <div className='junior-heading-div container-fluid'>
+        <label className='junior-reg-title'>Junior Advocate Profile View</label>
+      </div>
+      <div className='ju-advocate_edit_profile'>
         <div className='container'>
             <div className='row '>
                 <div className=' col-5 mt-5'> 
                     <div className='advocate_edit_profile_img d-flex justify-content-center'>
                         <img src={`${imageUrl}/${data.profilePic.filename}`} className='img-fluid'/>
+                        {/* <img src={img}></img> */}
                     </div>
-                    <p className='advocate_edit_profile_title mt-5' >Stay Ahead <span className='text-gold' >: Keep Your Profile Updated!</span></p>
-                    <p className='advocate_edit_profile_sub_title mt-4' >Regularly updating your information ensures you;</p>
-                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                    <p className='ju-advocate_edit_profile_title mt-5' >Stay Ahead <span className='text-gold' >: Keep Your Profile Updated!</span></p>
+                    <p className='ju-advocate_edit_profile_sub_title mt-4' >Regularly updating your information ensures you;</p>
+                    <div className='ju-advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                        <img src={tick} className='img-fluid'/>
+                        <p>Highlight Your new legal skills and certifications.</p>
+                    </div>
+                    <div className='ju-advocate_edit_profile_sub_title2 d-flex align-items-center'>
                         <img src={tick} className='img-fluid'/>
                         <p>Present your most recent experiences and specialization.</p>
                     </div>
-                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                    <div className='ju-advocate_edit_profile_sub_title2 d-flex align-items-center'>
                         <img src={tick} className='img-fluid'/>
                         <p>Reflect your ongoing professional devolepment and education.</p>
                     </div>
-                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                    <div className='ju-advocate_edit_profile_sub_title2 d-flex align-items-center'>
                         <img src={tick} className='img-fluid'/>
                         <p>Provide potential clients with up-to-date contact information.</p>
                     </div>
-                    <div className='advocate_edit_profile_sub_title2 d-flex align-items-center'>
+                    <div className='ju-advocate_edit_profile_sub_title2 d-flex align-items-center'>
                         <img src={tick} className='img-fluid'/>
-                        <p>Ensure accuracy in your areas of expertise and practice.</p>
+                        <p>Ensure accuracy in your areas of expertse and practice.</p>
                     </div>
                     
                 </div>
@@ -338,16 +346,16 @@ function AdvocateEditProfile() {
                             {errors.address && <div className="text-danger">{errors.address}</div>}
                           </div>
                           <div className="col-6">
-                            <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
+                            <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
                             <input
                               type="text"
                               className="form-control textbox-style"
-                              placeholder="Enter your years of experience"
-                              name="experience"
-                              value={data.experience}
+                              placeholder="Enter your Educational Qualification"
+                              name="qualification"
+                              value={data.qualification}
                               onChange={handleChange}
                             />
-                            {errors.experience && <div className="text-danger">{errors.experience}</div>}
+                            {errors.qualification && <div className="text-danger">{errors.qualification}</div>}
                           </div>
                           
                         </div>
@@ -365,47 +373,49 @@ function AdvocateEditProfile() {
                             {errors.contact && <div className="text-danger">{errors.contact}</div>}
                           </div>
                           <div className="col-6">
-                            <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
+                            <label className="form-label advocateRegistrationlabel">Institute Name :</label>
                             <input
                               type="text"
                               className="form-control textbox-style"
-                              placeholder="Enter your educational qualification"
-                              name="qualification"
-                              value={data.qualification}
+                              placeholder="Enter your Institute Name"
+                              name="institute"
+                              value={data.institute}
                               onChange={handleChange}
                             />
-                            {errors.qualification && <div className="text-danger">{errors.qualification}</div>}
+                            {errors.institute && <div className="text-danger">{errors.institute}</div>}
                           </div>
                         </div>
                         <div className="row mt-2">
-                            <label className="form-label advocateRegistrationlabel">Email :</label>
-                            <input
-                              type="email"
-                              className="form-control textbox-style"
-                              placeholder="Enter your email"
-                              name="email"
-                              value={data.email}
-                              onChange={handleChange}
-                            />
-                            {errors.email && <div className="text-danger">{errors.email}</div>}              
+                            <div className='col-6'>
+                                <label className="form-label advocateRegistrationlabel">Email :</label>
+                                <input
+                                type="email"
+                                className="form-control textbox-style"
+                                placeholder="Enter your email"
+                                name="email"
+                                  value={data.email}
+                                  onChange={handleChange}
+                                />
+                                {errors.email && <div className="text-danger">{errors.email}</div>}
+                            </div>
+                            <div className='col-6'> 
+                                <label className="form-label advocateRegistrationlabel">Percentage of Marks :</label>
+                                <input
+                                type="text"
+                                className="form-control textbox-style"
+                                placeholder="Enter your Percentage of Marks"
+                                name="percentage"
+                                  value={data.percentage}
+                                  onChange={handleChange}
+                                />
+                                {errors.percentage && <div className="text-danger">{errors.percentage}</div>}
+                            </div>
+                                          
                         </div>
                         <div className="row mt-2">
                           <div className="col-6">
-                            <label className="form-label advocateRegistrationlabel">Password :</label>
-                            <input
-                              type="password"
-                              className="form-control textbox-style"
-                              placeholder="Enter your password"
-                              name="password"
-                              value={data.password}
-                              onChange={handleChange}
-                            />
-                            {errors.password && <div className="text-danger">{errors.password}</div>}
-                          </div>
-                          <div className="col-6">
-                            {/* {console.log(.filename)} */}
-                            <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
-                            {console.log(data.profilePic)}
+                          <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
+                            {/* {console.log(data.profilePic)} */}
                             <input
                               type="file"
                               className="form-control textbox-style"
@@ -414,12 +424,24 @@ function AdvocateEditProfile() {
                             />
                             {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
                           </div>
+                          {/* <div className="col-6">
+                            {console.log(.filename)}
+                            <label className="form-label advocateRegistrationlabel">Upload ID Proof :</label>
+                            {console.log(data.profilePic)}
+                            <input
+                              type="file"
+                              className="form-control textbox-style"
+                              name="profilePic"
+                              onChange={handleChange}
+                            />
+                            {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
+                          </div> */}
                         </div>
                         <div className="row mt-3">
-                          <div className="col-12">
-                            <button type="submit" className="btn btn-warning">Update</button>
+                          <div className="col-12 button-col">
+                            <button type="submit" className="btn btn-warning button-style-change">Update</button>
                           </div>
-                        </div>
+                        </div><br/>
                       </form>
                     </div>
                   </div>
@@ -432,4 +454,4 @@ function AdvocateEditProfile() {
   )
 }
 
-export default AdvocateEditProfile
+export default JuniorAdvocateEditProfile
