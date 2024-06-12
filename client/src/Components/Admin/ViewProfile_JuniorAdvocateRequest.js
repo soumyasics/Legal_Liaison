@@ -4,14 +4,15 @@ import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import './ViewProfile_AllJuniorAdvocates.css'
 
-
 import Lottie from 'lottie-react';
 import noData from "../../Assets/noDataFound.json";
 import img from "../../Assets/Vecto(2).png";
 
 function ViewProfile_JuniorAdvocateRequest() {
     const [advocate, setAdvocate] = useState(null);
+    const [redirectToAllAdvocates, setRedirectToAllAdvocates] = useState(false);
     const [data,setData]=useState([])
+    const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ function ViewProfile_JuniorAdvocateRequest() {
                   return advocate;
                 });
                 setData(updatedData);
-                Navigate("/adminviewalljunioradvocates");
+                setRedirectToAllAdvocates(true);
               }
             })
             .catch((error) => {
@@ -54,13 +55,17 @@ function ViewProfile_JuniorAdvocateRequest() {
                 return advocate;
               });
               setData(updatedData);
-              window.location.reload()
+              setRedirectToAllAdvocates(true);
             }
           })
           .catch((error) => {
             console.error("Error!", error);
           });
     };
+
+    if (redirectToAllAdvocates) {
+        navigate("/adminviewalljunioradvocates");
+    }
 
     if (!advocate) {
         return '';
