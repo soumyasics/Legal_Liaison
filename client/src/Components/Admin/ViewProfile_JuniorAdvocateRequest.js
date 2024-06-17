@@ -4,14 +4,15 @@ import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import './ViewProfile_AllJuniorAdvocates.css'
 
-
 import Lottie from 'lottie-react';
 import noData from "../../Assets/noDataFound.json";
 import img from "../../Assets/Vecto(2).png";
 
 function ViewProfile_JuniorAdvocateRequest() {
     const [advocate, setAdvocate] = useState(null);
+    const [redirectToAllAdvocates, setRedirectToAllAdvocates] = useState(false);
     const [data,setData]=useState([])
+    const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
@@ -27,27 +28,44 @@ function ViewProfile_JuniorAdvocateRequest() {
     const handleApprove = (id) => {
         axiosInstance.post(`/approveJuniorAdvocateById/${id}`)
             .then(res => {
-                if (res.data.status === 200) {
-                    setAdvocate(prevState => ({ ...prevState, isActive: true }));
-                }
+            if (res.data.status === 200) {
+                const updatedData = data.map((advocate) => {
+                  if (advocate._id === id) {
+                    return { ...advocate, adminApproved: true };
+                  }
+                  return advocate;
+                });
+                setData(updatedData);
+                setRedirectToAllAdvocates(true);
+              }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error("Error!", error);
-            });
+              });
     };
 
     const handleReject = (id) => {
         axiosInstance.post(`/rejectJuniorAdvocateById/${id}`)
-            .then(res => {
-                if (res.data.status === 200) {
-                    setAdvocate(prevState => ({ ...prevState, isActive: false }));
+        .then((res) => {
+            if (res.data.status === 200) {
+              const updatedData = data.map((advocate) => {
+                if (advocate._id === id) {
+                  return { ...advocate, adminApproved: false };
                 }
-                
-            })
-            .catch(error => {
-                console.error("Error!", error);
-            });
+                return advocate;
+              });
+              setData(updatedData);
+              setRedirectToAllAdvocates(true);
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
     };
+
+    if (redirectToAllAdvocates) {
+        navigate("/adminviewalljunioradvocates");
+    }
 
     if (!advocate) {
         return '';
