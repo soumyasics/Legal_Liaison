@@ -40,14 +40,14 @@ router.post('/requireAuth',junioradvocates.requireAuth)
 
 
 //users routers
-router.post('/registerUser',user.registerUser)
+router.post('/registerUser',user.upload,user.registerUser)
 router.post('/loginUser',user.login)
 router.post('/editUserById/:id',user.editUserById)
 router.post('/viewUserById/:id',user.viewUserById)
 router.post('/forgotPassword',user.forgotPassword)
 router.post('/resetPassword',user.resetPassword)
 router.post('/deleteUserById/:id',user.deleteUserById)
-router.post('/editUserById',user.login)
+router.post('/editUserById',user.upload,user.login)
 router.post('/requireAuth',user.requireAuth)
 router.post('/viewUsers',user.viewUsers)
 
