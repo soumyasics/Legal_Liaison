@@ -10,6 +10,7 @@
     width: 100%;
     border: 1px solid black;
     border-radius: 10px;
+    overflow-x: auto;
 }
   
 .table-header{
@@ -56,7 +57,7 @@ th, td {
     background-color: #986f0668 ;
 }
 
-.btn-outline-success{
+.button-size1{
     height: 46px;
     width: 55px;
 }

@@ -7,7 +7,7 @@ const axiosMultipartInstance = axios.create({
   baseURL:  "http://localhost:4043/legal_liaison_api/",
 
   headers: {
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "multipart/form-data", 
   },
 });
 

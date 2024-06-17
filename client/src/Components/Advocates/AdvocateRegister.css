@@ -1,21 +1,10 @@
-.advocateRegistrationmaindiv{
+/* .advocateRegistrationmaindiv{
     height:auto;
     width:1000px;
     margin-top: 20px;
     margin-left: 250px;
     margin-bottom: 40px;
 } 
-/* 
-.advocateRegistrationimgdiv{
-height:500px;
-width:1000px;
-
-} */
-/* 
-.container{
-    margin-left: 110px;
-} */
-
 .bckcolor{
     background-color: #F3EDED;
 }
@@ -40,18 +29,9 @@ padding-bottom: 30px;
 .advocateRegistrationdivlink{
     text-decoration: none;
 
-}
-
-.form-control {
-    font-size: 15px;
-}
-
-/* .butt{
-    text-align: center;
-    align-items: center;
 } */
-
-.form-control{
+.form-input-style{
+    font-size: 15px;
     border-radius: 10px;
     height: 50px;
     font-family: 'Poppins' Verdana ;
@@ -64,36 +44,31 @@ padding-bottom: 30px;
     width: 100%;
     background-color: #AA9166;
     text-align: center;
+    padding-top: 18px;
 }
 
 .reg-title{
     font-size: 30px;
 }
 
-.form-select{
+.specialization-form-select{
     border-radius: 10px;
     height: 50px;
     font-family: 'Poppins' Verdana ;
     border-width: 2px ;
     border-color: black;
 }
-
-/* .button-center{
-    margin-top: 100px;
-    padding-left: 400px;
-} */
-
-.btn-primary{
+.button-submit{
     background-color: #986F06;
     border-color: #986F06;
 }
 
-.btn-primary:hover{
+.button-submit:hover{
     background-color: #986f06be;
     border-color: #986F06;
 }
 
-.col-12{
+.submit-btn-div{
     text-align: center;
 
 }

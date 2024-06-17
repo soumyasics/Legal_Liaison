@@ -75,11 +75,14 @@ function AdvocateLogin() {
     return (
         <div>
             <div className="user_registration">
+            <div className='heading-div container-fluid'>
+        <label className='reg-title'>Advocate Login</label>
+      </div>
                 <div className="user_registration_container">
                     <div className="user_registration_box1">
                         <div className="user_registration_input_group">
                             <form onSubmit={handleSubmit}>
-                                <label className='text-edit'>Login Here</label>
+                                <label className='advocate-text-edit'>Login Here</label>
                                 <div className="user_registration_input mt-5">
                                     <label>Email Id</label>
                                     <input

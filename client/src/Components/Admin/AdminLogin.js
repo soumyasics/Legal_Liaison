@@ -39,7 +39,7 @@ function AdminLogin() {
     }
   };
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, resetForm } =
     useFormik({
       initialValues: {
         email: "",
@@ -58,7 +58,7 @@ function AdminLogin() {
               <form
                 onSubmit={(e) => {
                   handleSubmit(e);
-                }}
+                }} onReset={resetForm}
               >
                 <div className="user_registration_input mt-5">
                   <label>Username</label>

@@ -10,6 +10,12 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.admin_view_advocate_img img{
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+}
+
 .experiance-label{
     font-size: 15.65;
     font-weight: 400;

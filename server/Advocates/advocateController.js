@@ -258,7 +258,7 @@ const rejectAdvocateById = (req, res) => {
 // Update advocate by ID
 const editAdvocateById = async (req, res) => {
     const { name, bcNo, bcState, contact, email, password, gender, address, experience, nationality, qualification, dob, professionalExperience, dateOfEnrollment, specialization } = req.body;
-console.log("contact",req.body.contact);
+console.log("profilePic",req.body.filename);
     Advocate.findByIdAndUpdate({ _id: req.params.id }, {
         name,
         bcNo,

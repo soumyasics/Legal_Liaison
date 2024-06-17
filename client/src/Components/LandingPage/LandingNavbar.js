@@ -6,7 +6,7 @@ import img1 from '../../Assets/logo2.png';
 function LandingNavbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar">
-      <div className="container">
+      <div className="container-fluid">
         <Link className="navbar-brand" to="#home">
           <img
             alt="Logo"
@@ -26,13 +26,13 @@ function LandingNavbar() {
               <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#about-us">About Us</Link>
+              <Link className="nav-link" to="/aboutus">About Us</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#services">Services</Link>
+              <Link className="nav-link" to="/services">Services</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#contact">Contact</Link>
+              <Link className="nav-link" to="/contactus">Contact</Link>
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,6 +41,7 @@ function LandingNavbar() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/UserLogin' className="dropdown-item" >Client</Link>
                 <Link to={'/AdvocateLogin'}  className="dropdown-item" >Advocates</Link>
+                <Link to='/JuniorAdvocateLogin'  className="dropdown-item" >Junior Advocates</Link>
                 <Link className="dropdown-item" >Students</Link>
               </div>
             </li>

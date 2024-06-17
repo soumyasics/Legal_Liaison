@@ -1,26 +1,15 @@
-.container-fluid {
-    padding: 20px;
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .col-3 {
-    flex: 1 1 25%;
-    padding: 40px;
-  }
-  
+.dashboard-adjust{
+  margin-left: 35px;
+}
   .dashbord-box {
     background-color:#2A2A2A;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
     /* border: 1px solid #dee2e6; */
     border-radius: 5px;
     height: 199px;
-    width: 255px;
+    width: 210px;
     text-align: center;
   }
 
@@ -61,4 +50,38 @@
     font-weight: 400;
     line-height: 44.46px;
     text-align: left; 
+    margin-left: 35px;
+  }
+
+  @media (max-width: 1200px) {
+    
+    .content-label, .count-label {
+      font-size: 14px;
+
+    }
+  }
+  
+  /* for medium screen */
+  @media (max-width: 992px) {
+  
+    .content-label, .count-label {
+      font-size: 12px;
+    }
+  }
+  
+  /* for small screen */
+  @media (max-width: 768px) {
+    
+   
+    .content-label, .count-label {
+      font-size: 12px;
+    }
+
+    .image-adjust{
+      margin-top: 30px;
+      height: 30px;
+      width: 30px;
+      margin-bottom: 20px;
+    }
+    
   }
