@@ -79,7 +79,7 @@ useEffect(() => {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to={`/JuniorAdvocate-editprofile/${advocate._id}`} className="dropdown-item" >Profile View</Link>
                 <Link to=''  className="dropdown-item" >Change Password</Link>
-                <Link to=''  className="dropdown-item" >Logout</Link>
+                <Link to='/'  className="dropdown-item" >Logout</Link>
               </div>
             </li>
           </ul>
