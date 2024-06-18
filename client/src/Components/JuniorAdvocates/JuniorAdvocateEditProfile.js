@@ -4,10 +4,22 @@ import img from '../../Assets/logo2.png'
 import tick from '../../Assets/editPofileCheckmark.png'
 import axiosMultipartInstance from '../Constants/FormDataUrl';
 import { imageUrl } from '../Constants/Image_Url';
+import { useNavigate } from 'react-router-dom';
 
 
 function JuniorAdvocateEditProfile() {
     const id=localStorage.getItem('junioradvocateId')
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (localStorage.getItem('junioradvocateId') == null) {
+        navigate('/');
+      }
+    }, [navigate]);
+  
+   
+
     const [data, setData] = useState({
         name: '',
         dob: '',
@@ -63,8 +75,10 @@ function JuniorAdvocateEditProfile() {
                   alert('Error view junior advocate data');
               }
           };
-          ReadData();
-      }, [id]);
+          if(id!==null){
+            ReadData();
+          }
+      }, []);
     
       const handleChange = (event) => {
         const { name, value, files } = event.target;

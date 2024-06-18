@@ -8,12 +8,16 @@ function JuniorAdvocateNavbar() {
 const [advocate, setAdvocate] = useState({});
 const navigate = useNavigate();
 
-
 useEffect(() => {
-    if (localStorage.getItem('junioradvocateId') == null) {
-      navigate('/');
-    }
-  }, [navigate]);
+  if (localStorage.getItem('junioradvocateId') == null) {
+    navigate('/');
+  }
+}, [navigate]);
+
+const handleLogout = () => {                
+  localStorage.clear();
+  window.location.reload()
+};
 
   const id = localStorage.getItem('junioradvocateId');
 
@@ -77,9 +81,9 @@ useEffect(() => {
                 Settings
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to={`/JuniorAdvocate-editprofile/${advocate._id}`} className="dropdown-item" >Profile View</Link>
+                <Link to={`/JuniorAdvocate-editprofile`} className="dropdown-item" >Profile View</Link>
                 <Link to=''  className="dropdown-item" >Change Password</Link>
-                <Link to=''  className="dropdown-item" >Logout</Link>
+                <Link onClick={handleLogout}  className="dropdown-item" >Logout</Link>
               </div>
             </li>
           </ul>

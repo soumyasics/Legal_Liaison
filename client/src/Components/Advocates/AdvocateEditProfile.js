@@ -4,10 +4,19 @@ import img from '../../Assets/advocateBanner.png'
 import tick from '../../Assets/editPofileCheckmark.png'
 import axiosMultipartInstance from '../Constants/FormDataUrl'
 import { imageUrl } from '../Constants/Image_Url'
+import { useNavigate } from 'react-router-dom'
 
 function AdvocateEditProfile() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('advocateId') == null) {
+      navigate('/');
+    }
+  }, [navigate]);
     
-    const id=localStorage.getItem('advocateId')
+    const id=localStorage.getItem('advocateId') 
     const [data, setData] = useState({
         name: '',
         dob: '',
@@ -47,6 +56,7 @@ function AdvocateEditProfile() {
       });
 
       useEffect(() => {
+
           const ReadData = async () => {
               try {
                   const res = await axiosMultipartInstance.post(`/viewAdvocateById/${id}`);
@@ -61,8 +71,12 @@ function AdvocateEditProfile() {
                   alert('Error view advocate data');
               }
           };
-          ReadData();
-      }, [id]);
+
+          if(id!==null){
+            ReadData();
+          }
+          
+      }, []);
     
       const handleChange = (event) => {
         const { name, value, files } = event.target;
@@ -156,6 +170,7 @@ function AdvocateEditProfile() {
                 const res = await axiosMultipartInstance.post(`/editAdvocateById/${id}`,formData);
                 if (res.data.status === 200) {
                     alert('Advocate profile updated successfully');
+                    window.location.reload();
                 } else {
                     alert(`Advocate Profile Update Failed: ${res.data.msg}`);
                 }

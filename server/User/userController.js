@@ -26,30 +26,32 @@ const upload = multer({ storage: storage }).single("profilePic");
 const registerUser = async (req, res) => {
 
 
-  const newUser = new Users({
-    name: req.body.name,
-    contact: req.body.contact,
-    password: req.body.password,
-    email: req.body.email,
-    gender: req.body.gender,
-    nationality: req.body.nationality,
-    address: req.body.district,
-    dob: req.body.city,
-    profilePic: req.file
 
-  })
-  let existingUser1= await Users({email:req.body.email});
-    let existingUser2 = await advocateSchema({email:req.body.email});
-    let existingUser3 = await juniors({email:req.body.email});
+  // let existingUser1= await Users({email:req.body.email});
+  //   let existingUser2 = await advocateSchema({email:req.body.email});
+  //   let existingUser3 = await juniors({email:req.body.email});
 
-    if(existingUser1||existingUser2||existingUser3){
-        return res.json ({
-            status : 409,
-            msg : "Email Already Registered With Us !!",
-            data : null
-        })
-    }  
-    else{
+  //   if(existingUser1||existingUser2||existingUser3){
+  //     console.log("here",existingUser1,"sc",existingUser2,"tid",existingUser3);
+  //       return res.json ({
+  //           status : 409,
+  //           msg : "Email Already Registered With Us !!",
+  //           data : null
+  //       })
+  //   }  
+    // else{
+      const newUser = new Users({
+        name: req.body.name,
+        contact: req.body.contact,
+        password: req.body.password,
+        email: req.body.email,
+        gender: req.body.gender,
+        nationality: req.body.nationality,
+        address: req.body.address,
+        dob: req.body.dob,
+        profilePic: req.file
+    
+      })
     await newUser.save().then(data => {
       return res.json({
         status: 200,
@@ -71,7 +73,7 @@ const registerUser = async (req, res) => {
         data: err
       })
     })
-  }
+  // }
   
   }
 
@@ -259,22 +261,22 @@ const requireAuth = (req, res, next) => {
 
 // Update User by ID
 const editUserById =async (req, res) => {
-  let existingUser = await Users.findOne({ contact });
-  if (existingUser) {
-      return res.json({
-          status: 409,
-          msg: "contact Number Already Registered With Us !!",
-          data: null
-      });
-  }
+  // let existingUser = await Users.findOne({ req.body.contact });
+  // if (existingUser) {
+  //     return res.json({
+  //         status: 409,
+  //         msg: "contact Number Already Registered With Us !!",
+  //         data: null
+  //     });
+  // }
  await Users.findByIdAndUpdate({ _id: req.params.id }, {
   name: req.body.name,
     contact: req.body.contact,
     email: req.body.email,
     gender: req.body.gender,
     nationality: req.body.nationality,
-    address: req.body.district,
-    dob: req.body.city,
+    address: req.body.address,
+    dob: req.body.dob,
     profilePic: req.file
   })
       .exec()

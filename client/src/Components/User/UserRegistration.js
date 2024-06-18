@@ -1,22 +1,33 @@
-// UserRegistration.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import "./UserRegistration.css";
-import img from '../../Assets/userRegPic.png';
+import img from '../../Assets/clientReg.png';
 import axiosInstance from "../Constants/BaseUrl";
 import { UserRegistrationSchema } from "../Constants/Schema";
 import { toast } from "react-toastify";
- 
+import 'remixicon/fonts/remixicon.css';
+import axiosMultipartInstance from "../Constants/FormDataUrl";
+
 function UserRegistration() {
     const navigate = useNavigate();
 
     const [isToastVisible, setToastVisible] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const onSubmit = (values) => {
         console.log(values);
 
-        axiosInstance.post('/registerUser', values)
+        const formData = new FormData();
+        Object.keys(values).forEach(key => {
+            formData.append(key, values[key]);
+        });
+
+        axiosMultipartInstance.post('/registerUser', formData)
             .then((res) => {
                 console.log(res);
                 if (res.data.status === 200) {
@@ -51,18 +62,21 @@ function UserRegistration() {
                     });
                 }
             });
+        console.log(formData);
     };
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue } =
         useFormik({
             initialValues: {
                 name: "",
                 contact: "",
                 email: "",
                 password: "",
-                state: "",
-                district: "",
-                city: "",
+                address: "",
+                gender: "",
+                dob: "",
+                profilePic: null,
+                nationality: ""
             },
             validationSchema: UserRegistrationSchema,
             onSubmit,
@@ -73,7 +87,7 @@ function UserRegistration() {
             <div className="user_registration_container">
                 <div className="user_registration_box1">
                     <div className="user_registration_input_group">
-                        <form onSubmit={(e)=>{handleSubmit(e)}}>
+                        <form onSubmit={handleSubmit}>
                             <div className="user_registration_input">
                                 <label>Name</label>
                                 <input
@@ -120,61 +134,95 @@ function UserRegistration() {
                                 )}
                             </div>
                             <div className="user_registration_input mt-3">
-                                <label>City</label>
+                                <label>Address</label>
                                 <input
                                     type="text"
                                     className="form-control border border-dark"
-                                    placeholder="Enter your city"
-                                    name="city"
-                                    value={values.city}
+                                    placeholder="Enter your address"
+                                    name="address"
+                                    value={values.address}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.city && touched.city && (
-                                    <span className="text-danger">{errors.city}</span>
+                                {errors.address && touched.address && (
+                                    <span className="text-danger">{errors.address}</span>
                                 )}
                             </div>
                             <div className="user_registration_input mt-3">
-                                <label>State</label>
+                                <label>DOB</label>
                                 <input
-                                    type="text"
+                                    type="date"
                                     className="form-control border border-dark"
-                                    placeholder="Enter your state"
-                                    name="state"
-                                    value={values.state}
+                                    name="dob"
+                                    value={values.dob}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.state && touched.state && (
-                                    <span className="text-danger">{errors.state}</span>
+                                {errors.dob && touched.dob && (
+                                    <span className="text-danger">{errors.dob}</span>
                                 )}
                             </div>
                             <div className="user_registration_input mt-3">
-                                <label>District</label>
+                                <label>Gender</label>
+                                <select
+                                    className="form-control border border-dark"
+                                    name="gender"
+                                    value={values.gender}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                >
+                                    <option value="" label="Select gender" />
+                                    <option value="male" label="Male" />
+                                    <option value="female" label="Female" />
+                                    <option value="other" label="Other" />
+                                </select>
+                                {errors.gender && touched.gender && (
+                                    <span className="text-danger">{errors.gender}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>Profile Picture</label>
+                                <input
+                                    type="file"
+                                    className="form-control border border-dark"
+                                    name="profilePic"
+                                    onChange={(event) => {
+                                        setFieldValue("profilePic", event.currentTarget.files[0]);
+                                    }}
+                                />
+                                {errors.profilePic && touched.profilePic && (
+                                    <span className="text-danger">{errors.profilePic}</span>
+                                )}
+                            </div>
+                            <div className="user_registration_input mt-3">
+                                <label>Nationality</label>
                                 <input
                                     type="text"
                                     className="form-control border border-dark"
-                                    placeholder="Enter your district"
-                                    name="district"
-                                    value={values.district}
+                                    placeholder="Enter your nationality"
+                                    name="nationality"
+                                    value={values.nationality}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.district && touched.district && (
-                                    <span className="text-danger">{errors.district}</span>
+                                {errors.nationality && touched.nationality && (
+                                    <span className="text-danger">{errors.nationality}</span>
                                 )}
                             </div>
                             <div className="user_registration_input mt-3">
                                 <label>Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control border border-dark"
-                                    placeholder="Password"
-                                    name="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
+                                <div className="password-field">
+                                    <input
+                                        type="password"
+                                        className="form-control border border-dark"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={values.password}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                   
+                                </div>
                                 {errors.password && touched.password && (
                                     <span className="text-danger">{errors.password}</span>
                                 )}

@@ -12,13 +12,13 @@ import { useNavigate } from "react-router-dom";
 
 function UserHome() {
 
-    const navigate=useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(()=>{
-        if(localStorage.getItem('userId'==null)){
-            navigate('/')
-        }
-    })
+  useEffect(() => {
+    if (localStorage.getItem('userId') == null) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   return (
     <div>
