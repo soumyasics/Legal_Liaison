@@ -35,7 +35,7 @@ function UserNavbar() {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav"> 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/user_home">Home</Link>
@@ -50,7 +50,7 @@ function UserNavbar() {
               <Link className="nav-link" to="#contact">Contact</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#logout">Logout</Link>
+              <Link className="nav-link"onClick={handleLogout}>Logout</Link>
             </li>
             {/* <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

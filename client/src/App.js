@@ -42,6 +42,7 @@ import ViewProfile_JuniorAdvocateRequest from './Components/Admin/ViewProfile_Ju
 import JuniorAdvocateHome from './Components/JuniorAdvocates/JuniorAdvocateHome';
 import JuniorAdvocateEditProfile from './Components/JuniorAdvocates/JuniorAdvocateEditProfile';
 import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNavbar';
+import UserProfile from './Components/User/UserProfile';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/UserLogin" element={[<LandingNavbar />, <FormHead title="Home / User Login" />, <UserLogin />]} />
           <Route path="/UserRegistration" element={[<LandingNavbar />, <FormHead title="User Registration Form" />, <UserRegistration />]} />
           <Route path="/user_home" element={[<UserNavbar />, <UserHome />,<UserFooter/>]} />
+          <Route path="/user_profile" element={[<UserNavbar />, <FormHead title="Client Profile View" />,<UserProfile/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
 
           {/* Advocate routes */}
@@ -87,7 +89,7 @@ function App() {
           <Route path="/JuniorAdvocateRegister" element={[<LandingNavbar />,<JuniorAdvocateRegistration/>,<UserFooter />]} />
           <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />          
           <Route path="/JuniorAdvocate-homepage" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateHome />,<UserFooter />]} /> 
-          <Route path="/JuniorAdvocate-editprofile/:id" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateEditProfile />,<UserFooter />]} /> 
+          <Route path="/JuniorAdvocate-editprofile" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateEditProfile />,<UserFooter />]} /> 
           {/* <Route path="/JA-navbar" element={<JuniorAdvocateNavbar/>} />  */}
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './JuniorAdvocateHome.css';
 import tick from '../../Assets/tick.png';
 import backimg from '../../Assets/about_bg.jpg'
@@ -8,8 +8,20 @@ import { BiBuildings, BiSolidInjection } from "react-icons/bi";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { IoHammerOutline } from "react-icons/io5";
 import { MdFamilyRestroom } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 function JuniorAdvocateHome() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('junioradvocateId') == null) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+
+
   return (
     <div>
       <div className='first-img'><br/><br/>
