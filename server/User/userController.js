@@ -2,16 +2,11 @@ const Users = require('./userSchema')
 const url = require('../url')
 const multer = require('multer')
 const jwt = require('jsonwebtoken');
+const advocateSchema = require('../Advocates/advocateSchema');
+const juniors = require('../JuniorAdvocate/junioradvocateSchema');
+
 const secret="user"
 
-// const storage = multer.diskStorage({
-//   destination: function (req, res, cb) {
-//     cb(null, "./upload");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
@@ -25,28 +20,38 @@ const storage = multer.diskStorage({
     cb(null, filename);
   },
 });
-const upload = multer({ storage: storage }).single("image");
+const upload = multer({ storage: storage }).single("profilePic");
 //User Registration 
 
 const registerUser = async (req, res) => {
 
 
-  const newUser = new Users({
-    name: req.body.name,
 
+  // let existingUser1= await Users({email:req.body.email});
+  //   let existingUser2 = await advocateSchema({email:req.body.email});
+  //   let existingUser3 = await juniors({email:req.body.email});
 
-    contact: req.body.contact,
-    password: req.body.password,
-    email: req.body.email,
+  //   if(existingUser1||existingUser2||existingUser3){
+  //     console.log("here",existingUser1,"sc",existingUser2,"tid",existingUser3);
+  //       return res.json ({
+  //           status : 409,
+  //           msg : "Email Already Registered With Us !!",
+  //           data : null
+  //       })
+  //   }  
+    // else{
+      const newUser = new Users({
+        name: req.body.name,
+        contact: req.body.contact,
+        password: req.body.password,
+        email: req.body.email,
+        gender: req.body.gender,
+        nationality: req.body.nationality,
+        address: req.body.address,
+        dob: req.body.dob,
+        profilePic: req.file
     
-    district: req.body.district,
-    city: req.body.city,
-    state: req.body.state
-
-  })
-  let dat = await Users.findOne({ contact: req.body.contact })
-  console.log(dat);
-  if (dat == null) {
+      })
     await newUser.save().then(data => {
       return res.json({
         status: 200,
@@ -68,15 +73,10 @@ const registerUser = async (req, res) => {
         data: err
       })
     })
+  // }
+  
   }
-  else {
-    return res.json({
-      status: 409,
-      msg: "Phone Number  Already Exists !!",
-      data: null
-    })
-  }
-}
+
 //User Registration -- finished
 
 // View User by ID
@@ -261,22 +261,23 @@ const requireAuth = (req, res, next) => {
 
 // Update User by ID
 const editUserById =async (req, res) => {
-  let existingUser = await Users.findOne({ contact });
-  if (existingUser) {
-      return res.json({
-          status: 409,
-          msg: "contact Number Already Registered With Us !!",
-          data: null
-      });
-  }
+  // let existingUser = await Users.findOne({ req.body.contact });
+  // if (existingUser) {
+  //     return res.json({
+  //         status: 409,
+  //         msg: "contact Number Already Registered With Us !!",
+  //         data: null
+  //     });
+  // }
  await Users.findByIdAndUpdate({ _id: req.params.id }, {
-  fname: req.body.fname,
-  lname: req.body.lname,
-  contact: req.body.contact,
-  email: req.body.email,
-  district: req.body.district,
-  city: req.body.city,
-  state: req.body.state
+  name: req.body.name,
+    contact: req.body.contact,
+    email: req.body.email,
+    gender: req.body.gender,
+    nationality: req.body.nationality,
+    address: req.body.address,
+    dob: req.body.dob,
+    profilePic: req.file
   })
       .exec()
       .then(data => {

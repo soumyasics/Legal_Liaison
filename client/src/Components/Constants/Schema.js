@@ -18,10 +18,31 @@ export const UserRegistrationSchema  = yup.object().shape({
     contact: yup.number().min(1000000000,"Phone number must be 10 digit number").max(9999999999, "Phone number must be 10 digit number").required("Required"),
     email: yup.string().email("Please enter a valid email").required("Required"),
     password: yup.string().min(5,"1 uppercase, 1 number, 1 symbol").max(16).matches(passwordRule,"1 uppercase, 1 number, 1 symbol").required("Required"),
-    state: yup.string().min(2,"Enter minimum 2 characters").required("Required"),
-    district: yup.string().min(2,"Enter minimum 2 characters").required("Required"),
-    city: yup.string().min(2,"Enter minimum 2 characters").required("Required"),
-
+    address: yup.string().min(2,"Enter minimum 2 characters").required("Required"),
+    dob: yup
+    .date()
+    .max(new Date(), "Date of Birth cannot be in the future")
+    .required("Date of Birth is required"),
+    gender: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+    profilePic: yup
+    .mixed()
+    .required('Please select an image') 
+    .test(
+      'fileSize',
+      'Image size is too large (max 5 MB)',
+      (value) => !value || (value && value.size <= 5 * 1024 * 1024)
+    ) //validation for maximum file size (5 MB)
+    .test(
+      'fileType',
+      'Unsupported file format',
+      (value) =>
+        !value ||
+        (value && ['image/jpeg', 'image/png', 'image/gif'].includes(value.type))
+    ),
+    nationality: yup.string().min(2, "Enter minimum 2 characters").required("Required")
 })
 
 export const ForgotPasswordSchema = yup.object().shape({

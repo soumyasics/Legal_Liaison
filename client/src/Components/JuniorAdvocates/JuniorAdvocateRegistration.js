@@ -179,7 +179,7 @@ function JuniorAdvocateRegistration() {
         const res = await axiosMultipartInstance.post('/registerJuniorAdvocate', formData);
         if (res.data.status === 200) {
             alert('Junior Advocate registered successfully');
-            navigate('/AdvocateLogin')
+            navigate('/JuniorAdvocateLogin')
         } else {
             alert(`Junior Advocate Registration Failed: ${res.data.msg}`);
         }

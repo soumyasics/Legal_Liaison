@@ -7,13 +7,8 @@ const userSchema=mongoose.Schema({
         required:true,
        
     },
-    city:{
-        type:String,
-      
-        required:true,
-       
-    },
-    state:{
+   
+    gender:{
         type:String,
       
         required:true,
@@ -36,14 +31,25 @@ const userSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    district:{
+    address:{
         type:String,
+        required:true
+    },
+    dob:{
+        type:Date,
         required:true
     },
     
     isActive:{
         type:Boolean,
         default:true
+    },
+    profilePic:{
+        type:Object
+    },
+    nationality:{
+        type:String,
+        required:true
     },
 });
 module.exports=mongoose.model('users',userSchema)
