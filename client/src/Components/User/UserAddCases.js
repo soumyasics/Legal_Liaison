@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axiosMultipartInstance from "../Constants/FormDataUrl";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
+import { imageUrl } from "../Constants/Image_Url";
 
 function UserAddCases() {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ function UserAddCases() {
   }, [navigate]);
 
   const [status, setStatus] = useState(true);
+  const [suggestions, setSuggestions] = useState([]);
+  const [advSug, setAdvSug] = useState([]);
 
   const id = localStorage.getItem("userId");
 
@@ -30,7 +33,9 @@ function UserAddCases() {
     axiosMultipartInstance
       .post(`/createCase/${id}`, formData)
       .then((res) => {
+        console.log(res);
         if (res.data.status === 200) {
+          setAdvSug(res.data.suggestions);
           toast.success("Case Added Successfully");
         } else {
           toast.error("Failed to Add Case");
@@ -71,6 +76,11 @@ function UserAddCases() {
         .post("/getCaseType", { description: values.description })
         .then((res) => {
           console.log("API Response: ", res.data);
+          if (res.data.status == 200) {
+            setSuggestions(res.data.data);
+          } else {
+            setSuggestions([]);
+          }
         })
         .catch((error) => {
           console.error("API Error: ", error);
@@ -78,6 +88,7 @@ function UserAddCases() {
     }
   }, [values.description]);
 
+  console.log(advSug);
 
   return (
     <div className="user_add_cases">
@@ -179,6 +190,13 @@ function UserAddCases() {
                       <option value="Health Care Law">Health Care Law</option>
                     </select>
                   </div>
+                  {suggestions.length ? (
+                    <div className="px-3 mb-1">
+                      <b>Suggestions</b>: {suggestions.join(", ")}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   {errors.type && touched.type && (
                     <span className="text-danger px-3">{errors.type}</span>
                   )}
@@ -308,34 +326,62 @@ function UserAddCases() {
               </div>
             </form>
           </div>
-
-          {status ? (
+                  {
+                    console.log(advSug.length)
+                  }
+          {advSug.length > 0 ? (
             <div className="col-5">
               <div className="user_add_case_sugg_box2">
                 <div className="user_add_case_sugg_box1_title text-center">
                   <p>Advocate Suggestions</p>
                 </div>
-                <div className="user_add_case_sugg_box1_cards mt-4">
-                  <div className="user_add_case_sugg_box1_img">
-                    <img src={img} alt="advocate_suggestion" />
-                  </div>
-                  <div className="user_add_case_sugg_box1_details">
-                    <p className="user_add_case_sugg_box1_details_name mb-2">
-                      Name: Adv. John Doe
-                    </p>
 
-                    <p>Name</p>
-                    <p className="text-end">
-                      <i class="ri-arrow-right-line"></i>
-                    </p>
-                  </div>
-                </div>
+                {advSug.map((e) => {
+                  return (
+                    <div className="user_add_case_sugg_box1_cards mt-4">
+                      <div className="user_add_case_sugg_box1_img">
+                        {console.log(`${imageUrl}/${e.profilePic.filename}`)}
+                        <img
+                          src={`${imageUrl}/${e.profilePic.filename}`}
+                          className="img-fluid"
+                          alt="Profile"
+                        />
+                      </div>
+                      <div className="user_add_case_sugg_box1_details">
+                        <p className="user_add_case_sugg_box1_details_head mb-2">
+                          {e.name}
+                        </p>
+                        <p>{e.specialization}</p>
+                        <p className="text-end">
+                          <i class="ri-arrow-right-line"></i>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ) : (
-            <div className="col-5">
-              <div className="user_add_case_sugg_box2_empty text-center">
-                <p>No Suggestions</p>
+            <div className="col-4">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="user_add_case_sugg_box1">
+                      <div className="user_add_case_sugg_box1_title">
+                        <p>Advocate Suggestions </p>
+                      </div>
+                      <div className="user_add_case_sugg_box1_content">
+                        <p>
+                          Please enter your case details completely to receive
+                          the most updated suggestions for advocates. Providing
+                          comprehensive information about your case will help us
+                          match you with the best legal professionals suited to
+                          your specific needs.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
