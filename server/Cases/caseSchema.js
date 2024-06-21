@@ -65,5 +65,4 @@ default:false
         }, 
 
 });
-module.exports = mongoose.model('cases', caseSchema)
-
+module.exports = mongoose.model("cases", caseSchema);

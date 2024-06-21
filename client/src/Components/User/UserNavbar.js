@@ -15,12 +15,12 @@ function UserNavbar() {
     const handleLogout = () => {
         localStorage.clear();
         navigate("/");
-        window.location.reload(false);
+        window.location.reload(false);  
       };
 
   return (
     <div>
-       <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar">
+       <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar pe-5">
       <div className="container-fluid">
         <Link className="navbar-brand" to="#home">
           <img
@@ -40,28 +40,36 @@ function UserNavbar() {
             <li className="nav-item">
               <Link className="nav-link" to="/user_home">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#about-us">About Us</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#services">Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#contact">Contact</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link"onClick={handleLogout}>Logout</Link>
-            </li>
-            {/* <li className="nav-item dropdown">
+            <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="ri-account-circle-fill"></i>
-              </Link> */}
-              {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown"> */}
-                {/* <Link onClick={handleLogout} className="dropdown-item" >Logout</Link> */}
-                {/* <Link className="dropdown-item" >Advocates</Link>
-                <Link className="dropdown-item" >Students</Link> */}
-              {/* </div> */}
-            {/* </li> */}
+                Cases
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/user_add_case' className="dropdown-item" >Add Cases</Link>
+                <Link to='/user_view_recent_cases' className="dropdown-item" >Recent Cases</Link>
+                {/* <Link to={''}  className="dropdown-item" >Advocates</Link> */}
+                
+              </div>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="#services">Advocate</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="#contact">Notifications</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link">Chat</Link>
+            </li>
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/user_profile' className="dropdown-item" >Profile</Link>
+                <Link onClick={handleLogout}  className="dropdown-item" >Logout</Link>
+                
+              </div>
+            </li>
           </ul>
         </div>
       </div>
