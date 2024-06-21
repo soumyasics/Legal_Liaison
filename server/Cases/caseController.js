@@ -32,10 +32,13 @@ const createCase = async (req, res) => {
 
   try {
     const savedCase = await newCase.save();
+
+    let advSuggestions=await advocateSchema.find({specialization: req.body.type,isActive:true})
     res.json({
       status: 200,
       msg: 'Case created successfully',
       data: savedCase,
+      suggestions:advSuggestions
     });
   } catch (err) {
     res.json({
@@ -179,6 +182,7 @@ const getCaseType=(req,res)=>{
         if (lowerDescription.includes(word)) {
 
          console.log(type);
+         if(!arr.includes(type))
 arr.push(type)
           // return type;
 
