@@ -28,15 +28,17 @@ const createCase = async (req, res) => {
     opponentAddress: req.body.opponentAddress,
     location: req.body.location,
     evidence: req.file,
-    advocateId:req.body.advocateId
   });
 
   try {
     const savedCase = await newCase.save();
+
+    let advSuggestions=await advocateSchema.find({specialization: req.body.type,isActive:true})
     res.json({
       status: 200,
       msg: 'Case created successfully',
       data: savedCase,
+      suggestions:advSuggestions
     });
   } catch (err) {
     res.json({
@@ -160,7 +162,6 @@ const getCaseType=(req,res)=>{
     "Family Law": ['divorce', 'custody', 'marriage', 'spouse', 'parents', 'family'],
     "Environmental Law": ['pollution', 'environment', 'waste', 'ecology', 'conservation', 'emissions'],
     "Banking and Finance Law": ['loan', 'interest', 'bank', 'mortgage', 'investment', 'finance'],
-    "Tax Law": ['tax', 'taxes', 'IRS', 'revenue', 'taxpayer', 'deductions'],
     "Human Rights Law": ['rights', 'discrimination', 'freedom', 'justice', 'equality'],
     "Constitutional Law": ['constitution', 'amendment', 'bill of rights', 'federal', 'government'],
     "Immigration Law": ['visa', 'immigration', 'deportation', 'citizenship', 'asylum'],
@@ -181,6 +182,7 @@ const getCaseType=(req,res)=>{
         if (lowerDescription.includes(word)) {
 
          console.log(type);
+         if(!arr.includes(type))
 arr.push(type)
           // return type;
 
