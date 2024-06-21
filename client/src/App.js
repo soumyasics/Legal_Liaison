@@ -44,6 +44,7 @@ import JuniorAdvocateEditProfile from './Components/JuniorAdvocates/JuniorAdvoca
 import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNavbar';
 import UserProfile from './Components/User/UserProfile';
 import UserAddCases from './Components/User/UserAddCases';
+import UserViewRecentCases from './Components/User/UserViewRecentCases';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/user_home" element={[<UserNavbar />, <UserHome />,<UserFooter/>]} />
           <Route path="/user_profile" element={[<UserNavbar />, <FormHead title="Client Profile View" />,<UserProfile/>,<UserFooter/>]} />
           <Route path="/user_add_case" element={[<UserNavbar />, <FormHead title="Add Case Details" />,<UserAddCases/>,<UserFooter/>]} />
+          <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
 
           {/* Advocate routes */}
