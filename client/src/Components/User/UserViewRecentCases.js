@@ -12,24 +12,42 @@ import icon9 from "../../Assets/recentIcon9.png";
 import axiosInstance from "../Constants/BaseUrl";
 import noReqFound from "../../Assets/noReqFound.json";
 import Lottie from "lottie-react";
+import { Modal, Button } from "react-bootstrap";
+import { imageUrl } from "../Constants/Image_Url";
 
 function UserViewRecentCases() {
   const [array, setArray] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileType, setFileType] = useState(""); // State to store the file type
   const id = localStorage.getItem("userId");
 
   useEffect(() => {
     axiosInstance
       .post(`/getCaseByUserId/${id}`)
       .then((response) => {
-        console.log(response);
-        if (response.status == 200) {
+        console.log("Response Data:", response.data.data);
+        if (response.status === 200) {
           setArray(response.data.data);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
+
+  const handleViewEvidence = (fileUrl) => {
+    const fileExtension = fileUrl.split('.').pop().toLowerCase();
+    setFileType(fileExtension);
+    setSelectedFile(fileUrl);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedFile(null);
+    setFileType("");
+  };
 
   return (
     <div>
@@ -39,7 +57,7 @@ function UserViewRecentCases() {
             <div className="col-12">
               <div className="user_recent_cases_container">
                 {array.length > 0 ? (
-                  <table class="table table-striped table-bordered ">
+                  <table className="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">Case Details</th>
@@ -49,30 +67,35 @@ function UserViewRecentCases() {
                     </thead>
                     <tbody>
                       {array.map((e) => {
+                        console.log("Case Data:", e); 
+                        const fileUrl = `${imageUrl}/${e.evidence.filename}`;
+                        const formattedDate = e.datoOfIncident ? new Date(e.datoOfIncident).toLocaleDateString() : "Unknown";
+                        console.log(`Date: ${formattedDate}`); 
+
                         return (
-                          <tr>
+                          <tr key={e._id}>
                             <td>
                               <div className="d-flex">
                                 <div className="px-3">
-                                  <img src={icon1} />
+                                  <img src={icon1} alt="icon1" />
                                 </div>
                                 <div>{e.title}</div>
                               </div>
                               <div className="d-flex mt-2">
                                 <div className="px-3">
-                                  <img src={icon2} />
+                                  <img src={icon2} alt="icon2" />
                                 </div>
                                 <div>{e.type}</div>
                               </div>
                               <div className="d-flex mt-2">
                                 <div className="px-3">
-                                  <img src={icon3} />
+                                  <img src={icon3} alt="icon3" />
                                 </div>
-                                <div>{e.datoOfIncident.slice(0,10)}</div>
+                                <div>{formattedDate}</div>
                               </div>
                               <div className="d-flex mt-2">
                                 <div className="px-3">
-                                  <img src={icon4} />
+                                  <img src={icon4} alt="icon4" />
                                 </div>
                                 <div>{e.location}</div>
                               </div>
@@ -80,56 +103,45 @@ function UserViewRecentCases() {
                             <td>
                               <div className="d-flex">
                                 <div className="px-3">
-                                  <img src={icon5} />
+                                  <img src={icon5} alt="icon5" />
                                 </div>
-                                <div>{e.opponentName?e.opponentName:'Unknown'}</div>
+                                <div>{e.opponentName ? e.opponentName : 'Unknown'}</div>
                               </div>
                               <div className="d-flex mt-2">
                                 <div className="px-3">
-                                  <img src={icon6} />
+                                  <img src={icon6} alt="icon6" />
                                 </div>
-                                <div>{e.opponentAddress?e.opponentAddress:'Unknown'}</div>
-
+                                <div>{e.opponentAddress ? e.opponentAddress : 'Unknown'}</div>
                               </div>
                             </td>
                             <td>
                               <div className="mt-2">
                                 <div className="px-3">
-                                  <p>
-                                    {e.description}
-                                  </p>
+                                  <p>{e.description}</p>
                                   <p className="text-end">
-                                    Status :{" "}
-                                    <span className="btn btn-outline-danger">
-                                      hh
-                                    </span>{" "}
+                                    Status:{" "}
+                                    <span className="btn btn-outline-danger">hh</span>
                                   </p>
                                 </div>
                               </div>
-                              <div className="d-flex justify-content-between ">
+                              <div className="d-flex justify-content-between">
                                 <div className="d-flex mt-2">
                                   <div className="px-2">
-                                    <img src={icon7} />
+                                    <img src={icon7} alt="icon7" />
                                   </div>
-                                  <div>[View Evidence]</div>
+                                  <div onClick={() => handleViewEvidence(fileUrl)} style={{ cursor: "pointer" }}>
+                                    [View Evidence]
+                                  </div>
                                 </div>
-                                {/* <div className="d-flex mt-2">
-                                  <div className="px-2">
-                                    <img src={icon8} />
-                                  </div>
-                                  <div>Edit</div>
-                                </div> */}
                                 <div className="d-flex mt-2">
                                   <div className="px-2">
-                                    <img src={icon9} />
+                                    <img src={icon9} alt="icon9" />
                                   </div>
                                   <div>Remove</div>
                                 </div>
                                 <div className="d-flex">
-                                  <div className="px-2 ">
-                                    <button className="btn btn-recent">
-                                      Request an advocate
-                                    </button>
+                                  <div className="px-2">
+                                    <button className="btn btn-recent">Request an advocate</button>
                                   </div>
                                 </div>
                               </div>
@@ -141,10 +153,7 @@ function UserViewRecentCases() {
                   </table>
                 ) : (
                   <div className="no_data_animation">
-                    <Lottie
-                      animationData={noReqFound}
-                      className="no_data_animation"
-                    />
+                    <Lottie animationData={noReqFound} className="no_data_animation" />
                     <h1 className="text-center">No Recent Cases</h1>
                   </div>
                 )}
@@ -153,6 +162,25 @@ function UserViewRecentCases() {
           </div>
         </div>
       </div>
+
+      {/* Modal for viewing evidence */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>View Evidence</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {fileType === "pdf" ? (
+            <iframe src={selectedFile} width="100%" height="500px" title="Evidence PDF"></iframe>
+          ) : (
+            <img src={selectedFile} className="img-fluid" alt="Evidence" />
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
