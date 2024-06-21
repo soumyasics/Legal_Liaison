@@ -2,7 +2,8 @@ const router=require('express').Router()
 const user=require('./User/userController')
 const advocates=require('./Advocates/advocateController')
 const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
-
+const cases=require('./Cases/caseController')
+const appointments=require('./AdvAppointments/appointmentController')
 
 
 //advocate routes
@@ -50,5 +51,17 @@ router.post('/deleteUserById/:id',user.deleteUserById)
 router.post('/editUserById',user.upload,user.login)
 router.post('/requireAuth',user.requireAuth)
 router.post('/viewUsers',user.viewUsers)
+
+//case routes
+router.post('/createCase/:id',cases.upload,cases.createCase)
+router.post('/getCaseType',cases.getCaseType)
+router.post('/getCaseByUserId/:id',cases.getCaseByUserId)
+
+router.post('/createAppointment',appointments.createAppointment)
+router.post('/getAppointmentReqsByUserId/:id',appointments.getAppointmentReqsByUserId)
+router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAdv)
+router.post('/acceptReqbyAdv/:id',appointments.acceptReqbyAdv)
+router.post('/rejectReqbyAdv/:id',appointments.rejectReqbyAdv)
+router.post('/getAppointmentReqsById/:id',appointments.getAppointmentReqsById)
 
 module.exports=router
