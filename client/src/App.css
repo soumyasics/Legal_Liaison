@@ -10,6 +10,13 @@
   color: #986F06;
 }
 
+.bg-gold{
+  background-color: #986F06;
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 10px 25px;
+}
+
 .no_data_animation{
   width: 100%;
   height: 80vh;

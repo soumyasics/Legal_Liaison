@@ -27,7 +27,7 @@ const createCase = async (req, res) => {
     opponentName: req.body.opponentName,
     opponentAddress: req.body.opponentAddress,
     location: req.body.location,
-    evidence: req.file
+    evidence: req.file 
   });
 
   try {

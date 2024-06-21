@@ -15,7 +15,7 @@ function UserNavbar() {
     const handleLogout = () => {
         localStorage.clear();
         navigate("/");
-        window.location.reload(false);
+        window.location.reload(false);  
       };
 
   return (
@@ -45,8 +45,8 @@ function UserNavbar() {
                 Cases
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to='' className="dropdown-item" >Client</Link>
-                <Link to={''}  className="dropdown-item" >Advocates</Link>
+                <Link to='/user_add_case' className="dropdown-item" >Add Cases</Link>
+                {/* <Link to={''}  className="dropdown-item" >Advocates</Link> */}
                 
               </div>
             </li>
@@ -64,8 +64,8 @@ function UserNavbar() {
                 Settings
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to='' className="dropdown-item" >Client</Link>
-                <Link to={''}  className="dropdown-item" >Advocates</Link>
+                <Link to='/user_profile' className="dropdown-item" >Profile</Link>
+                <Link onClick={handleLogout}  className="dropdown-item" >Logout</Link>
                 
               </div>
             </li>
