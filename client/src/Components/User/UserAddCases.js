@@ -6,6 +6,7 @@ import { UserAddCaseSchema } from "../Constants/Schema";
 import { toast } from "react-toastify";
 import axiosMultipartInstance from "../Constants/FormDataUrl";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../Constants/BaseUrl";
 
 function UserAddCases() {
   const navigate = useNavigate();
@@ -63,6 +64,20 @@ function UserAddCases() {
     validationSchema: UserAddCaseSchema,
     onSubmit,
   });
+
+  useEffect(() => {
+    if (values.description) {
+      axiosInstance
+        .post("/getCaseType", { description: values.description })
+        .then((res) => {
+          console.log("API Response: ", res.data);
+        })
+        .catch((error) => {
+          console.error("API Error: ", error);
+        });
+    }
+  }, [values.description]);
+
 
   return (
     <div className="user_add_cases">

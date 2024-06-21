@@ -27,7 +27,7 @@ const createCase = async (req, res) => {
     opponentName: req.body.opponentName,
     opponentAddress: req.body.opponentAddress,
     location: req.body.location,
-    evidence: req.file 
+    evidence: req.file,
   });
 
   try {
@@ -147,11 +147,59 @@ const deleteCase = async (req, res) => {
   }
 };
 
+
+const getCaseType=(req,res)=>{
+  console.log("p");
+  const keywords = {
+    "Criminal Law": ['burglary', 'theft', 'arrested', 'defendant', 'charged', 'crime', 'criminal'],
+    "Tax Law": ['tax', 'taxes', 'IRS', 'revenue', 'taxpayer', 'deductions', 'income tax', 'corporate tax', 'capital gains', 'estate tax', 'property tax', 'sales tax', 'tax audit', 'tax evasion', 'tax fraud', 'tax return', 'withholding', 'tax code', 'tax compliance'],
+    "Real Estate Law": ['real estate', 'property', 'landlord', 'tenant', 'lease', 'rental', 'eviction', 'foreclosure', 'title deed', 'mortgage', 'property tax', 'boundary dispute', 'zoning', 'land use', 'condominium', 'co-op', 'deed restrictions', 'easement'],
+
+    "Civil Law": ['sued', 'contract', 'breach', 'plaintiff', 'company', 'liability'],
+    "Family Law": ['divorce', 'custody', 'marriage', 'spouse', 'parents', 'family'],
+    "Environmental Law": ['pollution', 'environment', 'waste', 'ecology', 'conservation', 'emissions'],
+    "Banking and Finance Law": ['loan', 'interest', 'bank', 'mortgage', 'investment', 'finance'],
+    "Human Rights Law": ['rights', 'discrimination', 'freedom', 'justice', 'equality'],
+    "Constitutional Law": ['constitution', 'amendment', 'bill of rights', 'federal', 'government'],
+    "Immigration Law": ['visa', 'immigration', 'deportation', 'citizenship', 'asylum'],
+    "International Law": ['treaty', 'international', 'foreign', 'diplomatic', 'global'],
+    "Intellectual Property Law": ['patent', 'copyright', 'trademark', 'intellectual property', 'infringement'],
+    "Corporate Law": ['corporate', 'business', 'merger', 'acquisition', 'shareholder', 'company']
+  };
+  const suggestCaseType = () => {
+    let arr=[]
+    const lowerDescription = req.body.description.toLowerCase();
+    console.log("p");
+    const caseTypes = Object.keys(keywords);
+  
+    for (const type of caseTypes) {
+      const words = keywords[type];
+      for (const word of words) {
+    
+        if (lowerDescription.includes(word)) {
+
+         console.log(type);
+arr.push(type)
+          // return type;
+
+        }
+      }
+    }
+    
+    return arr; // Default if no keywords match
+  };
+  let data=[]
+ data= suggestCaseType()
+res.json({
+  status:200,
+  data:data});
+}
 module.exports = {
   createCase,
   getAllCases,
   getCaseById,
   updateCase,
   deleteCase,
-  upload
+  upload,
+  getCaseType
 };
