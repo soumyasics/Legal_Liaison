@@ -33,10 +33,13 @@ const createCase = async (req, res) => {
 
   try {
     const savedCase = await newCase.save();
+
+    let advSuggestions=await advocateSchema.find({specialization: req.body.type,isActive:true})
     res.json({
       status: 200,
       msg: 'Case created successfully',
       data: savedCase,
+      suggestions:advSuggestions
     });
   } catch (err) {
     res.json({
