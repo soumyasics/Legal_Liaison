@@ -19,43 +19,40 @@ import UserHome from './Components/User/UserHome';
 import AdminSidebar from './Components/Admin/AdminSidebar';
 import AdminFooter from './Components/Admin/AdminFooter';
 import UserFooter from './Components/Common/UserFooter';
-import AdminDashboard from './Components/Admin/AdminDashboard';
 import AdminMain from './Components/Admin/AdminMain';
 import AdminNav from './Components/Admin/AdminNav';
 import RecentEnquries from './Components/Admin/RecentEnquries';
-import ViewAllAdvocates from './Components/Admin/ViewAllAdvocates';
 import AdvocateRegister from './Components/Advocates/AdvocateRegister';
-import ApproveRejectAdvocate from './Components/Admin/ApproveRejectAdvocate';
 import AdvocateHome from './Components/Advocates/AdvocateHome';
 import ViewProfile_AR from './Components/Admin/ViewProfile_AR';
 import AdvocateNavbar from './Components/Advocates/AdvocateNavbar';
 import AdvocateEditProfile from './Components/Advocates/AdvocateEditProfile';
 import AboutUs from './Components/LandingPage/AboutUs';
 import JuniorAdvocateRegistration from './Components/JuniorAdvocates/JuniorAdvocateRegistration';
-import AdminApproveRejectJuniorAdvocate from './Components/Admin/ViewJuniorAdvocateRequest';
-import AdminViewAllJuniorAdvocate from './Components/Admin/AdminViewAllJuniorAdvocate';
 import JuniorAdvocateLogin from './Components/JuniorAdvocates/JuniorAdvocateLogin';
 import ContactUs from './Components/LandingPage/ContactUs';
-import ViewProfile_AllJuniorAdvocates from './Components/Admin/ViewProfile_AllJuniorAdvocates';
-import ViewProfile_JuniorAdvocate from './Components/Admin/ViewProfile_JuniorAdvocate';
-import ViewProfile_JuniorAdvocateRequest from './Components/Admin/ViewProfile_JuniorAdvocateRequest';
 import JuniorAdvocateHome from './Components/JuniorAdvocates/JuniorAdvocateHome';
 import JuniorAdvocateEditProfile from './Components/JuniorAdvocates/JuniorAdvocateEditProfile';
 import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNavbar';
 import UserProfile from './Components/User/UserProfile';
+import Client_ViewAllAdvocates from './Components/User/Client_ViewAllAdvocates';
+import UserNav_Main from './Components/User/UserNav_Main';
 
 function App() {
   return (
     <BrowserRouter basename="legal_liaison">
       <div>
         <Routes>
-          {/* User routes */}
+          {/* Client routes */}
           <Route path="/" element={(<LandingNavbar />, <LandingCarousel />)} />
           <Route path="/UserLogin" element={[<LandingNavbar />, <FormHead title="Home / User Login" />, <UserLogin />]} />
           <Route path="/UserRegistration" element={[<LandingNavbar />, <FormHead title="User Registration Form" />, <UserRegistration />]} />
-          <Route path="/user_home" element={[<UserNavbar />, <UserHome />,<UserFooter/>]} />
+          <Route path="/user_home" element={[<UserNav_Main />, <UserHome />,<UserFooter/>]} />
           <Route path="/user_profile" element={[<UserNavbar />, <FormHead title="Client Profile View" />,<UserProfile/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
+          <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<Client_ViewAllAdvocates />,<UserFooter/>]} />
+
+
 
           {/* Advocate routes */}
           <Route path="/AdvcateReg" element={[<LandingNavbar />, <AdvcateReg />]} />
@@ -90,7 +87,6 @@ function App() {
           <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />          
           <Route path="/JuniorAdvocate-homepage" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateHome />,<UserFooter />]} /> 
           <Route path="/JuniorAdvocate-editprofile" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateEditProfile />,<UserFooter />]} /> 
-          {/* <Route path="/JA-navbar" element={<JuniorAdvocateNavbar/>} />  */}
 
 
           {/* Landing Page routes */}
