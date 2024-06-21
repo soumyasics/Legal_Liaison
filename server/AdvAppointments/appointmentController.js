@@ -94,9 +94,6 @@ const acceptReqbyAdv = async (req, res) => {
 };
 
 const rejectReqbyAdv = async (req, res) => {
-
-
-
     try {
       const appointment = await AppointmentReq.findByIdAndUpdate({_id:req.params.id},{
         status:'rejected'}
@@ -122,9 +119,29 @@ const rejectReqbyAdv = async (req, res) => {
       });
     }
   };
+
+// Controller function to get all appointment requests
+const getAppointmentReqsById = async (req, res) => {
+    try {
+      const appointments = await AppointmentReq.findById({advocateId:req.params.id}).populate('userId').populate('caseId').populate('advocateId');
+      res.status(200).json({
+        status: 200,
+        msg: 'Appointments retrieved successfully',
+        data: appointments
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        msg: 'Failed to retrieve appointments',
+        error: err.message
+      });
+    }
+  };
 module.exports = {
   createAppointment,
   getAppointmentReqsForAdv,
+  getAppointmentReqsByUserId,
   acceptReqbyAdv,
-rejectReqbyAdv
+rejectReqbyAdv,
+getAppointmentReqsById
 };
