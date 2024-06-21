@@ -2,6 +2,7 @@ const router=require('express').Router()
 const user=require('./User/userController')
 const advocates=require('./Advocates/advocateController')
 const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
+const cases=require('./Cases/caseController')
 
 
 
@@ -50,5 +51,9 @@ router.post('/deleteUserById/:id',user.deleteUserById)
 router.post('/editUserById',user.upload,user.login)
 router.post('/requireAuth',user.requireAuth)
 router.post('/viewUsers',user.viewUsers)
+
+//case routes
+router.post('/createCase/:id',cases.upload,cases.createCase)
+
 
 module.exports=router
