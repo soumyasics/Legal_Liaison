@@ -54,6 +54,7 @@ router.post('/viewUsers',user.viewUsers)
 
 //case routes
 router.post('/createCase/:id',cases.upload,cases.createCase)
+router.post('/getCaseType',cases.getCaseType)
 
 
 module.exports=router
