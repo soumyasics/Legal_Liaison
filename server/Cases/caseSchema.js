@@ -4,7 +4,7 @@ const caseSchema = mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         required: true,
-
+ref:"users"
     },
     title: {
         type: String,
@@ -51,8 +51,18 @@ default:false
         },
         advocateId:{
             type:mongoose.Schema.Types.ObjectId,
-            default:null
-        }
+            default:null,
+            ref:'advocates'
+
+        },
+        paymentRequested:{
+            type:Number,
+            default:0
+        },
+        paymentCollected:{
+            type:Number,
+            default:0
+        }, 
 
 });
 module.exports = mongoose.model('cases', caseSchema)

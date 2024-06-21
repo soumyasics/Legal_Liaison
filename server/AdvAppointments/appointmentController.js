@@ -1,14 +1,16 @@
+const caseSchema = require('../Cases/caseSchema');
 const AppointmentReq = require('./appointmentSchema');
 
 // Controller function to create a new appointment request
 const createAppointment = async (req, res) => {
   const { userId, caseId,advocateId } = req.body;
-
+let date=new Date()
   try {
     const newAppointment = new AppointmentReq({
       userId: userId,
       caseId: caseId,
-      date: new Date(),
+      advocateId:advocateId,
+      date:date,
     
     });
 
@@ -65,26 +67,37 @@ const getAppointmentReqsByUserId = async (req, res) => {
 // Controller function to update an appointment request
 const acceptReqbyAdv = async (req, res) => {
 
-
+  let caseId=null,advocateId=null;
 
   try {
+   await AppointmentReq.findById({_id:req.params.id}).then(data=>{
+console.log(data.caseId);
+ caseId=data.caseId
+ advocateId=data.advocateId
+    }).catch(err=>{
+console.log(err);
+    })
     const appointment = await AppointmentReq.findByIdAndUpdate({_id:req.params.id},{
       status:'accepted'}
     )
-
+   
     if (!appointment) {
       return res.status(404).json({
         status: 404,
         msg: 'Appointment request not found'
       });
     }
-
+    console.log("caseid",caseId._id);
+    const cases = await caseSchema.findByIdAndUpdate({_id:caseId},{
+      advocateStatus:true,approvalStatus:true,advocateId:advocateId}
+    )
     res.json({
       status: 200,
       msg: 'Appointment request updated successfully',
       data: appointment
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       status: 500,
       msg: 'Failed to update appointment request',
