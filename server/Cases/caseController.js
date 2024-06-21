@@ -89,6 +89,29 @@ const getCaseById = async (req, res) => {
   }
 };
 
+// Get a single case by ID
+const getCaseByUserId = async (req, res) => {
+  try {
+    const caseItem = await Case.find({userId:req.params.id});
+    if (!caseItem) {
+      return res.json({
+        status: 404,
+        msg: 'No Cases found',
+      });
+    }
+    res.json({
+      status: 200,
+      data: caseItem,
+    });
+  } catch (err) {
+    res.json({
+      status: 500,
+      msg: 'Error retrieving case',
+      data: err,
+    });
+  }
+};
+
 // Update a case by ID
 const updateCase = async (req, res) => {
   try {
@@ -205,5 +228,6 @@ module.exports = {
   updateCase,
   deleteCase,
   upload,
-  getCaseType
+  getCaseType,
+  getCaseByUserId
 };
