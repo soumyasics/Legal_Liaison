@@ -35,13 +35,10 @@ import JuniorAdvocateHome from './Components/JuniorAdvocates/JuniorAdvocateHome'
 import JuniorAdvocateEditProfile from './Components/JuniorAdvocates/JuniorAdvocateEditProfile';
 import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNavbar';
 import UserProfile from './Components/User/UserProfile';
-<<<<<<< HEAD
-import Client_ViewAllAdvocates from './Components/User/Client_ViewAllAdvocates';
-import UserNav_Main from './Components/User/UserNav_Main';
-=======
 import UserAddCases from './Components/User/UserAddCases';
 import UserViewRecentCases from './Components/User/UserViewRecentCases';
->>>>>>> dfaee031e2e36432e8c93db1595069a5ed32ba11
+import UserNav_Main from './Components/User/UserNav_Main';
+import User_ViewAllAdvocates from './Components/User/User_ViewAllAdvocates';
 
 function App() {
   return (
@@ -57,7 +54,7 @@ function App() {
           <Route path="/user_add_case" element={[<UserNavbar />, <FormHead title="Add Case Details" />,<UserAddCases/>,<UserFooter/>]} />
           <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
-          <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<Client_ViewAllAdvocates />,<UserFooter/>]} />
+          <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<User_ViewAllAdvocates />,<UserFooter/>]} />
 
 
 

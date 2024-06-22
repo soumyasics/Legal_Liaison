@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './Client_ViewAllAdvocates.css';
+import './User_ViewAllAdvocates.css';
 import axiosMultipartInstance from '../Constants/FormDataUrl';
 import { imageUrl } from '../Constants/Image_Url';
 
-function Client_ViewAllAdvocates() {
+function User_ViewAllAdvocates() {
   const [currentPage, setCurrentPage] = useState(0);
   const [advocates, setAdvocates] = useState([]);
   const advocatesPerPage = 4;
@@ -72,4 +72,4 @@ function Client_ViewAllAdvocates() {
   );
 }
 
-export default Client_ViewAllAdvocates;
+export default User_ViewAllAdvocates;
