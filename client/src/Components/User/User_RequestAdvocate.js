@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './User_ViewAllAdvocates.css';
+import './User_RequestAdvocate.css';
 import axiosMultipartInstance from '../Constants/FormDataUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import { Link } from 'react-router-dom';
 
-function User_ViewAllAdvocates() {
-  const [currentPage, setCurrentPage] = useState(0);
+function User_RequestAdvocate() {
+    const [currentPage, setCurrentPage] = useState(0);
   const [advocates, setAdvocates] = useState([]);
   const advocatesPerPage = 4;
 
@@ -36,32 +36,32 @@ function User_ViewAllAdvocates() {
   
   return (
     <div>
-      <div className='junior-heading-div container-fluid'>
+        <div className='junior-heading-div container-fluid'>
         <label className='junior-reg-title'>View Advocates</label>
-      </div>
-      <div className="carousel main-caro">
-        <h2 className='heading-padding'>All Advocates</h2>
-        <div className="carousel-inner caro-inner-style">
-          <button className="carousel-control control-caro prev" onClick={prevPage}>‹</button>
-          <div className="carousel-track track-caro">
+        </div>
+        <div className="carousel req-main-caro">
+        <h2 className='req-heading-padding'>All Advocates</h2>
+        <div className="carousel-inner req-caro-inner-style">
+          <button className="carousel-control req-control-caro prev" onClick={prevPage}>‹</button>
+          <div className="carousel-track req-track-caro">
             {currentAdvocates.map((advocate, index) => (
               <div
                 key={index}
-                className="carousel-card card-style"
+                className="carousel-card req-card-style"
               >
-                <div className="card-body card-body-style">
-                  <div className='client-main-div'>
-                    <div className='client-view-ad-namearea'>
+                <div className="card-body card-height">
+                  <div className='req-client-main-div'>
+                    <div className='req-client-view-ad-namearea'>
                       <h3>{advocate.name}</h3>
                       <p>{advocate.specialization}</p>
                     </div>
                     <div>
-                      <img src={`${imageUrl}/${advocate.profilePic.filename}`} alt={advocate.name} className='image-fluid image-style' />
+                      <img src={`${imageUrl}/${advocate.profilePic.filename}`} alt={advocate.name} className='image-fluid req-image-style' />
                     </div>
                     
-                    <div className='view-ad-button-div'>
-                    <Link to={`/user_view_advocate_detail/${advocate._id}`}>
-                      <button>View full Details</button>
+                    <div className='req-view-ad-button-div'>
+                    <Link to={`/user_vbookappoinment/${advocate._id}`}>
+                      <button className='btn btn-warning btn-warning-style'>Request</button>
                     </Link>
                     </div>
                   </div>
@@ -69,11 +69,11 @@ function User_ViewAllAdvocates() {
               </div>
             ))}
           </div>
-          <button className="carousel-control control-caro next" onClick={nextPage}>›</button>
+          <button className="carousel-control req-control-caro next" onClick={nextPage}>›</button>
         </div>
-      </div><br/>
+      </div><br/><br/><br/>
     </div>
-  );
+  )
 }
 
-export default User_ViewAllAdvocates;
+export default User_RequestAdvocate

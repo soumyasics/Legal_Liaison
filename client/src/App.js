@@ -39,6 +39,10 @@ import UserAddCases from './Components/User/UserAddCases';
 import UserViewRecentCases from './Components/User/UserViewRecentCases';
 import UserNav_Main from './Components/User/UserNav_Main';
 import User_ViewAllAdvocates from './Components/User/User_ViewAllAdvocates';
+import User_ViewAdvocateDetail from './Components/User/User_ViewAdvocateDetail';
+import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
+import User_BookAppoinment from './Components/User/User_BookAppoinment';
+import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
 
 function App() {
   return (
@@ -55,7 +59,9 @@ function App() {
           <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
           <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<User_ViewAllAdvocates />,<UserFooter/>]} />
-
+          <Route path="/user_view_advocate_detail/:id" element={[<UserNav_Main />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
+          <Route path="/user-requestanadvocate" element={[<UserNav_Main />,<User_RequestAdvocate />,<UserFooter/>]} />
+          <Route path="/user_bookappoinment/:id" element={[<UserNav_Main />,<User_BookAppoinment />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}
@@ -64,6 +70,9 @@ function App() {
           <Route path="/AdvcateRegister" element={[<LandingNavbar />, <AdvocateRegister />, <UserFooter />]} />
           <Route path="/advocate_home" element={[<AdvocateNavbar />, <AdvocateHome />]} />
           <Route path="/advocate_edit_profile/:id" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
+
+          <Route path="/advocate_viewcasereq/:id" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+
 
           {/* Bar council routes */}
           <Route path="/BarCouncilLogin" element={[<LandingNavbar />, <BarCouncilLogin />]} />
