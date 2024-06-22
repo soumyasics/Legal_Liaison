@@ -37,12 +37,18 @@ import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNav
 import UserProfile from './Components/User/UserProfile';
 import UserAddCases from './Components/User/UserAddCases';
 import UserViewRecentCases from './Components/User/UserViewRecentCases';
+
+import AdvocateViewCaseReq from './Components/Advocates/AdvocateViewCaseReq';
+import AdvocateViewAllCaseReq from './Components/Advocates/AdvocateViewAllCaseReq';
+import AdvocateViewSingleRecentCase from './Components/Advocates/AdvocateViewSingleRecentCase';
+
 import UserNav_Main from './Components/User/UserNav_Main';
 import User_ViewAllAdvocates from './Components/User/User_ViewAllAdvocates';
 import User_ViewAdvocateDetail from './Components/User/User_ViewAdvocateDetail';
 import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
 import User_BookAppoinment from './Components/User/User_BookAppoinment';
 import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
+
 
 function App() {
   return (
@@ -70,6 +76,9 @@ function App() {
           <Route path="/AdvcateRegister" element={[<LandingNavbar />, <AdvocateRegister />, <UserFooter />]} />
           <Route path="/advocate_home" element={[<AdvocateNavbar />, <AdvocateHome />]} />
           <Route path="/advocate_edit_profile/:id" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
+          <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} />
+          <Route path="/advocate_view_single_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
+          <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
 
           <Route path="/advocate_viewcasereq/:id" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
 
