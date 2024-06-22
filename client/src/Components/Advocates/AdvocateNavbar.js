@@ -4,6 +4,7 @@ import img1 from '../../Assets/logo2.png';
 
 function AdvocateNavbar() {
   const navigate = useNavigate();
+  const advocateId = localStorage.getItem('advocateId');
 
   useEffect(() => {
     if (localStorage.getItem('advocateId') == null) {
@@ -39,8 +40,9 @@ function AdvocateNavbar() {
                 <Link className="nav-link" to="/advocate_home">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#about-us">Cases</Link>
-              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={`/advocate_viewcasereq/${advocateId}`}>Cases</Link>
+              </li>              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="#services">Chat</Link>
               </li>

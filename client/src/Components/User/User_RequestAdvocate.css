@@ -1,5 +1,22 @@
+.btn-warning-style{
+    background-color: #986F06;
+    border-color: #986F06;
+    border-radius: 20px;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .btn-warning-style:hover{
+    background-color: #986f06e1;
+    border-color: #986f06e1;
+  }
+  
 
-.main-caro {
+  
+.req-main-caro {
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -7,22 +24,22 @@
   text-align: center;
 }
 
-.caro-inner-style {
+.req-caro-inner-style {
   position: relative;
   overflow: hidden;
   /* display: flex; */
   align-items: center;
 }
 
-.track-caro {
+.req-track-caro {
   display: flex;
 }
 
-.card-style {
+.req-card-style {
   padding: 10px;
   height: 100%;
 }
-.client-view-ad-namearea{
+.req-client-view-ad-namearea{
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 5px 5px 0px 0px;
@@ -30,45 +47,34 @@
 
   background-color: #F4EEEE;
 }
-.client-main-div{
+.req-client-main-div{
   width: 230px;
   height: 400px;
 }
-.view-ad-button-div{
+.req-view-ad-button-div{
   border-radius: 0px 0px 5px 5px;
   background-color: #F4EEEE;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   font-weight: 600;
 }
-.heading-padding{
+.req-heading-padding{
   padding-top: 60px;
   padding-bottom: 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.image-style{
+.req-image-style{
   width: 100%;
   height: 240px;
 }
-.card-body-style {
+.req-card-body-style {
   padding-left: 25px;
   margin-bottom: 50px;
   padding-bottom: 50px;
 }
 
-.card-body-style h3 {
-  margin: 10px 0;
-  font-size: 18px;
-}
-
-.card-body-style p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #777;
-}
-
-.control-caro {
+.req-control-caro {
   background: none;
   border: none;
   font-size: 2rem;
@@ -79,15 +85,15 @@
   z-index: 1;
 }
 
-.control-caro.prev {
+.req-control-caro.prev {
   left: 0;
 }
 
-.control-caro.next {
+.req-control-caro.next {
   right: 0;
 }
 
-.card-style {
+.req-card-style {
   min-width: calc(100% / 4);
 } 
 
@@ -102,13 +108,13 @@
 
 
 @media (max-width: 768px) {
-  .card-style {
+  .req-card-style {
     min-width: calc(100% / 2 - 20px);
   }
 }
 
 @media (max-width: 480px) {
-  .card-style {
+  .req-card-style {
     min-width: calc(100% - 20px);
   }
 }

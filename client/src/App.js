@@ -44,6 +44,10 @@ import AdvocateViewSingleRecentCase from './Components/Advocates/AdvocateViewSin
 
 import UserNav_Main from './Components/User/UserNav_Main';
 import User_ViewAllAdvocates from './Components/User/User_ViewAllAdvocates';
+import User_ViewAdvocateDetail from './Components/User/User_ViewAdvocateDetail';
+import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
+import User_BookAppoinment from './Components/User/User_BookAppoinment';
+import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
 
 
 function App() {
@@ -61,7 +65,9 @@ function App() {
           <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
           <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<User_ViewAllAdvocates />,<UserFooter/>]} />
-
+          <Route path="/user_view_advocate_detail/:id" element={[<UserNav_Main />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
+          <Route path="/user-requestanadvocate" element={[<UserNav_Main />,<User_RequestAdvocate />,<UserFooter/>]} />
+          <Route path="/user_bookappoinment/:id" element={[<UserNav_Main />,<User_BookAppoinment />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}
@@ -73,6 +79,9 @@ function App() {
           <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} />
           <Route path="/advocate_view_single_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
           <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
+
+          <Route path="/advocate_viewcasereq/:id" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+
 
           {/* Bar council routes */}
           <Route path="/BarCouncilLogin" element={[<LandingNavbar />, <BarCouncilLogin />]} />
