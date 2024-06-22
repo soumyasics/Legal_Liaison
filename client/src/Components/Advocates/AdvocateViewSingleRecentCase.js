@@ -13,9 +13,19 @@ function AdvocateViewSingleRecentCase() {
         <div className="container">
           <div className="d-flex justify-content-end">
             <div className="adv_view_case_req_action_grps d-flex justify-content-between">
-              <button className="btn bg-gold">Upload Evidence</button>
-              <button className="btn bg-gold">Add Case Status</button>
-              <button className="btn bg-gold">Request Payment</button>
+              <div className="adv_view_case_req_action_btn d-flex" >
+              <i class="ri-upload-2-fill"></i>
+                <p>Upload Evidence</p>
+              </div>
+              <div className="adv_view_case_req_action_btn d-flex" >
+              <i class="ri-file-paper-2-line"></i>
+                <p>Add Case Status</p>
+              </div>
+              <div className="adv_view_case_req_action_btn d-flex" >
+              <i class="ri-bank-card-line"></i>
+                <p>Request Payment</p>
+              </div>
+              
             </div>
           </div>
 
