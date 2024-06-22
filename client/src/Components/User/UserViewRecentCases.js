@@ -37,7 +37,7 @@ function UserViewRecentCases() {
   }, [id]);
 
   const handleViewEvidence = (fileUrl) => {
-    const fileExtension = fileUrl.split('.').pop().toLowerCase();
+    const fileExtension = fileUrl.split(".").pop().toLowerCase();
     setFileType(fileExtension);
     setSelectedFile(fileUrl);
     setShowModal(true);
@@ -67,10 +67,10 @@ function UserViewRecentCases() {
                     </thead>
                     <tbody>
                       {array.map((e) => {
-                        console.log("Case Data:", e); 
                         const fileUrl = `${imageUrl}/${e.evidence.filename}`;
-                        const formattedDate = e.datoOfIncident ? new Date(e.datoOfIncident).toLocaleDateString() : "Unknown";
-                        console.log(`Date: ${formattedDate}`); 
+                        const formattedDate = e.datoOfIncident
+                          ? new Date(e.datoOfIncident).toLocaleDateString()
+                          : "Unknown";
 
                         return (
                           <tr key={e._id}>
@@ -105,31 +105,40 @@ function UserViewRecentCases() {
                                 <div className="px-3">
                                   <img src={icon5} alt="icon5" />
                                 </div>
-                                <div>{e.opponentName ? e.opponentName : 'Unknown'}</div>
+                                <div>
+                                  {e.opponentName ? e.opponentName : "Unknown"}
+                                </div>
                               </div>
                               <div className="d-flex mt-2">
                                 <div className="px-3">
                                   <img src={icon6} alt="icon6" />
                                 </div>
-                                <div>{e.opponentAddress ? e.opponentAddress : 'Unknown'}</div>
+                                <div>
+                                  {e.opponentAddress
+                                    ? e.opponentAddress
+                                    : "Unknown"}
+                                </div>
                               </div>
                             </td>
                             <td>
                               <div className="mt-2">
                                 <div className="px-3">
                                   <p>{e.description}</p>
-                                  <p className="text-end">
+                                  {/* <p className="text-end">
                                     Status:{" "}
                                     <span className="btn btn-outline-danger">hh</span>
-                                  </p>
+                                  </p> */}
                                 </div>
                               </div>
-                              <div className="d-flex justify-content-between">
+                              <div className="d-flex justify-content-between pt-4">
                                 <div className="d-flex mt-2">
                                   <div className="px-2">
                                     <img src={icon7} alt="icon7" />
                                   </div>
-                                  <div onClick={() => handleViewEvidence(fileUrl)} style={{ cursor: "pointer" }}>
+                                  <div
+                                    onClick={() => handleViewEvidence(fileUrl)}
+                                    style={{ cursor: "pointer" }}
+                                  >
                                     [View Evidence]
                                   </div>
                                 </div>
@@ -141,7 +150,15 @@ function UserViewRecentCases() {
                                 </div>
                                 <div className="d-flex">
                                   <div className="px-2">
-                                    <button className="btn btn-recent">Request an advocate</button>
+                                    {e.advocateStatus == false ? (
+                                      <button className="btn btn-recent">
+                                        Request an advocate
+                                      </button>
+                                    ) : (
+                                      <button className="btn btn-recent">
+                                        Chat
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -153,7 +170,10 @@ function UserViewRecentCases() {
                   </table>
                 ) : (
                   <div className="no_data_animation">
-                    <Lottie animationData={noReqFound} className="no_data_animation" />
+                    <Lottie
+                      animationData={noReqFound}
+                      className="no_data_animation"
+                    />
                     <h1 className="text-center">No Recent Cases</h1>
                   </div>
                 )}
@@ -170,7 +190,12 @@ function UserViewRecentCases() {
         </Modal.Header>
         <Modal.Body>
           {fileType === "pdf" ? (
-            <iframe src={selectedFile} width="100%" height="500px" title="Evidence PDF"></iframe>
+            <iframe
+              src={selectedFile}
+              width="100%"
+              height="500px"
+              title="Evidence PDF"
+            ></iframe>
           ) : (
             <img src={selectedFile} className="img-fluid" alt="Evidence" />
           )}
