@@ -192,7 +192,7 @@ function JuniorAdvocateRegistration() {
 
   return (
     <div>
-<div className='junior-heading-div container-fluid'>
+      <div className='junior-heading-div container-fluid'>
         <label className='junior-reg-title'>Junior Advocate Registration Form</label>
       </div>
       <div className='container-fluid bckcolor'>
