@@ -35,8 +35,13 @@ import JuniorAdvocateHome from './Components/JuniorAdvocates/JuniorAdvocateHome'
 import JuniorAdvocateEditProfile from './Components/JuniorAdvocates/JuniorAdvocateEditProfile';
 import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNavbar';
 import UserProfile from './Components/User/UserProfile';
+<<<<<<< HEAD
 import Client_ViewAllAdvocates from './Components/User/Client_ViewAllAdvocates';
 import UserNav_Main from './Components/User/UserNav_Main';
+=======
+import UserAddCases from './Components/User/UserAddCases';
+import UserViewRecentCases from './Components/User/UserViewRecentCases';
+>>>>>>> dfaee031e2e36432e8c93db1595069a5ed32ba11
 
 function App() {
   return (
@@ -49,6 +54,8 @@ function App() {
           <Route path="/UserRegistration" element={[<LandingNavbar />, <FormHead title="User Registration Form" />, <UserRegistration />]} />
           <Route path="/user_home" element={[<UserNav_Main />, <UserHome />,<UserFooter/>]} />
           <Route path="/user_profile" element={[<UserNavbar />, <FormHead title="Client Profile View" />,<UserProfile/>,<UserFooter/>]} />
+          <Route path="/user_add_case" element={[<UserNavbar />, <FormHead title="Add Case Details" />,<UserAddCases/>,<UserFooter/>]} />
+          <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
           <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<Client_ViewAllAdvocates />,<UserFooter/>]} />
 
