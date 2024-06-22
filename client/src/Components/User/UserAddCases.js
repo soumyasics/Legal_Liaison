@@ -18,7 +18,7 @@ function UserAddCases() {
     }
   }, [navigate]);
 
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [advSug, setAdvSug] = useState([]);
 
