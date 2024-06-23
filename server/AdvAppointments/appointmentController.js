@@ -136,7 +136,7 @@ const rejectReqbyAdv = async (req, res) => {
 // Controller function to get all appointment requests
 const getAppointmentReqsById = async (req, res) => {
     try {
-      const appointments = await AppointmentReq.findById({advocateId:req.params.id}).populate('userId').populate('caseId').populate('advocateId');
+      const appointments = await AppointmentReq.findById({_id:req.params.id}).populate('userId').populate('caseId').populate('advocateId');
       res.status(200).json({
         status: 200,
         msg: 'Appointments retrieved successfully',
