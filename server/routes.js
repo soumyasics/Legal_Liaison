@@ -4,7 +4,7 @@ const advocates=require('./Advocates/advocateController')
 const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
 const cases=require('./Cases/caseController')
 const appointments=require('./AdvAppointments/appointmentController')
-
+ const chat=require('./Chats/chatController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -63,5 +63,11 @@ router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAd
 router.post('/acceptReqbyAdv/:id',appointments.acceptReqbyAdv)
 router.post('/rejectReqbyAdv/:id',appointments.rejectReqbyAdv)
 router.post('/getAppointmentReqsById/:id',appointments.getAppointmentReqsById)
+
+//chatting
+router.post('/chatting',chat.chatting)
+router.post('/viewChatRecipientsforAdvocateById/:id',chat.viewChatRecipientsforAdvocateById)
+router.post('/viewChatRecipientsforUserId/:id',chat.viewChatRecipientsforUserId)
+router.post('/viewChatBetweenUserAndAdv',chat.viewChatBetweenUserAndAdv)
 
 module.exports=router
