@@ -134,41 +134,68 @@ const viewChatBetweenUserAndAdv = (req, res) => {
       });
     });
 };
+const viewChatBetweenAdvAndJr = (req, res) => {
+  let advId = req.body.advId;
+  let jrId = req.body.jrId;
+  chat
+    .find({
+      // $or: [{
+       advId: advId, jrId: jrId },
+        // { rpid: parentid, parentid: rpid },
+      // ],}
+    )
+    .sort({ date: 1 })
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "got it successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        status: 500,
+        msg: "Data not obtained",
+        Error: err,
+      });
+    });
+};
 
-// const getChatBetweenParentAndRp = async (req, res) => {
-//   const { rpid, parentid } = req.body;
-//   try {
-//     const data = await chat.find({ rpid: rpid, parentid: parentid });
-//     return res.status(200).json({
-//       message: "Data obtained successfully",
-//       data: data,
-//     });
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Error on get chat between parent and rp",
-//       data: err,
-//     });
-//   }
-// };
-// const getAllChats = async (req, res) => {
-//   try {
-//     const data = await chat.find();
-//     return res.status(200).json({
-//       message: "Data obtained successfully",
-//       data: data,
-//     });
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Error on get chat between parent and rp",
-//       data: err,
-//     });
-//   }
-// };
+const viewChatBetweenInternAndAdv = (req, res) => {
+  let advId = req.body.advId;
+  let internId = req.body.internId;
+  chat
+    .find({
+      // $or: [{
+       advId: advId, internId: internId },
+        // { rpid: parentid, parentid: rpid },
+      // ],}
+    )
+    .sort({ date: 1 })
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "got it successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        status: 500,
+        msg: "Data not obtained",
+        Error: err,
+      });
+    });
+};
 
 module.exports = {
   chatting,
   viewChatRecipientsforAdvocateById,
   viewChatRecipientsforUserId,
   viewChatBetweenUserAndAdv,
+  viewChatBetweenAdvAndJr,
+  viewChatBetweenInternAndAdv
   
 };
