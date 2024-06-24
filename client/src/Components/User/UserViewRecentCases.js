@@ -152,7 +152,7 @@ function UserViewRecentCases() {
                                 <div className="d-flex">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (
-                                      <Link to={'/user-requestanadvocate'} >
+                                      <Link to={`/user-requestanadvocate/${e._id}`} >
                                       <button className="btn btn-recent">
                                         Request an advocate
                                       </button>

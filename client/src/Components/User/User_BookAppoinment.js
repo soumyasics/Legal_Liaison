@@ -13,6 +13,7 @@ function User_BookAppoinment() {
     idProof: { filename: '' },
   });
   const { id } = useParams();
+  const { cid } = useParams();
   const userId = localStorage.getItem('userId');
 
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function User_BookAppoinment() {
       })
       .catch((error) => {
         console.error(
-          "There was an error fetching the advocate details!",
+          "There was an error fetching the advocate details!", 
           error
         );
       });
@@ -33,7 +34,7 @@ function User_BookAppoinment() {
 
   const onSubmit = () => {
     axiosInstance
-      .post(`/createAppointment`, { userId: userId, caseId: id, advocateId: advocate._id })
+      .post(`/createAppointment`, { userId: userId, caseId: cid, advocateId: advocate._id })
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {

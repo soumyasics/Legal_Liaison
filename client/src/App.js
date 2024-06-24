@@ -67,8 +67,8 @@ function App() {
           <Route path="/userfooter" element={<UserFooter />} />
           <Route path="/client-viewalladvocate" element={[<UserNavbar />,<User_ViewAllAdvocates />,<UserFooter/>]} />
           <Route path="/user_view_advocate_detail/:id" element={[<UserNavbar />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
-          <Route path="/user-requestanadvocate" element={[<UserNavbar />,<User_RequestAdvocate />,<UserFooter/>]} />
-          <Route path="/user_bookappoinment/:id" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
+          <Route path="/user-requestanadvocate/:id" element={[<UserNavbar />,<User_RequestAdvocate />,<UserFooter/>]} />
+          <Route path="/user_bookappoinment/:id/:cid" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
           <Route path="/user_chat_to_advocate" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
 
 
