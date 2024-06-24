@@ -14,6 +14,7 @@ import noReqFound from "../../Assets/noReqFound.json";
 import Lottie from "lottie-react";
 import { Modal, Button } from "react-bootstrap";
 import { imageUrl } from "../Constants/Image_Url";
+import { Link } from "react-router-dom";
 
 function UserViewRecentCases() {
   const [array, setArray] = useState([]);
@@ -151,9 +152,11 @@ function UserViewRecentCases() {
                                 <div className="d-flex">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (
+                                      <Link to={`/user-requestanadvocate/${e._id}`} >
                                       <button className="btn btn-recent">
                                         Request an advocate
                                       </button>
+                                      </Link>
                                     ) : (
                                       <button className="btn btn-recent">
                                         Chat

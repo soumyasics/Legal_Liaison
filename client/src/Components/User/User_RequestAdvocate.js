@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './User_RequestAdvocate.css';
 import axiosMultipartInstance from '../Constants/FormDataUrl';
 import { imageUrl } from '../Constants/Image_Url';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function User_RequestAdvocate() {
     const [currentPage, setCurrentPage] = useState(0);
   const [advocates, setAdvocates] = useState([]);
   const advocatesPerPage = 4;
+
+  const {id}=useParams();
 
   useEffect(() => {
     axiosMultipartInstance
@@ -60,7 +62,7 @@ function User_RequestAdvocate() {
                     </div>
                     
                     <div className='req-view-ad-button-div'>
-                    <Link to={`/user_vbookappoinment/${advocate._id}`}>
+                    <Link to={`/user_bookappoinment/${advocate._id}/${id}`}>
                       <button className='btn btn-warning btn-warning-style'>Request</button>
                     </Link>
                     </div>

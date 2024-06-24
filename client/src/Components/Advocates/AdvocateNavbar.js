@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import img1 from '../../Assets/logo2.png';
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import img1 from "../../Assets/logo2.png";
 
 function AdvocateNavbar() {
   const navigate = useNavigate();
-  const advocateId = localStorage.getItem('advocateId');
+  const advocateId = localStorage.getItem("advocateId");
 
   useEffect(() => {
-    if (localStorage.getItem('advocateId') == null) {
-      navigate('/');
+    if (localStorage.getItem("advocateId") == null) {
+      navigate("/");
     }
   }, [navigate]);
 
-  const handleLogout = () => {                
+  const handleLogout = () => {
     localStorage.clear();
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
@@ -28,35 +28,58 @@ function AdvocateNavbar() {
               width="50"
               height="50"
               className="d-inline-block align-top"
-            />{' '}
+            />{" "}
             LEGAL LIAISON
           </Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/advocate_home">Home</Link>
+                <Link className="nav-link" to="/advocate_home">
+                  Home
+                </Link>
               </li>
               <li className="nav-item">
-              <li className="nav-item">
-                <Link className="nav-link" to={`/advocate_viewcasereq/${advocateId}`}>Cases</Link>
-              </li>              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#services">Chat</Link>
+                <li className="nav-item">
+                  <Link className="nav-link" to={`/advocate_viewcasereq`}>
+                    Cases
+                  </Link>
+                </li>{" "}
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#contact">Interns</Link>
+                <Link className="nav-link" to="#services">
+                  Chat
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#contact">Junior Advocates</Link>
+                <Link className="nav-link" to="#contact">
+                  Interns
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#contact">Resource Request</Link>
+                <Link className="nav-link" to="#contact">
+                  Junior Advocates
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" onClick={handleLogout}>Logout</Link>
+                <Link className="nav-link" to="#contact">
+                  Resource Request
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" onClick={handleLogout}>
+                  Logout
+                </Link>
               </li>
             </ul>
           </div>

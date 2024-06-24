@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AdvocateViewCaseReq.css";
 import img from "../../Assets/adv4.avif";
 import icon1 from "../../Assets/profile.png";
@@ -6,8 +6,70 @@ import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
+import axiosInstance from "../Constants/BaseUrl";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AdvocateViewCaseReq() {
+
+  const [data, setData] = useState({userId:{},caseId:{datoOfIncident:''}});
+  const {id} =useParams();
+  const navigate =useNavigate();
+  const aid=localStorage.getItem('advocateId');
+  console.log(id);
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/getAppointmentReqsById/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setData(res.data.data);
+        } else {
+          setData({});
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  }, []);
+
+  console.log(data);
+
+  const handleAccept = () => {
+    axiosInstance
+      .post(`/acceptReqbyAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          toast.success("Accepted Successfully");
+          navigate('/advocate_viewcasereq')
+        } else {
+          toast.error("Failed");
+        }
+      })
+      .catch(() => {
+        toast.error("Failed");
+      });
+  };
+
+  const handleReject = () => {
+    axiosInstance
+      .post(`/rejectReqbyAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          toast.success("Rejected Successfully");
+          navigate('/advocate_viewcasereq')
+        } else {
+          toast.error("Failed");
+        }
+      })
+      .catch(() => {
+        toast.error("Failed");
+      });
+  };
+
   return (
     <div className="adv_view_case_req">
       <div className="container">
@@ -26,31 +88,31 @@ function AdvocateViewCaseReq() {
                     <div className="px-3">
                       <img src={icon1} alt="icon2" />
                     </div>
-                    <div>Name</div>
+                    <div>{data.userId.name}</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon2} alt="icon2" />
                     </div>
-                    <div>Name</div>
+                    <div>{data.userId.email}</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon3} alt="icon2" />
                     </div>
-                    <div>Name</div>
+                    <div>{data.userId.contact}</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon4} alt="icon2" />
                     </div>
-                    <div>Name</div>
+                    <div>{data.userId.address}</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon5} alt="icon2" />
                     </div>
-                    <div>Name</div>
+                    <div>{data.userId.nationality}</div>
                   </div>
                 </div>
               </div>
@@ -62,11 +124,11 @@ function AdvocateViewCaseReq() {
               <div className="adv_case_req_left_container1_content">
                 <div className="d-flex mt-2">
                   <div className="px-3">Name :</div>
-                  <div>Name</div>
+                  <div>{data.caseId.opponentName?data.caseId.opponentName:'Unknown'}</div>
                 </div>
                 <div className="d-flex mt-2">
                   <div className="px-3">Address :</div>
-                  <div>Name</div>
+                  <div>{data.caseId.opponentAddress?data.caseId.opponentAddress:'Unknown'}</div>
                 </div>
               </div>
             </div>
@@ -80,28 +142,28 @@ function AdvocateViewCaseReq() {
                 <table>
                   <tr>
                     <td>Case Title</td>
-                    <td>: Case Title</td>
+                    <td>: {data.caseId.title}</td>
                   </tr>
                   <tr>
                     <td>Case Description</td>
-                    <td>: Case Title</td>
+                    <td>: {data.caseId.description}</td>
                   </tr>
                   <tr>
                     <td>Case Type</td>
-                    <td>: Case Title</td>
+                    <td>: {data.caseId.type}</td>
                   </tr>
                   <tr>
                     <td>Date of Request</td>
-                    <td>: Case Title</td>
+                    <td>: {data.caseId.datoOfIncident.slice(0,10)}</td>
                   </tr>
                   <tr>
                     <td>Evidence</td>
-                    <td>: Case Title</td>
+                    <td>: <Link>Click here</Link></td>
                   </tr>
                 </table>
                 <div className="adv_view_case_req_actions text-center mt-5">
-                  <button className="btn bg-gold">Accept</button>
-                  <button className="btn bg-gold mx-4">Reject</button>
+                  <button className="btn bg-gold" onClick={handleAccept} >Accept</button>
+                  <button className="btn bg-gold mx-4" onClick={handleReject} >Reject</button>
                 </div>
               </div>
             </div>

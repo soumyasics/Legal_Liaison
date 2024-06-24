@@ -48,6 +48,7 @@ import User_ViewAdvocateDetail from './Components/User/User_ViewAdvocateDetail';
 import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
 import User_BookAppoinment from './Components/User/User_BookAppoinment';
 import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
+import UserChattoAdvocate from './Components/User/UserChattoAdvocate';
 
 
 function App() {
@@ -59,15 +60,16 @@ function App() {
           <Route path="/" element={(<LandingNavbar />, <LandingCarousel />)} />
           <Route path="/UserLogin" element={[<LandingNavbar />, <FormHead title="Home / User Login" />, <UserLogin />]} />
           <Route path="/UserRegistration" element={[<LandingNavbar />, <FormHead title="User Registration Form" />, <UserRegistration />]} />
-          <Route path="/user_home" element={[<UserNav_Main />, <UserHome />,<UserFooter/>]} />
+          <Route path="/user_home" element={[<UserNavbar />, <UserHome />,<UserFooter/>]} />
           <Route path="/user_profile" element={[<UserNavbar />, <FormHead title="Client Profile View" />,<UserProfile/>,<UserFooter/>]} />
           <Route path="/user_add_case" element={[<UserNavbar />, <FormHead title="Add Case Details" />,<UserAddCases/>,<UserFooter/>]} />
           <Route path="/user_view_recent_cases" element={[<UserNavbar />, <FormHead title="Recent Cases" />,<UserViewRecentCases/>,<UserFooter/>]} />
           <Route path="/userfooter" element={<UserFooter />} />
-          <Route path="/client-viewalladvocate" element={[<UserNav_Main />,<User_ViewAllAdvocates />,<UserFooter/>]} />
-          <Route path="/user_view_advocate_detail/:id" element={[<UserNav_Main />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
-          <Route path="/user-requestanadvocate" element={[<UserNav_Main />,<User_RequestAdvocate />,<UserFooter/>]} />
-          <Route path="/user_bookappoinment/:id" element={[<UserNav_Main />,<User_BookAppoinment />,<UserFooter/>]} />
+          <Route path="/client-viewalladvocate" element={[<UserNavbar />,<User_ViewAllAdvocates />,<UserFooter/>]} />
+          <Route path="/user_view_advocate_detail/:id" element={[<UserNavbar />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
+          <Route path="/user-requestanadvocate/:id" element={[<UserNavbar />,<User_RequestAdvocate />,<UserFooter/>]} />
+          <Route path="/user_bookappoinment/:id/:cid" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
+          <Route path="/user_chat_to_advocate" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}
@@ -76,11 +78,11 @@ function App() {
           <Route path="/AdvcateRegister" element={[<LandingNavbar />, <AdvocateRegister />, <UserFooter />]} />
           <Route path="/advocate_home" element={[<AdvocateNavbar />, <AdvocateHome />]} />
           <Route path="/advocate_edit_profile/:id" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
-          <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} />
-          <Route path="/advocate_view_single_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
+          {/* <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} /> */}
+          <Route path="/advocate_view_single_case_req/:id" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
           <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
 
-          <Route path="/advocate_viewcasereq/:id" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+          <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
 
 
           {/* Bar council routes */}
