@@ -57,6 +57,8 @@ import JuAdvocate_RequestMentorshop from './Components/JuniorAdvocates/JuAdvocat
 import Advocate_ViewJuAdvocateRequest from './Components/Advocates/Advocate_ViewJuAdvocateRequest';
 import AdvocateViewAllRecentCases from './Components/Advocates/AdvocateViewAllRecentCases';
 import AdvocateChat from './Components/Advocates/AdvocateChat';
+import InternRegistration from './Components/Interns/InternRegistration';
+import InternLogin from './Components/Interns/InternLogin';
 
 
 function App() {
@@ -129,6 +131,12 @@ function App() {
           <Route path="/JuniorAdvocate-editprofile" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateEditProfile />,<UserFooter />]} /> 
           <Route path="/JuniorAdvocate-viewalladvocate" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_ViewAllAdvocates />,<UserFooter />]} /> 
           <Route path="/JuniorAdvocate-requestmentorship/:id" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_RequestMentorshop />,<UserFooter />]} /> 
+
+
+          {/* Intern Routes */}
+
+          <Route path="/intern_registration" element={[<LandingNavbar />,<InternRegistration/>,<UserFooter />]} />
+          <Route path="/intern_login" element={[<LandingNavbar />,<InternLogin/>,<UserFooter />]} />
 
 
           {/* Landing Page routes */}

@@ -14,7 +14,7 @@ import { imageUrl } from "../Constants/Image_Url";
 
 function AdvocateViewCaseReq() {
 
-  const [data, setData] = useState({userId:{},caseId:{datoOfIncident:'',evidence:{filename:''}}});
+  const [data, setData] = useState({userId:{},caseId:{dateOfIncident:'',evidence:{filename:''}}});
   const {id} =useParams();
   const navigate =useNavigate();
   const aid=localStorage.getItem('advocateId');
@@ -163,7 +163,7 @@ function AdvocateViewCaseReq() {
                     </tr>
                     <tr>
                       <td>Date of Request</td>
-                      <td>: {data.caseId.datoOfIncident.slice(0, 10)}</td>
+                      <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
                     </tr>
                     <tr>
                       <td>Evidence</td>

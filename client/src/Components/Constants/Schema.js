@@ -110,3 +110,76 @@ export const UserAddCaseSchema = yup.object().shape({
     .required("Required"),
   evidence: yup.mixed(),
 });
+
+
+export const InternRegistrationSchema = yup.object().shape({
+  name: yup
+    .string()
+    .matches(/^[a-zA-Z\s]+$/, "Only letters are allowed")
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  contact: yup
+    .number()
+    .min(1000000000, "Phone number must be 10 digit number")
+    .max(9999999999, "Phone number must be 10 digit number")
+    .required("Required"),
+  email: yup
+    .string()
+    .email("Please enter a valid email")
+    .required("Required"),
+  password: yup
+    .string()
+    .min(5, "1 uppercase, 1 number, 1 symbol")
+    .max(16)
+    .matches(passwordRule, "1 uppercase, 1 number, 1 symbol")
+    .required("Required"),
+  gender: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  address: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  percentage: yup
+    .number()
+    .min(0, "Percentage must be between 0 and 100")
+    .max(100, "Percentage must be between 0 and 100")
+    .required("Required"),
+  qualification: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  dob: yup
+    .date()
+    .max(new Date(), "Date of Birth cannot be in the future")
+    .required("Date of Birth is required"),
+  institute: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  yearOfPassout: yup
+    .number()
+    .min(1900, "Year of passout must be a valid year")
+    .max(new Date().getFullYear(), "Year of passout cannot be in the future")
+    .required("Required"),
+  specialization: yup
+    .string()
+    .min(2, "Enter minimum 2 characters")
+    .required("Required"),
+  profilePic: yup
+    .mixed()
+    .required("Please select an image")
+    .test(
+      "fileSize",
+      "Image size is too large (max 5 MB)",
+      (value) => !value || (value && value.size <= 5 * 1024 * 1024)
+    )
+    .test(
+      "fileType",
+      "Unsupported file format",
+      (value) =>
+        !value ||
+        (value && ["image/jpeg", "image/png", "image/gif"].includes(value.type))
+    ),
+});

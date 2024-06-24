@@ -7,15 +7,16 @@ import img2 from "../../Assets/raphael_cross.png";
 import noData from "../../Assets/noDataFound.json";
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 
 function Advocate_ViewJuAdvocateRequest() {
     const [data, setData] = useState([]);
-  const id=localStorage.getItem('junioradvocateId');
+  const id=localStorage.getItem('advocateId');
 
   useEffect(() => {
     axiosInstance
-      .post(`/viewJuniorAdvocates`)
+      .post(`/getAppointmentReqsJnrForAdv/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -25,11 +26,42 @@ function Advocate_ViewJuAdvocateRequest() {
         }
       })
       .catch((error) => {
-        console.error("Error!", error);
+        console.error("Error!", error); 
       });
   }, [id]);
 
   console.log(data);
+
+  const handleApprove = (id) => {
+    axiosInstance
+      .post(`/acceptJnrReqbyAdv/${id}`)
+      .then((res) => {
+        if (res.data.status === 200) {
+          // Filter out the approved request from the data array
+          toast.success('Accepted')
+          setData(prevData => prevData.filter(item => item.jnrId._id !== id));
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  };
+
+  const handleReject = (id) => {
+    axiosInstance
+      .post(`/rejectJnrReqbyAdv/${id}`)
+      .then((res) => {
+        if (res.data.status === 200) {
+          // Filter out the rejected request from the data array
+          toast.warning('Rejected')
+
+          setData(prevData => prevData.filter(item => item.jrId._id !== id));
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  };
 
   return (
     <div>
@@ -45,10 +77,9 @@ function Advocate_ViewJuAdvocateRequest() {
               <tr>
                 <th className="table-header">Name</th>
                 <th className="table-header">Practice Area</th>
-                <th className="table-header">Experiance</th>
+                <th className="table-header">Institution</th>
                 <th className="table-header">Qualification</th>
                 <th className="table-header">Contact No</th>
-                <th className="table-header">No of cases attened/No of cases won</th>
                 <th className="table-header">Bar council enrollment no</th>
                 <th className="table-header">Date of enrollment</th>
                 <th className="table-header">View details</th>
@@ -61,28 +92,26 @@ function Advocate_ViewJuAdvocateRequest() {
                 data.map((juadvocatereq) => (
                   <tr>
                     <td className="table-data">
-                        {/* {juadvocatereq.name} */} {juadvocatereq.name}
+                       {juadvocatereq.jrId.name}
                     </td>
                     <td className="table-data">
-                        {/* {juadvocatereq.specialization} */}I Don't know
+                        {juadvocatereq.jrId.specialization}
                     </td>
                     <td className="table-data">
-                        {/* {juadvocatereq.experiance} */} Don't know
+                        {juadvocatereq.jrId.institute} 
                     </td>
                     <td className="table-data">
-                        {/* {juadvocatereq.qualification} */} Don't know
+                        {juadvocatereq.jrId.qualification}
                     </td>
                     <td className="table-data">
-                        {/* {juadvocatereq.contact} */} Don't know
+                        {juadvocatereq.jrId.contact}
+                    </td>
+                   
+                    <td className="table-data">
+                        {juadvocatereq.jrId.bcNo} 
                     </td>
                     <td className="table-data">
-                        I think 0
-                    </td>
-                    <td className="table-data">
-                        {/* {juadvocatereq.bcNo} */} Don't know
-                    </td>
-                    <td className="table-data">
-                        {/* {juadvocatereq.dateOfEnrollment} */} Don't know
+                        {juadvocatereq.jrId.dateOfEnrollment}
                     </td>
                     <td className="table-data">
                       <Link 
@@ -90,14 +119,13 @@ function Advocate_ViewJuAdvocateRequest() {
                       >
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />
-                          {/* <FaEye className='icon-style-change'/> */}
                         </button>
                       </Link>
                     </td>
                     <td className="table-data">
                     <button
                         className="btn btn-outline-success success-size"
-                        // onClick={() => handleApprove(junioradvocate._id)}
+                        onClick={() => handleApprove(juadvocatereq.jrId._id)}
                       >
                         <img src={img1} alt="Approve Advocate" />
                       </button>
@@ -105,7 +133,7 @@ function Advocate_ViewJuAdvocateRequest() {
                     <td className="table-data">
                     <button
                         className="btn btn-outline-danger"
-                        // onClick={() => handleReject(junioradvocate._id)}
+                        onClick={() => handleReject(juadvocatereq.jrId._id)}
                       >
                         <img src={img2} alt="Reject Advocate" />
                       </button>

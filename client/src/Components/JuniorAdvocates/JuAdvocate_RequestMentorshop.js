@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
+import { toast } from 'react-toastify';
 
 function JuAdvocate_RequestMentorshop() {
-    const [advocate, setAdvocate] = useState({
+    const [advocate, setAdvocate] = useState({ 
         profilePic: { filename: '' },
         idProof: { filename: '' },
       });
       const { id } = useParams();
-      const { cid } = useParams();
-      const userId = localStorage.getItem('userId');
     
       const navigate = useNavigate();
+      const jrId=localStorage.getItem('junioradvocateId')
     
       useEffect(() => {
         axiosInstance
@@ -28,22 +28,22 @@ function JuAdvocate_RequestMentorshop() {
           });
       }, [id]);
     
-    //   const onSubmit = () => {
-    //     axiosInstance
-    //       .post(`/createAppointment`, { userId: userId, caseId: cid, advocateId: advocate._id })
-    //       .then((res) => {
-    //         console.log(res);
-    //         if (res.data.status === 200) {
-    //           toast.success("Appointment request created successfully");
-    //           navigate('/user_view_recent_cases')
-    //         } else {
-    //           toast.error("Failed to create appointment request");
-    //         }
-    //       })
-    //       .catch(() => {
-    //         toast.error("Failed to create appointment request");
-    //       });
-    //   };
+      const onSubmit = () => {
+        axiosInstance
+          .post(`/createMentorship`, { jrId:jrId,advocateId: advocate._id })
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              toast.success("Appointment request created successfully");
+              navigate('/JuniorAdvocate-viewalladvocate')
+            } else {
+              toast.error("Failed to create appointment request");
+            }
+          })
+          .catch(() => {
+            toast.error("Failed to create appointment request");
+          });
+      };
     
     //   // Function to determine if the file is an image
     //   const isImage = (filename) => {
@@ -211,7 +211,7 @@ function JuAdvocate_RequestMentorshop() {
               <br />
               <div className="appoinment-btn-div">
                 <button className="btn btn-warning button-style-appoinment" 
-                // onClick={onSubmit} 
+                onClick={onSubmit} 
                 >
                   Request for Mentorship
                 </button>

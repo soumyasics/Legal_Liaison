@@ -54,7 +54,7 @@ function AdvocateViewAllRecentCases() {
                     <td className="table-data">{caseReq.userId.name}</td>
                     <td className="table-data">{caseReq.userId.contact}</td>
                     <td className="table-data">{caseReq.caseId.type}</td>
-                    <td className="table-data">{caseReq.caseId.dateOfIncident}</td>
+                    <td className="table-data">{caseReq.caseId.dateOfIncident.slice(0,10)}</td>
                     <td className="table-data">{caseReq.caseId.opponentName?caseReq.caseId.opponentName:'Unknown'}</td>
                     <td className="table-data">{caseReq.caseId.opponentAddress?caseReq.caseId.opponentAddress:'Unknown'}</td>
                     <td className="table-data">{caseReq.caseId.location}</td>
