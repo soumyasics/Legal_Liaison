@@ -38,14 +38,14 @@ function JuniorAdvocateHome() {
             <label className="ju-advocate-label font-weight-bold">LEGAL LIAISON</label>
             <br /><br />
             <ul className="no-bullets">
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Personalised Legal Solution.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Professional and Compassionate Representation.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Dedicated to Your Legal Needs.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Building Strong Legal Foundation.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Achieving Your Legal Goals.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Clear Guidance in Legal Matters.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Advocating for your rights.</label></li>
-              <li><img src={tick} className='image-style' /><label className='ju-advocate-sublabel'>Your Advocate for justice.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Personalised Legal Solution.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Professional and Compassionate Representation.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Dedicated to Your Legal Needs.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Building Strong Legal Foundation.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Achieving Your Legal Goals.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Clear Guidance in Legal Matters.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Advocating for your rights.</label></li>
+              <li><img src={tick} className='image-style-tick' /><label className='ju-advocate-sublabel'>Your Advocate for justice.</label></li>
             </ul>
             </div>
           </div>

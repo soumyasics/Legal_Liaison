@@ -47,6 +47,12 @@ th, td {
     text-align: left;
 }
 
+.icon-style-change{
+    color: black;
+    width: 40%;
+    height: 40%;
+}
+
 /* .btn1{
     border-color:#986F06;
     height: 46px;
