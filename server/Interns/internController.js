@@ -1,6 +1,6 @@
-const Advocate = require('./advocateSchema');
+const Interns = require('./internsSchema');
 const jwt = require('jsonwebtoken');
-const secret = 'advocate'; 
+const secret = 'Interns'; 
 
 const multer = require("multer");
 
@@ -21,48 +21,37 @@ const upload = multer({ storage: storage }).array("files", 2);
 
 const uploadProfile = multer({ storage: storage }).single('profilePic');
 
-// Register Advocate
-const registerAdvocate = async (req, res) => {
+// Register Junior Advocate
+const registerInterns = async (req, res) => {
     try {
-        const { name, bcNo, bcState, contact, email, password, gender, address, experience, nationality, qualification, dob, professionalExperience, dateOfEnrollment, specialization } = req.body;
+        const { name, contact, email, password, gender, address, percentage, qualification, dob,institute, yearOfPassout, specialization } = req.body;
 
-        const newAdvocate = new Advocate({
+        const newInterns = new Interns({
             name,
-            bcNo,
-            bcState,
+         
             contact,
             email,
             password,
             gender,
             address,
-            experience,
-            nationality,
+            percentage,
             qualification,
             dob,
-            professionalExperience,
-            dateOfEnrollment,
+            institute,
+            yearOfPassout,
             specialization,
-            idProof:req.files[1],
-            profilePic:req.files[0]
+            profilePic:req.file
         });
 
-        let existingAdvocate = await Advocate.findOne({ bcNo });
-        let existingAdvocate2 = await Advocate.findOne({ contact });
-        if (existingAdvocate) {
-            return res.json({
-                status: 409,
-                msg: "BarCouncil Enrollment Number Already Registered With Us !!",
-                data: null
-            });
-        }
-        else if(existingAdvocate2) {
+        let existingInterns2 = await Interns.findOne({ contact });
+       if(existingInterns2) {
             return res.json({
                 status: 409,
                 msg: "Contact Number Already Registered With Us !!",
                 data: null
             });
         }
-        await newAdvocate.save()
+        await newInterns.save()
             .then(data => {
                 return res.json({
                     status: 200,
@@ -89,9 +78,8 @@ const registerAdvocate = async (req, res) => {
     }
 };
 
-// View all advocates
-const viewAdvocates = (req, res) => {
-    Advocate.find({adminApproved:true})
+const viewInternss = (req, res) => {
+    Interns.find({adminApproved:true})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -116,36 +104,9 @@ const viewAdvocates = (req, res) => {
         });
 };
 
-
-// View all advocates
-const viewAdvocatesBySpecializn = (req, res) => {
-    Advocate.find({specialization:req.body.specialization})
-        .exec()
-        .then(data => {
-            if (data.length > 0) {
-                res.json({
-                    status: 200,
-                    msg: "Data obtained successfully",
-                    data: data
-                });
-            } else {
-                res.json({
-                    status: 200,
-                    msg: "No Data obtained"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({
-                status: 500,
-                msg: "Data not obtained",
-                Error: err
-            });
-        });
-};
-// View all advocate Reqs
-const viewAdvocateReqs = (req, res) => {
-    Advocate.find({adminApproved:false})
+// View all Interns Reqs
+const viewInternsReqs = (req, res) => {
+    Interns.find({adminApproved:false})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -170,10 +131,9 @@ const viewAdvocateReqs = (req, res) => {
         });
 };
 
-
-// approve Advocate
-const approveAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({_id:req.params.id},{adminApproved:true})
+// approve Interns
+const approveInternsById = (req, res) => {
+    Interns.findByIdAndUpdate({_id:req.params.id},{adminApproved:true})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -197,67 +157,10 @@ const approveAdvocateById = (req, res) => {
             });
         });
 };
-
-
-// approve Advocate
-const activateAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:true})
-        .exec()
-        .then(data => {
-            if (data.length > 0) {
-                res.json({
-                    status: 200,
-                    msg: "Data obtained successfully",
-                    data: data
-                });
-            } else {
-                res.json({
-                    status: 200,
-                    msg: "No Data obtained"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({
-                status: 500,
-                msg: "Data not obtained",
-                Error: err
-            });
-        });
-};
-
-
-// approve Advocate
-const deactivateAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({_id:req.params.id},{isActive:false})
-        .exec()
-        .then(data => {
-            if (data.length > 0) {
-                res.json({
-                    status: 200,
-                    msg: "Data obtained successfully",
-                    data: data
-                });
-            } else {
-                res.json({
-                    status: 200,
-                    msg: "No Data obtained"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({
-                status: 500,
-                msg: "Data not obtained",
-                Error: err
-            });
-        });
-};
-
 
 // reject Advocate
-const rejectAdvocateById = (req, res) => {
-    Advocate.findByIdAndDelete({_id:req.params.id})
+const rejectInternsById = (req, res) => {
+    Interns.findByIdAndDelete({_id:req.params.id})
         .exec()
         .then(data => {
             if (data.length > 0) {
@@ -282,27 +185,79 @@ const rejectAdvocateById = (req, res) => {
         });
 };
 
-// Update advocate by ID
-const editAdvocateById = async (req, res) => {
-    const { name, bcNo, bcState, contact, email, password, gender, address, experience, nationality, qualification, dob, professionalExperience, dateOfEnrollment, specialization } = req.body;
+// Activate Interns
+const activateInternsById = (req, res) => {
+    Interns.findByIdAndUpdate(req.params.id, { isActive: true }, { new: true })
+        .exec()
+        .then(data => {
+            if (data) {
+                res.json({
+                    status: 200,
+                    msg: "Junior Advocate activated successfully",
+                    data: data
+                });
+            } else { 
+                res.json({
+                    status: 200,
+                    msg: "No Data obtained"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not obtained",
+                Error: err
+            });
+        });
+};
+
+// Deactivate Interns
+const deactivateInternsById = (req, res) => {
+    Interns.findByIdAndUpdate(req.params.id, { isActive: false }, { new: true })
+        .exec()
+        .then(data => {
+            if (data) { 
+                res.json({
+                    status: 200,
+                    msg: "Junior Advocate deactivated successfully",
+                    data: data
+                });
+            } else { 
+                res.json({
+                    status: 200,
+                    msg: "No Data obtained"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not obtained",
+                Error: err
+            });
+        });
+};
+
+// Update Interns by ID
+const editInternsById = async (req, res) => {
+    const { name,contact, email, password, gender, address, percentage, qualification, dob,institute, yearOfPassout, specialization } = req.body;
 console.log("profilePic",req.body.filename);
-    Advocate.findByIdAndUpdate({ _id: req.params.id }, {
-        name,
-        bcNo,
-        bcState,
-        contact,
-        email,
-        password,
-        gender,
-        address,
-        experience,
-        nationality,
-        qualification,
-        dob,
-        professionalExperience,
-        dateOfEnrollment,
-        specialization,
-        profilePic:req.file
+    Interns.findByIdAndUpdate({ _id: req.params.id }, {
+            name,
+           
+            contact,
+            email,
+            password,
+            gender,
+            address,
+            percentage,
+            qualification,
+            dob,
+            institute,
+            yearOfPassout,
+            specialization,
+            profilePic:req.file
     })
         .exec()
         .then(data => {
@@ -320,9 +275,9 @@ console.log("profilePic",req.body.filename);
         });
 };
 
-// View advocate by ID
-const viewAdvocateById = (req, res) => {
-    Advocate.findById({ _id: req.params.id })
+// View Interns by ID
+const viewInternsById = (req, res) => {
+    Interns.findById({ _id: req.params.id })
         .exec()
         .then(data => {
             res.json({
@@ -340,9 +295,9 @@ const viewAdvocateById = (req, res) => {
         });
 };
 
-// Delete advocate by ID
-const deleteAdvocateById = (req, res) => {
-    Advocate.findByIdAndUpdate({ _id: req.params.id },{isActive:'inactive'})
+// Delete Interns by ID
+const deleteInternsById = (req, res) => {
+    Interns.findByIdAndUpdate({ _id: req.params.id },{isActive:'inactive'})
         .exec()
         .then(data => {
             res.json({
@@ -360,9 +315,9 @@ const deleteAdvocateById = (req, res) => {
         });
 };
 
-// Forgot Password for advocate
+// Forgot Password for Interns
 const forgotPassword = (req, res) => {
-    Advocate.findOneAndUpdate({ email: req.body.email }, {
+    Interns.findOneAndUpdate({ email: req.body.email }, {
         password: req.body.password
     })
         .exec()
@@ -387,11 +342,11 @@ const forgotPassword = (req, res) => {
         });
 };
 
-// Reset Password for advocate
+// Reset Password for Interns
 const resetPassword = async (req, res) => {
     let pwdMatch = false;
 
-    await Advocate.findById({ _id: req.params.id })
+    await Interns.findById({ _id: req.params.id })
         .exec()
         .then(data => {
             if (data.password === req.body.oldpassword)
@@ -406,7 +361,7 @@ const resetPassword = async (req, res) => {
         });
 
     if (pwdMatch) {
-        await Advocate.findByIdAndUpdate({ _id: req.params.id }, {
+        await Interns.findByIdAndUpdate({ _id: req.params.id }, {
             password: req.body.newpassword
         })
             .exec()
@@ -441,11 +396,11 @@ const createToken = (user) => {
     return jwt.sign({ userId: user._id }, secret, { expiresIn: '1h' });
 };
 
-//advocate login
+//Interns login
 const login = (req, res) => {
     const { email, password } = req.body;
 
-    Advocate.findOne({ email }).then(user => {
+    Interns.findOne({ email }).then(user => {
 
         if (!user) {
             return res.json({ status: 405, msg: 'User not found' });
@@ -489,21 +444,20 @@ const requireAuth = (req, res, next) => {
 };
 
 module.exports = {
-    registerAdvocate,
-    viewAdvocates,
-    editAdvocateById,
-    viewAdvocateById,
-    deleteAdvocateById,
+    registerInterns,
+    viewInternss,
+    viewInternsReqs,
+    approveInternsById,
+    rejectInternsById,
+    activateInternsById,
+    deactivateInternsById,
+    editInternsById,
+    viewInternsById,
+    deleteInternsById,
     forgotPassword,
     resetPassword,
-    login,
     requireAuth,
+    login,
     upload,
-    viewAdvocateReqs,
-    approveAdvocateById,
-    rejectAdvocateById,
-    activateAdvocateById,
-    deactivateAdvocateById,
-    uploadProfile,
-    viewAdvocatesBySpecializn
+    uploadProfile
 };

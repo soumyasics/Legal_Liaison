@@ -5,6 +5,8 @@ const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
 const cases=require('./Cases/caseController')
 const appointments=require('./AdvAppointments/appointmentController')
  const chat=require('./Chats/chatController')
+const mentorship=require('./JuniorAdvReqs/junoirAdvReqController')
+const Interns=require('./Interns/internController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -21,7 +23,7 @@ router.post('/viewAdvocateReqs',advocates.viewAdvocateReqs)
 router.post('/viewAdvocates',advocates.viewAdvocates)
 router.post('/activateAdvocateById/:id',advocates.activateAdvocateById)
 router.post('/deactivateAdvocateById/:id',advocates.deactivateAdvocateById)
-
+router.post('/viewAdvocatesBySpecializn',advocates.viewAdvocatesBySpecializn)
 
 //junior advocate routes
 router.post('/registerJuniorAdvocate',junioradvocates.upload,junioradvocates.registerJuniorAdvocate)
@@ -70,5 +72,33 @@ router.post('/chatting',chat.chatting)
 router.post('/viewChatRecipientsforAdvocateById/:id',chat.viewChatRecipientsforAdvocateById)
 router.post('/viewChatRecipientsforUserId/:id',chat.viewChatRecipientsforUserId)
 router.post('/viewChatBetweenUserAndAdv',chat.viewChatBetweenUserAndAdv)
+router.post('/viewChatBetweenInternAndAdv',chat.viewChatBetweenInternAndAdv)
+router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
+
+
+
+//Jr Advocate Mentorshipreqs
+
+router.post('/createMentorship',mentorship.createAppointment)
+router.post('/getAppointmentReqsByjrId/:id',mentorship.getAppointmentReqsByjrId)
+router.post('/getAppointmentReqsForAdv/:id',mentorship.getAppointmentReqsForAdv)
+router.post('/getAppointmentReqsById/:id',mentorship.getAppointmentReqsById)
+router.post('/getApprovedAppointmentsForAdv/:id',mentorship.getApprovedAppointmentsForAdv)
+router.post('/acceptReqbyAdv/:id',mentorship.acceptReqbyAdv)
+router.post('/rejectReqbyAdv/:id',mentorship.rejectReqbyAdv)
+
+//Intern Routes
+router.post('/registerInterns',Interns.upload,Interns.registerInterns)
+router.post('/viewInternss',Interns.viewInternss)
+router.post('/viewInternsReqs',Interns.viewInternsReqs)
+router.post('/approveInternsById/:id',Interns.approveInternsById)
+router.post('/rejectInternsById/:id',Interns.rejectInternsById)
+router.post('/activateInternsById/:id',Interns.activateInternsById)
+router.post('/deactivateInternsById/:id',Interns.deactivateInternsById)
+router.post('/editInternsById/:id',Interns.uploadProfile,Interns.editInternsById)
+router.post('/viewInternsById/:id',Interns.viewInternsById)
+router.post('/internforgotPassword',Interns.forgotPassword)
+router.post('/internresetPassword/:id',Interns.resetPassword)
+router.post('/loginIntern',Interns.login)
 
 module.exports=router
