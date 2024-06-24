@@ -77,7 +77,7 @@ function AdvocateViewCaseReq() {
   };
 
   const handleClose = () => setShowModal(false);
-
+ 
   return (
     <div className="adv_view_case_req">
       <div className="container">

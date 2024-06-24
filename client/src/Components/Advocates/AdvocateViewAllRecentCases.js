@@ -4,13 +4,13 @@ import noData from "../../Assets/noDataFound.json";
 import Lottie from "lottie-react";
 import { Link } from 'react-router-dom';
 
-function AdvocateViewAllRecentCases() {
+function AdvocateViewAllRecentCases() { 
     const [data, setData] = useState([]);
   const id=localStorage.getItem('advocateId');
 
   useEffect(() => {
     axiosInstance
-      .post(`/getAppointmentReqsForAdv/${id}`)
+      .post(`/getApprovedAppointmentsForAdv/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -59,7 +59,7 @@ function AdvocateViewAllRecentCases() {
                     <td className="table-data">{caseReq.caseId.opponentAddress?caseReq.caseId.opponentAddress:'Unknown'}</td>
                     <td className="table-data">{caseReq.caseId.location}</td>
                     <td className="table-data">
-                      <Link to={`/advocate_view_single_case_req/${caseReq._id}`}>
+                      <Link to={`/advocate_view_single_recent_case/${caseReq._id}`}>
                         <button className="btn btn-outline-secondary">
                            View Details
                         </button>

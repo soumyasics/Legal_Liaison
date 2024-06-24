@@ -14,8 +14,6 @@
     border-color: #986f06e1;
   }
   
-
-  
 .req-main-caro {
   position: relative;
   width: 100%;
@@ -27,7 +25,6 @@
 .req-caro-inner-style {
   position: relative;
   overflow: hidden;
-  /* display: flex; */
   align-items: center;
 }
 
@@ -36,8 +33,8 @@
 }
 
 .req-card-style {
-  padding: 10px;
   height: 100%;
+  padding-left: 35px;
 }
 .req-client-view-ad-namearea{
   padding-top: 10px;

@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { UserAddCaseSchema } from "../Constants/Schema";
 import { toast } from "react-toastify";
 import axiosMultipartInstance from "../Constants/FormDataUrl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
 import { imageUrl } from "../Constants/Image_Url";
 
@@ -21,6 +21,7 @@ function UserAddCases() {
   const [status, setStatus] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [advSug, setAdvSug] = useState([]);
+  const [caseId, setCaseId] = useState('');
 
   const id = localStorage.getItem("userId");
 
@@ -36,6 +37,7 @@ function UserAddCases() {
         console.log(res);
         if (res.data.status === 200) {
           setAdvSug(res.data.suggestions);
+          setCaseId(res.data.data._id)
           toast.success("Case Added Successfully");
         } else {
           toast.error("Failed to Add Case");
@@ -60,7 +62,7 @@ function UserAddCases() {
       title: "",
       description: "",
       type: "",
-      datoOfIncident: "",
+      dateOfIncident: "",
       opponentName: "",
       opponentAddress: "",
       location: "",
@@ -213,15 +215,15 @@ function UserAddCases() {
                     <input
                       type="date"
                       className="form-control border border-dark"
-                      name="datoOfIncident"
-                      value={values.datoOfIncident}
+                      name="dateOfIncident"
+                      value={values.dateOfIncident}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
                   </div>
-                  {errors.datoOfIncident && touched.datoOfIncident && (
+                  {errors.dateOfIncident && touched.dateOfIncident && (
                     <span className="text-danger px-3">
-                      {errors.datoOfIncident}
+                      {errors.dateOfIncident}
                     </span>
                   )}
                 </div>
@@ -353,7 +355,7 @@ function UserAddCases() {
                         </p>
                         <p>{e.specialization}</p>
                         <p className="text-end">
-                          <i class="ri-arrow-right-line"></i>
+                          <Link to={`/user_bookappoinment/${e._id}/${caseId}`}><i class="ri-arrow-right-line"></i></Link> 
                         </p>
                       </div>
                     </div>

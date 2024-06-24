@@ -58,7 +58,7 @@ function UserNavbar() {
               <Link className="nav-link" to="#contact">Notifications</Link>
             </li>
             <li className="nav-item">
-              <Link to={'/user_chat_to_advocate'} className="nav-link">Chat</Link>
+              <Link  className="nav-link">Chat</Link>
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

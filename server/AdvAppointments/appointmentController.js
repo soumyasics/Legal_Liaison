@@ -64,6 +64,24 @@ const getAppointmentReqsForAdv = async (req, res) => {
 };
 
 // Controller function to get all appointment requests
+const getApprovedAppointmentsForAdv = async (req, res) => {
+  try {
+    const appointments = await AppointmentReq.find({advocateId:req.params.id,status:'accepted'}).populate('userId').populate('caseId');
+    res.status(200).json({
+      status: 200,
+      msg: 'Appointments retrieved successfully',
+      data: appointments
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      msg: 'Failed to retrieve appointments',
+      error: err.message
+    });
+  }
+};
+
+// Controller function to get all appointment requests
 const getAppointmentReqsByUserId = async (req, res) => {
     try {
       const appointments = await AppointmentReq.findById({_id:req.params.id}).populate('userId').populate('caseId');
@@ -172,5 +190,6 @@ module.exports = {
   getAppointmentReqsByUserId,
   acceptReqbyAdv,
 rejectReqbyAdv,
-getAppointmentReqsById
+getAppointmentReqsById,
+getApprovedAppointmentsForAdv
 };

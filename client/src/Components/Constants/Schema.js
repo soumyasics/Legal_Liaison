@@ -95,7 +95,7 @@ export const UserAddCaseSchema = yup.object().shape({
     .min(2, "Enter minimum 2 characters")
     .required("Required"),
   type: yup.string().min(2, "Enter minimum 2 characters").required("Required"),
-  datoOfIncident: yup
+  dateOfIncident: yup
     .date()
     .max(new Date(), "Incident date cannot be in the future")
     .required("Incident date is required"),

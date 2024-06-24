@@ -3,6 +3,7 @@ import "./UserChatToAdvocate.css";
 import axiosInstance from "../Constants/BaseUrl";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { imageUrl } from "../Constants/Image_Url";
 
 function UserChattoAdvocate() {
   
@@ -11,6 +12,7 @@ function UserChattoAdvocate() {
   const {aid}=useParams()
 
   const [messageList, setMessageList] = useState([]);
+  const [userDetalis, setUserDetails] = useState({profilePic:{filename:''}});
   const [inputValue, setInputValue] = useState("");
   const chatBodyRef = useRef(null);
 
@@ -18,7 +20,7 @@ function UserChattoAdvocate() {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
-  }, [messageList]);
+  }, [messageList]); 
 
   useEffect(()=>{
     axiosInstance
@@ -33,6 +35,20 @@ function UserChattoAdvocate() {
       .catch(() => {
         toast.error("Failed to Add Case");
       });
+
+      axiosInstance
+          .post(`viewAdvocateById/${aid}` )
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              setUserDetails(res.data.data)
+            } else {
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
   },[])
 
   const handleSend = () => {
@@ -58,12 +74,9 @@ function UserChattoAdvocate() {
     <div className="user_chat">
       <div className="chat-container">
         <div className="chat-header">
-          <img
-            src="https://via.placeholder.com/40"
-            alt="user"
-            className="avatar"
-          />
-          <span className="username">Vincent</span>
+        <img src={`${imageUrl}/${userDetalis.profilePic.filename}`} className="img-fluid" alt="Advocate" />
+
+        <span className="fs-5 px-3">{userDetalis.name}</span>
         </div>
 
         <div className="chat-body" ref={chatBodyRef}>
