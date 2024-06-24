@@ -7,13 +7,14 @@ import noData from "../../Assets/noDataFound.json";
 import Lottie from "lottie-react";
 
 function Advocate_ViewCaseRequest() {
-  const { id } = useParams();
   const [data, setData] = useState([]);
+  const id=localStorage.getItem('advocateId');
 
   useEffect(() => {
     axiosInstance
       .post(`/getAppointmentReqsForAdv/${id}`)
       .then((res) => {
+        console.log(res);
         if (res.data.status === 200) {
           setData(res.data.data || []);
         } else {
@@ -24,6 +25,8 @@ function Advocate_ViewCaseRequest() {
         console.error("Error!", error);
       });
   }, [id]);
+
+  console.log(data);
 
 
   return (
@@ -54,17 +57,17 @@ function Advocate_ViewCaseRequest() {
                 data.map((caseReq) => (
                   <tr>
                     <td className="table-data">{caseReq.title}</td>
-                    <td className="table-data">Client Name</td>
-                    <td className="table-data">Phone</td>
+                    <td className="table-data">{caseReq.userId.name}</td>
+                    <td className="table-data">{caseReq.userId.contact}</td>
                     <td className="table-data">{caseReq.type}</td>
                     <td className="table-data">{caseReq.dateOfIncident}</td>
                     <td className="table-data">{caseReq.opponentName}</td>
                     <td className="table-data">{caseReq.opponentAddress}</td>
                     <td className="table-data">{caseReq.location}</td>
                     <td className="table-data">
-                      <Link to={`/case_details/${caseReq._id}`}>
-                        <button className="btn1 btn btn-outline-secondary">
-                           V
+                      <Link to={`/advocate_view_single_case_req/${caseReq._id}`}>
+                        <button className="btn btn-outline-secondary">
+                           View Details
                         </button>
                       </Link>
                     </td>

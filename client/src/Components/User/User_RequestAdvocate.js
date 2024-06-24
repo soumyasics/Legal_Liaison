@@ -60,7 +60,7 @@ function User_RequestAdvocate() {
                     </div>
                     
                     <div className='req-view-ad-button-div'>
-                    <Link to={`/user_vbookappoinment/${advocate._id}`}>
+                    <Link to={`/user_bookappoinment/${advocate._id}`}>
                       <button className='btn btn-warning btn-warning-style'>Request</button>
                     </Link>
                     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AdvocateViewCaseReq.css";
 import img from "../../Assets/adv4.avif";
 import icon1 from "../../Assets/profile.png";
@@ -6,8 +6,70 @@ import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
+import axiosInstance from "../Constants/BaseUrl";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AdvocateViewCaseReq() {
+
+  const [data, setData] = useState({});
+  const id =useParams();
+  const navigate =useNavigate();
+  const aid=localStorage.getItem('advocateId');
+
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/getAppointmentReqsById/${aid}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setData(res.data.data);
+        } else {
+          setData({});
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  }, [id]);
+
+  console.log(data);
+
+  const handleAccept = () => {
+    axiosInstance
+      .post(`/acceptReqbyAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          toast.success("Accepted Successfully");
+          navigate('/advocate_viewcasereq')
+        } else {
+          toast.error("Failed");
+        }
+      })
+      .catch(() => {
+        toast.error("Failed");
+      });
+  };
+
+  const handleReject = () => {
+    axiosInstance
+      .post(`/rejectReqbyAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          toast.success("Rejected Successfully");
+          navigate('/advocate_viewcasereq')
+        } else {
+          toast.error("Failed");
+        }
+      })
+      .catch(() => {
+        toast.error("Failed");
+      });
+  };
+
   return (
     <div className="adv_view_case_req">
       <div className="container">
@@ -100,8 +162,8 @@ function AdvocateViewCaseReq() {
                   </tr>
                 </table>
                 <div className="adv_view_case_req_actions text-center mt-5">
-                  <button className="btn bg-gold">Accept</button>
-                  <button className="btn bg-gold mx-4">Reject</button>
+                  <button className="btn bg-gold" onClick={handleAccept} >Accept</button>
+                  <button className="btn bg-gold mx-4" onClick={handleReject} >Reject</button>
                 </div>
               </div>
             </div>
