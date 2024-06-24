@@ -49,6 +49,12 @@ import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
 import User_BookAppoinment from './Components/User/User_BookAppoinment';
 import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
 import UserChattoAdvocate from './Components/User/UserChattoAdvocate';
+import Advocate_PaymentRequest from './Components/Advocates/Advocate_PaymentRequest';
+import Advocate_AddEvidence from './Components/Advocates/Advocate_AddEvidence';
+import Advocate_UpdateCaseStatus from './Components/Advocates/Advocate_UpdateCaseStatus';
+import JuAdvocate_ViewAllAdvocates from './Components/JuniorAdvocates/JuAdvocate_ViewAllAdvocates';
+import JuAdvocate_RequestMentorshop from './Components/JuniorAdvocates/JuAdvocate_RequestMentorshop';
+import Advocate_ViewJuAdvocateRequest from './Components/Advocates/Advocate_ViewJuAdvocateRequest';
 
 
 function App() {
@@ -83,6 +89,10 @@ function App() {
           <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
 
           <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+          <Route path="/advocate_paymentreq" element={[<AdvocateNavbar />, <Advocate_PaymentRequest />, <UserFooter />]} />
+          <Route path="/advocate_addevidence" element={[<AdvocateNavbar />, <Advocate_AddEvidence />, <UserFooter />]} />
+          <Route path="/update_casestatus" element={[<AdvocateNavbar />, <Advocate_UpdateCaseStatus />, <UserFooter />]} />
+          <Route path="/advocate_viewjuadvocatereq" element={[<AdvocateNavbar />, <Advocate_ViewJuAdvocateRequest />, <UserFooter />]} />
 
 
           {/* Bar council routes */}
@@ -111,6 +121,8 @@ function App() {
           <Route path="/JuniorAdvocateLogin" element={[<LandingNavbar />,<JuniorAdvocateLogin/>,<UserFooter />]} />          
           <Route path="/JuniorAdvocate-homepage" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateHome />,<UserFooter />]} /> 
           <Route path="/JuniorAdvocate-editprofile" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateEditProfile />,<UserFooter />]} /> 
+          <Route path="/JuniorAdvocate-viewalladvocate" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_ViewAllAdvocates />,<UserFooter />]} /> 
+          <Route path="/JuniorAdvocate-requestmentorship/:id" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_RequestMentorshop />,<UserFooter />]} /> 
 
 
           {/* Landing Page routes */}

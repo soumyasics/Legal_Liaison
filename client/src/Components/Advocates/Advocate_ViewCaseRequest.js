@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import './Advocate_ViewCaseRequest.css';
-import img from "../../Assets/Vecto(2).png";
 import axiosInstance from "../Constants/BaseUrl";
 import noData from "../../Assets/noDataFound.json";
 import Lottie from "lottie-react";
