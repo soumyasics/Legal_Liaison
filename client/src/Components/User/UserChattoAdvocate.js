@@ -1,16 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './UserChatToAdvocate.css'
+import React, { useEffect, useRef, useState } from "react";
+import "./UserChatToAdvocate.css";
+import axiosInstance from "../Constants/BaseUrl";
+import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 function UserChattoAdvocate() {
+  
 
-  const messages = [
-    { id: 1, user: 'Vincent', time: '10:20 AM, Today', message: 'Hello sir, i am subilan. i want some clarification. if you free please chat with me', type: 'sent' },
-    { id: 2, user: 'Vincent', time: '10:20 AM, Today', message: 'Hello sir, i am subilan. i want some clarification. if you free please chat with me', type: 'received' },
-    { id: 3, user: 'Vincent', time: '10:20 AM, Today', message: 'Hello sir, i am subilan. i want some clarification. if you free please chat with me', type: 'sent' },
-  ];
+  const uid=localStorage.getItem('userId')
+  const {aid}=useParams()
 
-  const [messageList, setMessageList] = useState(messages);
-  const [inputValue, setInputValue] = useState('');
+  const [messageList, setMessageList] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const chatBodyRef = useRef(null);
 
   useEffect(() => {
@@ -19,52 +20,88 @@ function UserChattoAdvocate() {
     }
   }, [messageList]);
 
+  useEffect(()=>{
+    axiosInstance
+      .post(`viewChatBetweenUserAndAdv`,{advId:aid,userId:uid} )
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setMessageList(res.data.data)
+        } else {
+        }
+      })
+      .catch(() => {
+        toast.error("Failed to Add Case");
+      });
+  },[])
+
   const handleSend = () => {
-    if (inputValue.trim()) {
-      const newMessage = {
-        id: messageList.length + 1,
-        user: 'Vincent',
-        time: new Date().toLocaleTimeString(),
-        message: inputValue,
-        type: 'sent'
-      };
-      setMessageList([...messageList, newMessage]);
-      setInputValue('');
-    }
+    
+    console.log(inputValue);
+    axiosInstance
+      .post(`chatting`,{msg:inputValue,from:'users',to:'advocates',advId:aid,userId:uid} )
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+        } else {
+        }
+      })
+      .catch(() => {
+        toast.error("Failed to Add Case");
+      });
+
   };
 
+  console.log(messageList);
+
   return (
-    <div className='user_chat'>
+    <div className="user_chat">
       <div className="chat-container">
         <div className="chat-header">
-          <img src="https://via.placeholder.com/40" alt="user" className="avatar" />
+          <img
+            src="https://via.placeholder.com/40"
+            alt="user"
+            className="avatar"
+          />
           <span className="username">Vincent</span>
         </div>
+
         <div className="chat-body" ref={chatBodyRef}>
-          {messageList.map(msg => (
-            <div key={msg.id} className={`chat-message ${msg.type}`}>
-              <div className="message-header">
-                <span className="username">{msg.user}</span>
-                <span className="timestamp">{msg.time}</span>
+          {messageList.length ? (
+            messageList.map((msg) => (
+              <div key={msg.id} className={`chat-message ${msg.from=='users'?'sent':'received'}`}>
+                <div className="message-header">
+                  <span className="username"><small>{msg.from=='users'?msg.userId.name:msg.advId.name}</small></span>
+                  <span className="timestamp">{msg.createdAt.slice(0,10)}</span>
+                </div>
+                <p className="message-content">{msg.msg}</p>
               </div>
-              <p className="message-content">{msg.message}</p>
+            ))
+          ) : (
+            <div className="no_chat_container">
+              <h3>
+                Please start the conversation and get the help or information
+                you need.
+              </h3>
             </div>
-          ))}
+          )}
         </div>
-        <div className="chat-input">
-          <input
-            type="text"
-            placeholder="Type Your Message"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button onClick={handleSend}>
-            <i className="ri-send-plane-fill"></i>
-          </button>
-        </div>
+        <form>
+          <div className="chat-input">
+            <input
+              type="text"
+              placeholder="Type Your Message"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <button type="button" onClick={handleSend}>
+              <i className="ri-send-plane-fill"></i>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default UserChattoAdvocate
+export default UserChattoAdvocate;

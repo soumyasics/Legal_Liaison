@@ -49,6 +49,8 @@ import User_RequestAdvocate from './Components/User/User_RequestAdvocate';
 import User_BookAppoinment from './Components/User/User_BookAppoinment';
 import Advocate_ViewCaseRequest from './Components/Advocates/Advocate_ViewCaseRequest';
 import UserChattoAdvocate from './Components/User/UserChattoAdvocate';
+import AdvocateViewAllRecentCases from './Components/Advocates/AdvocateViewAllRecentCases';
+import AdvocateChat from './Components/Advocates/AdvocateChat';
 
 
 function App() {
@@ -69,7 +71,7 @@ function App() {
           <Route path="/user_view_advocate_detail/:id" element={[<UserNavbar />,<User_ViewAdvocateDetail />,<UserFooter/>]} />
           <Route path="/user-requestanadvocate/:id" element={[<UserNavbar />,<User_RequestAdvocate />,<UserFooter/>]} />
           <Route path="/user_bookappoinment/:id/:cid" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
-          <Route path="/user_chat_to_advocate" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
+          <Route path="/user_chat_to_advocate/:aid" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}
@@ -79,10 +81,13 @@ function App() {
           <Route path="/advocate_home" element={[<AdvocateNavbar />, <AdvocateHome />]} />
           <Route path="/advocate_edit_profile/:id" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
           {/* <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} /> */}
-          <Route path="/advocate_view_single_case_req/:id" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
-          <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
-
           <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+          <Route path="/advocate_view_single_case_req/:id" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
+          <Route path="/advocate_view_all_recent_case" element={[<AdvocateNavbar />,<FormHead title="Recent Cases" />, <AdvocateViewAllRecentCases />,<UserFooter />]} />
+          <Route path="/advocate_view_single_recent_case" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
+          <Route path="/advocate_chat" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat />,<UserFooter />]} />
+          <Route path="/advocate_single_chat/:uid" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat  />,<UserFooter />]} />
+
 
 
           {/* Bar council routes */}

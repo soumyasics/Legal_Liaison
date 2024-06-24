@@ -224,7 +224,7 @@ function User_BookAppoinment() {
         </div>
       </div>
 
-      {/* Bootstrap Modal */}
+     
       <div className="modal fade" id="idProofModal" tabIndex="-1" role="dialog" aria-labelledby="idProofModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">

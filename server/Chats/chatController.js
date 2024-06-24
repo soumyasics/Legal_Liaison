@@ -118,7 +118,10 @@ const viewChatBetweenUserAndAdv = (req, res) => {
       // ],}
     )
     .sort({ date: 1 })
+    .populate('advId')
+    .populate('userId')
     .exec()
+    
     .then((data) => {
       res.json({
         status: 200,

@@ -158,9 +158,11 @@ function UserViewRecentCases() {
                                       </button>
                                       </Link>
                                     ) : (
-                                      <button className="btn btn-recent">
+                                      <Link to={`/user_chat_to_advocate/${e.advocateId}`}>
+                                        <button className="btn btn-recent">
                                         Chat
                                       </button>
+                                        </Link>
                                     )}
                                   </div>
                                 </div>
