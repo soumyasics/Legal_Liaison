@@ -81,11 +81,11 @@ router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
 
 router.post('/createMentorship',mentorship.createAppointment)
 router.post('/getAppointmentReqsByjrId/:id',mentorship.getAppointmentReqsByjrId)
-router.post('/getAppointmentReqsForAdv/:id',mentorship.getAppointmentReqsForAdv)
+router.post('/getAppointmentReqsJnrForAdv/:id',mentorship.getAppointmentReqsForAdv)
 router.post('/getAppointmentReqsById/:id',mentorship.getAppointmentReqsById)
 router.post('/getApprovedAppointmentsForAdv/:id',mentorship.getApprovedAppointmentsForAdv)
-router.post('/acceptReqbyAdv/:id',mentorship.acceptReqbyAdv)
-router.post('/rejectReqbyAdv/:id',mentorship.rejectReqbyAdv)
+router.post('/acceptJnrReqbyAdv/:id',mentorship.acceptReqbyAdv)
+router.post('/rejectJnrReqbyAdv/:id',mentorship.rejectReqbyAdv)
 
 //Intern Routes
 router.post('/registerInterns',Interns.upload,Interns.registerInterns)

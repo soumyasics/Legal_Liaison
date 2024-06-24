@@ -19,7 +19,7 @@ function AdvocateNavbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar" style={{minHeight:'10vh'}} >
         <div className="container">
           <Link className="navbar-brand" to="#home">
             <img
@@ -49,15 +49,19 @@ function AdvocateNavbar() {
                   Home
                 </Link>
               </li>
+              
+              <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cases
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/advocate_viewcasereq' className="dropdown-item" >New Request</Link>
+                <Link to='/advocate_view_all_recent_case' className="dropdown-item" >Recent Cases</Link>
+                
+              </div>
+            </li>
               <li className="nav-item">
-                <li className="nav-item">
-                  <Link className="nav-link" to={`/advocate_viewcasereq`}>
-                    Cases
-                  </Link>
-                </li>{" "}
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#services">
+                <Link to='/advocate_chat' className="nav-link">
                   Chat
                 </Link>
               </li>
@@ -66,11 +70,16 @@ function AdvocateNavbar() {
                   Interns
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#contact">
-                  Junior Advocates
-                </Link>
-              </li>
+              <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Junior Advocates
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/advocate_viewjuadvocatereq' className="dropdown-item" >Request</Link>
+                <Link to='/advocate_view_all_jnr_adv' className="dropdown-item" >View</Link>
+                
+              </div>
+            </li>
               <li className="nav-item">
                 <Link className="nav-link" to="#contact">
                   Resource Request

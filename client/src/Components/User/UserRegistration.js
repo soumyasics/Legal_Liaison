@@ -87,7 +87,7 @@ function UserRegistration() {
             <div className="user_registration_container">
                 <div className="user_registration_box1">
                     <div className="user_registration_input_group">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={(e)=>{handleSubmit(e)}}>
                             <div className="user_registration_input">
                                 <label>Name</label>
                                 <input

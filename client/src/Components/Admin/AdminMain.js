@@ -20,7 +20,7 @@ function AdminMain({ data }) {
   useEffect(() => {
     if (localStorage.getItem("adminId") == null) {
       navigate("/");
-    }
+    } 
   }, [navigate]);   
 
   return (
