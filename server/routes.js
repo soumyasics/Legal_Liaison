@@ -63,6 +63,7 @@ router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAd
 router.post('/acceptReqbyAdv/:id',appointments.acceptReqbyAdv)
 router.post('/rejectReqbyAdv/:id',appointments.rejectReqbyAdv)
 router.post('/getAppointmentReqsById/:id',appointments.getAppointmentReqsById)
+router.post('/getApprovedAppointmentsForAdv/:id',appointments.getApprovedAppointmentsForAdv)
 
 //chatting
 router.post('/chatting',chat.chatting)
