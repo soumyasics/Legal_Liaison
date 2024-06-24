@@ -18,7 +18,7 @@ ref:"users"
         type: String,
         required: true,
     },
-    datoOfIncident: {
+    dateOfIncident: {
         type: Date,
         required: true,
 

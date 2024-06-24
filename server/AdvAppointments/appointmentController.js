@@ -4,8 +4,15 @@ const AppointmentReq = require('./appointmentSchema');
 // Controller function to create a new appointment request
 const createAppointment = async (req, res) => {
   const { userId, caseId,advocateId } = req.body;
+  let flag=0
+  await AppointmentReq.findOne({advocateId:advocateId,caseId:caseId}).then(data=>{
+    console.log(data);
+    if(data!=null)
+    flag=1
+   })
+   console.log("fa",flag);
 let date=new Date()
-  try {
+ 
     const newAppointment = new AppointmentReq({
       userId: userId,
       caseId: caseId,
@@ -13,20 +20,29 @@ let date=new Date()
       date:date,
     
     });
+if(flag==0){
+    const savedAppointment = await newAppointment.save().then(savedAppointment=>{
 
-    const savedAppointment = await newAppointment.save();
+    
     res.json({
       status: 200,
       msg: 'Appointment request created successfully',
       data: savedAppointment
     });
-  } catch (err) {
+  }).catch (err=> {
     res.json({
       status: 500,
       msg: 'Failed to create appointment request',
       error: err.message
     });
-  }
+  })
+}
+else{
+  res.json({
+    status: 500,
+    msg: 'You have already send request to this Advocate'
+  });
+}
 };
 
 // Controller function to get all appointment requests
@@ -136,7 +152,7 @@ const rejectReqbyAdv = async (req, res) => {
 // Controller function to get all appointment requests
 const getAppointmentReqsById = async (req, res) => {
     try {
-      const appointments = await AppointmentReq.findById({advocateId:req.params.id}).populate('userId').populate('caseId').populate('advocateId');
+      const appointments = await AppointmentReq.findById({_id:req.params.id}).populate('userId').populate('caseId').populate('advocateId');
       res.status(200).json({
         status: 200,
         msg: 'Appointments retrieved successfully',
