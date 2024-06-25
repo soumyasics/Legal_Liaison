@@ -17,12 +17,13 @@ const storage = multer.diskStorage({
     cb(null, filename);
   },
 });
-const upload = multer({ storage: storage }).array("files", 2);
 
-const uploadProfile = multer({ storage: storage }).single('profilePic');
+const upload = multer({ storage: storage }).single('profilePic');
 
 // Register Junior Advocate
 const registerInterns = async (req, res) => {
+    console.log("file",req.file);
+
     try {
         const { name, contact, email, password, gender, address, percentage, qualification, dob,institute, yearOfPassout, specialization } = req.body;
 
@@ -459,5 +460,5 @@ module.exports = {
     requireAuth,
     login,
     upload,
-    uploadProfile
+    
 };

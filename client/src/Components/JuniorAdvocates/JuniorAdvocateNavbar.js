@@ -59,7 +59,7 @@ const handleLogout = () => {
               <Link className="nav-link" to="/JuniorAdvocate-viewalladvocate">Advocates</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="">Mentorship</Link>
+              <Link className="nav-link" to="/junior_adv_view_mentor">Mentorship</Link>
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

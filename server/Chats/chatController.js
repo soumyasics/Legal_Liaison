@@ -10,7 +10,7 @@ const chatting = async (req, res) => {
     advId: req.body.advId,
     userId: req.body.userId,
     internId: req.body.internId,
-    juniorAdvId: req.body.juniorAdvId,
+    jrId: req.body.jrId,
     date:new Date()
   });
   await message
@@ -33,10 +33,11 @@ const chatting = async (req, res) => {
 };
 
 const viewChatRecipientsforAdvocateById = (req, res) => {
+  let uniqueUsers=[],uniqueJuniors=[],uniqueInterns=[]
   chat
     .find({ advId: req.params.id })
     .populate("userId")
-    .populate("juniorAdvId")
+    .populate("jrId")
     .populate("internId")
 
     .exec()
@@ -46,12 +47,15 @@ const viewChatRecipientsforAdvocateById = (req, res) => {
         data.map((x) => {
           users.push(x.userId);
           interns.push(x.internId);
-          juniors.push(x.juniorAdvId);
+          juniors.push(x.jrId);
 
         });
-        const uniqueUsers = [...new Set(users)];
-        const uniqueJuniors = [...new Set(juniors)];
-        const uniqueInterns = [...new Set(interns)];
+        if(users.length>0)
+         uniqueUsers = [...new Set(users)]
+        if(juniors.length>0)
+         uniqueJuniors = [...new Set(juniors)];
+        if(interns.length>0)
+         uniqueInterns = [...new Set(interns)];
 
         res.json({
           status: 200,
@@ -140,6 +144,7 @@ const viewChatBetweenUserAndAdv = (req, res) => {
 const viewChatBetweenAdvAndJr = (req, res) => {
   let advId = req.body.advId;
   let jrId = req.body.jrId;
+  console.log("jid",jrId);
   chat
     .find({
       // $or: [{
