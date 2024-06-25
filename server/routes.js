@@ -7,6 +7,9 @@ const appointments=require('./AdvAppointments/appointmentController')
  const chat=require('./Chats/chatController')
 const mentorship=require('./JuniorAdvReqs/junoirAdvReqController')
 const Interns=require('./Interns/internController')
+const caseStatusController=require('./Cases/CaseStatus/caseStatusController')
+const Payments=require('./Cases/Payments/paymentController')
+const Evidences=require('./Cases/Evidences/evidenceController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -102,5 +105,23 @@ router.post('/viewInternsById/:id',Interns.viewInternsById)
 router.post('/internforgotPassword',Interns.forgotPassword)
 router.post('/internresetPassword/:id',Interns.resetPassword)
 router.post('/loginIntern',Interns.login)
+
+
+//case status
+router.post('/createStatus/:id',caseStatusController.createStatus)
+router.post('/getStatusById/:id',caseStatusController.getStatusById)
+router.post('/getStatusByCaseId/:id',caseStatusController.getStatusByCaseId)
+
+//payments
+router.post('/createStatus/:id',Payments.reqPayment)
+router.post('/getAllPaymentByAdvId/:id',Payments.getAllPaymentByAdvId)
+router.post('/getPaymentsByCaseId/:id',Payments.getPaymentsByCaseId)
+router.post('/getPaymentsById/:id',Payments.getPaymentsById)
+router.post('/receivePaymentsById/:id',Payments.receivePaymentsById)
+
+//evidences
+router.post('/addEvidence/:id',Evidences.upload,Evidences.addEvidence)
+router.post('/getEvidenceByCaseId/:id',Evidences.getEvidenceByCaseId)
+router.post('/getEvidenceById/:id',Evidences.getEvidenceById)
 
 module.exports=router
