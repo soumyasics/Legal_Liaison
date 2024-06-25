@@ -59,6 +59,7 @@ import AdvocateViewAllRecentCases from './Components/Advocates/AdvocateViewAllRe
 import AdvocateChat from './Components/Advocates/AdvocateChat';
 import InternRegistration from './Components/Interns/InternRegistration';
 import InternLogin from './Components/Interns/InternLogin';
+import InternsHome from './Components/Interns/InternsHome';
 import AdvocateViewJnrAdvReqProfile from './Components/Advocates/AdvocateViewJnrAdvReqProfile';
 import JuniorAdvocateViewMentor from './Components/JuniorAdvocates/JuniorAdvocateViewMentor';
 import JuniorAdvChatToAdv from './Components/JuniorAdvocates/JuniorAdvChatToAdv';
@@ -148,6 +149,8 @@ function App() {
 
           <Route path="/intern_registration" element={[<LandingNavbar />,<InternRegistration/>,<UserFooter />]} />
           <Route path="/intern_login" element={[<LandingNavbar />,<InternLogin/>,<UserFooter />]} />
+          <Route path="/intern_home" element={[<LandingNavbar />,<InternsHome/>,<UserFooter />]} />
+
 
 
           {/* Landing Page routes */}
