@@ -39,7 +39,7 @@ function Advocate_ViewJuAdvocateRequest() {
         if (res.data.status === 200) {
           // Filter out the approved request from the data array
           toast.success('Accepted')
-          setData(prevData => prevData.filter(item => item.jnrId._id !== id));
+          setData(prevData => prevData.filter(item => item._id !== id));
         }
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ function Advocate_ViewJuAdvocateRequest() {
           // Filter out the rejected request from the data array
           toast.warning('Rejected')
 
-          setData(prevData => prevData.filter(item => item.jrId._id !== id));
+          setData(prevData => prevData.filter(item => item._id !== id));
         }
       })
       .catch((error) => {
@@ -115,7 +115,7 @@ function Advocate_ViewJuAdvocateRequest() {
                     </td>
                     <td className="table-data">
                       <Link 
-                    //   to={`/admin_view_single_advocate/${advocate._id}`}
+                      to={`/advocate_view_jnr_adv_profile_req/${juadvocatereq.jrId._id}/${juadvocatereq._id}`}
                       >
                         <button className="btn1 btn btn-outline-secondary">
                           <img src={img} alt="View Details" />
@@ -125,7 +125,7 @@ function Advocate_ViewJuAdvocateRequest() {
                     <td className="table-data">
                     <button
                         className="btn btn-outline-success success-size"
-                        onClick={() => handleApprove(juadvocatereq.jrId._id)}
+                        onClick={() => handleApprove(juadvocatereq._id)}
                       >
                         <img src={img1} alt="Approve Advocate" />
                       </button>
@@ -133,7 +133,7 @@ function Advocate_ViewJuAdvocateRequest() {
                     <td className="table-data">
                     <button
                         className="btn btn-outline-danger"
-                        onClick={() => handleReject(juadvocatereq.jrId._id)}
+                        onClick={() => handleReject(juadvocatereq._id)}
                       >
                         <img src={img2} alt="Reject Advocate" />
                       </button>

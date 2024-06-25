@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import img from "../../Assets/image23.png";
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
+import { toast } from 'react-toastify';
 
 function InternLogin() {
     const [data, setData] = useState({ email: '', password: '' });
@@ -51,12 +52,16 @@ function InternLogin() {
                     console.log("Response:", response);
                     if (response.data.status === 200) {
                         console.log("Login Successful");
-                        alert("Login Successful");
-                        navigate('/intern_home');
+                        toast.success("Login Successful");
+                        // navigate('/intern_home');
                         localStorage.setItem('internId', response.data.data._id);
-                    } else {
+                    } else if(response.data.status === 405) {
                         console.log("Login Failed");
-                        alert("Login Failed");
+                        toast.warning(response.data.msg);
+                    }else{
+                        alert('Failed')
+                        console.log("Login Failed");
+
                     }
                 })
                 .catch(error => {
@@ -123,7 +128,7 @@ function InternLogin() {
                                 <p>
                                     Don't have an account?{" "}
                                     <Link
-                                        to="/InternRegister"
+                                        to="/intern_registration"
                                         className="text-decoration-none text-gold"
                                     >
                                         Register here.

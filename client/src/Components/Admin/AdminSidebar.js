@@ -64,7 +64,7 @@ function AdminSidebar() {
                 </div>
                 <div className='adjust-space'>
                 <img src={internimg} className='image-adjust-1 padding each-1' alt='User image'/>{' '},{' '}
-                    <label className='label-sub padding'>Interns</label>
+                    <Link to={'/admin_view_approved_interns'}><label className='label-sub padding'>Interns</label></Link>
                 </div>
                 </div>
                 </div>

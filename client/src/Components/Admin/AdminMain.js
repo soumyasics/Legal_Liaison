@@ -13,6 +13,9 @@ import ViewJuniorAdvocateRequest from "./ViewJuniorAdvocateRequest";
 import ViewProfile_AllJuniorAdvocates from "./ViewProfile_AllJuniorAdvocates";
 import ViewProfile_JuniorAdvocate from "./ViewProfile_JuniorAdvocate";
 import ViewProfile_JuniorAdvocateRequest from "./ViewProfile_JuniorAdvocateRequest";
+import AdminViewInternRequest from "./AdminViewInternRequest";
+import AdminViewInternProfile from "./AdminViewInternProfile";
+import AdminViewApprovedInterns from "./AdminViewApprovedInterns";
 
 function AdminMain({ data }) {
   const navigate = useNavigate();
@@ -20,16 +23,19 @@ function AdminMain({ data }) {
   useEffect(() => {
     if (localStorage.getItem("adminId") == null) {
       navigate("/");
-    } 
-  }, [navigate]);   
+    }
+  }, [navigate]);
 
   return (
-    <div className="container-fluid admin_main" >
+    <div className="container-fluid admin_main">
       <div className="row">
-        <div className="col-lg-3 col-md-6 col-sm-12 adminmain-sidebar" style={{padding:0}}>
+        <div
+          className="col-lg-3 col-md-6 col-sm-12 adminmain-sidebar"
+          style={{ padding: 0 }}
+        >
           <AdminSidebar />
         </div>
-        <div className=" col-lg-9 col-md-6 col-sm-12 adminmain-content"  >
+        <div className=" col-lg-9 col-md-6 col-sm-12 adminmain-content">
           {data === "admindashboard" ? (
             <AdminDashboard />
           ) : data === "adminviewalladvocates" ? (
@@ -37,18 +43,27 @@ function AdminMain({ data }) {
           ) : data === "approvereject" ? (
             <ApproveRejectAdvocate />
           ) : data === "adminviewrequest" ? (
-            <ViewProfile_AR view='request'  />
+            <ViewProfile_AR view="request" />
           ) : data === "adminviewsingleadvocate" ? (
-            <ViewProfile_AR view='view' />
+            <ViewProfile_AR view="view" />
           ) : data === "adminviewalljunioradvocates" ? (
             <AdminViewAllJuniorAdvocate />
-          ): data === "approverejectjunioradvocate" ? (
+          ) : data === "approverejectjunioradvocate" ? (
             <ViewJuniorAdvocateRequest />
-          ): data === "adminviewprofile-alladvocates" ? (
+          ) : data === "adminviewprofile-alladvocates" ? (
             <ViewProfile_AllJuniorAdvocates />
-          ): data === "adminviewprofile-requests" ? (
+          ) : data === "adminviewprofile-requests" ? (
             <ViewProfile_JuniorAdvocateRequest />
-          ):(
+          ) : data === "approverejectIntern" ? (
+            <AdminViewInternRequest />
+          ) : data === "interndetailreq" ? (
+            <AdminViewInternProfile view="request" />
+          ) : data === "approvedInterns" ? (
+            <AdminViewApprovedInterns  />
+          ) 
+           : data === "interndetails" ? (
+            <AdminViewInternProfile view='view'  />
+          ) : (
             <AdminLogin />
           )}
         </div>
