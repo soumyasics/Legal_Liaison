@@ -51,7 +51,8 @@ function AdvocateChatBox() {
           });
       },[uid])
     
-      const handleSend = () => {
+      const handleSend = (e) => {
+        e.preventDefault();
         axiosInstance
           .post(`chatting`, { msg: inputValue, from: 'advocates', to: 'users', advId: aid, userId: uid })
           .then((res) => {
@@ -91,17 +92,20 @@ function AdvocateChatBox() {
             </div>
           ))}
         </div>
-        <div className="chat-input">
+        <form onSubmit={handleSend} >
+          <div className="chat-input">
           <input
             type="text"
             placeholder="Type Your Message"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button onClick={handleSend}>
+          <button type='submit' >
             <i className="ri-send-plane-fill"></i>
           </button>
         </div>
+        </form>
+        
       </div>:
       <div className='no_chat_container' >
         <h3>Please select a person to start a conversation and get the help or information you need.</h3>

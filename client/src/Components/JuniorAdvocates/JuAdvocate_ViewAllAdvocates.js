@@ -16,7 +16,7 @@ function JuAdvocate_ViewAllAdvocates() {
 
   useEffect(() => {
     axiosMultipartInstance
-      .post(`/viewJuniorAdvocateById/${jid}`)
+      .post(`/viewAdvocatesBySpecializn`,{specialization:profile})
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {

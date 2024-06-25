@@ -79,6 +79,24 @@ const getApprovedAppointmentsForAdv = async (req, res) => {
 };
 
 // Controller function to get all appointment requests
+const getApprovedMentorForJuniors = async (req, res) => {
+  try {
+    const appointments = await AppointmentReq.findOne({jrId:req.params.id,status:'accepted'}).populate('advocateId');
+    res.status(200).json({
+      status: 200,
+      msg: 'Appointments retrieved successfully',
+      data: appointments
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      msg: 'Failed to retrieve appointments',
+      error: err.message
+    });
+  }
+};
+
+// Controller function to get all appointment requests
 const getAppointmentReqsByjrId = async (req, res) => {
     try {
       const appointments = await AppointmentReq.find({jrId:req.params.id}).populate('advocateId');
@@ -178,5 +196,6 @@ module.exports = {
   acceptReqbyAdv,
 rejectReqbyAdv,
 getAppointmentReqsById,
-getApprovedAppointmentsForAdv
+getApprovedAppointmentsForAdv,
+getApprovedMentorForJuniors
 };

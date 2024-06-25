@@ -3,7 +3,6 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import './ViewProfile_AllJuniorAdvocates.css'
-
 import Lottie from 'lottie-react';
 import noData from "../../Assets/noDataFound.json";
 import img from "../../Assets/Vecto(2).png";

@@ -17,15 +17,18 @@ function AdvocateChatSidebar() {
       .post(`viewChatRecipientsforAdvocateById/${id}`)
       .then((res) => {
         console.log(res);
-        if (res.data.status === 200) {
+        if (res.data.msg === "No Data obtained ") {
+          setUsers([]);
+        } else if (res.data.status == 200) {
           setUsers(res.data.users);
-        } else {
         }
       })
       .catch(() => {
         toast.error("Failed to Add Case");
       });
-  }, []);
+  }, [id]);
+
+  console.log(users);
 
   return (
     <div>
@@ -51,39 +54,38 @@ function AdvocateChatSidebar() {
               <div className="adv_chat_sidebar_no_recipient">
                 <p>No Recipient found</p>
               </div>
-              
             ) : (
               <div>
-                {
-                  users.map((e)=>{
-                    return(
-                      <div className="adv_chat_sidebar_name">
-                <Link to={`/advocate_single_chat/${e._id}`} >
-                  <div className="d-flex">
-                    <div className="adv_chat_sidebar_name_img">
-                    <img src={`${imageUrl}/${e.profilePic.filename}`} className="img-fluid" alt="Advocate" />
-                    </div>
-                    <div className="adv_chat_sidebar_name_content px-3">
-                      <div>
-                        <p>
-                          <b>{e.name}</b>
-                        </p>
-                        <p>
-                          <small>[ Client ]</small>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                {users.length
+                  ? users.map((e) => {
+                      return (
+                        <div className="adv_chat_sidebar_name">
+                          <Link to={`/advocate_single_chat/${e._id}`}>
+                            <div className="d-flex">
+                              <div className="adv_chat_sidebar_name_img">
+                                <img
+                                  src={`${imageUrl}/${e.profilePic.filename}`}
+                                  className="img-fluid"
+                                  alt="Advocate"
+                                />
+                              </div>
+                              <div className="adv_chat_sidebar_name_content px-3">
+                                <div>
+                                  <p>
+                                    <b>{e.name}</b>
+                                  </p>
+                                  <p>
+                                    <small>[ Client ]</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : ""}
               </div>
-                    )
-                  })
-                }
-                 
-                </div>
-              
-             
-              
             )}
           </div>
         </div>

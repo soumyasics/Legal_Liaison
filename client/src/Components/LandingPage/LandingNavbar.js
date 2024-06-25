@@ -42,7 +42,7 @@ function LandingNavbar() {
                 <Link to='/UserLogin' className="dropdown-item" >Client</Link>
                 <Link to={'/AdvocateLogin'}  className="dropdown-item" >Advocates</Link>
                 <Link to='/JuniorAdvocateLogin'  className="dropdown-item" >Junior Advocates</Link>
-                <Link className="dropdown-item" >Students</Link>
+                <Link to={'/intern_login'} className="dropdown-item" >Students</Link>
               </div>
             </li>
           </ul>

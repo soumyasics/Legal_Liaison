@@ -29,7 +29,7 @@ const messageSchema = new mongoose.Schema(
      ref:'interns'
       
     },
-    juniorAdvId:{
+    jrId:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "junioradvocates",
      
