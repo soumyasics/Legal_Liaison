@@ -113,7 +113,7 @@ router.post('/getStatusById/:id',caseStatusController.getStatusById)
 router.post('/getStatusByCaseId/:id',caseStatusController.getStatusByCaseId)
 
 //payments
-router.post('/createStatus/:id',Payments.reqPayment)
+router.post('/reqPayment/:id',Payments.reqPayment)
 router.post('/getAllPaymentByAdvId/:id',Payments.getAllPaymentByAdvId)
 router.post('/getPaymentsByCaseId/:id',Payments.getPaymentsByCaseId)
 router.post('/getPaymentsById/:id',Payments.getPaymentsById)
