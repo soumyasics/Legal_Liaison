@@ -7,7 +7,7 @@ import img2 from "../../Assets/raphael_cross.png";
 import noData from "../../Assets/noDataFound.json";
 import { Link } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
 
 
 function Advocate_ViewJuAdvocateRequest() {

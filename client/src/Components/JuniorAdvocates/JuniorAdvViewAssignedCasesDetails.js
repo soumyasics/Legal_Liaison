@@ -1,83 +1,48 @@
-import React, { useEffect, useState } from "react";
-import "./AdvocateViewCaseReq.css";
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import img from "../../Assets/adv4.avif";
 import icon1 from "../../Assets/profile.png";
 import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
-import axiosInstance from "../Constants/BaseUrl";
-import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Modal, Button } from "react-bootstrap";
 import { imageUrl } from "../Constants/Image_Url";
 
-function AdvocateViewCaseReq() {
-
-  const [data, setData] = useState({userId:{},caseId:{dateOfIncident:'',evidence:{filename:''}}});
-  const {id} =useParams();
-  const navigate =useNavigate();
-  const aid=localStorage.getItem('advocateId');
+function JuniorAdvViewAssignedCasesDetails() {
+  const [data, setData] = useState({
+    userId: {},
+    caseId: { dateOfIncident: "", evidence: { filename: "" } },
+  });
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const [evidenceUrl, setEvidenceUrl] = useState('');
+  const [evidenceUrl, setEvidenceUrl] = useState("");
 
-  useEffect(() => {
-    axiosInstance
-      .post(`/getAppointmentReqsById/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          setData(res.data.data);
-        } else {
-          setData({});
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
-      });
-  }, [id]);
+  //   useEffect(() => {
+  //     axiosInstance
+  //       .post(`/getAppointmentReqsById/${id}`)
+  //       .then((res) => {
+  //         console.log(res);
+  //         if (res.data.status === 200) {
+  //           setData(res.data.data);
+  //         } else {
+  //           setData({});
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error!", error);
+  //       });
+  //   }, [id]);
 
-  const handleAccept = () => {
-    axiosInstance
-      .post(`/acceptReqbyAdv/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          toast.success("Accepted Successfully");
-          navigate('/advocate_viewcasereq');
-        } else {
-          toast.error("Failed");
-        }
-      })
-      .catch(() => {
-        toast.error("Failed");
-      });
-  };
+  //   const handleEvidenceClick = () => {
+  //     setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
+  //     setShowModal(true);
+  //   };
 
-  const handleReject = () => {
-    axiosInstance
-      .post(`/rejectReqbyAdv/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          toast.success("Rejected Successfully");
-          navigate('/advocate_viewcasereq');
-        } else {
-          toast.error("Failed");
-        }
-      })
-      .catch(() => {
-        toast.error("Failed");
-      });
-  };
+  //   const handleClose = () => setShowModal(false);
 
-  const handleEvidenceClick = () => {
-    setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
-    setShowModal(true);
-  };
-
-  const handleClose = () => setShowModal(false);
- 
   return (
     <div className="adv_view_case_req">
       <div className="container">
@@ -96,92 +61,134 @@ function AdvocateViewCaseReq() {
                     <div className="px-3">
                       <img src={icon1} alt="icon1" />
                     </div>
-                    <div>{data.userId.name}</div>
+                    <div>name</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon2} alt="icon2" />
                     </div>
-                    <div>{data.userId.email}</div>
+                    <div>email</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon3} alt="icon3" />
                     </div>
-                    <div>{data.userId.contact}</div>
+                    <div>contact</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon4} alt="icon4" />
                     </div>
-                    <div>{data.userId.address}</div>
+                    <div>address</div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">
                       <img src={icon5} alt="icon5" />
                     </div>
-                    <div>{data.userId.nationality}</div>
+                    <div>nationality</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="adv_case_req_left_container2 ">
+            <div className="adv_case_req_left_container2">
               <div className="adv_case_req_left_container1_head">
-                <p>Opponent Details</p>
+                <p>Evidences</p>
               </div>
               <div className="adv_case_req_left_container1_content">
                 <div className="d-flex mt-2">
-                  <div className="px-3">Name :</div>
-                  <div>{data.caseId.opponentName ? data.caseId.opponentName : 'Unknown'}</div>
+                  <div className="px-3">Name : </div>
+                  <div>
+                    {/* {data.caseId.opponentName
+                      ? data.caseId.opponentName
+                      : "Unknown"} */}
+                      unknown
+                  </div>
                 </div>
                 <div className="d-flex mt-2">
                   <div className="px-3">Address :</div>
-                  <div>{data.caseId.opponentAddress ? data.caseId.opponentAddress : 'Unknown'}</div>
+                  <div>
+                    {/* {data.caseId.opponentAddress
+                      ? data.caseId.opponentAddress
+                      : "Unknown"} */}
+                      unknown
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-7">
-            <div className="adv_case_req_right_container">
+            
+
+          <div className="adv_case_req_left_container2 mb-3">
+              <div className="adv_case_req_left_container1_head">
+                <p>Opponent Details</p>
+              </div>
+              <div className="adv_case_req_left_container1_content">
+                <div className="d-flex mt-2">
+                  <div className="px-3">Name : </div>
+                  <div>
+                    {/* {data.caseId.opponentName
+                      ? data.caseId.opponentName
+                      : "Unknown"} */}
+                      unknown
+                  </div>
+                </div>
+                <div className="d-flex mt-2">
+                  <div className="px-3">Address :</div>
+                  <div>
+                    {/* {data.caseId.opponentAddress
+                      ? data.caseId.opponentAddress
+                      : "Unknown"} */}
+                      unknown
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="adv_case_req_right_container" id="min-h">
               <div className="adv_case_req_left_container1_head">
                 <p>Case Details</p>
               </div>
-              <div className="adv_case_req_left_container1_content">
+              <div className="adv_case_req_left_container1_content"  >
                 <table>
                   <tbody>
                     <tr>
                       <td>Case Title</td>
-                      <td>: {data.caseId.title}</td>
+                      <td>: title</td>
                     </tr>
                     <tr>
                       <td>Case Description</td>
-                      <td>: {data.caseId.description}</td>
+                      <td>: desc </td>
                     </tr>
                     <tr>
                       <td>Case Type</td>
-                      <td>: {data.caseId.type}</td>
+                      <td>: type</td>
                     </tr>
                     <tr>
                       <td>Date of Request</td>
-                      <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
+                      <td>: 12-12-12</td>
                     </tr>
                     <tr>
                       <td>Evidence</td>
-                      <td>: <Link to="#" onClick={handleEvidenceClick}>Click here</Link></td>
+                      <td>
+                        :{" "}
+                        <Link to="#" 
+                        // onClick={handleEvidenceClick}
+                        >
+                          Click here
+                        </Link>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
-                <div className="adv_view_case_req_actions text-center mt-5">
-                  <button className="btn bg-gold" onClick={handleAccept}>Accept</button>
-                  <button className="btn bg-gold mx-4" onClick={handleReject}>Reject</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Modal show={showModal} onHide={handleClose} centered>
+      {/* <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Evidence</Modal.Title>
         </Modal.Header>
@@ -197,9 +204,9 @@ function AdvocateViewCaseReq() {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
-    </div> 
+      </Modal> */}
+    </div>
   );
 }
 
-export default AdvocateViewCaseReq;
+export default JuniorAdvViewAssignedCasesDetails;
