@@ -52,20 +52,20 @@ function AdvocateViewSingleRecentCase() {
             <div className="adv_view_case_req_action_grps d-flex justify-content-between">
               <div className="adv_view_case_req_action_btn d-flex">
                 <i class="ri-upload-2-fill"></i>
-                <Link to={"/advocate_addevidence"}>
+                <Link to={`/advocate_addevidence/${data.caseId._id}`}>
                   <p>Upload Evidence</p>
                 </Link>
               </div>
 
               <div className="adv_view_case_req_action_btn d-flex">
                 <i class="ri-file-paper-2-line"></i>
-                <Link to={"/advocate_update_casestatus"}>
+                <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
                   <p>Add Case Status</p>
                 </Link>
               </div>
               <div className="adv_view_case_req_action_btn d-flex">
                 <i class="ri-bank-card-line"></i>
-                <Link to={"/advocate_paymentreq"}>
+                <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
                   <p>Request Payment</p>
                 </Link>
               </div>
@@ -178,7 +178,12 @@ function AdvocateViewSingleRecentCase() {
                   </table>
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
-                      <Link to={'/advocate_view_client_payment_status'}><button className="btn btn-warning btn-style  me-2">
+                      <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                        Case Status
+                      </button></Link>
+                    </div>
+                    <div className="col-auto">
+                      <Link to={`/advocate_view_client_payment_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
                         Payment Info
                       </button></Link>
                     </div>

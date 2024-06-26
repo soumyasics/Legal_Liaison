@@ -81,7 +81,7 @@ const getPaymentsByCaseId = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const status = await paymentSchema.find({caseId:req.params.id}).sort({createdAt:1}).poopulate('advocateId').populate('userId');;
+        const status = await paymentSchema.find({caseId:req.params.id}).sort({createdAt:1}).populate('advocateId').populate('userId');;
         if (!status) {
             return res.json({status:500,
                 message: 'Status not found' });

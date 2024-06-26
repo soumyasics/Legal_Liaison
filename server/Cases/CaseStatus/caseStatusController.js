@@ -5,7 +5,7 @@ const Casestatus = require('./caseStatusSchema');
 const createStatus = async (req, res) => {
     const caseId=req.params.id
     const caseDatas=await caseSchema.findById(caseId)
-
+ 
     try {
         const newStatus = new Casestatus({
             caseId:caseId,
