@@ -23,6 +23,7 @@ const uploadProfile = multer({ storage: storage }).single('profilePic');
 
 // Register Junior Advocate
 const registerJuniorAdvocate = async (req, res) => {
+    console.log("in api",req.files);
     try {
         const { name, bcNo, bcState, contact, email, password, gender, address, percentage, nationality, qualification, dob,institute, dateOfEnrollment, specialization } = req.body;
 

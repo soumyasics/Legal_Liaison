@@ -19,17 +19,20 @@ const statusSchema = mongoose.Schema({
             ref:'advocates'
 
         },
-        status:{
-            type:String,
+        data:{
+            type:Object,
             required: true,
         },
         date:{
             type:Date,
         }, 
-        description:{
+     
+        comments:{
             type:String
+            
         }
 
-});
-module.exports = mongoose.model('casestatus', statusSchema)
+},
+{ timestamps: true });
+module.exports = mongoose.model('evidences', statusSchema)
 
