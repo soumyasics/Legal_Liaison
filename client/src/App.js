@@ -68,6 +68,7 @@ import AdvAssignCasesToJnrAdv from './Components/Advocates/AdvAssignCasesToJnrAd
 import AdvovatedViewApprovedJnrAdv from './Components/Advocates/AdvovatedViewApprovedJnrAdv';
 import JuniorAdvViewAssignedCases from './Components/JuniorAdvocates/JuniorAdvViewAssignedCases';
 import JuniorAdvViewAssignedCasesDetails from './Components/JuniorAdvocates/JuniorAdvViewAssignedCasesDetails';
+import AdvocateViewCaseStatus from './Components/Advocates/AdvocateViewCaseStatus';
 
 
 function App() {
@@ -106,12 +107,13 @@ function App() {
           <Route path="/advocate_single_chat/:uid/:type" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat type='user' />,<UserFooter />]} />
 
           <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
-          <Route path="/advocate_paymentreq" element={[<AdvocateNavbar />, <Advocate_PaymentRequest />, <UserFooter />]} />
-          <Route path="/advocate_addevidence" element={[<AdvocateNavbar />, <Advocate_AddEvidence />, <UserFooter />]} />
-          <Route path="/advocate_update_casestatus" element={[<AdvocateNavbar />, <Advocate_UpdateCaseStatus />, <UserFooter />]} />
+          <Route path="/advocate_paymentreq/:id" element={[<AdvocateNavbar />, <Advocate_PaymentRequest />, <UserFooter />]} />
+          <Route path="/advocate_addevidence/:id" element={[<AdvocateNavbar />, <Advocate_AddEvidence />, <UserFooter />]} />
+          <Route path="/advocate_update_casestatus/:id" element={[<AdvocateNavbar />, <Advocate_UpdateCaseStatus />, <UserFooter />]} />
           <Route path="/advocate_viewjuadvocatereq" element={[<AdvocateNavbar />, <Advocate_ViewJuAdvocateRequest />, <UserFooter />]} />
           <Route path="/advocate_view_jnr_adv_profile_req/:id/:aid" element={[<AdvocateNavbar />, <AdvocateViewJnrAdvReqProfile value='request' />, <UserFooter />]} />
-          <Route path="/advocate_view_client_payment_status" element={[<AdvocateNavbar />, <AdvocateViewClientPaymentStatus />, <UserFooter />]} />
+          <Route path="/advocate_view_client_payment_status/:id" element={[<AdvocateNavbar />, <AdvocateViewClientPaymentStatus />, <UserFooter />]} />
+          <Route path="/advocate_view_case_status/:id" element={[<AdvocateNavbar />, <AdvocateViewCaseStatus />, <UserFooter />]} />
           <Route path="/advocate_assign_cases_to_jnradv" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
           <Route path="/advocate_view_all_jnr_adv" element={[<AdvocateNavbar />, <AdvovatedViewApprovedJnrAdv />, <UserFooter />]} />
 
