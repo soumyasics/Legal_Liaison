@@ -8,6 +8,7 @@
   background-color: #ffffff;
   min-height: 350px;
   border-radius: 14px;
+  margin-bottom: 30px;
 }
 
 .adv_case_req_left_container1_head {
@@ -37,7 +38,7 @@
 .adv_case_req_left_container2 {
   background-color: #ffffff;
   min-height: 200px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   border-radius: 14px;
 }
 

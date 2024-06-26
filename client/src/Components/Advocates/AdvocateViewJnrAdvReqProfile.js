@@ -5,7 +5,7 @@ import { imageUrl } from '../Constants/Image_Url';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 
-function AdvocateViewJnrAdvReqProfile() {
+function AdvocateViewJnrAdvReqProfile({value}) {
     const [advocate, setAdvocate] = useState({ profilePic: { filename: '' }, idProof: { filename: '' } });
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -110,7 +110,8 @@ function AdvocateViewJnrAdvReqProfile() {
                                         <td className='left-alignn'><label className="ju-sub-label">{advocate.percentage}%</label></td>
                                     </tr>
                                     <br />
-                                    <div className="row justify-content-center mt-4 arr">
+                                    {
+                                        data=='request'?<div className="row justify-content-center mt-4 arr">
                                         <div className="col-auto">
                                             <button
                                                 className="btn btn-warning btn-style  me-2"
@@ -125,7 +126,9 @@ function AdvocateViewJnrAdvReqProfile() {
                                                 Reject
                                             </button>
                                         </div>
-                                    </div>
+                                    </div>:''
+                                    }
+                                    
                                 </tbody>
                             </table>
                         </div>
