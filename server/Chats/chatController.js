@@ -162,6 +162,8 @@ const viewChatBetweenAdvAndJr = (req, res) => {
       // ],}
     )
     .sort({ date: 1 })
+    .populate('jrId')
+    .populate('advId')
     .exec()
     .then((data) => {
       res.json({
@@ -190,6 +192,8 @@ const viewChatBetweenInternAndAdv = (req, res) => {
       // ],}
     )
     .sort({ date: 1 })
+    .populate('internId')
+    .populate('advId')
     .exec()
     .then((data) => {
       res.json({
