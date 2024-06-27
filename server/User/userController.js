@@ -217,7 +217,9 @@ const login = (req, res) => {
       if (User.password!=password) {
         return res.json({ status:405,msg: 'Password Mismatch !!' });
       }
-    
+      if (User.adminApproved==false ||User.isActive==false) {
+        return res.json({ status:405,msg: 'Please contact Admin !!' });
+      }
       const token = createToken(User);
 
       res.json({

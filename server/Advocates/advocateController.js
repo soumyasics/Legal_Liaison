@@ -454,8 +454,8 @@ const login = (req, res) => {
         if (user.password != password) {
             return res.json({ status: 405, msg: 'Password Mismatch !!' });
         }
-        if (user.adminApproved==false) {
-            return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
+        if (user.adminApproved==false ||user.isActive==false) {  
+                      return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
         }
         const token = createToken(user);
 
@@ -488,6 +488,42 @@ const requireAuth = (req, res, next) => {
     });
 };
 
+
+//
+const addRating = (req, res) => {
+    let newRate = parseInt(req.body.rating);
+    let rating = 0;
+    Advocate.findById({ _id: req.params.id })
+      .exec()
+      .then((data) => {
+        rating = data.rating;
+        if (data.rating != 0) rating = (rating + newRate) / 2;
+        else rating = newRate;
+        Advocate.findByIdAndUpdate(
+          { _id: req.params.id },
+          {
+            rating: rating,
+          },
+          { new: true }
+        )
+          .exec()
+          .then((data) => {
+            res.json({
+              status: 200,
+              msg: "Data obtained successfully",
+              data: data,
+            });
+          })
+          .catch((err) => {
+            res.json({
+              status: 500,
+              msg: "Data not Inserted",
+              Error: err,
+            });
+          });
+      });
+  };
+  
 module.exports = {
     registerAdvocate,
     viewAdvocates,
@@ -505,5 +541,6 @@ module.exports = {
     activateAdvocateById,
     deactivateAdvocateById,
     uploadProfile,
-    viewAdvocatesBySpecializn
+    viewAdvocatesBySpecializn,
+    addRating
 };
