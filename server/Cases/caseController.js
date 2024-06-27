@@ -66,14 +66,15 @@ const getAllCases = async (req, res) => {
   }
 };
 
+
 // Get a single case by ID
-const getCaseById = async (req, res) => {
+const getCaseByUserId = async (req, res) => {
   try {
-    const caseItem = await Case.findById(req.params.id);
+    const caseItem = await Case.find({userId:req.params.id});
     if (!caseItem) {
       return res.json({
         status: 404,
-        msg: 'Case not found',
+        msg: 'No Cases found',
       });
     }
     res.json({
@@ -90,9 +91,9 @@ const getCaseById = async (req, res) => {
 };
 
 // Get a single case by ID
-const getCaseByUserId = async (req, res) => {
+const getCaseById = async (req, res) => {
   try {
-    const caseItem = await Case.find({userId:req.params.id});
+    const caseItem = await Case.findById({_Id:req.params.id});
     if (!caseItem) {
       return res.json({
         status: 404,
@@ -102,6 +103,7 @@ const getCaseByUserId = async (req, res) => {
     res.json({
       status: 200,
       data: caseItem,
+      msg:'data obtained succesfully'
     });
   } catch (err) {
     res.json({

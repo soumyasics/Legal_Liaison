@@ -61,6 +61,9 @@ router.post('/viewUsers',user.viewUsers)
 router.post('/createCase/:id',cases.upload,cases.createCase)
 router.post('/getCaseType',cases.getCaseType)
 router.post('/getCaseByUserId/:id',cases.getCaseByUserId)
+router.post('/getCaseById/:id',cases.getCaseById)
+router.post('/deleteCase/:id',cases.deleteCase)
+
 
 router.post('/createAppointment',appointments.createAppointment)
 router.post('/getAppointmentReqsByUserId/:id',appointments.getAppointmentReqsByUserId)
@@ -68,6 +71,7 @@ router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAd
 router.post('/acceptReqbyAdv/:id',appointments.acceptReqbyAdv)
 router.post('/rejectReqbyAdv/:id',appointments.rejectReqbyAdv)
 router.post('/getAppointmentReqsById/:id',appointments.getAppointmentReqsById)
+router.post('/getApprovedAppointmentsForAdv/:id',appointments.getApprovedAppointmentsForAdv)
 router.post('/getApprovedAppointmentsForAdv/:id',appointments.getApprovedAppointmentsForAdv)
 
 //chatting
