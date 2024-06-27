@@ -13,8 +13,8 @@ import icon5 from "../../Assets/location.png";
 function UserViewCaseUpdates() {
 
     const [data, setData] = useState({
-        userId: {},
-        caseId: { dateOfIncident: "", evidence: { filename: "" } },
+        advocateId: {profilePic:{filename:''}},
+        dateOfIncident: "", evidence: { filename: "" },
       });
       const { id } = useParams();
       const navigate = useNavigate();
@@ -23,7 +23,7 @@ function UserViewCaseUpdates() {
     
       useEffect(() => {
         axiosInstance
-          .post(`/getStatusByCaseId/${id}`)
+          .post(`/getCaseById/${id}`)
           .then((res) => {
             console.log(res);
             if (res.data.status === 200) {
@@ -38,7 +38,7 @@ function UserViewCaseUpdates() {
       }, [id]);
     
       const handleEvidenceClick = () => {
-        setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
+        setEvidenceUrl(`${imageUrl}/${data.evidence.filename}`);
         setShowModal(true);
       };
     
@@ -46,10 +46,10 @@ function UserViewCaseUpdates() {
 
   return (
     <div>
-      {/* <div className="adv_view_case_req">
+      <div className="adv_view_case_req">
         <div className="container">
           <div className="d-flex justify-content-end">
-            <div className="adv_view_case_req_action_grps d-flex justify-content-between">
+            {/* <div className="adv_view_case_req_action_grps d-flex justify-content-between">
               <div className="adv_view_case_req_action_btn d-flex">
                 <i class="ri-upload-2-fill"></i>
                 <Link to={`/advocate_addevidence/${data.caseId._id}`}>
@@ -69,49 +69,49 @@ function UserViewCaseUpdates() {
                   <p>Request Payment</p>
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="row mt-3">
             <div className="col-5">
               <div className="adv_case_req_left_container1">
                 <div className="adv_case_req_left_container1_head">
-                  <p>Client Details</p>
+                  <p>Advocate Details</p>
                 </div>
                 <div className="adv_case_req_left_container1_content d-flex">
                   <div className="adv_case_req_left_container1_content_img">
-                    <img src={img} alt="Client" />
+                    <img src={`${imageUrl}/${data.advocateId.profilePic.filename}`} alt="Client" />
                   </div>
                   <div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon1} alt="icon1" />
                       </div>
-                      <div>{data.userId.name}</div>
+                      <div>{data.advocateId.name}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon2} alt="icon2" />
                       </div>
-                      <div>{data.userId.email}</div>
+                      <div>{data.advocateId.email}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon3} alt="icon3" />
                       </div>
-                      <div>{data.userId.contact}</div>
+                      <div>{data.advocateId.contact}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon4} alt="icon4" />
                       </div>
-                      <div>{data.userId.address}</div>
+                      <div>{data.advocateId.address}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon5} alt="icon5" />
                       </div>
-                      <div>{data.userId.nationality}</div>
+                      <div>{data.advocateId.nationality}</div>
                     </div>
                   </div>
                 </div>
@@ -124,16 +124,16 @@ function UserViewCaseUpdates() {
                   <div className="d-flex mt-2">
                     <div className="px-3">Name :</div>
                     <div>
-                      {data.caseId.opponentName
-                        ? data.caseId.opponentName
+                      {data.opponentName
+                        ? data.opponentName
                         : "Unknown"}
                     </div>
                   </div>
                   <div className="d-flex mt-2">
                     <div className="px-3">Address :</div>
                     <div>
-                      {data.caseId.opponentAddress
-                        ? data.caseId.opponentAddress
+                      {data.opponentAddress
+                        ? data.opponentAddress
                         : "Unknown"}
                     </div>
                   </div>
@@ -150,19 +150,19 @@ function UserViewCaseUpdates() {
                     <tbody>
                       <tr>
                         <td>Case Title</td>
-                        <td>: {data.caseId.title}</td>
+                        <td>: {data.title}</td>
                       </tr>
                       <tr>
                         <td>Case Description</td>
-                        <td>: {data.caseId.description}</td>
+                        <td>: {data.description}</td>
                       </tr>
                       <tr>
                         <td>Case Type</td>
-                        <td>: {data.caseId.type}</td>
+                        <td>: {data.type}</td>
                       </tr>
                       <tr>
                         <td>Date of Request</td>
-                        <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
+                        <td>: {data.dateOfIncident.slice(0, 10)}</td>
                       </tr>
                       <tr>
                         <td>Evidence</td>
@@ -178,17 +178,17 @@ function UserViewCaseUpdates() {
                   </table>
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
-                      <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                      <Link to={`/user_view_case_status/${data._id}`}><button className="btn btn-warning btn-style  me-2">
                         Case Status
                       </button></Link>
                     </div>
                     <div className="col-auto">
-                      <Link to={`/advocate_view_added_evidences/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                      <Link to={`/user_view_added_evidences/${data._id}`}><button className="btn btn-warning btn-style  me-2">
                         Evidences Info
                       </button></Link>
                     </div>
                     <div className="col-auto">
-                      <Link to={`/advocate_view_client_payment_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                      <Link to={`/user_view_adv_payment_req/${data._id}`}><button className="btn btn-warning btn-style  me-2">
                         Payment Info
                       </button></Link>
                     </div>
@@ -221,7 +221,7 @@ function UserViewCaseUpdates() {
             </Button>
           </Modal.Footer>
         </Modal>
-      </div> */}
+      </div>
     </div>
   )
 }

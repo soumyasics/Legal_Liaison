@@ -71,6 +71,10 @@ import JuniorAdvViewAssignedCasesDetails from './Components/JuniorAdvocates/Juni
 import AdvocateViewCaseStatus from './Components/Advocates/AdvocateViewCaseStatus';
 import AdvocateViewAddedEvidences from './Components/Advocates/AdvocateViewAddedEvidences';
 import UserViewCaseUpdates from './Components/User/UserViewCaseUpdates';
+import UserViewCaseStatus from './Components/User/UserViewCaseStatus';
+import UserViewCaseEvidences from './Components/User/UserViewCaseEvidences';
+import UserViewPaymentReq from './Components/User/UserViewPaymentReq';
+import UserPayAdvReq from './Components/User/UserPayAdvReq';
 
 
 function App() {
@@ -93,6 +97,10 @@ function App() {
           <Route path="/user_bookappoinment/:id/:cid" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
           <Route path="/user_chat_to_advocate/:aid" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
           <Route path="/user_view_case_updations/:id" element={[<UserNavbar />,<FormHead title="Chat" />,<UserViewCaseUpdates />,<UserFooter/>]} />
+          <Route path="/user_view_case_status/:id" element={[<UserNavbar />,<FormHead title="Chat" />,<UserViewCaseStatus />,<UserFooter/>]} />
+          <Route path="/user_view_added_evidences/:id" element={[<UserNavbar />,<FormHead title="Chat" />,<UserViewCaseEvidences />,<UserFooter/>]} />
+          <Route path="/user_view_adv_payment_req/:id" element={[<UserNavbar />,<FormHead title="Chat" />,<UserViewPaymentReq />,<UserFooter/>]} />
+          <Route path="/user_pay_adv_req/:id" element={[<UserNavbar />,<UserPayAdvReq />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}

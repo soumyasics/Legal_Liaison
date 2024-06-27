@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap'; 
 import { imageUrl } from '../Constants/Image_Url';
 
 function AdvocateViewAddedEvidences() {

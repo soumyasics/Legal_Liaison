@@ -145,35 +145,51 @@ function UserViewRecentCases() {
                                 </div>
                                 <div className="d-flex mt-2">
                                   <div className="px-2">
-                                    <img src={icon9} alt="icon9" />
-                                  </div>
-                                  <div>Remove</div>
-                                </div>
-                                <div className="d-flex">
-                                  <div className="px-2">
                                     {e.advocateStatus == false ? (
-                                      <Link to={`/user-requestanadvocate/${e._id}`} >
-                                      <button className="btn btn-recent">
-                                        Request an advocate
-                                      </button>
+                                      <Link
+                                        to='' className="d-flex text-decoration-none text-dark"
+                                      >
+                                        <img src={icon9} alt="icon9" className="mx-2" />
+                                        <div>Remove</div>
                                       </Link>
                                     ) : (
-                                      <Link to={`/user_chat_to_advocate/${e.advocateId}`}>
-                                        <button className="btn btn-recent">
-                                        Chat
-                                      </button>
-                                        </Link>
+                                      ""
                                     )}
                                   </div>
                                 </div>
                                 <div className="d-flex">
                                   <div className="px-2">
-                                    {e.advocateStatus == false ? '' : (
-                                      <Link to={`/user_view_case_updations/${e._id}`}>
+                                    {e.advocateStatus == false ? (
+                                      <Link
+                                        to={`/user-requestanadvocate/${e._id}`}
+                                      >
                                         <button className="btn btn-recent">
-                                        View Updates
-                                      </button>
-                                        </Link>
+                                          Request an advocate
+                                        </button>
+                                      </Link>
+                                    ) : (
+                                      <Link
+                                        to={`/user_chat_to_advocate/${e.advocateId}`}
+                                      >
+                                        <button className="btn btn-recent">
+                                          Chat
+                                        </button>
+                                      </Link>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="d-flex">
+                                  <div className="px-2">
+                                    {e.advocateStatus == false ? (
+                                      ""
+                                    ) : (
+                                      <Link
+                                        to={`/user_view_case_updations/${e._id}`}
+                                      >
+                                        <button className="btn btn-recent">
+                                          View Updates
+                                        </button>
+                                      </Link>
                                     )}
                                   </div>
                                 </div>
