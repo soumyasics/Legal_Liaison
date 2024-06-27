@@ -55,7 +55,7 @@ function UserNavbar() {
               <Link className="nav-link" to="/client-viewalladvocate">Advocate</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#contact">Notifications</Link>
+              <Link className="nav-link" to="/user_add_complaint">Complaint</Link>
             </li>
             
             <li className="nav-item dropdown">
