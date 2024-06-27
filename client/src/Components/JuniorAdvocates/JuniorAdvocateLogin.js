@@ -108,7 +108,7 @@ function JuniorAdvocateLogin() {
                                 </div>
                                 <div className="user_registration_forgot_pass text-end mt-3 fs-6">
                                     <Link
-                                        to="/forgot-password"
+                                        to="/JuniorAdvocateForgot"
                                         className="text-decoration-none text-dark"
                                     >
                                         <p>Forgot Password?</p>

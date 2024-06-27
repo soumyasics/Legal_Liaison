@@ -94,7 +94,7 @@ function UserLogin() {
                 {errors.password && touched.password && (<span className="text-danger">{errors.password}</span>)}
               </div>
               <div className="user_registration_forgot_pass text-end mt-3 fs-6">
-                <Link to='/forgot-password' className="text-decoration-none text-dark"><p>Forgot Password?</p></Link>
+                <Link to='/Userforgot' className="text-decoration-none text-dark"><p>Forgot Password?</p></Link>
               </div>
               <div className="user_registration_button text-center mt-4 d-flex justify-content-evenly">
                   <button type="submit">Submit</button>

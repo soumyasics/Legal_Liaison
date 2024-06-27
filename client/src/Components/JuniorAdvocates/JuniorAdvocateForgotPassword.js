@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import img from "../../Assets/image23.png";
-import './AdvocateLogin.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
+import img from '../../Assets/junioradvocate-loginimg.png';
 
-function AdvocateLogin() {
-    const [data, setData] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
+function JuniorAdvocateForgotPassword() {
+    const [data, setData] = useState({ email: '', password: '', repassword: '' });
+    const [errors, setErrors] = useState({ email: '', password: '', repassword: '' });
     const [formIsValid, setFormIsValid] = useState(true);
-
-    const navigate =useNavigate()
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,6 +29,14 @@ function AdvocateLogin() {
         return '';
     };
 
+    const validatePasswordMatch = (password, repassword) => {
+        if (password !== repassword) {
+            setFormIsValid(false);
+            return 'Passwords do not match';
+        }
+        return '';
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         let errors = {};
@@ -42,22 +48,29 @@ function AdvocateLogin() {
         errors.password = validateField('Password', data.password);
         if (errors.password) formIsValid = false;
 
+        errors.repassword = validateField('Re-Enter Password', data.repassword);
+        if (errors.repassword) formIsValid = false;
+
+        if (!errors.password && !errors.repassword) {
+            errors.repassword = validatePasswordMatch(data.password, data.repassword);
+            if (errors.repassword) formIsValid = false;
+        }
+
         setErrors(errors);
         setFormIsValid(formIsValid);
 
         if (formIsValid) {
             console.log("data", data);
-            axiosInstance.post('/loginAdvocate', data)
+            axiosInstance.post('/junioradvocateforgotPassword', { email: data.email, password: data.password })
                 .then(response => {
                     console.log("Response:", response);
                     if (response.data.status === 200) {
-                        console.log("Login Successful");
-                        alert("Login Successful");
-                        navigate('/advocate_home')
-                        localStorage.setItem('advocateId',response.data.data._id)
+                        console.log("Password Reset Successful");
+                        alert("Password Reset Successful");
+                        navigate('/JuniorAdvocateLogin');
                     } else {
-                        console.log("Login Failed");
-                        alert("Login Failed");
+                        console.log("Password Reset Failed");
+                        alert("Password Reset Failed");
                     }
                 })
                 .catch(error => {
@@ -67,27 +80,27 @@ function AdvocateLogin() {
     };
 
     const handleReset = () => {
-        setData({ email: '', password: '' });
-        setErrors({ email: '', password: '' });
+        setData({ email: '', password: '', repassword: '' });
+        setErrors({ email: '', password: '', repassword: '' });
         setFormIsValid(true);
     };
 
     return (
         <div>
             <div className="user_registration">
-            <div className='heading-div container-fluid'>
-        <label className='reg-title'>Advocate Login</label>
-      </div>
+                <div className='junior-heading-div container-fluid'>
+                    <label className='junior-reg-title'>Junior Advocate Forgot Password</label>
+                </div>
                 <div className="user_registration_container">
-                    <div className="user_registration_box1">
+                    <div className="user_registration_box">
                         <div className="user_registration_input_group">
                             <form onSubmit={handleSubmit}>
-                                <label className='advocate-text-edit'>Login Here</label>
+                                <label className='junior-text-loginhere'>Reset Password Here</label>
                                 <div className="user_registration_input mt-5">
                                     <label>Email Id</label>
                                     <input
                                         type="text"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Email Id"
                                         name="email"
                                         value={data.email}
@@ -99,7 +112,7 @@ function AdvocateLogin() {
                                     <label>Password</label>
                                     <input
                                         type="password"
-                                        className="form-control border border-dark"
+                                        className="form-control junior-advocate-input"
                                         placeholder="Password"
                                         name="password"
                                         value={data.password}
@@ -107,30 +120,23 @@ function AdvocateLogin() {
                                     />
                                     {errors.password && <div className="text-danger">{errors.password}</div>}
                                 </div>
-                                <div className="user_registration_forgot_pass text-end mt-3 fs-6">
-                                    <Link
-                                        to="/AdvocateForgot"
-                                        className="text-decoration-none text-dark"
-                                    >
-                                        <p>Forgot Password?</p>
-                                    </Link>
+                                <div className="user_registration_input mt-4">
+                                    <label>Re-Enter Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control junior-advocate-input"
+                                        placeholder="Re-enter Password"
+                                        name="repassword"
+                                        value={data.repassword}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.repassword && <div className="text-danger">{errors.repassword}</div>}
                                 </div>
                                 <div className="user_registration_button text-center mt-5 d-flex justify-content-evenly">
                                     <button type="submit">Submit</button>
                                     <button type="button" onClick={handleReset}>Reset</button>
                                 </div>
                             </form>
-                            <div className="mt-4">
-                                <p>
-                                    Don't have an account?{" "}
-                                    <Link
-                                        to="/AdvcateRegister"
-                                        className="text-decoration-none text-gold"
-                                    >
-                                        Register here.
-                                    </Link>
-                                </p>
-                            </div>
                         </div>
                     </div>
                     <div className="user_registration_box2 justify-content-center">
@@ -142,4 +148,4 @@ function AdvocateLogin() {
     );
 }
 
-export default AdvocateLogin;
+export default JuniorAdvocateForgotPassword;
