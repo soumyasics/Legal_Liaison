@@ -12,6 +12,10 @@ const Payments=require('./Cases/Payments/paymentController')
 const Evidences=require('./Cases/Evidences/evidenceController')
 const blog=require('./Blogs/blogController')
 const complaints=require('./complaints/complaintController')
+const Reviews=require('./Reviews/reviewController')
+const GroupChats=require('./Chats/GroupChats/chatController')
+const InternReqs=require('./Interns/CaseReqs/caseReqController')
+const JuniorCases=require('./JuniorAdvocate/CaseReqs/caseReqController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -29,6 +33,7 @@ router.post('/viewAdvocates',advocates.viewAdvocates)
 router.post('/activateAdvocateById/:id',advocates.activateAdvocateById)
 router.post('/deactivateAdvocateById/:id',advocates.deactivateAdvocateById)
 router.post('/viewAdvocatesBySpecializn',advocates.viewAdvocatesBySpecializn)
+router.post('/addRating/:id',advocates.addRating)
 
 //junior advocate routes
 router.post('/registerJuniorAdvocate',junioradvocates.upload,junioradvocates.registerJuniorAdvocate)
@@ -145,4 +150,33 @@ router.post('/addComplaint',complaints.addcomplaint)
 router.post('/viewAllComplaints',complaints.viewAllcomplaints)
 router.post('/viewComplaintById/:id',complaints.viewcomplaintById)
 router.post('/deleteComplaintById/:id',complaints.deletecomplaintById)
+
+//reviews
+router.post('/addReview',Reviews.addReview)
+router.post('/viewAllreviewsByAdvId/:id',Reviews.viewAllreviewsByAdvId)
+
+
+//GroupChats
+router.post('/createGroup/:id',GroupChats.createGroup)
+router.post('/viewAllActiveGroups',GroupChats.viewAllActiveGroups)
+router.post('/viewGroupById/:id',GroupChats.viewGroupById)
+router.post('/viewgroupChatsByGroupId/:id',GroupChats.viewgroupChatsByGroupId)
+router.post('/viewgroupsByInternId/:id',GroupChats.viewgroupsByInternId)
+router.post('/closeGroupById/:id',GroupChats.closeGroupById)
+router.post('/joinGroup/:id',GroupChats.joinGroup)
+
+//Internreqs
+router.post('/reqCase',InternReqs.reqCase)
+router.post('/getCaseReqsById/:id',InternReqs.getAppointmentReqsById)
+router.post('/getAppointmentReqsByinternId/:id',InternReqs.getAppointmentReqsByinternId)
+router.post('/acceptInternCaseReqbyAdv/:id',InternReqs.acceptReqbyAdv)
+router.post('/rejectCaseReqbyAdv/:id',InternReqs.rejectReqbyAdv)
+router.post('/getCaseAppointmentReqsById/:id',InternReqs.getAppointmentReqsById)
+router.post('/getApprovedInternCasereqsForAdv/:id',InternReqs.getApprovedAppointmentsForAdv)
+
+//Junior cases reqs
+router.post('/reqCase',JuniorCases.assignCaseforJr)
+router.post('/getAssignedCaseReqsById/:id',JuniorCases.getAssignedCaseReqsById)
+router.post('/getCasesAssignedForJrId/:id',JuniorCases.getCasesAssignedForJrId)
+
 module.exports=router
