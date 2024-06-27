@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage }).single('data');
+const upload = multer({ storage: storage }).single('file');
 // Create a new status
 const addEvidence = async (req, res) => {
     const caseId=req.params.id
@@ -29,9 +29,9 @@ const addEvidence = async (req, res) => {
             caseId:caseId,
             userId:caseDatas.userId,
             advocateId:caseDatas.advocateId,
-            data:req.file,
-            date:new Date(),
-            comments:req.body.comments
+            file:req.file,
+            title:req.body.title,
+            description:req.body.description
         });
 
         await newStatus.save();
