@@ -80,9 +80,19 @@ function AdvocateNavbar() {
                 
               </div>
             </li>
+              <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Articles
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/advocate_add_articles' className="dropdown-item" >Add</Link>
+                <Link to='/advocate_view_articles' className="dropdown-item" >View</Link>
+                
+              </div>
+            </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#contact">
-                  Resource Request
+                <Link to='/advocate_add_complaints'  className="nav-link" >
+                  Complaints
                 </Link>
               </li>
               <li className="nav-item">

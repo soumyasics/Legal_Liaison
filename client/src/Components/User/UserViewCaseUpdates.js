@@ -9,6 +9,8 @@ import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
+import ReactStars from "react-rating-stars-component";
+
 
 function UserViewCaseUpdates() {
 
@@ -16,6 +18,8 @@ function UserViewCaseUpdates() {
         advocateId: {profilePic:{filename:''}},
         dateOfIncident: "", evidence: { filename: "" },
       });
+      const [rating, setRating] = useState(0);
+
       const { id } = useParams();
       const navigate = useNavigate();
       const [showModal, setShowModal] = useState(false);
@@ -43,6 +47,23 @@ function UserViewCaseUpdates() {
       };
     
       const handleClose = () => setShowModal(false);
+
+      let addRating=(e)=>{
+        setRating(e)
+        axiosInstance
+          .post(`/getCaseById/${id}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              setData(res.data.data || []);
+            } else {
+              setData([]);
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
+      }
 
   return (
     <div>
@@ -112,6 +133,15 @@ function UserViewCaseUpdates() {
                         <img src={icon5} alt="icon5" />
                       </div>
                       <div>{data.advocateId.nationality}</div>
+                    </div>
+                    <div className="d-flex mt-2">
+                    <ReactStars
+                    count={5}
+                    size={30}
+                    onChange={addRating}
+                    activeColor="#ffd700"
+                
+                      />
                     </div>
                   </div>
                 </div>
