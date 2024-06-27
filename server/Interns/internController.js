@@ -410,7 +410,7 @@ const login = (req, res) => {
         if (user.password != password) {
             return res.json({ status: 405, msg: 'Password Mismatch !!' });
         }
-        if (user.adminApproved==false) {
+        if (user.adminApproved==false ||user.isActive==false) {            return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
             return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
         }
         const token = createToken(user);

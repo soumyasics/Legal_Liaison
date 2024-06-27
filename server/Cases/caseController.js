@@ -179,7 +179,7 @@ const deleteCase = async (req, res) => {
 const getCaseType=(req,res)=>{
   console.log("p");
   const keywords = {
-    "Criminal Law": ['burglary', 'theft', 'arrested', 'defendant', 'charged', 'crime', 'criminal'],
+    "Criminal Law": ['burglary','murder', 'theft', 'arrested', 'defendant', 'charged', 'crime', 'criminal',"missing"],
     "Tax Law": ['tax', 'taxes', 'IRS', 'revenue', 'taxpayer', 'deductions', 'income tax', 'corporate tax', 'capital gains', 'estate tax', 'property tax', 'sales tax', 'tax audit', 'tax evasion', 'tax fraud', 'tax return', 'withholding', 'tax code', 'tax compliance'],
     "Real Estate Law": ['real estate', 'property', 'landlord', 'tenant', 'lease', 'rental', 'eviction', 'foreclosure', 'title deed', 'mortgage', 'property tax', 'boundary dispute', 'zoning', 'land use', 'condominium', 'co-op', 'deed restrictions', 'easement'],
 
