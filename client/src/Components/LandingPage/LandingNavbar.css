@@ -1,6 +1,10 @@
 .landing_custom_navbar {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
+  
+}
+
+.padding-right{
+  padding-right: 20px;
 }
 
 .landing_custom_navbar .navbar-brand {

@@ -38,9 +38,14 @@ function UserViewRecentCases() {
   }, [id]);
 
   const handleViewEvidence = (fileUrl) => {
-    const fileExtension = fileUrl.split(".").pop().toLowerCase();
-    setFileType(fileExtension);
-    setSelectedFile(fileUrl);
+    if (!fileUrl) {
+      setFileType("none");
+      setSelectedFile(null);
+    } else {
+      const fileExtension = fileUrl.split(".").pop().toLowerCase();
+      setFileType(fileExtension);
+      setSelectedFile(fileUrl);
+    }
     setShowModal(true);
   };
 
@@ -68,7 +73,7 @@ function UserViewRecentCases() {
                     </thead>
                     <tbody>
                       {array.map((e) => {
-                        const fileUrl = `${imageUrl}/${e.evidence.filename}`;
+                        const fileUrl = e.evidence ? `${imageUrl}/${e.evidence.filename}` : null;
                         const formattedDate = e.datoOfIncident
                           ? new Date(e.datoOfIncident).toLocaleDateString()
                           : "Unknown";
@@ -125,10 +130,6 @@ function UserViewRecentCases() {
                               <div className="mt-2">
                                 <div className="px-3">
                                   <p>{e.description}</p>
-                                  {/* <p className="text-end">
-                                    Status:{" "}
-                                    <span className="btn btn-outline-danger">hh</span>
-                                  </p> */}
                                 </div>
                               </div>
                               <div className="d-flex justify-content-between pt-4">
@@ -145,24 +146,51 @@ function UserViewRecentCases() {
                                 </div>
                                 <div className="d-flex mt-2">
                                   <div className="px-2">
-                                    <img src={icon9} alt="icon9" />
+                                    {e.advocateStatus == false ? (
+                                      <Link
+                                        to='' className="d-flex text-decoration-none text-dark"
+                                      >
+                                        <img src={icon9} alt="icon9" className="mx-2" />
+                                        <div>Remove</div>
+                                      </Link>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
-                                  <div>Remove</div>
                                 </div>
                                 <div className="d-flex">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (
-                                      <Link to={`/user-requestanadvocate/${e._id}`} >
-                                      <button className="btn btn-recent">
-                                        Request an advocate
-                                      </button>
+                                      <Link
+                                        to={`/user-requestanadvocate/${e._id}`}
+                                      >
+                                        <button className="btn btn-recent">
+                                          Request an advocate
+                                        </button>
                                       </Link>
                                     ) : (
-                                      <Link to={`/user_chat_to_advocate/${e.advocateId}`}>
+                                      <Link
+                                        to={`/user_chat_to_advocate/${e.advocateId}`}
+                                      >
                                         <button className="btn btn-recent">
-                                        Chat
-                                      </button>
-                                        </Link>
+                                          Chat
+                                        </button>
+                                      </Link>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="d-flex">
+                                  <div className="px-2">
+                                    {e.advocateStatus == false ? (
+                                      ""
+                                    ) : (
+                                      <Link
+                                        to={`/user_view_case_updations/${e._id}`}
+                                      >
+                                        <button className="btn btn-recent">
+                                          View Updates
+                                        </button>
+                                      </Link>
                                     )}
                                   </div>
                                 </div>
@@ -194,7 +222,9 @@ function UserViewRecentCases() {
           <Modal.Title>View Evidence</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {fileType === "pdf" ? (
+          {fileType === "none" ? (
+            <p>No Evidence Added</p>
+          ) : fileType === "pdf" ? (
             <iframe
               src={selectedFile}
               width="100%"

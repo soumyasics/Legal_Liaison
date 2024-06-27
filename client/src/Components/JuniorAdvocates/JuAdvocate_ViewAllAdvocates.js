@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axiosMultipartInstance from "../Constants/FormDataUrl";
 import { imageUrl } from "../Constants/Image_Url";
 import { Link, useParams } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
+
 
 function JuAdvocate_ViewAllAdvocates() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -100,6 +102,16 @@ function JuAdvocate_ViewAllAdvocates() {
                           Request
                         </button>
                       </Link>
+                      <br />
+                      <div className="d-flex justify-content-center pb-2">
+                        <ReactStars
+                          count={5}
+                          value={advocate.rating ? advocate.rating : 0}
+                          size={24}
+                          activeColor="#ffd700"
+                          edit={false}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

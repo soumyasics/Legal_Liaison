@@ -55,9 +55,11 @@ function AdvocateLogin() {
                         alert("Login Successful");
                         navigate('/advocate_home')
                         localStorage.setItem('advocateId',response.data.data._id)
-                    } else {
+                    } else if(response.data.status==405){
                         console.log("Login Failed");
-                        alert("Login Failed");
+                        alert(response.data.msg);
+                    }else{
+                        alert('Login Failed');
                     }
                 })
                 .catch(error => {
