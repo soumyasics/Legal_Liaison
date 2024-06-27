@@ -21,3 +21,11 @@
   width: 100%;
   height: 80vh;
 }
+
+.adv_client_payment_status{
+  min-height: 70vh;
+}
+
+#min-h{
+  min-height: 100px;
+}

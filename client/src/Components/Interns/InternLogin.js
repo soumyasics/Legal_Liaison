@@ -53,7 +53,7 @@ function InternLogin() {
                     if (response.data.status === 200) {
                         console.log("Login Successful");
                         toast.success("Login Successful");
-                        // navigate('/intern_home');
+                        navigate('/intern_home');
                         localStorage.setItem('internId', response.data.data._id);
                     } else if(response.data.status === 405) {
                         console.log("Login Failed");

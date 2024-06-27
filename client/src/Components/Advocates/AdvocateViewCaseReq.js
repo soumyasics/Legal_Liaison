@@ -125,7 +125,7 @@ function AdvocateViewCaseReq() {
                 </div>
               </div>
             </div>
-            <div className="adv_case_req_left_container2">
+            <div className="adv_case_req_left_container2 ">
               <div className="adv_case_req_left_container1_head">
                 <p>Opponent Details</p>
               </div>
@@ -198,7 +198,7 @@ function AdvocateViewCaseReq() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </div> 
   );
 }
 

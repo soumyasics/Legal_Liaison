@@ -42,27 +42,36 @@ const viewChatRecipientsforAdvocateById = (req, res) => {
 
     .exec()
     .then((data) => {
+      // console.log(data);
       if (data.length > 0) {
-        let users = [],juniors=[],interns=[]
+        let users = [],juniors=[],interns=[],us=[]
         data.map((x) => {
+          if(x.userId){
           users.push(x.userId);
+          }
+          if(x.internId){
           interns.push(x.internId);
+          console.log("interns",x.internId);
+
+          }
+          if(x.jrId)
           juniors.push(x.jrId);
 
         });
+        console.log(interns.length);
         if(users.length>0)
-         uniqueUsers = [...new Set(users)]
+         users = [...new Set(users)]
         if(juniors.length>0)
-         uniqueJuniors = [...new Set(juniors)];
+         juniors = [...new Set(juniors)];
         if(interns.length>0)
-         uniqueInterns = [...new Set(interns)];
+         interns = [...new Set(interns)];
 
         res.json({
           status: 200,
           msg: "Data obtained successfully",
-          users: uniqueUsers,
-          juniors:uniqueJuniors,
-          interns:uniqueInterns
+          users: users,
+          juniors:juniors,
+          interns:interns
         });
       } else {
         res.json({
@@ -153,6 +162,8 @@ const viewChatBetweenAdvAndJr = (req, res) => {
       // ],}
     )
     .sort({ date: 1 })
+    .populate('jrId')
+    .populate('advId')
     .exec()
     .then((data) => {
       res.json({
@@ -181,6 +192,8 @@ const viewChatBetweenInternAndAdv = (req, res) => {
       // ],}
     )
     .sort({ date: 1 })
+    .populate('internId')
+    .populate('advId')
     .exec()
     .then((data) => {
       res.json({

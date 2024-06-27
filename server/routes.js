@@ -10,6 +10,8 @@ const Interns=require('./Interns/internController')
 const caseStatusController=require('./Cases/CaseStatus/caseStatusController')
 const Payments=require('./Cases/Payments/paymentController')
 const Evidences=require('./Cases/Evidences/evidenceController')
+const blog=require('./Blogs/blogController')
+const complaints=require('./complaints/complaintController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -61,6 +63,9 @@ router.post('/viewUsers',user.viewUsers)
 router.post('/createCase/:id',cases.upload,cases.createCase)
 router.post('/getCaseType',cases.getCaseType)
 router.post('/getCaseByUserId/:id',cases.getCaseByUserId)
+router.post('/getCaseById/:id',cases.getCaseById)
+router.post('/deleteCase/:id',cases.deleteCase)
+
 
 router.post('/createAppointment',appointments.createAppointment)
 router.post('/getAppointmentReqsByUserId/:id',appointments.getAppointmentReqsByUserId)
@@ -68,6 +73,7 @@ router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAd
 router.post('/acceptReqbyAdv/:id',appointments.acceptReqbyAdv)
 router.post('/rejectReqbyAdv/:id',appointments.rejectReqbyAdv)
 router.post('/getAppointmentReqsById/:id',appointments.getAppointmentReqsById)
+router.post('/getApprovedAppointmentsForAdv/:id',appointments.getApprovedAppointmentsForAdv)
 router.post('/getApprovedAppointmentsForAdv/:id',appointments.getApprovedAppointmentsForAdv)
 
 //chatting
@@ -113,7 +119,7 @@ router.post('/getStatusById/:id',caseStatusController.getStatusById)
 router.post('/getStatusByCaseId/:id',caseStatusController.getStatusByCaseId)
 
 //payments
-router.post('/createStatus/:id',Payments.reqPayment)
+router.post('/reqPayment/:id',Payments.reqPayment)
 router.post('/getAllPaymentByAdvId/:id',Payments.getAllPaymentByAdvId)
 router.post('/getPaymentsByCaseId/:id',Payments.getPaymentsByCaseId)
 router.post('/getPaymentsById/:id',Payments.getPaymentsById)
@@ -124,4 +130,19 @@ router.post('/addEvidence/:id',Evidences.upload,Evidences.addEvidence)
 router.post('/getEvidenceByCaseId/:id',Evidences.getEvidenceByCaseId)
 router.post('/getEvidenceById/:id',Evidences.getEvidenceById)
 
+
+//blogs
+router.post('/addBlog/:id',blog.upload,blog.addBlog)
+router.post('/viewBlogsById/:id',blog.viewBlogsById)
+router.post('/editBlogsById/:id',blog.upload,blog.editBlogsById)
+router.post('/deleteBlogsById/:id',blog.deleteBlogsById)
+router.post('/viewAllBlogs',blog.viewAllBlogs)
+router.post('/viewMyBlogsByadvocateId/:id',blog.viewMyBlogsByadvocateId)
+
+
+//blogs
+router.post('/addComplaint',complaints.addcomplaint)
+router.post('/viewAllComplaints',complaints.viewAllcomplaints)
+router.post('/viewComplaintById/:id',complaints.viewcomplaintById)
+router.post('/deleteComplaintById/:id',complaints.deletecomplaintById)
 module.exports=router

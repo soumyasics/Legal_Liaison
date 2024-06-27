@@ -17,10 +17,14 @@ function AdvocateChatSidebar() {
       .post(`viewChatRecipientsforAdvocateById/${id}`)
       .then((res) => {
         console.log(res);
-        if (res.data.msg === "No Data obtained ") {
+        if (res.data.msg == "No Data obtained ") {
           setUsers([]);
+          setInterns([]);
+          setJuniors([]);
         } else if (res.data.status == 200) {
           setUsers(res.data.users);
+          setInterns(res.data.interns);
+          setJuniors(res.data.juniors);
         }
       })
       .catch(() => {
@@ -28,7 +32,8 @@ function AdvocateChatSidebar() {
       });
   }, [id]);
 
-  console.log(users);
+  // console.log('user',users);
+  // console.log('jun',juniors);
 
   return (
     <div>
@@ -60,7 +65,7 @@ function AdvocateChatSidebar() {
                   ? users.map((e) => {
                       return (
                         <div className="adv_chat_sidebar_name">
-                          <Link to={`/advocate_single_chat/${e._id}`}>
+                          <Link to={`/advocate_single_chat/${e._id}/client`}>
                             <div className="d-flex">
                               <div className="adv_chat_sidebar_name_img">
                                 <img
@@ -76,6 +81,64 @@ function AdvocateChatSidebar() {
                                   </p>
                                   <p>
                                     <small>[ Client ]</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : ""}
+                {juniors.length
+                  ? juniors.map((e) => {
+                      return (
+                        <div className="adv_chat_sidebar_name">
+                          <Link to={`/advocate_single_chat/${e._id}/jnr`}>
+                            <div className="d-flex">
+                              <div className="adv_chat_sidebar_name_img">
+                                <img
+                                  src={`${imageUrl}/${e.profilePic.filename}`}
+                                  className="img-fluid"
+                                  alt="Advocate"
+                                />
+                              </div>
+                              <div className="adv_chat_sidebar_name_content px-3">
+                                <div>
+                                  <p>
+                                    <b>{e.name}</b>
+                                  </p>
+                                  <p>
+                                    <small>[ Junior Advocate ]</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      );
+                    })
+                  : ""}
+                {interns.length
+                  ? interns.map((e) => {
+                      return (
+                        <div className="adv_chat_sidebar_name">
+                          <Link to={`/advocate_single_chat/${e._id}`}>
+                            <div className="d-flex">
+                              <div className="adv_chat_sidebar_name_img">
+                                <img
+                                  src={`${imageUrl}/${e.profilePic.filename}`}
+                                  className="img-fluid"
+                                  alt="Advocate"
+                                />
+                              </div>
+                              <div className="adv_chat_sidebar_name_content px-3">
+                                <div>
+                                  <p>
+                                    <b>{e.name}</b>
+                                  </p>
+                                  <p>
+                                    <small>[ Junior Advocate ]</small>
                                   </p>
                                 </div>
                               </div>

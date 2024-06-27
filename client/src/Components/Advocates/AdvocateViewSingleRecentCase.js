@@ -11,15 +11,17 @@ import { imageUrl } from "../Constants/Image_Url";
 import { Modal, Button } from "react-bootstrap";
 
 function AdvocateViewSingleRecentCase() {
-
-  const [data, setData] = useState({userId:{},caseId:{dateOfIncident:'',evidence:{filename:''}}});
-  const {id} =useParams();
-  const navigate =useNavigate();
-  const aid=localStorage.getItem('advocateId');
+  const [data, setData] = useState({
+    userId: {},
+    caseId: { dateOfIncident: "", evidence: { filename: "" } },
+  });
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const aid = localStorage.getItem("advocateId");
   const [showModal, setShowModal] = useState(false);
-  const [evidenceUrl, setEvidenceUrl] = useState('');
+  const [evidenceUrl, setEvidenceUrl] = useState("");
 
-      useEffect(() => {
+  useEffect(() => {
     axiosInstance
       .post(`/getAppointmentReqsById/${id}`)
       .then((res) => {
@@ -48,22 +50,25 @@ function AdvocateViewSingleRecentCase() {
         <div className="container">
           <div className="d-flex justify-content-end">
             <div className="adv_view_case_req_action_grps d-flex justify-content-between">
-              
-              <div className="adv_view_case_req_action_btn d-flex" >
-              <i class="ri-upload-2-fill"></i>
-                <Link to={'/advocate_addevidence'}><p>Upload Evidence</p></Link>
+              <div className="adv_view_case_req_action_btn d-flex">
+                <i class="ri-upload-2-fill"></i>
+                <Link to={`/advocate_addevidence/${data.caseId._id}`}>
+                  <p>Upload Evidence</p>
+                </Link>
               </div>
-              
-              
-              <div className="adv_view_case_req_action_btn d-flex" >
-              <i class="ri-file-paper-2-line"></i>
-                <Link to={'/advocate_update_casestatus'}><p>Add Case Status</p></Link>
+
+              <div className="adv_view_case_req_action_btn d-flex">
+                <i class="ri-file-paper-2-line"></i>
+                <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
+                  <p>Add Case Status</p>
+                </Link>
               </div>
-              <div className="adv_view_case_req_action_btn d-flex" >
-              <i class="ri-bank-card-line"></i>
-                <Link to={'/advocate_paymentreq'}><p>Request Payment</p></Link>
+              <div className="adv_view_case_req_action_btn d-flex">
+                <i class="ri-bank-card-line"></i>
+                <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
+                  <p>Request Payment</p>
+                </Link>
               </div>
-              
             </div>
           </div>
 
@@ -74,58 +79,66 @@ function AdvocateViewSingleRecentCase() {
                   <p>Client Details</p>
                 </div>
                 <div className="adv_case_req_left_container1_content d-flex">
-                <div className="adv_case_req_left_container1_content_img">
-                  <img src={img} alt="Client" />
+                  <div className="adv_case_req_left_container1_content_img">
+                    <img src={img} alt="Client" />
+                  </div>
+                  <div>
+                    <div className="d-flex mt-2">
+                      <div className="px-3">
+                        <img src={icon1} alt="icon1" />
+                      </div>
+                      <div>{data.userId.name}</div>
+                    </div>
+                    <div className="d-flex mt-2">
+                      <div className="px-3">
+                        <img src={icon2} alt="icon2" />
+                      </div>
+                      <div>{data.userId.email}</div>
+                    </div>
+                    <div className="d-flex mt-2">
+                      <div className="px-3">
+                        <img src={icon3} alt="icon3" />
+                      </div>
+                      <div>{data.userId.contact}</div>
+                    </div>
+                    <div className="d-flex mt-2">
+                      <div className="px-3">
+                        <img src={icon4} alt="icon4" />
+                      </div>
+                      <div>{data.userId.address}</div>
+                    </div>
+                    <div className="d-flex mt-2">
+                      <div className="px-3">
+                        <img src={icon5} alt="icon5" />
+                      </div>
+                      <div>{data.userId.nationality}</div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="d-flex mt-2">
-                    <div className="px-3">
-                      <img src={icon1} alt="icon1" />
-                    </div>
-                    <div>{data.userId.name}</div>
-                  </div>
-                  <div className="d-flex mt-2">
-                    <div className="px-3">
-                      <img src={icon2} alt="icon2" />
-                    </div>
-                    <div>{data.userId.email}</div>
-                  </div>
-                  <div className="d-flex mt-2">
-                    <div className="px-3">
-                      <img src={icon3} alt="icon3" />
-                    </div>
-                    <div>{data.userId.contact}</div>
-                  </div>
-                  <div className="d-flex mt-2">
-                    <div className="px-3">
-                      <img src={icon4} alt="icon4" />
-                    </div>
-                    <div>{data.userId.address}</div>
-                  </div>
-                  <div className="d-flex mt-2">
-                    <div className="px-3">
-                      <img src={icon5} alt="icon5" />
-                    </div>
-                    <div>{data.userId.nationality}</div>
-                  </div>
-                </div>
-              </div>
               </div>
               <div className="adv_case_req_left_container2">
-              <div className="adv_case_req_left_container1_head">
-                <p>Opponent Details</p>
-              </div>
-              <div className="adv_case_req_left_container1_content">
-                <div className="d-flex mt-2">
-                  <div className="px-3">Name :</div>
-                  <div>{data.caseId.opponentName ? data.caseId.opponentName : 'Unknown'}</div>
+                <div className="adv_case_req_left_container1_head">
+                  <p>Opponent Details</p>
                 </div>
-                <div className="d-flex mt-2">
-                  <div className="px-3">Address :</div>
-                  <div>{data.caseId.opponentAddress ? data.caseId.opponentAddress : 'Unknown'}</div>
+                <div className="adv_case_req_left_container1_content">
+                  <div className="d-flex mt-2">
+                    <div className="px-3">Name :</div>
+                    <div>
+                      {data.caseId.opponentName
+                        ? data.caseId.opponentName
+                        : "Unknown"}
+                    </div>
+                  </div>
+                  <div className="d-flex mt-2">
+                    <div className="px-3">Address :</div>
+                    <div>
+                      {data.caseId.opponentAddress
+                        ? data.caseId.opponentAddress
+                        : "Unknown"}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
             <div className="col-7">
               <div className="adv_case_req_right_container">
@@ -133,31 +146,48 @@ function AdvocateViewSingleRecentCase() {
                   <p>Opponent Details</p>
                 </div>
                 <div className="adv_case_req_left_container1_content">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Case Title</td>
-                      <td>: {data.caseId.title}</td>
-                    </tr>
-                    <tr>
-                      <td>Case Description</td>
-                      <td>: {data.caseId.description}</td>
-                    </tr>
-                    <tr>
-                      <td>Case Type</td>
-                      <td>: {data.caseId.type}</td>
-                    </tr>
-                    <tr>
-                      <td>Date of Request</td>
-                      <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
-                    </tr>
-                    <tr>
-                      <td>Evidence</td>
-                      <td>: <Link to="#" onClick={handleEvidenceClick}>Click here</Link></td>
-                    </tr>
-                  </tbody>
-                </table>
-                
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Case Title</td>
+                        <td>: {data.caseId.title}</td>
+                      </tr>
+                      <tr>
+                        <td>Case Description</td>
+                        <td>: {data.caseId.description}</td>
+                      </tr>
+                      <tr>
+                        <td>Case Type</td>
+                        <td>: {data.caseId.type}</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Request</td>
+                        <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
+                      </tr>
+                      <tr>
+                        <td>Evidence</td>
+                        <td>
+                          :{" "}
+                          <Link to="#" onClick={handleEvidenceClick}>
+                            Click here
+                          </Link>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <div></div>
+                  </table>
+                  <div className="row justify-content-center mt-4 arr">
+                    <div className="col-auto">
+                      <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                        Case Status
+                      </button></Link>
+                    </div>
+                    <div className="col-auto">
+                      <Link to={`/advocate_view_client_payment_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                        Payment Info
+                      </button></Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -165,22 +195,27 @@ function AdvocateViewSingleRecentCase() {
         </div>
 
         <Modal show={showModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Evidence</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {evidenceUrl.endsWith('.pdf') ? (
-            <iframe src={evidenceUrl} width="100%" height="500px" title="Evidence PDF" />
-          ) : (
-            <img src={evidenceUrl} alt="Evidence" className="img-fluid" />
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Evidence</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {evidenceUrl.endsWith(".pdf") ? (
+              <iframe
+                src={evidenceUrl}
+                width="100%"
+                height="500px"
+                title="Evidence PDF"
+              />
+            ) : (
+              <img src={evidenceUrl} alt="Evidence" className="img-fluid" />
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );

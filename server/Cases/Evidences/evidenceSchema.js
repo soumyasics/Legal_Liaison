@@ -19,15 +19,16 @@ const statusSchema = mongoose.Schema({
             ref:'advocates'
 
         },
-        data:{
+        file:{
             type:Object,
             required: true,
         },
-        date:{
-            type:Date,
+        title:{
+            type:String,
+            required: true,
         }, 
      
-        comments:{
+        description:{
             type:String
             
         }

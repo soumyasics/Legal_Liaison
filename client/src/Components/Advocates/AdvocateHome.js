@@ -4,9 +4,11 @@ import icon from "../../Assets/policeHomeCaseIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
 import { imageUrl } from "../Constants/Image_Url";
+import noData from "../../Assets/noDataFound.json";
+import Lottie from "lottie-react";
 
-function AdvocateHome() { 
-  const [advocate, setAdvocate] = useState({profilePic:{}, idProof: {}});
+function AdvocateHome() {
+  const [advocate, setAdvocate] = useState({ profilePic: {}, idProof: {} });
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -31,6 +33,26 @@ function AdvocateHome() {
   }, [id]);
 
   const toggleModal = () => setShowModal(!showModal);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/getAppointmentReqsForAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setData(res.data.data || []);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  }, [id]);
+
+  console.log(data);
 
   return (
     <div className="advocate_home">
@@ -81,92 +103,52 @@ function AdvocateHome() {
                   <p>Recent Case Requests</p>
                 </div>
                 <div className="advocate_home_container2_table table-responsive">
-                  <table className="table align-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Client Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Case Type</th>
-                        <th scope="col">Date of Request</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-outline px-3"
-                          >
-                            <img src={icon} className="img-fluid" />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-outline px-3"
-                          >
-                            <img src={icon} className="img-fluid" />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-outline px-3"
-                          > 
-                            <img src={icon} className="img-fluid" />
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-outline px-3"
-                          > 
-                            <img src={icon} className="img-fluid" />
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  {data.length !== 0 ? (
+                    <table className="table align-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">Client Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Phone Number</th>
+                          <th scope="col">Case Type</th>
+                          <th scope="col">Date of Request</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.slice(0, 4).map((caseReq) => (
+                          <tr key={caseReq._id}>
+                            <td>{caseReq.userId.name}</td>
+                            <td>{caseReq.userId.email}</td>
+                            <td>{caseReq.userId.contact}</td>
+                            <td>{caseReq.caseId.type}</td>
+                            <td>{caseReq.caseId.dateOfIncident.slice(0,10)}</td>
+                            <td>
+                              <Link to={`/advocate_view_single_case_req/${caseReq._id}`}>
+                                <button
+                                  type="button"
+                                  className="btn btn-outline px-3"
+                                >
+                                  <img src={icon} className="img-fluid" alt="View Case" />
+                                </button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <div className="no_data_animation">
+                      <Lottie animationData={noData} className="no_data_animation" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-12 mt-3 advocate_home_profile_container">
+            <div className="col-lg-4 col-md-6 col-sm-12 mt-3 advocate_home_profile_container pb-2">
               <div className="container">
                 <div className="advocate_home_profile_container_img ">
-                  <img src={`${imageUrl}/${advocate.profilePic.filename}`} />
+                  <img src={`${imageUrl}/${advocate.profilePic.filename}`} alt="Profile" />
                 </div>
                 <div className="advocate_home_profile_container_head">
                   <p className="advocate_home_profile_container_head_title">
@@ -217,9 +199,8 @@ function AdvocateHome() {
                   </table>
                   <div className="advocate_home_edit_btn text-center mt-3">
                     <Link to={`/advocate_edit_profile/${id}`}>
-                      <button type="submit">Edit
-                      </button>      
-                    </Link>        
+                      <button type="submit">Edit</button>
+                    </Link>
                   </div>
                 </div>
               </div>

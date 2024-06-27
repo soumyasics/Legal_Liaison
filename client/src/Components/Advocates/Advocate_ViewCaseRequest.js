@@ -25,7 +25,7 @@ function Advocate_ViewCaseRequest() {
       });
   }, [id]);
 
-  console.log(data);
+  console.log(data); 
 
 
   return (
