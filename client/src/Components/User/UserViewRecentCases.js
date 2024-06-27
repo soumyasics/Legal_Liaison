@@ -166,6 +166,17 @@ function UserViewRecentCases() {
                                     )}
                                   </div>
                                 </div>
+                                <div className="d-flex">
+                                  <div className="px-2">
+                                    {e.advocateStatus == false ? '' : (
+                                      <Link to={`/user_view_case_updations/${e._id}`}>
+                                        <button className="btn btn-recent">
+                                        View Updates
+                                      </button>
+                                        </Link>
+                                    )}
+                                  </div>
+                                </div>
                               </div>
                             </td>
                           </tr>

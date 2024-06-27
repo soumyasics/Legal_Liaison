@@ -50,7 +50,7 @@ function AdvocateViewAllRecentCases() {
               {data.length ? (
                 data.map((caseReq) => (
                   <tr>
-                    <td className="table-data">{caseReq.caseId.title}</td>
+                    <td className="table-data">{caseReq.caseId.title}</td> 
                     <td className="table-data">{caseReq.userId.name}</td>
                     <td className="table-data">{caseReq.userId.contact}</td>
                     <td className="table-data">{caseReq.caseId.type}</td>

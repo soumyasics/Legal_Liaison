@@ -1,52 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import axiosInstance from '../Constants/BaseUrl';
+import { imageUrl } from '../Constants/Image_Url';
+import { Modal, Button } from "react-bootstrap"; 
 import img from "../../Assets/adv4.avif";
 import icon1 from "../../Assets/profile.png";
 import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../Constants/BaseUrl";
-import { imageUrl } from "../Constants/Image_Url";
-import { Modal, Button } from "react-bootstrap"; 
 
-function AdvocateViewSingleRecentCase() {
-  const [data, setData] = useState({
-    userId: {},
-    caseId: { dateOfIncident: "", evidence: { filename: "" } },
-  });
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const aid = localStorage.getItem("advocateId");
-  const [showModal, setShowModal] = useState(false);
-  const [evidenceUrl, setEvidenceUrl] = useState("");
+function UserViewCaseUpdates() {
 
-  useEffect(() => {
-    axiosInstance
-      .post(`/getAppointmentReqsById/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          setData(res.data.data || []);
-        } else {
-          setData([]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
+    const [data, setData] = useState({
+        userId: {},
+        caseId: { dateOfIncident: "", evidence: { filename: "" } },
       });
-  }, [id]);
-
-  const handleEvidenceClick = () => {
-    setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
-    setShowModal(true);
-  };
-
-  const handleClose = () => setShowModal(false);
+      const { id } = useParams();
+      const navigate = useNavigate();
+      const [showModal, setShowModal] = useState(false);
+      const [evidenceUrl, setEvidenceUrl] = useState("");
+    
+      useEffect(() => {
+        axiosInstance
+          .post(`/getStatusByCaseId/${id}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              setData(res.data.data || []);
+            } else {
+              setData([]);
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
+      }, [id]);
+    
+      const handleEvidenceClick = () => {
+        setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
+        setShowModal(true);
+      };
+    
+      const handleClose = () => setShowModal(false);
 
   return (
     <div>
-      <div className="adv_view_case_req">
+      {/* <div className="adv_view_case_req">
         <div className="container">
           <div className="d-flex justify-content-end">
             <div className="adv_view_case_req_action_grps d-flex justify-content-between">
@@ -221,9 +221,9 @@ function AdvocateViewSingleRecentCase() {
             </Button>
           </Modal.Footer>
         </Modal>
-      </div>
+      </div> */}
     </div>
-  );
+  )
 }
 
-export default AdvocateViewSingleRecentCase;
+export default UserViewCaseUpdates

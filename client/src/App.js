@@ -69,6 +69,8 @@ import AdvovatedViewApprovedJnrAdv from './Components/Advocates/AdvovatedViewApp
 import JuniorAdvViewAssignedCases from './Components/JuniorAdvocates/JuniorAdvViewAssignedCases';
 import JuniorAdvViewAssignedCasesDetails from './Components/JuniorAdvocates/JuniorAdvViewAssignedCasesDetails';
 import AdvocateViewCaseStatus from './Components/Advocates/AdvocateViewCaseStatus';
+import AdvocateViewAddedEvidences from './Components/Advocates/AdvocateViewAddedEvidences';
+import UserViewCaseUpdates from './Components/User/UserViewCaseUpdates';
 
 
 function App() {
@@ -90,6 +92,7 @@ function App() {
           <Route path="/user-requestanadvocate/:id" element={[<UserNavbar />,<User_RequestAdvocate />,<UserFooter/>]} />
           <Route path="/user_bookappoinment/:id/:cid" element={[<UserNavbar />,<User_BookAppoinment />,<UserFooter/>]} />
           <Route path="/user_chat_to_advocate/:aid" element={[<UserNavbar />,<FormHead title="Chat" />,<UserChattoAdvocate />,<UserFooter/>]} />
+          <Route path="/user_view_case_updations/:id" element={[<UserNavbar />,<FormHead title="Chat" />,<UserViewCaseUpdates />,<UserFooter/>]} />
 
 
           {/* Advocate routes */}
@@ -109,6 +112,7 @@ function App() {
           <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
           <Route path="/advocate_paymentreq/:id" element={[<AdvocateNavbar />, <Advocate_PaymentRequest />, <UserFooter />]} />
           <Route path="/advocate_addevidence/:id" element={[<AdvocateNavbar />, <Advocate_AddEvidence />, <UserFooter />]} />
+          <Route path="/advocate_view_added_evidences/:id" element={[<AdvocateNavbar />, <AdvocateViewAddedEvidences />, <UserFooter />]} />
           <Route path="/advocate_update_casestatus/:id" element={[<AdvocateNavbar />, <Advocate_UpdateCaseStatus />, <UserFooter />]} />
           <Route path="/advocate_viewjuadvocatereq" element={[<AdvocateNavbar />, <Advocate_ViewJuAdvocateRequest />, <UserFooter />]} />
           <Route path="/advocate_view_jnr_adv_profile_req/:id/:aid" element={[<AdvocateNavbar />, <AdvocateViewJnrAdvReqProfile value='request' />, <UserFooter />]} />
