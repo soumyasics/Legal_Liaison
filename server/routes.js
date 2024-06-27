@@ -10,6 +10,8 @@ const Interns=require('./Interns/internController')
 const caseStatusController=require('./Cases/CaseStatus/caseStatusController')
 const Payments=require('./Cases/Payments/paymentController')
 const Evidences=require('./Cases/Evidences/evidenceController')
+const blog=require('./Blogs/blogController')
+const complaints=require('./complaints/complaintController')
 
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
@@ -128,4 +130,19 @@ router.post('/addEvidence/:id',Evidences.upload,Evidences.addEvidence)
 router.post('/getEvidenceByCaseId/:id',Evidences.getEvidenceByCaseId)
 router.post('/getEvidenceById/:id',Evidences.getEvidenceById)
 
+
+//blogs
+router.post('/addBlog/:id',blog.upload,blog.addBlog)
+router.post('/viewBlogsById/:id',blog.viewBlogsById)
+router.post('/editBlogsById/:id',blog.upload,blog.editBlogsById)
+router.post('/deleteBlogsById/:id',blog.deleteBlogsById)
+router.post('/viewAllBlogs',blog.viewAllBlogs)
+router.post('/viewMyBlogsByadvocateId/:id',blog.viewMyBlogsByadvocateId)
+
+
+//blogs
+router.post('/addComplaint',complaints.addcomplaint)
+router.post('/viewAllComplaints',complaints.viewAllcomplaints)
+router.post('/viewComplaintById/:id',complaints.viewcomplaintById)
+router.post('/deleteComplaintById/:id',complaints.deletecomplaintById)
 module.exports=router

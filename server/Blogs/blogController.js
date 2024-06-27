@@ -15,9 +15,9 @@ const upload = multer({ storage: storage }).single('img');
 
 const addBlog = (req, res) => {
   const newBlog = new blogSchema({
-   title: req.body.para1,
-    content: req.body.para2,
-    advocateId: req.body.title,
+   title: req.body.title,
+    content: req.body.content,
+    advocateId: req.params.id,
     date:new Date(),
     img: req.file,
   });
@@ -89,7 +89,7 @@ const viewAllBlogs = (req, res) => {
 
 //View   blogs by RP id
 
-const viewMyBlogsByadvocateIdid = (req, res) => {
+const viewMyBlogsByadvocateId = (req, res) => {
   blogSchema
     .find({ advocateId: req.params.id })
    
@@ -133,12 +133,39 @@ const deleteBlogsById = (req, res) => {
     });
 };
 
+//View   blogs by  id
+
+const editBlogsById = (req, res) => {
+  blogSchema
+    .findByIdAndUpdate({ _id: req.params.id },{
+      title: req.body.title,
+      content: req.body.content,
+      
+      img: req.file,
+    })
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Data deleted successfully",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({
+        status: 500,
+        msg: "No Data obtained",
+        Error: err,
+      });
+    });
+};
+
 module.exports = {
   addBlog,
   upload,
   viewAllBlogs,
   viewBlogsById,
-viewMyBlogsByadvocateIdid,
-  
-  deleteBlogsById,
+viewMyBlogsByadvocateId,
+    deleteBlogsById,
+    editBlogsById
 };
