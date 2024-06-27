@@ -81,6 +81,7 @@ const getApprovedAppointmentsForAdv = async (req, res) => {
   }
 };
 
+
 // Controller function to get all appointment requests
 const getAppointmentReqsByUserId = async (req, res) => {
     try {
