@@ -113,7 +113,7 @@ function InternLogin() {
                                 </div>
                                 <div className="user_registration_forgot_pass text-end mt-3 fs-6">
                                     <Link
-                                        to=""
+                                        to="/intern_forgot_password"
                                         className="text-decoration-none text-dark"
                                     >
                                         <p>Forgot Password?</p>

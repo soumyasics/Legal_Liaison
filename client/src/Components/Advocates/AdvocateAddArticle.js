@@ -67,7 +67,7 @@ function AdvocateAddArticle() {
               </div>
               <div className="row row-position-adjust">
                 <div className="col-5">
-                  <p className="payment-name-style">Article Corrections</p>
+                  <p className="payment-name-style">Article Contents</p>
                 </div>
                 <div className="col-2">
                   <div className="payment-name-style">:</div>

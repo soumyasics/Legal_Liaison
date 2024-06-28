@@ -9,10 +9,12 @@ function AdvocateChatBox() {
   const { uid } = useParams();
   const { type } = useParams();
 
+  console.log(type);
+
   const aid = localStorage.getItem("advocateId");
 
   const [messageList, setMessageList] = useState([]);
-  const [userDetalis, setUserDetails] = useState({
+  const [userDetalis, setUserDetails] = useState({ 
     profilePic: { filename: "" },
   });
   const [inputValue, setInputValue] = useState("");
