@@ -30,7 +30,7 @@ function JuniorAdvocateHome() {
         <p className='img1-sub-heading'>Consider mentors who have a reputation for being approachable<br /> and supportive.</p>
         <button type="button" className="btn btn-warning find-button">Find Advocate</button>
       </div>
-      <div className=''>
+      <div className='container-fluid'>
         <div className="row">
           <div className="col-md-7 container">
             <br />

@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import img from "../../Assets/image23.png";
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
-import img from '../../Assets/junioradvocate-loginimg.png'
-import './JuniorAdvocateLogin.css'
+import './AdvocateLogin.css';
 
-function JuniorAdvocateLogin() {
-    const [data, setData] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
+function AdvocateForgotPassword() {
+    const [data, setData] = useState({ email: '', password: '', repassword: '' });
+    const [errors, setErrors] = useState({ email: '', password: '', repassword: '' });
     const [formIsValid, setFormIsValid] = useState(true);
-
-    const navigate =useNavigate()
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,6 +30,14 @@ function JuniorAdvocateLogin() {
         return '';
     };
 
+    const validatePasswordMatch = (password, repassword) => {
+        if (password !== repassword) {
+            setFormIsValid(false);
+            return 'Passwords do not match';
+        }
+        return '';
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         let errors = {};
@@ -42,26 +49,29 @@ function JuniorAdvocateLogin() {
         errors.password = validateField('Password', data.password);
         if (errors.password) formIsValid = false;
 
+        errors.repassword = validateField('Re-Enter Password', data.repassword);
+        if (errors.repassword) formIsValid = false;
+
+        if (!errors.password && !errors.repassword) {
+            errors.repassword = validatePasswordMatch(data.password, data.repassword);
+            if (errors.repassword) formIsValid = false;
+        }
+
         setErrors(errors);
         setFormIsValid(formIsValid);
 
         if (formIsValid) {
             console.log("data", data);
-            axiosInstance.post('/loginJuniorAdvocate', data)
+            axiosInstance.post('/forgotPassword', { email: data.email, password: data.password })
                 .then(response => {
                     console.log("Response:", response);
                     if (response.data.status === 200) {
-                        console.log("Login Successful");
-                        alert("Login Successful");
-                        navigate('/JuniorAdvocate-homepage')
-                        localStorage.setItem('junioradvocateId',response.data.data._id)
-                    } else if(response.data.status==405) {
-                        console.log("Login Failed");
-                        alert(response.data.msg);
-                    
+                        console.log("Password Reset Successful");
+                        alert("Password Reset Successful");
+                        navigate('/AdvocateLogin');
                     } else {
-                        console.log("Login Failed");
-                        alert("Login Failed");
+                        console.log("Password Reset Failed");
+                        alert("Password Reset Failed");
                     }
                 })
                 .catch(error => {
@@ -71,26 +81,27 @@ function JuniorAdvocateLogin() {
     };
 
     const handleReset = () => {
-        setData({ email: '', password: '' });
-        setErrors({ email: '', password: '' });
+        setData({ email: '', password: '', repassword: '' });
+        setErrors({ email: '', password: '', repassword: '' });
         setFormIsValid(true);
     };
-  return (
-    <div>
-        <div className="user_registration">
-        <div className='junior-heading-div container-fluid'>
-        <label className='junior-reg-title'>Junior Advocate Login</label>
-      </div>
+
+    return (
+        <div>
+            <div className="user_registration">
+                <div className='heading-div container-fluid'>
+                    <label className='reg-title'>Advocate Forgot Password</label>
+                </div>
                 <div className="user_registration_container">
-                    <div className="user_registration_box ">
+                    <div className="user_registration_box1">
                         <div className="user_registration_input_group">
                             <form onSubmit={handleSubmit}>
-                                <label className='junior-text-loginhere'>Login Here</label>
+                                <label className='advocate-text-edit'>Reset Password Here</label>
                                 <div className="user_registration_input mt-5">
                                     <label>Email Id</label>
                                     <input
                                         type="text"
-                                        className="form-control junior-advocate-input"
+                                        className="form-control border border-dark"
                                         placeholder="Email Id"
                                         name="email"
                                         value={data.email}
@@ -102,7 +113,7 @@ function JuniorAdvocateLogin() {
                                     <label>Password</label>
                                     <input
                                         type="password"
-                                        className="form-control junior-advocate-input"
+                                        className="form-control border border-dark"
                                         placeholder="Password"
                                         name="password"
                                         value={data.password}
@@ -110,39 +121,32 @@ function JuniorAdvocateLogin() {
                                     />
                                     {errors.password && <div className="text-danger">{errors.password}</div>}
                                 </div>
-                                <div className="user_registration_forgot_pass text-end mt-3 fs-6">
-                                    <Link
-                                        to="/JuniorAdvocateForgot"
-                                        className="text-decoration-none text-dark"
-                                    >
-                                        <p>Forgot Password?</p>
-                                    </Link>
+                                <div className="user_registration_input mt-4">
+                                    <label>Re-Enter Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control border border-dark"
+                                        placeholder="Re-enter Password"
+                                        name="repassword"
+                                        value={data.repassword}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.repassword && <div className="text-danger">{errors.repassword}</div>}
                                 </div>
                                 <div className="user_registration_button text-center mt-5 d-flex justify-content-evenly">
                                     <button type="submit">Submit</button>
                                     <button type="button" onClick={handleReset}>Reset</button>
                                 </div>
                             </form>
-                            <div className="mt-4">
-                                <p>
-                                    Don't have an account?{" "}
-                                    <Link
-                                        to="/JuniorAdvocateRegister"
-                                        className="text-decoration-none text-gold"
-                                    >
-                                        Register here.
-                                    </Link>
-                                </p>
-                            </div>
                         </div>
                     </div>
-                    <div className="user_registration_box2 justify-content-center ">
+                    <div className="user_registration_box2 justify-content-center">
                         <img src={img} className="img-fluid w-100" alt="user_reg_img" />
                     </div>
                 </div>
             </div>
-    </div>
-  )
+        </div>
+    );
 }
 
-export default JuniorAdvocateLogin
+export default AdvocateForgotPassword;
