@@ -376,7 +376,7 @@ function JuniorAdvocateRegistration() {
                   <input
                     type="text"
                     className="form-control form-control-lg junior-form-input-style"
-                    placeholder="Enter your educational qualification"
+                    placeholder="Enter your Institute Name"
                     name="institute"
                     value={data.institute}
                     onChange={handleChange}

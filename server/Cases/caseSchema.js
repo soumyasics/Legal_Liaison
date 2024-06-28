@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const caseSchema = mongoose.Schema({
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
-ref:"users"
+        ref: "users"
     },
     title: {
         type: String,
@@ -36,33 +36,33 @@ ref:"users"
         required: true,
     }, evidence: {
         type: Object
-        },
-        approvalStatus:{
-            type:Boolean,
-            default:false
-        },
-        caseStatus:{
-            type:String,
-            default:'new'
-        },
-        advocateStatus:{
-type:Boolean,
-default:false
-        },
-        advocateId:{
-            type:mongoose.Schema.Types.ObjectId,
-            default:null,
-            ref:'advocates'
+    },
+    approvalStatus: {
+        type: Boolean,
+        default: false
+    },
+    caseStatus: {
+        type: String,
+        default: 'new'
+    },
+    advocateStatus: {
+        type: Boolean,
+        default: false
+    },
+    advocateId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
+        ref: 'advocates'
 
-        },
-        paymentRequested:{
-            type:Number,
-            default:0
-        },
-        paymentCollected:{
-            type:Number,
-            default:0
-        }, 
+    },
+    paymentRequested: {
+        type: Number,
+        default: 0
+    },
+    paymentCollected: {
+        type: Number,
+        default: 0
+    },
 
 });
 module.exports = mongoose.model("cases", caseSchema);

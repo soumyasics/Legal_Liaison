@@ -46,7 +46,7 @@
 }
 .req-client-main-div{
   width: 230px;
-  height: 400px;
+  min-height: 400px;
 }
 .req-view-ad-button-div{
   border-radius: 0px 0px 5px 5px;
