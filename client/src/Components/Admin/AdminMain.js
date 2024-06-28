@@ -25,7 +25,7 @@ function AdminMain({ data }) {
     if (localStorage.getItem("adminId") == null) {
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate]); 
 
   return (
     <div className="container-fluid admin_main">

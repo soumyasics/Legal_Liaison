@@ -63,7 +63,15 @@ function UserForgotPassword() {
                                 onClose: () => setToastVisible(false),
                             });
                         }
-                        navigate('/UserLogin');
+                        navigate('/UserLogin'); 
+                    } else if(response.data.status==500){
+                        if (!isToastVisible) {
+                            setToastVisible(true);
+                            toast.error(response.data.msg, {
+                                onClose: () => setToastVisible(false),
+                            });
+                        }
+                    
                     } else {
                         if (!isToastVisible) {
                             setToastVisible(true);

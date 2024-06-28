@@ -28,7 +28,7 @@ function Landingcarousel() {
 
       <LandingServices />
       <AboutUs />
-      <ContactUs />
+      {/* <ContactUs /> */}
       {/* <Footer /> */}
       <UserFooter />
     </div>
