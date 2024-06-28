@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosMultipartInstance from '../Constants/FormDataUrl';
-import '../JuniorAdvocates/JuniorAdvocateRegistration.css'
+import '../JuniorAdvocates/JuniorAdvocateRegistration.css';
 
 function JuniorAdvocateRegistration() {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     name: '',
@@ -19,7 +19,7 @@ function JuniorAdvocateRegistration() {
     dateOfEnrollment: '',
     bcState: '',
     specialization: '',
-    institute:'',
+    institute: '',
     percentage: '',
     qualification: '',
     profilePic: null,
@@ -39,7 +39,7 @@ function JuniorAdvocateRegistration() {
     dateOfEnrollment: '',
     bcState: '',
     specialization: '',
-    institute:'',
+    institute: '',
     percentage: '',
     qualification: '',
     profilePic: '',
@@ -49,19 +49,19 @@ function JuniorAdvocateRegistration() {
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (files) {
-      setData(prevData => ({
+      setData((prevData) => ({
         ...prevData,
-        [name]: files[0]
+        [name]: files[0],
       }));
     } else {
-      setData(prevData => ({
+      setData((prevData) => ({
         ...prevData,
-        [name]: value
+        [name]: value,
       }));
     }
-    setErrors(prevErrors => ({
+    setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: ''
+      [name]: '',
     }));
   };
 
@@ -122,6 +122,17 @@ function JuniorAdvocateRegistration() {
     return '';
   }
 
+  function validateDate(fieldName, value) {
+    const currentDate = new Date();
+    const selectedDate = new Date(value);
+    if (!value.trim()) {
+      return `${fieldName} is required`;
+    } else if (selectedDate > currentDate) {
+      return `${fieldName} cannot be a future date`;
+    }
+    return '';
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -129,7 +140,7 @@ function JuniorAdvocateRegistration() {
     let formIsValid = true;
 
     errors.name = validateString('Full Name', data.name);
-    errors.dob = validateField('Date of Birth', data.dob);
+    errors.dob = validateDate('Date of Birth', data.dob);
     errors.gender = validateField('Gender', data.gender);
     errors.nationality = validateString('Nationality', data.nationality);
     errors.address = validateField('Address', data.address);
@@ -137,11 +148,11 @@ function JuniorAdvocateRegistration() {
     errors.email = validateEmail('Email', data.email);
     errors.password = validatePassword('Password', data.password);
     errors.bcNo = validateNumber('Bar Council Enrollment Number', data.bcNo);
-    errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
+    errors.dateOfEnrollment = validateDate('Date of Enrollment', data.dateOfEnrollment);
     errors.bcState = validateString('State Bar Council', data.bcState);
     errors.specialization = validateField('Specialization Areas', data.specialization);
-    errors.institute=validateString('Institute Name',data.institute)
-    errors.experience = validateNumber('Percentage', data.percentage);
+    errors.institute = validateString('Institute Name', data.institute);
+    errors.percentage = validateNumber('Percentage', data.percentage);
     errors.qualification = validateString('Educational Qualification', data.qualification);
     errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
     errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
@@ -169,7 +180,7 @@ function JuniorAdvocateRegistration() {
       formData.append('dateOfEnrollment', data.dateOfEnrollment);
       formData.append('bcState', data.bcState);
       formData.append('specialization', data.specialization);
-      formData.append('institute',data.institute);
+      formData.append('institute', data.institute);
       formData.append('percentage', data.percentage);
       formData.append('qualification', data.qualification);
       formData.append('files', data.profilePic);
@@ -178,15 +189,15 @@ function JuniorAdvocateRegistration() {
       try {
         const res = await axiosMultipartInstance.post('/registerJuniorAdvocate', formData);
         if (res.data.status === 200) {
-            alert('Junior Advocate registered successfully');
-            navigate('/JuniorAdvocateLogin')
+          alert('Junior Advocate registered successfully');
+          navigate('/JuniorAdvocateLogin');
         } else {
-            alert(`Junior Advocate Registration Failed: ${res.data.msg}`);
+          alert(`Junior Advocate Registration Failed: ${res.data.msg}`);
         }
-    } catch (error) {
+      } catch (error) {
         console.error('There was an error!', error);
         alert('Error');
-    }
+      }
     }
   };
 
@@ -200,11 +211,11 @@ function JuniorAdvocateRegistration() {
           <div className='container'>
             <form onSubmit={handleSubmit}>
               <div className="row mt-3">
-                <div className="col-sm-6 col-lg-6" >
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label">Full Name :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.name ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your Full Name"
                     name="name"
                     value={data.name}
@@ -213,10 +224,10 @@ function JuniorAdvocateRegistration() {
                   {errors.name && <div className="text-danger">{errors.name}</div>}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Bar Council Enrollment Number :</label>
+                  <label className="form-label">Bar Council Enrollment Number :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.bcNo ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your Bar Council enrollment number"
                     name="bcNo"
                     value={data.bcNo}
@@ -227,10 +238,10 @@ function JuniorAdvocateRegistration() {
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Date of Birth :</label>
+                  <label className="form-label">Date of Birth :</label>
                   <input
                     type="date"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.dob ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     name="dob"
                     value={data.dob}
                     onChange={handleChange}
@@ -238,10 +249,10 @@ function JuniorAdvocateRegistration() {
                   {errors.dob && <div className="text-danger">{errors.dob}</div>}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Date of Enrollment :</label>
+                  <label className="form-label">Date of Enrollment :</label>
                   <input
                     type="date"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.dateOfEnrollment ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     name="dateOfEnrollment"
                     value={data.dateOfEnrollment}
                     onChange={handleChange}
@@ -251,9 +262,9 @@ function JuniorAdvocateRegistration() {
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Gender :</label>
+                  <label className="form-label">Gender :</label>
                   <select
-                    className="form-select form-control-lg junior-specialization-form-select"
+                    className={errors.gender ? "error form-select form-control-lg junior-specialization-form-select" : "form-select form-control-lg junior-specialization-form-select"}
                     name="gender"
                     value={data.gender}
                     onChange={handleChange}
@@ -266,10 +277,10 @@ function JuniorAdvocateRegistration() {
                   {errors.gender && <div className="text-danger">{errors.gender}</div>}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">State Bar Council :</label>
+                  <label className="form-label">State Bar Council :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.bcState ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your State Bar Council"
                     name="bcState"
                     value={data.bcState}
@@ -280,10 +291,10 @@ function JuniorAdvocateRegistration() {
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Nationality :</label>
+                  <label className="form-label">Nationality :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.nationality ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your Nationality"
                     name="nationality"
                     value={data.nationality}
@@ -292,10 +303,10 @@ function JuniorAdvocateRegistration() {
                   {errors.nationality && <div className="text-danger">{errors.nationality}</div>}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Specialization Areas :</label>
+                  <label className="form-label">Specialization Areas :</label>
                   <div className="select-container">
                     <select
-                      className="form-select form-control-lg specialization-form-select"
+                      className={errors.specialization ? "error form-select form-control-lg specialization-form-select" : "form-select form-control-lg specialization-form-select"}
                       name="specialization"
                       value={data.specialization}
                       onChange={handleChange}
@@ -312,20 +323,20 @@ function JuniorAdvocateRegistration() {
                       <option value="Constitutional Law">Constitutional Law</option>
                       <option value="Human Rights Law">Human Rights Law</option>
                       <option value="International Law">International Law</option>
-                      <option value="TBanking and Finance Law">Banking and Finance Law</option>
+                      <option value="Banking and Finance Law">Banking and Finance Law</option>
                       <option value="Immigration Law">Immigration Law</option>
                       <option value="Health Care Law">Health Care Law</option>
-                    </select> 
+                    </select>
                     {errors.specialization && <div className="text-danger">{errors.specialization}</div>}
                   </div>
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Address :</label>
+                <div className="col-sm-6 col-lg-6">
+                  <label className="form-label">Address :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.address ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your address"
                     name="address"
                     value={data.address}
@@ -333,23 +344,11 @@ function JuniorAdvocateRegistration() {
                   />
                   {errors.address && <div className="text-danger">{errors.address}</div>}
                 </div>
-                {/* <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Years of Experience :</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-lg junior-form-input-style"
-                    placeholder="Enter your years of experience"
-                    name="experience"
-                    value={data.experience}
-                    onChange={handleChange}
-                  />
-                  {errors.experience && <div className="text-danger">{errors.experience}</div>}
-                </div> */}
                 <div className="col-sm-6 col-lg-6">
                   <label className="form-label">Educational Qualification :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.qualification ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your educational qualification"
                     name="qualification"
                     value={data.qualification}
@@ -359,11 +358,11 @@ function JuniorAdvocateRegistration() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-sm-6 col-lg-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label">Contact Number :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.contact ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your contact number"
                     name="contact"
                     value={data.contact}
@@ -375,7 +374,7 @@ function JuniorAdvocateRegistration() {
                   <label className="form-label">Institute Name :</label>
                   <input
                     type="text"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.institute ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your Institute Name"
                     name="institute"
                     value={data.institute}
@@ -385,11 +384,11 @@ function JuniorAdvocateRegistration() {
                 </div>
               </div>
               <div className="row mt-3">
-              <div className="col-sm-6 col-lg-6">
+                <div className="col-sm-6 col-lg-6">
                   <label className="form-label">Email :</label>
                   <input
                     type="email"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.email ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your email"
                     name="email"
                     value={data.email}
@@ -397,11 +396,11 @@ function JuniorAdvocateRegistration() {
                   />
                   {errors.email && <div className="text-danger">{errors.email}</div>}
                 </div>
-                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label ">Percentage of Marks :</label>
+                <div className="col-sm-6 col-lg-6">
+                  <label className="form-label">Percentage of Marks :</label>
                   <input
                     type="number"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.percentage ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your Percentage of Marks"
                     name="percentage"
                     value={data.percentage}
@@ -415,7 +414,7 @@ function JuniorAdvocateRegistration() {
                   <label className="form-label">Password :</label>
                   <input
                     type="password"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.password ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     placeholder="Enter your password"
                     name="password"
                     value={data.password}
@@ -427,7 +426,7 @@ function JuniorAdvocateRegistration() {
                   <label className="form-label">ID Proof Document :</label>
                   <input
                     type="file"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.idProof ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     name="idProof"
                     onChange={handleChange}
                   />
@@ -437,24 +436,24 @@ function JuniorAdvocateRegistration() {
                   <label className="form-label">Profile Photo :</label>
                   <input
                     type="file"
-                    className="form-control form-control-lg junior-form-input-style"
+                    className={errors.profilePic ? "error form-control form-control-lg junior-form-input-style" : "form-control form-control-lg junior-form-input-style"}
                     name="profilePic"
                     onChange={handleChange}
                   />
                   {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
                 </div>
-              </div><br/>
+              </div><br />
               <div className="row mt-3">
                 <div className="col-12 junior-submit-btn-div">
                   <button type="submit" className="btn btn-primary btn-lg junior-button-submit">Register</button>
                 </div>
-              </div><br/><br/>
+              </div><br /><br />
             </form>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default JuniorAdvocateRegistration
+export default JuniorAdvocateRegistration;

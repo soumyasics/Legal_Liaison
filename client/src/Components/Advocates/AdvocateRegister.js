@@ -1,66 +1,65 @@
-import React, { useState } from 'react';
-import './AdvocateRegister.css';
+import React, { useState } from "react";
+import "./AdvocateRegister.css";
 import axiosMultipartInstance from "../Constants/FormDataUrl";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function AdvocateRegister() {
-
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    name: '',
-    dob: '',
-    gender: '',
-    nationality: '',
-    address: '',
-    contact: '',
-    email: '',
-    password: '',
-    bcNo: '',
-    dateOfEnrollment: '',
-    bcState: '',
-    specialization: '',
-    experience: '',
-    qualification: '',
+    name: "",
+    dob: "",
+    gender: "",
+    nationality: "",
+    address: "",
+    contact: "",
+    email: "",
+    password: "",
+    bcNo: "",
+    dateOfEnrollment: "",
+    bcState: "",
+    specialization: "",
+    experience: "",
+    qualification: "",
     profilePic: null,
     idProof: null,
   });
 
   const [errors, setErrors] = useState({
-    name: '',
-    dob: '',
-    gender: '',
-    nationality: '',
-    address: '',
-    contact: '',
-    email: '',
-    password: '',
-    bcNo: '',
-    dateOfEnrollment: '',
-    bcState: '',
-    specialization: '',
-    experience: '',
-    qualification: '',
-    profilePic: '',
-    idProof: '',
+    name: "",
+    dob: "",
+    gender: "",
+    nationality: "",
+    address: "",
+    contact: "",
+    email: "",
+    password: "",
+    bcNo: "",
+    dateOfEnrollment: "",
+    bcState: "",
+    specialization: "",
+    experience: "",
+    qualification: "",
+    profilePic: "",
+    idProof: "",
   });
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (files) {
-      setData(prevData => ({
+      setData((prevData) => ({
         ...prevData,
-        [name]: files[0]
+        [name]: files[0],
       }));
     } else {
-      setData(prevData => ({
+      setData((prevData) => ({
         ...prevData,
-        [name]: value
+        [name]: value,
       }));
     }
-    setErrors(prevErrors => ({
+    setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: ''
+      [name]: "",
     }));
   };
 
@@ -74,7 +73,7 @@ function AdvocateRegister() {
     } else if (!noNumberRegex.test(value)) {
       return `${fieldName} should not contain any numerical value`;
     }
-    return '';
+    return "";
   }
 
   function validateNumber(fieldName, value, length = null) {
@@ -85,14 +84,14 @@ function AdvocateRegister() {
     } else if (length && value.length !== length) {
       return `${fieldName} must be ${length} digits long`;
     }
-    return '';
+    return "";
   }
 
   function validateField(fieldName, value) {
     if (!value.trim()) {
       return `${fieldName} is required`;
     }
-    return '';
+    return "";
   }
 
   function validateContact(fieldName, value) {
@@ -100,9 +99,9 @@ function AdvocateRegister() {
     if (!value.trim()) {
       return `${fieldName} is required`;
     } else if (!contactRegex.test(value) || value.length !== 10) {
-      return 'Please enter a valid Contact Number';
+      return "Please enter a valid Contact Number";
     }
-    return '';
+    return "";
   }
 
   function validateEmail(fieldName, value) {
@@ -110,9 +109,9 @@ function AdvocateRegister() {
     if (!value.trim()) {
       return `${fieldName} is required`;
     } else if (!emailPattern.test(value)) {
-      return 'Invalid email format';
+      return "Invalid email format";
     }
-    return '';
+    return "";
   }
 
   function validatePassword(fieldName, value) {
@@ -121,7 +120,18 @@ function AdvocateRegister() {
     } else if (value.length < 6) {
       return `${fieldName} must be at least 6 characters long`;
     }
-    return '';
+    return "";
+  }
+
+  function validateDate(fieldName, value) {
+    if (!value.trim()) {
+      return `${fieldName} is required`;
+    }
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+    if (value > today) {
+      return `${fieldName} cannot be a future date`;
+    }
+    return "";
   }
 
   const handleSubmit = async (event) => {
@@ -130,22 +140,37 @@ function AdvocateRegister() {
     let errors = {};
     let formIsValid = true;
 
-    errors.name = validateString('Full Name', data.name);
-    errors.dob = validateField('Date of Birth', data.dob);
-    errors.gender = validateField('Gender', data.gender);
-    errors.nationality = validateString('Nationality', data.nationality);
-    errors.address = validateField('Address', data.address);
-    errors.contact = validateContact('Contact', data.contact);
-    errors.email = validateEmail('Email', data.email);
-    errors.password = validatePassword('Password', data.password);
-    errors.bcNo = validateNumber('Bar Council Enrollment Number', data.bcNo);
-    errors.dateOfEnrollment = validateField('Date of Enrollment', data.dateOfEnrollment);
-    errors.bcState = validateString('State Bar Council', data.bcState);
-    errors.specialization = validateField('Specialization Areas', data.specialization);
-    errors.experience = validateNumber('Years of Experience', data.experience);
-    errors.qualification = validateString('Educational Qualification', data.qualification);
-    errors.profilePic = validateField('Profile Photo', data.profilePic ? data.profilePic.name : '');
-    errors.idProof = validateField('ID Proof Document', data.idProof ? data.idProof.name : '');
+    errors.name = validateString("Full Name", data.name);
+    errors.dob = validateDate("Date of Birth", data.dob);
+    errors.gender = validateField("Gender", data.gender);
+    errors.nationality = validateString("Nationality", data.nationality);
+    errors.address = validateField("Address", data.address);
+    errors.contact = validateContact("Contact", data.contact);
+    errors.email = validateEmail("Email", data.email);
+    errors.password = validatePassword("Password", data.password);
+    errors.bcNo = validateNumber("Bar Council Enrollment Number", data.bcNo);
+    errors.dateOfEnrollment = validateDate(
+      "Date of Enrollment",
+      data.dateOfEnrollment
+    );
+    errors.bcState = validateString("State Bar Council", data.bcState);
+    errors.specialization = validateField(
+      "Specialization Areas",
+      data.specialization
+    );
+    errors.experience = validateNumber("Years of Experience", data.experience);
+    errors.qualification = validateString(
+      "Educational Qualification",
+      data.qualification
+    );
+    errors.profilePic = validateField(
+      "Profile Photo",
+      data.profilePic ? data.profilePic.name : ""
+    );
+    errors.idProof = validateField(
+      "ID Proof Document",
+      data.idProof ? data.idProof.name : ""
+    );
 
     setErrors(errors);
 
@@ -158,34 +183,37 @@ function AdvocateRegister() {
 
     if (formIsValid) {
       const formData = new FormData();
-      formData.append('name', data.name);
-      formData.append('dob', data.dob);
-      formData.append('gender', data.gender);
-      formData.append('nationality', data.nationality);
-      formData.append('address', data.address);
-      formData.append('contact', data.contact);
-      formData.append('email', data.email);
-      formData.append('password', data.password);
-      formData.append('bcNo', data.bcNo);
-      formData.append('dateOfEnrollment', data.dateOfEnrollment);
-      formData.append('bcState', data.bcState);
-      formData.append('specialization', data.specialization);
-      formData.append('experience', data.experience);
-      formData.append('qualification', data.qualification);
-      formData.append('files', data.profilePic);
-      formData.append('files', data.idProof);
+      formData.append("name", data.name);
+      formData.append("dob", data.dob);
+      formData.append("gender", data.gender);
+      formData.append("nationality", data.nationality);
+      formData.append("address", data.address);
+      formData.append("contact", data.contact);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("bcNo", data.bcNo);
+      formData.append("dateOfEnrollment", data.dateOfEnrollment);
+      formData.append("bcState", data.bcState);
+      formData.append("specialization", data.specialization);
+      formData.append("experience", data.experience);
+      formData.append("qualification", data.qualification);
+      formData.append("files", data.profilePic);
+      formData.append("files", data.idProof);
 
       try {
-        const res = await axiosMultipartInstance.post('/registerAdvocate', formData);
+        const res = await axiosMultipartInstance.post(
+          "/registerAdvocate",
+          formData
+        );
         if (res.data.status === 200) {
-          alert('Advocate registered successfully');
-          navigate('/AdvocateLogin');
+          alert("Advocate registered successfully");
+          navigate("/AdvocateLogin");
         } else {
           alert(`Advocate Registration Failed: ${res.data.msg}`);
         }
       } catch (error) {
-        console.error('There was an error!', error);
-        alert('Error');
+        console.error("There was an error!", error);
+        alert("Error");
       }
       console.log(formData);
     }
@@ -193,16 +221,18 @@ function AdvocateRegister() {
 
   return (
     <div>
-      <div className='heading-div container-fluid'>
-        <label className='reg-title'>Advocate Registration Form</label>
+      <div className="heading-div container-fluid">
+        <label className="reg-title">Advocate Registration Form</label>
       </div>
-      <div className='container-fluid bckcolor'>
-        <div className='advocateRegistrationmaindiv'>
-          <div className='container'>
+      <div className="container-fluid bckcolor">
+        <div className="advocateRegistrationmaindiv">
+          <div className="container">
             <form onSubmit={handleSubmit}>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Full Name :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Full Name :
+                  </label>
                   <input
                     type="text"
                     className="form-control form-control-lg form-input-style"
@@ -211,10 +241,14 @@ function AdvocateRegister() {
                     value={data.name}
                     onChange={handleChange}
                   />
-                  {errors.name && <div className="text-danger">{errors.name}</div>}
+                  {errors.name && (
+                    <div className="text-danger">{errors.name}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Bar Council Enrollment Number :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Bar Council Enrollment Number :
+                  </label>
                   <input
                     type="number"
                     className="form-control form-control-lg form-input-style"
@@ -223,36 +257,50 @@ function AdvocateRegister() {
                     value={data.bcNo}
                     onChange={handleChange}
                   />
-                  {errors.bcNo && <div className="text-danger">{errors.bcNo}</div>}
+                  {errors.bcNo && (
+                    <div className="text-danger">{errors.bcNo}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Date of Birth :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Date of Birth :
+                  </label>
                   <input
                     type="date"
-                    className="form-control form-control-lg form-input-style"
+                    id="dob"
                     name="dob"
                     value={data.dob}
                     onChange={handleChange}
+                    className={errors.dob ? "error form-control form-control-lg form-input-style" : "form-control form-control-lg form-input-style"}
                   />
-                  {errors.dob && <div className="text-danger">{errors.dob}</div>}
+                  {errors.dob && (
+                    <div className="text-danger">{errors.dob}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Date of Enrollment :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Date of Enrollment :
+                  </label>
                   <input
                     type="date"
-                    className="form-control form-control-lg form-input-style"
+                    id="dateOfEnrollment"
                     name="dateOfEnrollment"
                     value={data.dateOfEnrollment}
                     onChange={handleChange}
+                    className={errors.dateOfEnrollment ? "error form-control form-control-lg form-input-style" : " form-control form-control-lg form-input-style"}
                   />
-                  {errors.dateOfEnrollment && <div className="text-danger">{errors.dateOfEnrollment}</div>}
+                  {errors.dateOfEnrollment && (
+                    <div className="text-danger">{errors.dateOfEnrollment}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Gender :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Gender :
+                  </label>
                   <select
                     className="form-select form-control-lg form-input-style"
                     name="gender"
@@ -264,10 +312,14 @@ function AdvocateRegister() {
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
-                  {errors.gender && <div className="text-danger">{errors.gender}</div>}
+                  {errors.gender && (
+                    <div className="text-danger">{errors.gender}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">State Bar Council :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    State Bar Council :
+                  </label>
                   <select
                     className="form-select form-control-lg form-input-style"
                     name="bcState"
@@ -280,12 +332,16 @@ function AdvocateRegister() {
                     <option value="Madhya Pradesh">Madhya Pradesh</option>
                     <option value="Uttar Pradesh">Uttar Pradesh</option>
                   </select>
-                  {errors.bcState && <div className="text-danger">{errors.bcState}</div>}
+                  {errors.bcState && (
+                    <div className="text-danger">{errors.bcState}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Nationality :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Nationality :
+                  </label>
                   <input
                     type="text"
                     className="form-control form-control-lg form-input-style"
@@ -294,10 +350,14 @@ function AdvocateRegister() {
                     value={data.nationality}
                     onChange={handleChange}
                   />
-                  {errors.nationality && <div className="text-danger">{errors.nationality}</div>}
+                  {errors.nationality && (
+                    <div className="text-danger">{errors.nationality}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Contact Number :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Contact Number :
+                  </label>
                   <input
                     type="tel"
                     className="form-control form-control-lg form-input-style"
@@ -306,12 +366,16 @@ function AdvocateRegister() {
                     value={data.contact}
                     onChange={handleChange}
                   />
-                  {errors.contact && <div className="text-danger">{errors.contact}</div>}
+                  {errors.contact && (
+                    <div className="text-danger">{errors.contact}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Educational Qualification :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Educational Qualification :
+                  </label>
                   <input
                     type="text"
                     className="form-control form-control-lg form-input-style"
@@ -320,38 +384,54 @@ function AdvocateRegister() {
                     value={data.qualification}
                     onChange={handleChange}
                   />
-                  {errors.qualification && <div className="text-danger">{errors.qualification}</div>}
+                  {errors.qualification && (
+                    <div className="text-danger">{errors.qualification}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Specialization Areas :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Specialization Areas :
+                  </label>
                   <select
-                      className="form-select form-control-lg specialization-form-select"
-                      name="specialization"
-                      value={data.specialization}
-                      onChange={handleChange}
-                    >
-                      <option value="" disabled>Select your Specialization Area</option>
-                      <option value="Criminal Law">Criminal Law</option>
-                      <option value="Civil Law">Civil Law</option>
-                      <option value="Family Law">Family Law</option>
-                      <option value="Corporate Law">Corporate Law</option>
-                      <option value="Intellectual Property Law">Intellectual Property Law</option>
-                      <option value="Environmental Law">Environmental Law</option>
-                      <option value="Tax Law">Tax Law</option>
-                      <option value="Real Estate Law">Real Estate Law</option>
-                      <option value="Constitutional Law">Constitutional Law</option>
-                      <option value="Human Rights Law">Human Rights Law</option>
-                      <option value="International Law">International Law</option>
-                      <option value="TBanking and Finance Law">Banking and Finance Law</option>
-                      <option value="Immigration Law">Immigration Law</option>
-                      <option value="Health Care Law">Health Care Law</option>
-                    </select>
-                  {errors.specialization && <div className="text-danger">{errors.specialization}</div>}
+                    className="form-select form-control-lg specialization-form-select"
+                    name="specialization"
+                    value={data.specialization}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled>
+                      Select your Specialization Area
+                    </option>
+                    <option value="Criminal Law">Criminal Law</option>
+                    <option value="Civil Law">Civil Law</option>
+                    <option value="Family Law">Family Law</option>
+                    <option value="Corporate Law">Corporate Law</option>
+                    <option value="Intellectual Property Law">
+                      Intellectual Property Law
+                    </option>
+                    <option value="Environmental Law">Environmental Law</option>
+                    <option value="Tax Law">Tax Law</option>
+                    <option value="Real Estate Law">Real Estate Law</option>
+                    <option value="Constitutional Law">
+                      Constitutional Law
+                    </option>
+                    <option value="Human Rights Law">Human Rights Law</option>
+                    <option value="International Law">International Law</option>
+                    <option value="TBanking and Finance Law">
+                      Banking and Finance Law
+                    </option>
+                    <option value="Immigration Law">Immigration Law</option>
+                    <option value="Health Care Law">Health Care Law</option>
+                  </select>
+                  {errors.specialization && (
+                    <div className="text-danger">{errors.specialization}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Email ID :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Email ID :
+                  </label>
                   <input
                     type="email"
                     className="form-control form-control-lg form-input-style"
@@ -360,10 +440,14 @@ function AdvocateRegister() {
                     value={data.email}
                     onChange={handleChange}
                   />
-                  {errors.email && <div className="text-danger">{errors.email}</div>}
+                  {errors.email && (
+                    <div className="text-danger">{errors.email}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Password :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Password :
+                  </label>
                   <input
                     type="password"
                     className="form-control form-control-lg form-input-style"
@@ -372,22 +456,30 @@ function AdvocateRegister() {
                     value={data.password}
                     onChange={handleChange}
                   />
-                  {errors.password && <div className="text-danger">{errors.password}</div>}
+                  {errors.password && (
+                    <div className="text-danger">{errors.password}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Profile Photo :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Profile Photo :
+                  </label>
                   <input
                     type="file"
                     className="form-control form-control-lg form-input-style"
                     name="profilePic"
                     onChange={handleChange}
                   />
-                  {errors.profilePic && <div className="text-danger">{errors.profilePic}</div>}
+                  {errors.profilePic && (
+                    <div className="text-danger">{errors.profilePic}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Years of Experience :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Years of Experience :
+                  </label>
                   <input
                     type="number"
                     className="form-control form-control-lg form-input-style"
@@ -396,22 +488,30 @@ function AdvocateRegister() {
                     value={data.experience}
                     onChange={handleChange}
                   />
-                  {errors.experience && <div className="text-danger">{errors.experience}</div>}
+                  {errors.experience && (
+                    <div className="text-danger">{errors.experience}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">ID Proof Document :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    ID Proof Document :
+                  </label>
                   <input
                     type="file"
                     className="form-control form-control-lg form-input-style"
                     name="idProof"
                     onChange={handleChange}
                   />
-                  {errors.idProof && <div className="text-danger">{errors.idProof}</div>}
+                  {errors.idProof && (
+                    <div className="text-danger">{errors.idProof}</div>
+                  )}
                 </div>
                 <div className="col-sm-6 col-lg-6">
-                  <label className="form-label advocateRegistrationlabel">Address :</label>
+                  <label className="form-label advocateRegistrationlabel">
+                    Address :
+                  </label>
                   <textarea
                     className="form-control form-control-lg form-input-style"
                     placeholder="Enter your Address"
@@ -419,12 +519,19 @@ function AdvocateRegister() {
                     value={data.address}
                     onChange={handleChange}
                   />
-                  {errors.address && <div className="text-danger">{errors.address}</div>}
+                  {errors.address && (
+                    <div className="text-danger">{errors.address}</div>
+                  )}
                 </div>
               </div>
               <div className="row mt-3 mb-2">
                 <div className="col-12 junior-submit-btn-div">
-                  <button type="submit" className="btn btn-primary btn-lg junior-button-submit">Register</button>
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-lg junior-button-submit"
+                  >
+                    Register
+                  </button>
                 </div>
               </div>
             </form>

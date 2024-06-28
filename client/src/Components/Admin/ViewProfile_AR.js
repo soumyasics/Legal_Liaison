@@ -180,15 +180,7 @@ function ViewProfile_AR({ view }) {
                     <label className="sub-label">{advocate.qualification}</label>
                   </td>
                 </tr>
-                <tr>
-                  <td className="left-alignn">
-                    <label className="sub-label">Professional Experience </label>
-                  </td>
-                  <td className="left-alignn"> : </td>
-                  <td className="left-alignn">
-                    <label className="sub-label">{advocate.experience}</label>
-                  </td>
-                </tr>
+                 
 
                 {view === "view" ? (
                   <div className="row justify-content-center mt-4 arr">
