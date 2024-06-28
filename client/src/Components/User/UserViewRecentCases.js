@@ -144,7 +144,7 @@ function UserViewRecentCases() {
                                     [View Evidence]
                                   </div>
                                 </div>
-                                <div className="d-flex mt-2">
+                                {/* <div className="d-flex mt-2">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (
                                       <Link
@@ -157,7 +157,7 @@ function UserViewRecentCases() {
                                       ""
                                     )}
                                   </div>
-                                </div>
+                                </div> */}
                                 <div className="d-flex">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (

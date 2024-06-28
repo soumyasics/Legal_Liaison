@@ -42,7 +42,10 @@ function User_BookAppoinment() {
         if (res.data.status === 200) {
           toast.success("Appointment request created successfully");
           navigate('/user_view_recent_cases')
-        } else {
+        } else if(res.data.status==500)  {
+          toast.error(res.data.msg);
+        
+        } else  {
           toast.error("Failed to create appointment request");
         }
       })

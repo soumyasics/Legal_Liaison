@@ -49,11 +49,11 @@ function AdminNav() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="#about-us">
                   ChangePassword
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link to={'/'} onClick={logout} className="nav-link" >
                   Logout
