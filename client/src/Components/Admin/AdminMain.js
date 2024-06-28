@@ -16,6 +16,7 @@ import ViewProfile_JuniorAdvocateRequest from "./ViewProfile_JuniorAdvocateReque
 import AdminViewInternRequest from "./AdminViewInternRequest";
 import AdminViewInternProfile from "./AdminViewInternProfile";
 import AdminViewApprovedInterns from "./AdminViewApprovedInterns";
+import AdminViewComplaints from "./AdminViewComplaints";
 
 function AdminMain({ data }) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function AdminMain({ data }) {
     if (localStorage.getItem("adminId") == null) {
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate]); 
 
   return (
     <div className="container-fluid admin_main">
@@ -59,10 +60,11 @@ function AdminMain({ data }) {
           ) : data === "interndetailreq" ? (
             <AdminViewInternProfile view="request" />
           ) : data === "approvedInterns" ? (
-            <AdminViewApprovedInterns  />
-          ) 
-           : data === "interndetails" ? (
-            <AdminViewInternProfile view='view'  />
+            <AdminViewApprovedInterns />
+          ) : data === "interndetails" ? (
+            <AdminViewInternProfile view="view" />
+          ) : data === "complaints" ? (
+            <AdminViewComplaints />
           ) : (
             <AdminLogin />
           )}

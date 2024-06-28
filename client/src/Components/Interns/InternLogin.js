@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import img from "../../Assets/image23.png";
+import img from "../../Assets/intern-login.png";
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import { toast } from 'react-toastify';
@@ -113,7 +113,7 @@ function InternLogin() {
                                 </div>
                                 <div className="user_registration_forgot_pass text-end mt-3 fs-6">
                                     <Link
-                                        to="/forgot-password"
+                                        to=""
                                         className="text-decoration-none text-dark"
                                     >
                                         <p>Forgot Password?</p>

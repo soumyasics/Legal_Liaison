@@ -94,7 +94,7 @@ function ViewJuniorAdvocateRequest() {
                 <th className="ju-table-header">Reject</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody> 
               {data.length ? (
                 data.map((junioradvocate) => (
                   <tr>

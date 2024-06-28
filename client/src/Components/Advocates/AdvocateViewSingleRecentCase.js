@@ -20,6 +20,7 @@ function AdvocateViewSingleRecentCase() {
   const aid = localStorage.getItem("advocateId");
   const [showModal, setShowModal] = useState(false);
   const [evidenceUrl, setEvidenceUrl] = useState("");
+  const [fileType, setFileType] = useState(""); // State to store the file type
 
   useEffect(() => {
     axiosInstance
@@ -27,9 +28,9 @@ function AdvocateViewSingleRecentCase() {
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
-          setData(res.data.data || []);
+          setData(res.data.data || {});
         } else {
-          setData([]);
+          setData({});
         }
       })
       .catch((error) => {
@@ -38,7 +39,16 @@ function AdvocateViewSingleRecentCase() {
   }, [id]);
 
   const handleEvidenceClick = () => {
-    setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
+    const evidence = data.caseId.evidence || {};
+    const fileUrl = evidence.filename ? `${imageUrl}/${evidence.filename}` : null;
+    if (!fileUrl) {
+      setFileType("none");
+      setEvidenceUrl(null);
+    } else {
+      const fileExtension = fileUrl.split(".").pop().toLowerCase();
+      setFileType(fileExtension);
+      setEvidenceUrl(fileUrl);
+    }
     setShowModal(true);
   };
 
@@ -51,20 +61,20 @@ function AdvocateViewSingleRecentCase() {
           <div className="d-flex justify-content-end">
             <div className="adv_view_case_req_action_grps d-flex justify-content-between">
               <div className="adv_view_case_req_action_btn d-flex">
-                <i class="ri-upload-2-fill"></i>
+                <i className="ri-upload-2-fill"></i>
                 <Link to={`/advocate_addevidence/${data.caseId._id}`}>
                   <p>Upload Evidence</p>
                 </Link>
               </div>
 
               <div className="adv_view_case_req_action_btn d-flex">
-                <i class="ri-file-paper-2-line"></i>
+                <i className="ri-file-paper-2-line"></i>
                 <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
                   <p>Add Case Status</p>
                 </Link>
               </div>
               <div className="adv_view_case_req_action_btn d-flex">
-                <i class="ri-bank-card-line"></i>
+                <i className="ri-bank-card-line"></i>
                 <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
                   <p>Request Payment</p>
                 </Link>
@@ -143,7 +153,7 @@ function AdvocateViewSingleRecentCase() {
             <div className="col-7">
               <div className="adv_case_req_right_container">
                 <div className="adv_case_req_left_container1_head">
-                  <p>Opponent Details</p>
+                  <p>Case Details</p>
                 </div>
                 <div className="adv_case_req_left_container1_content">
                   <table>
@@ -174,12 +184,16 @@ function AdvocateViewSingleRecentCase() {
                         </td>
                       </tr>
                     </tbody>
-                    <div></div>
                   </table>
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
                       <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
                         Case Status
+                      </button></Link>
+                    </div>
+                    <div className="col-auto">
+                      <Link to={`/advocate_view_added_evidences/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
+                        Evidences Info
                       </button></Link>
                     </div>
                     <div className="col-auto">
@@ -199,7 +213,9 @@ function AdvocateViewSingleRecentCase() {
             <Modal.Title>Evidence</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {evidenceUrl.endsWith(".pdf") ? (
+            {fileType === "none" ? (
+              <p>No Evidence Added</p>
+            ) : fileType === "pdf" ? (
               <iframe
                 src={evidenceUrl}
                 width="100%"

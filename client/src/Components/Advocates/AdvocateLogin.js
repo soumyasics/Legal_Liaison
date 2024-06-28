@@ -55,9 +55,11 @@ function AdvocateLogin() {
                         alert("Login Successful");
                         navigate('/advocate_home')
                         localStorage.setItem('advocateId',response.data.data._id)
-                    } else {
+                    } else if(response.data.status==405){
                         console.log("Login Failed");
-                        alert("Login Failed");
+                        alert(response.data.msg);
+                    }else{
+                        alert('Login Failed');
                     }
                 })
                 .catch(error => {
@@ -109,7 +111,7 @@ function AdvocateLogin() {
                                 </div>
                                 <div className="user_registration_forgot_pass text-end mt-3 fs-6">
                                     <Link
-                                        to="/forgot-password"
+                                        to="/AdvocateForgot"
                                         className="text-decoration-none text-dark"
                                     >
                                         <p>Forgot Password?</p>

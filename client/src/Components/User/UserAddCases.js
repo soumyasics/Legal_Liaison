@@ -154,6 +154,16 @@ function UserAddCases() {
                   </div>
                 </div>
                 <div className="col-6">
+                {suggestions.length ? (
+                    <div className="px-3 mb-1 text-danger">
+                      <b>Suggestions</b>: {suggestions.join(", ")}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {errors.type && touched.type && (
+                    <span className="text-danger px-3">{errors.type}</span>
+                  )}
                   <div className="d-flex justify-content-between">
                     <div>: &nbsp;</div>
                     <select
@@ -192,16 +202,7 @@ function UserAddCases() {
                       <option value="Health Care Law">Health Care Law</option>
                     </select>
                   </div>
-                  {suggestions.length ? (
-                    <div className="px-3 mb-1">
-                      <b>Suggestions</b>: {suggestions.join(", ")}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {errors.type && touched.type && (
-                    <span className="text-danger px-3">{errors.type}</span>
-                  )}
+                  
                 </div>
 
                 <div className="col-6">

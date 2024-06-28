@@ -3,6 +3,8 @@ import './User_RequestAdvocate.css';
 import axiosMultipartInstance from '../Constants/FormDataUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import { Link, useParams } from 'react-router-dom';
+import ReactStars from "react-rating-stars-component";
+
 
 function User_RequestAdvocate() {
     const [currentPage, setCurrentPage] = useState(0);
@@ -51,11 +53,13 @@ function User_RequestAdvocate() {
                 key={index}
                 className="carousel-card req-card-style"
               >
+                
                 <div className="card-body card-height">
                   <div className='req-client-main-div'>
                     <div className='req-client-view-ad-namearea'>
                       <h3>{advocate.name}</h3>
                       <p>{advocate.specialization}</p>
+                      
                     </div>
                     <div>
                       <img src={`${imageUrl}/${advocate.profilePic.filename}`} alt={advocate.name} className='image-fluid req-image-style' />
@@ -65,6 +69,16 @@ function User_RequestAdvocate() {
                     <Link to={`/user_bookappoinment/${advocate._id}/${id}`}>
                       <button className='btn btn-warning btn-warning-style'>Request</button>
                     </Link>
+                    <br />
+                      <div className="d-flex justify-content-center pb-2">
+                        <ReactStars
+                          count={5}
+                          value={advocate.rating ? advocate.rating : 0}
+                          size={24}
+                          activeColor="#ffd700"
+                          edit={false}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

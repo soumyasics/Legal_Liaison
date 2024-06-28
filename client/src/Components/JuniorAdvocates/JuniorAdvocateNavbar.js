@@ -73,6 +73,9 @@ const handleLogout = () => {
             <li className="nav-item">
               <Link className="nav-link" to="">Asigned Cases</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/junior_adv_add_complaint">Complaint</Link>
+            </li>
             
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

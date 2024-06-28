@@ -13,13 +13,15 @@ import { Modal, Button } from "react-bootstrap";
 import { imageUrl } from "../Constants/Image_Url";
 
 function AdvocateViewCaseReq() {
-
-  const [data, setData] = useState({userId:{},caseId:{dateOfIncident:'',evidence:{filename:''}}});
-  const {id} =useParams();
-  const navigate =useNavigate();
-  const aid=localStorage.getItem('advocateId');
+  const [data, setData] = useState({
+    userId: {},
+    caseId: { dateOfIncident: "", evidence: {} },
+  });
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [evidenceUrl, setEvidenceUrl] = useState('');
+  const [fileType, setFileType] = useState(""); // State to store the file type
 
   useEffect(() => {
     axiosInstance
@@ -44,7 +46,7 @@ function AdvocateViewCaseReq() {
         console.log(res);
         if (res.data.status === 200) {
           toast.success("Accepted Successfully");
-          navigate('/advocate_viewcasereq');
+          navigate("/advocate_viewcasereq");
         } else {
           toast.error("Failed");
         }
@@ -61,7 +63,7 @@ function AdvocateViewCaseReq() {
         console.log(res);
         if (res.data.status === 200) {
           toast.success("Rejected Successfully");
-          navigate('/advocate_viewcasereq');
+          navigate("/advocate_viewcasereq");
         } else {
           toast.error("Failed");
         }
@@ -72,12 +74,21 @@ function AdvocateViewCaseReq() {
   };
 
   const handleEvidenceClick = () => {
-    setEvidenceUrl(`${imageUrl}/${data.caseId.evidence.filename}`);
+    const evidence = data.caseId.evidence || {};
+    const fileUrl = evidence.filename ? `${imageUrl}/${evidence.filename}` : null;
+    if (!fileUrl) {
+      setFileType("none");
+      setEvidenceUrl(null);
+    } else {
+      const fileExtension = fileUrl.split(".").pop().toLowerCase();
+      setFileType(fileExtension);
+      setEvidenceUrl(fileUrl);
+    }
     setShowModal(true);
   };
 
   const handleClose = () => setShowModal(false);
- 
+
   return (
     <div className="adv_view_case_req">
       <div className="container">
@@ -186,7 +197,9 @@ function AdvocateViewCaseReq() {
           <Modal.Title>Evidence</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {evidenceUrl.endsWith('.pdf') ? (
+          {fileType === "none" ? (
+            <p>No Evidence Added</p>
+          ) : fileType === "pdf" ? (
             <iframe src={evidenceUrl} width="100%" height="500px" title="Evidence PDF" />
           ) : (
             <img src={evidenceUrl} alt="Evidence" className="img-fluid" />

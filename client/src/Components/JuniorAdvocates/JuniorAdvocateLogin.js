@@ -55,6 +55,10 @@ function JuniorAdvocateLogin() {
                         alert("Login Successful");
                         navigate('/JuniorAdvocate-homepage')
                         localStorage.setItem('junioradvocateId',response.data.data._id)
+                    } else if(response.data.status==405) {
+                        console.log("Login Failed");
+                        alert(response.data.msg);
+                    
                     } else {
                         console.log("Login Failed");
                         alert("Login Failed");
@@ -108,7 +112,7 @@ function JuniorAdvocateLogin() {
                                 </div>
                                 <div className="user_registration_forgot_pass text-end mt-3 fs-6">
                                     <Link
-                                        to="/forgot-password"
+                                        to="/JuniorAdvocateForgot"
                                         className="text-decoration-none text-dark"
                                     >
                                         <p>Forgot Password?</p>
