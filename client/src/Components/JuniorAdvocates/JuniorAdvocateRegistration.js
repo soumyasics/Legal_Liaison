@@ -315,7 +315,7 @@ function JuniorAdvocateRegistration() {
                       <option value="TBanking and Finance Law">Banking and Finance Law</option>
                       <option value="Immigration Law">Immigration Law</option>
                       <option value="Health Care Law">Health Care Law</option>
-                    </select>
+                    </select> 
                     {errors.specialization && <div className="text-danger">{errors.specialization}</div>}
                   </div>
                 </div>

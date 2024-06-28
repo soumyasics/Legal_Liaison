@@ -26,14 +26,12 @@ function LandingNavbar() {
               <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">About Us</Link>
+              <Link className="nav-link" to="/aboutus">About Us</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Services</Link>
+              <Link className="nav-link" to="/services">Services</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Contact</Link>
-            </li>
+          
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Login

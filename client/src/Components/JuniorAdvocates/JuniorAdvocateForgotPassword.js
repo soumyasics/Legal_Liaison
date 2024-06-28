@@ -68,7 +68,11 @@ function JuniorAdvocateForgotPassword() {
                         console.log("Password Reset Successful");
                         alert("Password Reset Successful");
                         navigate('/JuniorAdvocateLogin');
-                    } else {
+                    } else if(response.data.status==500) {
+                        console.log(response.data.msg);
+                        alert("Password Reset Failed");
+                    }
+                     else {
                         console.log("Password Reset Failed");
                         alert("Password Reset Failed");
                     }

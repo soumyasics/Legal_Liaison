@@ -69,7 +69,11 @@ function AdvocateForgotPassword() {
                         console.log("Password Reset Successful");
                         alert("Password Reset Successful");
                         navigate('/AdvocateLogin');
-                    } else {
+                    } else if(response.data.status==500) {
+                        console.log("Password Reset Failed");
+                        alert(response.data.msg);
+                    }
+                     else {
                         console.log("Password Reset Failed");
                         alert("Password Reset Failed");
                     }
