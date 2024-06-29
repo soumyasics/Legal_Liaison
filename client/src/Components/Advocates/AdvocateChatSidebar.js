@@ -40,7 +40,7 @@ function AdvocateChatSidebar() {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="adv_chat_sidebar_search">
+            {/* <div className="adv_chat_sidebar_search">
               <div class="input-group mb-3">
                 <input
                   type="text"
@@ -53,14 +53,14 @@ function AdvocateChatSidebar() {
                   <i class="ri-search-2-line"></i>
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {users.length == 0 && interns.length == 0 && juniors.length == 0 ? (
               <div className="adv_chat_sidebar_no_recipient">
                 <p>No Recipient found</p>
               </div>
             ) : (
-              <div>
+              <div className="mt-5" >
                 {users.length
                   ? users.map((e) => {
                       return (
