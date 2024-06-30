@@ -11,7 +11,7 @@ const createGroup = async (req, res) => {
    
     date:new Date()
   });
-  await message
+  await addGroup
     .save()
 
     .then((data) => {
@@ -34,7 +34,7 @@ const viewAllActiveGroups = (req, res) => {
   group
     .find({ status:true })
   
-    .populate("internId")
+    .populate("adminId")
 
     .exec()
     .then((data) => {
@@ -64,7 +64,7 @@ if(data.length>0){
 
 // View Interns by ID
 const viewGroupById = (req, res) => {
-  group.findById({ _id: req.params.id }).populate('internId')
+  group.findById({ _id: req.params.id }).populate('adminId')
       .exec()
       .then(data => {
           res.json({
@@ -114,7 +114,7 @@ const joinGroup = async (req, res) => {
   const datas = new chat({
   
     internId: req.body.internId,
-   gorupId: req.params.gorupId,
+   groupId: req.params.groupId,
    msg:req.body.msg,
     date:new Date()
   });
@@ -139,7 +139,7 @@ const joinGroup = async (req, res) => {
 
 // View Interns by ID
 const viewgroupChatsByGroupId = (req, res) => {
-  chat.find({ gorupId: req.params.id}).populate('internId')
+  chat.find({ groupId: req.params.id}).populate('internId')
       .exec()
       .then(data => {
           res.json({
@@ -158,7 +158,7 @@ const viewgroupChatsByGroupId = (req, res) => {
 };
 // View Interns by ID
 const viewgroupsByInternId = (req, res) => {
-  group.find({ internId: req.params.id,status:true}).populate('gorupId')
+  group.find({ internId: req.params.id,status:true}).populate('groupId')
       .exec()
       .then(data => {
           res.json({

@@ -29,3 +29,11 @@
 #min-h{
   min-height: 100px;
 }
+
+.no_chat_container_chat{
+  min-height: 70vh;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

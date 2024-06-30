@@ -123,7 +123,7 @@ function AdvocateChatSidebar() {
                   ? interns.map((e) => {
                       return (
                         <div className="adv_chat_sidebar_name">
-                          <Link to={`/advocate_single_chat/${e._id}`}>
+                          <Link to={`/advocate_single_chat/${e._id}/interns`}>
                             <div className="d-flex">
                               <div className="adv_chat_sidebar_name_img">
                                 <img
@@ -138,7 +138,7 @@ function AdvocateChatSidebar() {
                                     <b>{e.name}</b>
                                   </p>
                                   <p>
-                                    <small>[ Junior Advocate ]</small>
+                                    <small>[ Intern ]</small>
                                   </p>
                                 </div>
                               </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '../Constants/BaseUrl';
 import noData from "../../Assets/noDataFound.json";
 import Lottie from "lottie-react";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 function AdvocateViewAllRecentCases() { 
     const [data, setData] = useState([]);

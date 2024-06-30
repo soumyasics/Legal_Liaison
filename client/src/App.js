@@ -87,6 +87,14 @@ import AdvocateForgotPassword from './Components/Advocates/AdvocateForgotPasswor
 import JuniorAdvocateForgotPassword from './Components/JuniorAdvocates/JuniorAdvocateForgotPassword';
 import UserForgotPassword from './Components/User/UserForgotPassword';
 import InternForgotPassword from './Components/Interns/InternForgotPassword';
+import InternViewAdv from './Components/Interns/InternViewAdv';
+import InternRequestInternship from './Components/Interns/InternRequestInternship';
+import AdvocateViewInternReq from './Components/Advocates/AdvocateViewInternReq';
+import AdvocateViewApprovedInterns from './Components/Advocates/AdvocateViewApprovedInterns';
+import AdvocateViewSingleIntern from './Components/Advocates/AdvocateViewSingleIntern';
+import InternViewInternshipAdv from './Components/Interns/InternViewInternshipAdv';
+import InternChatToAdv from './Components/Interns/InternChatToAdv';
+import InternGroupChat from './Components/Interns/InternGroupChat';
 
 
 function App() {
@@ -126,8 +134,10 @@ function App() {
           <Route path="/advocate_edit_profile/:id" element={[<AdvocateNavbar />,<FormHead title="Advocate Profile View" />, <AdvocateEditProfile />,<UserFooter />]} />
           {/* <Route path="/advocate_view_all_case_req" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewAllCaseReq />,<UserFooter />]} /> */}
           <Route path="/advocate_viewcasereq" element={[<AdvocateNavbar />, <Advocate_ViewCaseRequest />, <UserFooter />]} />
+          <Route path="/advocate_view_intern_req" element={[<AdvocateNavbar />, <AdvocateViewInternReq />, <UserFooter />]} />
           <Route path="/advocate_view_single_case_req/:id" element={[<AdvocateNavbar />,<FormHead title="Case Requests" />, <AdvocateViewCaseReq />,<UserFooter />]} />
           <Route path="/advocate_view_all_recent_case" element={[<AdvocateNavbar />,<FormHead title="Recent Cases" />, <AdvocateViewAllRecentCases />,<UserFooter />]} />
+          <Route path="/advocate_view_all_interns" element={[<AdvocateNavbar />,<FormHead title="Interns" />, <AdvocateViewApprovedInterns />,<UserFooter />]} />
           <Route path="/advocate_view_single_recent_case/:id" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
           <Route path="/advocate_chat" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat type='noChat' />,<UserFooter />]} />
           <Route path="/advocate_single_chat/:uid/:type" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat />,<UserFooter />]} />
@@ -139,6 +149,7 @@ function App() {
           <Route path="/advocate_update_casestatus/:id" element={[<AdvocateNavbar />, <Advocate_UpdateCaseStatus />, <UserFooter />]} />
           <Route path="/advocate_viewjuadvocatereq" element={[<AdvocateNavbar />, <Advocate_ViewJuAdvocateRequest />, <UserFooter />]} />
           <Route path="/advocate_view_jnr_adv_profile_req/:id/:aid" element={[<AdvocateNavbar />, <AdvocateViewJnrAdvReqProfile value='request' />, <UserFooter />]} />
+          <Route path="/advocate_view_intern_profile/:id" element={[<AdvocateNavbar />, <AdvocateViewSingleIntern />, <UserFooter />]} />
           <Route path="/advocate_view_client_payment_status/:id" element={[<AdvocateNavbar />, <AdvocateViewClientPaymentStatus />, <UserFooter />]} />
           <Route path="/advocate_view_case_status/:id" element={[<AdvocateNavbar />, <AdvocateViewCaseStatus />, <UserFooter />]} />
           <Route path="/advocate_assign_cases_to_jnradv" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
@@ -160,7 +171,7 @@ function App() {
           <Route path="/adminviewrequest/:id" element={[<AdminNav />, <AdminMain data="adminviewrequest" />, <AdminFooter />]} />
           <Route path="/admin_view_single_advocate/:id" element={[<AdminNav />, <AdminMain data="adminviewsingleadvocate" />, <AdminFooter />]} />
           <Route path="/adminsidebar" element={<AdminSidebar />} />
-          <Route path="/adminfooter" element={<AdminFooter />} />
+          <Route path="/adminfooter" element={<AdminFooter />} /> 
           <Route path="/adminnav" element={<AdminNav />} />
           <Route path="/recentenquries" element={<RecentEnquries />} />
           <Route path="/adminviewrequest/:id" element={<ViewProfile_AR />} />
@@ -198,6 +209,12 @@ function App() {
           <Route path="/intern_forgot_password" element={[<LandingNavbar />,<InternForgotPassword/>,<UserFooter />]} />
           <Route path="/intern_home" element={[<InternNavbar />,<InternsHome/>,<UserFooter />]} />
           <Route path="/intern_add_complaint" element={[<InternNavbar />,<InternAddComplaints/>,<UserFooter />]} />
+          <Route path="/intern_view_advocate" element={[<InternNavbar />,<InternViewAdv/>,<UserFooter />]} />
+          <Route path="/intern_req_internship/:id" element={[<InternNavbar />,<InternRequestInternship/>,<UserFooter />]} />
+          <Route path="/intern_view_internship_adv" element={[<InternNavbar />,<InternViewInternshipAdv/>,<UserFooter />]} />
+          <Route path="/intern_chat_to_adv/:aid" element={[<InternNavbar />,<InternChatToAdv/>,<UserFooter />]} />
+          <Route path="/intern_group_chat" element={[<InternNavbar />,<InternGroupChat type={'noChat'} />,<UserFooter />]} />
+          <Route path="/intern_single_chat/:id" element={[<InternNavbar />,<InternGroupChat type={'group'} />,<UserFooter />]} />
 
 
 

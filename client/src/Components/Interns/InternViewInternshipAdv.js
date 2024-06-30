@@ -1,44 +1,44 @@
-import React, { useEffect, useState } from "react";
-import axiosInstance from "../Constants/BaseUrl";
-import { toast } from "react-toastify";
-import { imageUrl } from "../Constants/Image_Url";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import axiosInstance from '../Constants/BaseUrl';
+import { Link } from 'react-router-dom';
+import { imageUrl } from '../Constants/Image_Url';
 
-function JuniorAdvocateViewMentor() {
-  const [advocate, setAdvocate] = useState({ 
-    profilePic: { filename: "" },
-    idProof: { filename: "" },
-  });
-  const id = localStorage.getItem("junioradvocateId");
+function InternViewInternshipAdv() {
 
-  useEffect(() => {
-    axiosInstance
-      .post(`getApprovedMentorForJuniors/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.data == null) {
-          setAdvocate(null);
-        } else if (res.data.status === 200) {
-          setAdvocate(res.data.data.advocateId);
-        }
-      })
-      .catch(() => {
-        console.log("Failed to Add Case");
+    const [advocate, setAdvocate] = useState({ 
+        profilePic: { filename: "" },
+        idProof: { filename: "" },
       });
-  }, [id]);
-
-  console.log(advocate);
+      const id = localStorage.getItem("internId");
+    
+      useEffect(() => {
+        axiosInstance
+          .post(`interngetApprovedMentorForInterns/${id}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.data == null) {
+              setAdvocate(null);
+            } else if (res.data.status === 200) {
+              setAdvocate(res.data.data.advocateId);
+            }
+          })
+          .catch(() => {
+            console.log("Failed to Add Case");
+          });
+      }, [id]);
+    
+      console.log(advocate);
 
   return (
     <div>
       {advocate == null ? (
         <div className="adv_client_payment_status d-flex justify-content-center align-items-center" >
-        <h3>No Mentor Found</h3>
+        <h3>No Advocate Found</h3>
         </div>
       ) : (
         <div>
           <div className="junior-heading-div container-fluid">
-            <label className="junior-reg-title">View Advocates</label>
+            <label className="junior-reg-title">View Internship Advocate</label>
           </div>
           <div className="container-fluid mt-5 ">
             <div className="row justify-content-center">
@@ -59,14 +59,14 @@ function JuniorAdvocateViewMentor() {
                 <label className="client-view-ad-experiance d-block">
                   {advocate.experience} Years of Experience in Various Cases
                 </label>
-                <Link
+                {/* <Link
                   className="ju-link-label"
                   to="#"
                   data-toggle="modal"
                   data-target="#idProofModal"
                 >
                   View Id Proof
-                </Link>
+                </Link> */}
               </div>
               <div className="col-sm-6 col-lg-6">
                 <div>
@@ -186,7 +186,7 @@ function JuniorAdvocateViewMentor() {
                   </table>
                   <br />
                   <div className="appoinment-btn-div">
-                    <Link to={`/junior_adv_chat_to_adv/${advocate._id}`}>
+                    <Link to={`/intern_chat_to_adv/${advocate._id}`}>
                       <button className="btn btn-warning button-style-appoinment">
                         Chat Now
                       </button>
@@ -199,7 +199,7 @@ function JuniorAdvocateViewMentor() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default JuniorAdvocateViewMentor;
+export default InternViewInternshipAdv
