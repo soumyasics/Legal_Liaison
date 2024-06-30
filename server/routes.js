@@ -157,7 +157,7 @@ router.post('/viewAllBlogs',blog.viewAllBlogs)
 router.post('/viewMyBlogsByadvocateId/:id',blog.viewMyBlogsByadvocateId)
 
 
-//blogs
+//complaints
 router.post('/addComplaint',complaints.addcomplaint)
 router.post('/viewAllComplaints',complaints.viewAllcomplaints)
 router.post('/viewComplaintById/:id',complaints.viewcomplaintById)
