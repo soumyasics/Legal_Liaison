@@ -88,25 +88,6 @@ const getAssignedCaseReqsById = async (req, res) => {
   };
 
 
-//need to modify
-  
-// Controller function to get all appointment requests
-const getCaseReqsByAdvId = async (req, res) => {
-  try {
-    const appointments = await AppointmentReq.find({advocateId:req.params.id,}).populate('jrId').populate('caseId')
-    res.status(200).json({
-      status: 200,
-      msg: 'Appointments retrieved successfully',
-      data: appointments
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: 500,
-      msg: 'Failed to retrieve appointments',
-      error: err.message
-    });
-  }
-};
 module.exports = {
   assignCaseforJr,
   getAssignedCaseReqsById,
