@@ -88,6 +88,7 @@ router.post('/viewChatRecipientsforUserId/:id',chat.viewChatRecipientsforUserId)
 router.post('/viewChatBetweenUserAndAdv',chat.viewChatBetweenUserAndAdv)
 router.post('/viewChatBetweenInternAndAdv',chat.viewChatBetweenInternAndAdv)
 router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
+router.post('/viewChatBetweenUserAndJunior',chat.viewChatBetweenUserAndJunior)
 
 
 
