@@ -114,7 +114,7 @@ const joinGroup = async (req, res) => {
   const datas = new chat({
   
     internId: req.body.internId,
-   groupId: req.params.groupId,
+   groupId: req.params.id,
    msg:req.body.msg,
     date:new Date()
   });
@@ -139,7 +139,7 @@ const joinGroup = async (req, res) => {
 
 // View Interns by ID
 const viewgroupChatsByGroupId = (req, res) => {
-  chat.find({ groupId: req.params.id}).populate('internId')
+  chat.find({ groupId: req.params.id}).populate('internId').sort({createdAt:1})
       .exec()
       .then(data => {
           res.json({
