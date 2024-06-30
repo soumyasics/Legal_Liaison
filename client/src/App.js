@@ -87,6 +87,8 @@ import AdvocateForgotPassword from './Components/Advocates/AdvocateForgotPasswor
 import JuniorAdvocateForgotPassword from './Components/JuniorAdvocates/JuniorAdvocateForgotPassword';
 import UserForgotPassword from './Components/User/UserForgotPassword';
 import InternForgotPassword from './Components/Interns/InternForgotPassword';
+import InternViewAdv from './Components/Interns/InternViewAdv';
+import InternRequestInternship from './Components/Interns/InternRequestInternship';
 
 
 function App() {
@@ -160,7 +162,7 @@ function App() {
           <Route path="/adminviewrequest/:id" element={[<AdminNav />, <AdminMain data="adminviewrequest" />, <AdminFooter />]} />
           <Route path="/admin_view_single_advocate/:id" element={[<AdminNav />, <AdminMain data="adminviewsingleadvocate" />, <AdminFooter />]} />
           <Route path="/adminsidebar" element={<AdminSidebar />} />
-          <Route path="/adminfooter" element={<AdminFooter />} />
+          <Route path="/adminfooter" element={<AdminFooter />} /> 
           <Route path="/adminnav" element={<AdminNav />} />
           <Route path="/recentenquries" element={<RecentEnquries />} />
           <Route path="/adminviewrequest/:id" element={<ViewProfile_AR />} />
@@ -198,6 +200,9 @@ function App() {
           <Route path="/intern_forgot_password" element={[<LandingNavbar />,<InternForgotPassword/>,<UserFooter />]} />
           <Route path="/intern_home" element={[<InternNavbar />,<InternsHome/>,<UserFooter />]} />
           <Route path="/intern_add_complaint" element={[<InternNavbar />,<InternAddComplaints/>,<UserFooter />]} />
+          <Route path="/intern_view_advocate" element={[<InternNavbar />,<InternViewAdv/>,<UserFooter />]} />
+          <Route path="/intern_req_internship/:id" element={[<InternNavbar />,<InternRequestInternship/>,<UserFooter />]} />
+          <Route path="/intern_view_internship_adv" element={[<InternNavbar />,<InternRequestInternship/>,<UserFooter />]} />
 
 
 

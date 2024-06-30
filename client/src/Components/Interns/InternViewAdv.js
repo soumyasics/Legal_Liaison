@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axiosMultipartInstance from "../Constants/FormDataUrl";
-import { imageUrl } from "../Constants/Image_Url";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
+import axiosMultipartInstance from '../Constants/FormDataUrl';
+import { imageUrl } from '../Constants/Image_Url';
 import ReactStars from "react-rating-stars-component";
 
 
-function JuAdvocate_ViewAllAdvocates() {
-  const [currentPage, setCurrentPage] = useState(0);
+function InternViewAdv() {
+
+    const [currentPage, setCurrentPage] = useState(0);
   const [profile, setProfile] = useState("");
   const [advocates, setAdvocates] = useState([]);
   const advocatesPerPage = 4;
 
   const { id } = useParams();
-  const jid = localStorage.getItem("junioradvocateId");
+  const jid = localStorage.getItem("internId");
 
   console.log(profile);
 
@@ -62,7 +63,7 @@ function JuAdvocate_ViewAllAdvocates() {
     currentPage,
     currentPage + advocatesPerPage
   );
- 
+
   return (
     <div>
       <div className="junior-heading-div container-fluid">
@@ -96,7 +97,7 @@ function JuAdvocate_ViewAllAdvocates() {
 
                     <div className="req-view-ad-button-div">
                       <Link
-                        to={`/JuniorAdvocate-requestmentorship/${advocate._id}`}
+                        to={`/intern_req_internship/${advocate._id}`}
                       >
                         <button className="btn btn-warning btn-warning-style">
                           Request
@@ -130,7 +131,7 @@ function JuAdvocate_ViewAllAdvocates() {
       <br />
       <br />
     </div>
-  );
+  )
 }
 
-export default JuAdvocate_ViewAllAdvocates;
+export default InternViewAdv

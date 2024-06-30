@@ -40,7 +40,7 @@ function InternNavbar() {
               <Link className="nav-link" to="/intern_home">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="">About Us</Link>
+              <Link className="nav-link" to="/intern_view_advocate">Advocates</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="">Services</Link>

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../Constants/BaseUrl';
 import { imageUrl } from '../Constants/Image_Url';
 import { toast } from 'react-toastify';
 import { Modal, Button } from 'react-bootstrap';
 
-function JuAdvocate_RequestMentorshop() {
+function InternRequestInternship() {
+
     const [advocate, setAdvocate] = useState({  
         profilePic: { filename: '' },
         idProof: { filename: '' },
@@ -14,7 +15,7 @@ function JuAdvocate_RequestMentorshop() {
     const [modalContent, setModalContent] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
-    const jrId = localStorage.getItem('junioradvocateId');
+    const internId = localStorage.getItem('internId');
 
     useEffect(() => {
         axiosInstance
@@ -29,7 +30,7 @@ function JuAdvocate_RequestMentorshop() {
 
     const onSubmit = () => {
         axiosInstance
-            .post(`/createMentorship`, { jrId: jrId, advocateId: advocate._id })
+            .post(`/createMentorship`, { internId: internId, advocateId: advocate._id })
             .then((res) => {
               console.log(res);
                 if (res.data.status === 200) {
@@ -60,8 +61,8 @@ function JuAdvocate_RequestMentorshop() {
 
     const handleCloseModal = () => setShowModal(false);
 
-    return (
-        <div>
+  return (
+    <div>
             <div className="junior-heading-div container-fluid">
                 <label className="junior-reg-title">View Advocates</label>
             </div>
@@ -91,30 +92,7 @@ function JuAdvocate_RequestMentorshop() {
                         <div>
                             <table className="table ju-custom-table">
                                 <tbody>
-                                    <tr>
-                                        <td className="left-alignn">
-                                            <label className="ju-sub-label">
-                                                No of Case Attended
-                                            </label>
-                                        </td>
-                                        <td className="left-alignn">:</td>
-                                        <td className="left-alignn">
-                                            <label className="ju-sub-label">
-                                                0
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="left-alignn">
-                                            <label className="ju-sub-label">No of Case Won </label>
-                                        </td>
-                                        <td className="left-alignn">:</td>
-                                        <td className="left-alignn">
-                                            <label className="ju-sub-label">
-                                                0
-                                            </label>
-                                        </td>
-                                    </tr>
+                                   
                                     <tr>
                                         <td className="left-alignn">
                                             <label className="ju-sub-label">
@@ -238,7 +216,7 @@ function JuAdvocate_RequestMentorshop() {
                 </Modal.Footer>
             </Modal>
         </div>
-    );
+  )
 }
 
-export default JuAdvocate_RequestMentorshop;
+export default InternRequestInternship
