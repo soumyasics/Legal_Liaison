@@ -43,10 +43,10 @@ function InternNavbar() {
               <Link className="nav-link" to="/intern_view_advocate">Advocates</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="">Services</Link>
+              <Link className="nav-link" to="/intern_view_internship_adv">Mentorship</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="">Contact</Link>
+              <Link className="nav-link" to="/intern_group_chat">Discussion Forum</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/intern_add_complaint">Complaint</Link>

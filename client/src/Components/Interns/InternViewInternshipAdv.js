@@ -13,7 +13,7 @@ function InternViewInternshipAdv() {
     
       useEffect(() => {
         axiosInstance
-          .post(`getApprovedMentorForJuniors/${id}`)
+          .post(`interngetApprovedMentorForInterns/${id}`)
           .then((res) => {
             console.log(res);
             if (res.data.data == null) {
@@ -59,14 +59,14 @@ function InternViewInternshipAdv() {
                 <label className="client-view-ad-experiance d-block">
                   {advocate.experience} Years of Experience in Various Cases
                 </label>
-                <Link
+                {/* <Link
                   className="ju-link-label"
                   to="#"
                   data-toggle="modal"
                   data-target="#idProofModal"
                 >
                   View Id Proof
-                </Link>
+                </Link> */}
               </div>
               <div className="col-sm-6 col-lg-6">
                 <div>
@@ -186,7 +186,7 @@ function InternViewInternshipAdv() {
                   </table>
                   <br />
                   <div className="appoinment-btn-div">
-                    <Link to={`/junior_adv_chat_to_adv/${advocate._id}`}>
+                    <Link to={`/intern_chat_to_adv/${advocate._id}`}>
                       <button className="btn btn-warning button-style-appoinment">
                         Chat Now
                       </button>

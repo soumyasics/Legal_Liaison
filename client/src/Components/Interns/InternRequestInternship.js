@@ -30,12 +30,12 @@ function InternRequestInternship() {
 
     const onSubmit = () => {
         axiosInstance
-            .post(`/createMentorship`, { internId: internId, advocateId: advocate._id })
+            .post(`/interncreateAppointment`, { internId: internId, advocateId: advocate._id })
             .then((res) => {
               console.log(res);
                 if (res.data.status === 200) {
                     toast.success("Appointment request created successfully");
-                    navigate('/JuniorAdvocate-viewalladvocate');
+                    navigate('/intern_view_advocate');
                 } else if(res.data.status==500) {
                     toast.error(res.data.msg);
                 }

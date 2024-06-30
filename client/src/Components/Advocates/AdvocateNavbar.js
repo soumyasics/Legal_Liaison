@@ -57,7 +57,6 @@ function AdvocateNavbar() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/advocate_viewcasereq' className="dropdown-item" >New Request</Link>
                 <Link to='/advocate_view_all_recent_case' className="dropdown-item" >Recent Cases</Link>
-                
               </div>
             </li>
               <li className="nav-item">
@@ -65,11 +64,15 @@ function AdvocateNavbar() {
                   Chat
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#contact">
-                  Interns
-                </Link>
-              </li>
+              <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Interns
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to='/advocate_view_intern_req' className="dropdown-item" >New Request</Link>
+                <Link to='/advocate_view_all_interns' className="dropdown-item" >View</Link>
+              </div>
+            </li>
               <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Junior Advocates

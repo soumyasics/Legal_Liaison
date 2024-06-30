@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { imageUrl } from '../Constants/Image_Url';
 
-function JuniorAdvChatToAdv() {
+function JuniorAdvChatToAdv() { 
 
     const jid = localStorage.getItem("junioradvocateId");
   const { aid } = useParams();

@@ -79,3 +79,18 @@
 .tick-pad{
     padding-right: 10px;
 }
+
+.intern_add_forum{
+    height: 30px;
+    width: 100px;
+    background-color: #212529;
+    border-radius: 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    padding-top: 4px;
+    /* align-items: center; */
+}

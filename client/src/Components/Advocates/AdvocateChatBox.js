@@ -21,7 +21,7 @@ function AdvocateChatBox() {
   const chatBodyRef = useRef(null);
 
   useEffect(() => {
-    if (chatBodyRef.current) {
+    if (chatBodyRef.current) { 
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messageList]);
@@ -172,7 +172,7 @@ function AdvocateChatBox() {
         from: "advocates",
         to: "interns",
         advId: aid,
-        jrId: uid,
+        internId: uid,
       })
       .then((res) => {
         console.log(res);
