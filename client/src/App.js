@@ -95,6 +95,10 @@ import AdvocateViewSingleIntern from './Components/Advocates/AdvocateViewSingleI
 import InternViewInternshipAdv from './Components/Interns/InternViewInternshipAdv';
 import InternChatToAdv from './Components/Interns/InternChatToAdv';
 import InternGroupChat from './Components/Interns/InternGroupChat';
+import JuniorAdvViewAllAdvCases from './Components/JuniorAdvocates/JuniorAdvViewAllAdvCases';
+import JuniorAdvViewAdvDetailCase from './Components/JuniorAdvocates/JuniorAdvViewAdvDetailCase';
+import InternViewMentorAllCases from './Components/Interns/InternViewMentorAllCases';
+import InternViewSingleCaseOfMentor from './Components/Interns/InternViewSingleCaseOfMentor';
 
 
 function App() {
@@ -200,6 +204,8 @@ function App() {
           <Route path="/junior_adv_view_assigned_cases" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCases />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_assigned_cases_details" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCasesDetails />,<UserFooter />]} /> 
           <Route path="/junior_adv_add_complaint" element={[<JuniorAdvocateNavbar/>,<JuniorAdvAddComplaints />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_adv_cases/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAllAdvCases />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_adv_single_case/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAdvDetailCase />,<UserFooter />]} /> 
 
 
           {/* Intern Routes */}
@@ -212,6 +218,9 @@ function App() {
           <Route path="/intern_view_advocate" element={[<InternNavbar />,<InternViewAdv/>,<UserFooter />]} />
           <Route path="/intern_req_internship/:id" element={[<InternNavbar />,<InternRequestInternship/>,<UserFooter />]} />
           <Route path="/intern_view_internship_adv" element={[<InternNavbar />,<InternViewInternshipAdv/>,<UserFooter />]} />
+          <Route path="/intern_view_adv_cases/:id" element={[<InternNavbar />,<FormHead title="Cases of Mentor" />,<InternViewMentorAllCases/>,<UserFooter />]} />
+          <Route path="/intern_view_adv_single_case/:id" element={[<InternNavbar />,<FormHead title="Cases of Mentor" />,<InternViewSingleCaseOfMentor/>,<UserFooter />]} />
+          
           <Route path="/intern_chat_to_adv/:aid" element={[<InternNavbar />,<InternChatToAdv/>,<UserFooter />]} />
           <Route path="/intern_group_chat" element={[<InternNavbar />,<InternGroupChat type={'noChat'} />,<UserFooter />]} />
           <Route path="/intern_single_chat/:id" element={[<InternNavbar />,<InternGroupChat type={'group'} />,<UserFooter />]} />

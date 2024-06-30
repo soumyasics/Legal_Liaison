@@ -39,7 +39,7 @@ function InternChatBox() {
     axiosInstance
       .post(`viewGroupById/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.status === 200) {
           setUserDetails(res.data.data);
         } else {
@@ -53,7 +53,7 @@ function InternChatBox() {
   const handleClientSend = (e) => {
     e.preventDefault();
     axiosInstance
-      .post(`joinGroup`,{internId:iId,groupId:id,msg:inputValue})
+      .post(`joinGroup/${id}`,{internId:iId,msg:inputValue})
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -78,24 +78,24 @@ function InternChatBox() {
         {messageList.length ? (
           <div className="adv_chat_container">
             <div className="chat-header">
-              <img
+              {/* <img
                 src={`${imageUrl}/${userDetalis.profilePic.filename}`}
                 className="img-fluid"
                 alt="Advocate"
-              />
-              <span className="fs-5 px-3">{userDetalis.name}</span>
+              /> */}
+              <span className="fs-5 px-3">{userDetalis.title}</span>
             </div>
             <div className="adv_chat-body" ref={chatBodyRef}>
               {messageList.map((msg) => (
                 <div>
                     <div
-                    //   key={msg.id}
-                    //   className={`chat-message ${
-                    //     msg.from == "users" && msg.to == "advocates"
-                    //       ? "received"
-                    //       : "sent"
-                    //   }`
-                    // }
+                      key={msg._id}
+                      className={`chat-message ${
+                        msg.internId._id == iId
+                          ? "sent"
+                          : "received"
+                      }`
+                    }
                     >
                       <div className="message-header">
                         <span className="username">
@@ -106,11 +106,11 @@ function InternChatBox() {
                           </small>
                         </span>
                         <span className="timestamp">
-                          {msg.createdAt.slice(0, 10)}
+                          {/* {msg.createdAt.slice(0, 10)} */}
+                          date
                         </span>
                       </div>
-                      {/* <p className="message-content">{msg.msg}</p> */}
-                      <p className="message-content">hg x x</p>
+                      <p className="message-content">{msg.msg}</p>
                     </div>
                 </div>
               ))}

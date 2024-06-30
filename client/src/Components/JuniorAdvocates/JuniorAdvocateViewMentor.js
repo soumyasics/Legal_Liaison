@@ -191,6 +191,11 @@ function JuniorAdvocateViewMentor() {
                         Chat Now
                       </button>
                     </Link>
+                    <Link to={`/junior_adv_view_adv_cases/${advocate._id}`}>
+                      <button className="btn btn-warning button-style-appoinment mx-2">
+                        View Cases
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
