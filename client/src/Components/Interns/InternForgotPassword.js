@@ -52,12 +52,15 @@ function InternForgotPassword() {
         setFormIsValid(formIsValid);
 
         if (formIsValid) {
-            axiosInstance.post('/internforgotPassword', { email: data.email, newPassword: data.newPassword })
+            axiosInstance.post('/internforgotPassword', { email: data.email, password: data.newPassword })
             .then(response => {
                 if (response.data.status === 200) {
                     toast.success("Password Reset Successful");
                     navigate('/intern_login');
-                } else {
+                } else if(response.data.status==500) {
+                    toast.error(response.data.msg);
+                }
+                 else {
                     toast.error('Password Reset Failed');
                 }
             })

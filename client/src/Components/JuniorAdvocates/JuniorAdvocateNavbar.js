@@ -61,7 +61,7 @@ const handleLogout = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/junior_adv_view_mentor">Mentorship</Link>
             </li>
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Legal Resource
               </Link>
@@ -69,7 +69,7 @@ const handleLogout = () => {
                 <Link to='' className="dropdown-item" >Request</Link>
                 <Link to=''  className="dropdown-item" >View Profile</Link>
               </div>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link" to="">Asigned Cases</Link>
             </li>
@@ -83,7 +83,7 @@ const handleLogout = () => {
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to={`/JuniorAdvocate-editprofile`} className="dropdown-item" >Profile View</Link>
-                <Link to=''  className="dropdown-item" >Change Password</Link>
+                {/* <Link to=''  className="dropdown-item" >Change Password</Link> */}
                 <Link onClick={handleLogout}  className="dropdown-item" >Logout</Link>
               </div>
             </li>

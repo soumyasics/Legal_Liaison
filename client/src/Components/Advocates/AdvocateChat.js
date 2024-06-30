@@ -22,11 +22,9 @@ function AdvocateChat({ type }) {
                   help or information you need.
                 </h3>
               </div>
-            ) : type === "user" ? (
+            ) :
               <AdvocateChatBox />
-            ) : (
-              ""
-            )}
+           }
           </div>
         </div>
       </div>

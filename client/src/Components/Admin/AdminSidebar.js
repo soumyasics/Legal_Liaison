@@ -52,10 +52,7 @@ function AdminSidebar() {
                 <img src={casesimg} className='image-adjust-1 padding each' alt='User image'/>{' '},{' '},{' '}
                     <label className='label-sub'>Cases</label>
                 </div>
-                <div className='adjust-space'>
-                <img src={enquiryimg} className='image-adjust-1 img-enq padding each' alt='User image'/>{' '},{' '},{' '}
-                    <label className='label-sub'>Enquires</label>
-                </div>
+               
                 <div className='adjust-space'>
                 <img src={juniorimg} className='image-adjust-1 padding each' alt='User image'/>{' '},{' '},{' '}
                     <Link to='/adminviewalljunioradvocates'>

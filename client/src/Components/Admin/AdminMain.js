@@ -19,7 +19,7 @@ import AdminViewApprovedInterns from "./AdminViewApprovedInterns";
 import AdminViewComplaints from "./AdminViewComplaints";
 
 function AdminMain({ data }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (localStorage.getItem("adminId") == null) {

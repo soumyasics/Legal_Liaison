@@ -128,6 +128,7 @@ function ViewAllAdvocates() {
       ) : (
         <div className="no_data_animation">
           <Lottie animationData={noData} className="no_data_animation" />
+          
         </div>
       )}
       
