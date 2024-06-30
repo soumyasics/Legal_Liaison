@@ -26,7 +26,8 @@ default:false
             type:mongoose.Schema.Types.ObjectId,
             default:null,
             ref:'advocates'
-        }
+        },
+        
 
 });
 module.exports = mongoose.model('juniorCaseReqs', sSchema)
