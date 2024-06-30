@@ -210,13 +210,43 @@ const viewChatBetweenInternAndAdv = (req, res) => {
       });
     });
 };
-
+const viewChatBetweenUserAndJunior = (req, res) => {
+  let jrId = req.body.jrId;
+  let userId = req.body.userId;
+  chat
+    .find({
+      // $or: [{
+       advId: advId, jrId: jrId },
+        // { rpid: parentid, parentid: rpid },
+      // ],}
+    )
+    .sort({ date: 1 })
+    .populate('jrId')
+    .populate('userId')
+    .exec()
+    
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "got it successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        status: 500,
+        msg: "Data not obtained",
+        Error: err,
+      });
+    });
+};
 module.exports = {
   chatting,
   viewChatRecipientsforAdvocateById,
   viewChatRecipientsforUserId,
   viewChatBetweenUserAndAdv,
   viewChatBetweenAdvAndJr,
-  viewChatBetweenInternAndAdv
+  viewChatBetweenInternAndAdv,
+  viewChatBetweenUserAndJunior
   
 };

@@ -5,7 +5,7 @@ const junioradvocates=require('./JuniorAdvocate/junioradvocateController')
 const cases=require('./Cases/caseController')
 const appointments=require('./AdvAppointments/appointmentController')
  const chat=require('./Chats/chatController')
-const mentorship=require('./JuniorAdvReqs/junoirAdvReqController')
+const mentorship=require('./InternshipReqs/internAdvReqController')
 const Interns=require('./Interns/internController')
 const caseStatusController=require('./Cases/CaseStatus/caseStatusController')
 const Payments=require('./Cases/Payments/paymentController')
@@ -16,7 +16,7 @@ const Reviews=require('./Reviews/reviewController')
 const GroupChats=require('./Chats/GroupChats/chatController')
 const InternReqs=require('./Interns/CaseReqs/caseReqController')
 const JuniorCases=require('./JuniorAdvocate/CaseReqs/caseReqController')
-
+const Internship=require('./InternshipReqs/internAdvReqController')
 //advocate routes
 router.post('/registerAdvocate',advocates.upload,advocates.registerAdvocate)
 router.post('/viewAdvocateById/:id',advocates.viewAdvocateById)
@@ -88,6 +88,7 @@ router.post('/viewChatRecipientsforUserId/:id',chat.viewChatRecipientsforUserId)
 router.post('/viewChatBetweenUserAndAdv',chat.viewChatBetweenUserAndAdv)
 router.post('/viewChatBetweenInternAndAdv',chat.viewChatBetweenInternAndAdv)
 router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
+router.post('/viewChatBetweenUserAndJunior',chat.viewChatBetweenUserAndJunior)
 
 
 
@@ -116,6 +117,17 @@ router.post('/viewInternsById/:id',Interns.viewInternsById)
 router.post('/internforgotPassword',Interns.forgotPassword)
 router.post('/internresetPassword/:id',Interns.resetPassword)
 router.post('/loginIntern',Interns.login)
+
+
+//Intern reqs
+router.post('/interncreateAppointment',Internship.createAppointment)
+router.post('/interngetAppointmentReqsByUserId/:id',Internship.getAppointmentReqsByinternId)
+router.post('/interngetAppointmentReqsForAdv/:id',Internship.getAppointmentReqsForAdv)
+router.post('/internacceptReqbyAdv/:id',Internship.acceptReqbyAdv)
+router.post('/internrejectReqbyAdv/:id',Internship.rejectReqbyAdv)
+router.post('/interngetAppointmentReqsById/:id',Internship.getAppointmentReqsById)
+router.post('/interngetApprovedAppointmentsForAdv/:id',Internship.getApprovedAppointmentsForAdv)
+router.post('/interngetApprovedMentorForInterns/:id',Internship.getApprovedMentorForInterns)
 
 
 //case status
