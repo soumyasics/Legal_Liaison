@@ -178,16 +178,16 @@ router.post('/closeGroupById/:id',GroupChats.closeGroupById)
 router.post('/joinGroup/:id',GroupChats.joinGroup)
 
 //Internreqs
-router.post('/reqCase',InternReqs.reqCase)
-router.post('/getCaseReqsById/:id',InternReqs.getAppointmentReqsById)
-router.post('/getAppointmentReqsByinternId/:id',InternReqs.getAppointmentReqsByinternId)
-router.post('/acceptInternCaseReqbyAdv/:id',InternReqs.acceptReqbyAdv)
-router.post('/rejectCaseReqbyAdv/:id',InternReqs.rejectReqbyAdv)
-router.post('/getCaseAppointmentReqsById/:id',InternReqs.getAppointmentReqsById)
-router.post('/getApprovedInternCasereqsForAdv/:id',InternReqs.getApprovedAppointmentsForAdv)
+router.post('/internreqCase',InternReqs.reqCase)
+router.post('/internGetCaseReqsById/:id',InternReqs.getAppointmentReqsById)
+router.post('/interngetAppointmentReqsByinternId/:id',InternReqs.getAppointmentReqsByinternId)
+router.post('/internacceptInternCaseReqbyAdv/:id',InternReqs.acceptReqbyAdv)
+router.post('/internrejectCaseReqbyAdv/:id',InternReqs.rejectReqbyAdv)
+router.post('/interngetCaseAppointmentReqsById/:id',InternReqs.getAppointmentReqsById)
+router.post('/interngetApprovedInternCasereqsForAdv/:id',InternReqs.getApprovedAppointmentsForAdv)
 
 //Junior cases reqs
-router.post('/reqCase',JuniorCases.assignCaseforJr)
+router.post('/assignCaseforJr',JuniorCases.assignCaseforJr)
 router.post('/getAssignedCaseReqsById/:id',JuniorCases.getAssignedCaseReqsById)
 router.post('/getCasesAssignedForJrId/:id',JuniorCases.getCasesAssignedForJrId)
 
