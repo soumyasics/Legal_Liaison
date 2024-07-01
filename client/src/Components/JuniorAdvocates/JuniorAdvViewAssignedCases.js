@@ -13,19 +13,19 @@ function JuniorAdvViewAssignedCases() {
   const id = localStorage.getItem("junioradvocateId");
 
   useEffect(() => {
-    // axiosInstance
-    //   .post(`/getApprovedJnrAppointmentsForAdv/${id}`)
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.data.status === 200) {
-    //       setData(res.data.data || []);
-    //     } else {
-    //       setData([]);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error!", error);
-    //   });
+    axiosInstance
+      .post(`/getCasesAssignedForJrId/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setData(res.data.data || []);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
   }, [id]);
 
   return (
@@ -63,7 +63,7 @@ function JuniorAdvViewAssignedCases() {
                         {juadvocatereq.jrId.institute}
                       </td>
                       <td className="table-data">
-                        {juadvocatereq.jrId.qualification}
+                        {juadvocatereq.jrId.qualification} 
                       </td>
                       <td className="table-data">
                         {juadvocatereq.jrId.contact}
@@ -81,7 +81,7 @@ function JuniorAdvViewAssignedCases() {
                           to={`/advocate_assign_cases_to_jnradv`}
                         >
                           <button className=" btn btn-outline-secondary">
-                            Add Cases Update
+                            More
                           </button>
                         </Link>
                       </td>

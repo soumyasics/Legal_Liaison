@@ -37,3 +37,23 @@
   justify-content: center;
   align-items: center;
 }
+
+#intern_dropdown{
+  position: absolute;
+                        left: 0;
+                        right: 100%;
+                        transform: translateX(-100%)
+}
+
+.discussion_closed{
+  font-size: 10px;
+  background-color: #21252994;
+  height: 20px;
+  width: 200px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 4px;
+  border-radius: 8px;
+  
+
+}

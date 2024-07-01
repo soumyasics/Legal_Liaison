@@ -156,7 +156,7 @@ function App() {
           <Route path="/advocate_view_intern_profile/:id" element={[<AdvocateNavbar />, <AdvocateViewSingleIntern />, <UserFooter />]} />
           <Route path="/advocate_view_client_payment_status/:id" element={[<AdvocateNavbar />, <AdvocateViewClientPaymentStatus />, <UserFooter />]} />
           <Route path="/advocate_view_case_status/:id" element={[<AdvocateNavbar />, <AdvocateViewCaseStatus />, <UserFooter />]} />
-          <Route path="/advocate_assign_cases_to_jnradv" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
+          <Route path="/advocate_assign_cases_to_jnradv/:jid" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
           <Route path="/advocate_view_all_jnr_adv" element={[<AdvocateNavbar />, <AdvovatedViewApprovedJnrAdv />, <UserFooter />]} />
           <Route path="/advocate_add_complaints" element={[<AdvocateNavbar />, <AdvocateAddComplaints />, <UserFooter />]} />
           <Route path="/advocate_add_articles" element={[<AdvocateNavbar />, <AdvocateAddArticle />, <UserFooter />]} />

@@ -90,6 +90,8 @@ router.post('/viewChatBetweenInternAndAdv',chat.viewChatBetweenInternAndAdv)
 router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
 router.post('/viewChatBetweenUserAndJunior',chat.viewChatBetweenUserAndJunior)
 
+
+
 //Jr Advocate Mentorshipreqs
 
 router.post('/createMentorship',mentorship.createAppointment)
@@ -100,6 +102,7 @@ router.post('/getApprovedJnrAppointmentsForAdv/:id',mentorship.getApprovedAppoin
 router.post('/acceptJnrReqbyAdv/:id',mentorship.acceptReqbyAdv)
 router.post('/rejectJnrReqbyAdv/:id',mentorship.rejectReqbyAdv)
 router.post('/getApprovedMentorForJuniors/:id',mentorship.getApprovedMentorForJuniors)
+
 
 //Intern Routes
 router.post('/registerInterns',Interns.upload,Interns.registerInterns)
@@ -115,6 +118,7 @@ router.post('/internforgotPassword',Interns.forgotPassword)
 router.post('/internresetPassword/:id',Interns.resetPassword)
 router.post('/loginIntern',Interns.login)
 
+
 //Intern reqs
 router.post('/interncreateAppointment',Internship.createAppointment)
 router.post('/interngetAppointmentReqsByUserId/:id',Internship.getAppointmentReqsByinternId)
@@ -124,6 +128,7 @@ router.post('/internrejectReqbyAdv/:id',Internship.rejectReqbyAdv)
 router.post('/interngetAppointmentReqsById/:id',Internship.getAppointmentReqsById)
 router.post('/interngetApprovedAppointmentsForAdv/:id',Internship.getApprovedAppointmentsForAdv)
 router.post('/interngetApprovedMentorForInterns/:id',Internship.getApprovedMentorForInterns)
+
 
 //case status
 router.post('/createStatus/:id',caseStatusController.createStatus)
@@ -141,6 +146,7 @@ router.post('/receivePaymentsById/:id',Payments.receivePaymentsById)
 router.post('/addEvidence/:id',Evidences.upload,Evidences.addEvidence)
 router.post('/getEvidenceByCaseId/:id',Evidences.getEvidenceByCaseId)
 router.post('/getEvidenceById/:id',Evidences.getEvidenceById)
+
 
 //blogs
 router.post('/addBlog/:id',blog.upload,blog.addBlog)
@@ -160,6 +166,7 @@ router.post('/deleteComplaintById/:id',complaints.deletecomplaintById)
 //reviews
 router.post('/addReview',Reviews.addReview)
 router.post('/viewAllreviewsByAdvId/:id',Reviews.viewAllreviewsByAdvId)
+
 
 //GroupChats
 router.post('/createGroup/:id',GroupChats.createGroup)

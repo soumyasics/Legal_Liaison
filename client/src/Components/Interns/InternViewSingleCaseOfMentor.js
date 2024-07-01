@@ -9,6 +9,7 @@ import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
+import { toast } from 'react-toastify';
 
 function InternViewSingleCaseOfMentor() {
 
@@ -18,7 +19,7 @@ function InternViewSingleCaseOfMentor() {
       });
       const { id } = useParams();
       const navigate = useNavigate();
-      const aid = localStorage.getItem("advocateId");
+      const iId = localStorage.getItem("internId");
       const [showModal, setShowModal] = useState(false);
       const [evidenceUrl, setEvidenceUrl] = useState("");
       const [fileType, setFileType] = useState(""); // State to store the file type
@@ -59,40 +60,40 @@ function InternViewSingleCaseOfMentor() {
     
       let a = false;
 
+      const handleRequest = (event) => {
+        event.preventDefault();
+        
+        axiosInstance
+          .post(`/internreqCase`,{internId:iId,caseId:data.caseId._id})
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              toast.success("Request Send");
+            } else if(res.data.status==500){
+              toast.error(res.data.msg);
+            
+            } else {
+              toast.error("Failed ");
+            }
+          })
+          .catch(() => {
+            toast.error("Failed");
+          });
+      };
+
   return (
     <div>
       <div className="adv_view_case_req">
         <div className="container">
           <div className="d-flex justify-content-end">
             {a == true ? (
-              <div className="adv_view_case_req_action_grps d-flex justify-content-between">
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-upload-2-fill"></i>
-
-                  <Link to={`/advocate_addevidence/${data.caseId._id}`}>
-                    <p>Upload Evidence</p>
-                  </Link>
-                </div>
-
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-file-paper-2-line"></i>
-                  <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
-                    <p>Add Case Status</p>
-                  </Link>
-                </div>
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-bank-card-line"></i>
-                  <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
-                    <p>Request Payment</p>
-                  </Link>
-                </div>
-              </div>
+              ''
             ) : (
                 <div className="adv_view_case_req_action_grps d-flex justify-content-end">
                 <div className="adv_view_case_req_action_btn d-flex">
                   <i className="ri-upload-2-fill"></i>
 
-                  <Link to={``}>
+                  <Link onClick={handleRequest}>
                     <p>Request Access</p>
                   </Link>
                 </div>

@@ -71,7 +71,7 @@ const handleLogout = () => {
               </div>
             </li> */}
             <li className="nav-item">
-              <Link className="nav-link" to="">Asigned Cases</Link>
+              <Link className="nav-link" to="/junior_adv_view_assigned_cases">Asigned Cases</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/junior_adv_add_complaint">Complaint</Link>
