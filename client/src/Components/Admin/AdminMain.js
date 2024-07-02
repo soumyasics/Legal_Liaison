@@ -19,6 +19,11 @@ import AdminViewApprovedInterns from "./AdminViewApprovedInterns";
 import AdminViewComplaints from "./AdminViewComplaints";
 import AdminViewUsers from "./AdminViewUsers";
 import AdminViewSingleUsers from "./AdminViewSingleUsers";
+import AdminViewAllCases from "./AdminViewAllCases";
+import AdminViewSingleCase from "./AdminViewSingleCase";
+import AdminViewCaseStatus from "./AdminViewCaseStatus";
+import AdminViewEvidences from "./AdminViewEvidences";
+import AdminViewPayment from "./AdminViewPayment";
 
 function AdminMain({ data }) {
   const navigate = useNavigate(); 
@@ -71,6 +76,16 @@ function AdminMain({ data }) {
             <AdminViewUsers />
           ) : data === "singleUser" ? (
             <AdminViewSingleUsers />
+          ) : data === "viewCases" ? (
+            <AdminViewAllCases />
+          ) : data === "viewSingleCase" ? (
+            <AdminViewSingleCase />
+          ) : data === "status" ? (
+            <AdminViewCaseStatus />
+          ) : data === "evidence" ? (
+            <AdminViewEvidences />
+          ) : data === "payment" ? (
+            <AdminViewPayment />
           ) : (
             <AdminLogin />
           )}
