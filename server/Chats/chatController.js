@@ -11,6 +11,7 @@ const chatting = async (req, res) => {
     userId: req.body.userId,
     internId: req.body.internId,
     jrId: req.body.jrId,
+    caseId:req.body.caseId,
     date:new Date()
   });
   await message
@@ -209,14 +210,15 @@ const viewChatBetweenInternAndAdv = (req, res) => {
         Error: err,
       });
     });
-};
+}; 
+                                                                                                                                                                            
 const viewChatBetweenUserAndJunior = (req, res) => {
   let jrId = req.body.jrId;
   let userId = req.body.userId;
   chat
     .find({
       // $or: [{
-       advId: advId, jrId: jrId },
+        userId: userId, jrId: jrId },
         // { rpid: parentid, parentid: rpid },
       // ],}
     )
@@ -240,6 +242,47 @@ const viewChatBetweenUserAndJunior = (req, res) => {
       });
     });
 };
+
+
+const checkIfJrInchat = (req, res) => {
+  let userId = req.body.userId;
+  let caseId = req.body.caseId;
+let arr=[]
+  chat
+    .find({
+      // $or: [{
+        userId: userId,caseId:caseId},
+        // { rpid: parentid, parentid: rpid },
+      // ],}
+    )
+    .sort({ date: 1 })
+    .populate('jrId')
+    .populate('userId')
+    .exec()
+    
+    .then((data) => {
+      data.map(x=>{
+        console.log(x);
+if(x.from=="jradvocate"&&x.to=="user" )
+  arr.push(x)
+// if(x.from=="user"&&x.to=="jradvocate" )
+  // arr.push(x)
+
+      })
+      res.json({
+        status: 200,
+        msg: "got it successfully",
+        data: arr,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        status: 500,
+        msg: "Data not obtained",
+        Error: err,
+      });
+    });
+};
 module.exports = {
   chatting,
   viewChatRecipientsforAdvocateById,
@@ -247,6 +290,6 @@ module.exports = {
   viewChatBetweenUserAndAdv,
   viewChatBetweenAdvAndJr,
   viewChatBetweenInternAndAdv,
-  viewChatBetweenUserAndJunior
-  
+  viewChatBetweenUserAndJunior,
+  checkIfJrInchat
 };

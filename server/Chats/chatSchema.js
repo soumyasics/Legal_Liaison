@@ -19,6 +19,10 @@ const messageSchema = new mongoose.Schema(
     type: mongoose.Schema.Types.ObjectId,
     ref: "advocates"
     },
+    caseId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "cases"
+      },
     userId:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "users"

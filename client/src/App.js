@@ -99,6 +99,8 @@ import JuniorAdvViewAllAdvCases from './Components/JuniorAdvocates/JuniorAdvView
 import JuniorAdvViewAdvDetailCase from './Components/JuniorAdvocates/JuniorAdvViewAdvDetailCase';
 import InternViewMentorAllCases from './Components/Interns/InternViewMentorAllCases';
 import InternViewSingleCaseOfMentor from './Components/Interns/InternViewSingleCaseOfMentor';
+import JuniorAdvViewAssignedCasesEvidences from './Components/JuniorAdvocates/JuniorAdvViewAssignedCasesEvidences';
+import JuniorAdvChatToUser from './Components/JuniorAdvocates/JuniorAdvChatToUser';
 
 
 function App() {
@@ -201,11 +203,13 @@ function App() {
           <Route path="/JuniorAdvocate-requestmentorship/:id" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_RequestMentorshop />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_mentor" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateViewMentor />,<UserFooter />]} /> 
           <Route path="/junior_adv_chat_to_adv/:aid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvChatToAdv />,<UserFooter />]} /> 
+          <Route path="/junior_adv_chat_to_user/:aid/:cid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvChatToUser />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_assigned_cases" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCases />,<UserFooter />]} /> 
-          <Route path="/junior_adv_view_assigned_cases_details" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCasesDetails />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_assigned_cases_details/:id/:cid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCasesDetails />,<UserFooter />]} /> 
           <Route path="/junior_adv_add_complaint" element={[<JuniorAdvocateNavbar/>,<JuniorAdvAddComplaints />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_adv_cases/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAllAdvCases />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_adv_single_case/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAdvDetailCase />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_assigned_case_evidences/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Evidences" />,<JuniorAdvViewAssignedCasesEvidences />,<UserFooter />]} /> 
 
 
           {/* Intern Routes */}

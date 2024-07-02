@@ -48,6 +48,22 @@ function UserViewCaseUpdates() {
       .catch((error) => {
         console.error("Error!", error);
       });
+
+
+    axiosInstance
+      .post(`/checkIfJrInchat`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          
+          console.log("Data fetched:", res.data.data);
+        } else {
+
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
   }, [id]);
 
   const handleEvidenceClick = () => {
