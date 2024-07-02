@@ -89,6 +89,7 @@ router.post('/viewChatBetweenUserAndAdv',chat.viewChatBetweenUserAndAdv)
 router.post('/viewChatBetweenInternAndAdv',chat.viewChatBetweenInternAndAdv)
 router.post('/viewChatBetweenAdvAndJr',chat.viewChatBetweenAdvAndJr)
 router.post('/viewChatBetweenUserAndJunior',chat.viewChatBetweenUserAndJunior)
+router.post('/checkIfJrInchat',chat.checkIfJrInchat)            
 
 
 
@@ -185,6 +186,8 @@ router.post('/internacceptInternCaseReqbyAdv/:id',InternReqs.acceptReqbyAdv)
 router.post('/internrejectCaseReqbyAdv/:id',InternReqs.rejectReqbyAdv)
 router.post('/interngetCaseAppointmentReqsById/:id',InternReqs.getAppointmentReqsById)
 router.post('/interngetApprovedInternCasereqsForAdv/:id',InternReqs.getApprovedAppointmentsForAdv)
+router.post('/getAppointmentCaseReqsForAdv/:id',InternReqs.getAppointmentReqsForAdv)
+router.post('/getApprovedAppointmentsForIntern/:id',InternReqs.getApprovedAppointmentsForIntern)
 
 //Junior cases reqs
 router.post('/assignCaseforJr',JuniorCases.assignCaseforJr)

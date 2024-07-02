@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from "react-toastify";
 import axiosInstance from "../Constants/BaseUrl";
@@ -11,6 +11,7 @@ function InternChatSidebar() {
   const users = [{ name: "radhul" }, { name: "Name2" }];
 
   const id = localStorage.getItem('internId');
+  const navigate=useNavigate()
   
   const handleCreateClick = () => {
     setShowModal(true);
@@ -44,10 +45,12 @@ function InternChatSidebar() {
         title: inputValue
       })
       .then((res) => {
+        console.log(res);
+
         if (res.data.status === 200) {
           toast.success('Created');
-          // Update the groupData state with the new group
           setGroupData([...groupData, res.data.data]);
+          navigate(`/intern_single_chat/${res.data.data._id}`)
         } else {
           toast.error("Failed to create group");
         }

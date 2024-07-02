@@ -83,7 +83,7 @@ function AdvovatedViewApprovedJnrAdv() {
                       </td>
                       <td className="table-data">
                       <Link
-                          to={`/advocate_assign_cases_to_jnradv`}
+                          to={`/advocate_assign_cases_to_jnradv/${juadvocatereq.jrId._id}`}
                         >
                           <button className=" btn btn-outline-secondary">
                             Assign Cases

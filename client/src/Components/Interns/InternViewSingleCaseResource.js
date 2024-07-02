@@ -1,86 +1,91 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axiosInstance from "../Constants/BaseUrl";
+import { imageUrl } from "../Constants/Image_Url";
+import { Modal, Button } from "react-bootstrap";
 import img from "../../Assets/adv4.avif";
 import icon1 from "../../Assets/profile.png";
 import icon2 from "../../Assets/mail.png";
 import icon3 from "../../Assets/contact.png";
 import icon4 from "../../Assets/house.png";
 import icon5 from "../../Assets/location.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../Constants/BaseUrl";
-import { imageUrl } from "../Constants/Image_Url";
-import { Modal, Button } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
-function AdvocateViewSingleRecentCase() {
-  const [data, setData] = useState({ 
-    userId: {},
-    caseId: { dateOfIncident: "", evidence: { filename: "" } },
-  });
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const aid = localStorage.getItem("advocateId");
-  const [showModal, setShowModal] = useState(false);
-  const [evidenceUrl, setEvidenceUrl] = useState("");
-  const [fileType, setFileType] = useState(""); // State to store the file type
+function InternViewSingleCaseResource() {
 
-  useEffect(() => {
-    axiosInstance
-      .post(`/getAppointmentReqsById/${id}`)
-      .then((res) => {
-        console.log(res);
-        if (res.data.status === 200) {
-          setData(res.data.data || {});
-        } else {
-          setData({});
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
+    const [data, setData] = useState({
+       
+        caseId: { dateOfIncident: "", evidence: { filename: "" } },
       });
-  }, [id]);
+      const { id } = useParams();
+      const navigate = useNavigate();
+      const iId = localStorage.getItem("internId");
+      const [showModal, setShowModal] = useState(false);
+      const [caseId, setcaseId] = useState('');
+      const [userDetalis, setUserDetails] = useState({ userId: {}});
+      const [evidenceUrl, setEvidenceUrl] = useState("");
+      const [fileType, setFileType] = useState(""); // State to store the file type
+    
+      useEffect(() => {
+        axiosInstance
+          .post(`/interngetCaseAppointmentReqsById/${id}`)
+          .then((res) => {
+            // console.log(res);
+            if (res.data.status === 200) {
+              setData(res.data.data || {});
+              setcaseId(res.data.data.caseId._id)
+            } else {
+              setData({});
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
+      }, [id]);
 
-  const handleEvidenceClick = () => {
-    const evidence = data.caseId.evidence || {};
-    const fileUrl = evidence.filename ? `${imageUrl}/${evidence.filename}` : null;
-    if (!fileUrl) {
-      setFileType("none");
-      setEvidenceUrl(null);
-    } else {
-      const fileExtension = fileUrl.split(".").pop().toLowerCase();
-      setFileType(fileExtension);
-      setEvidenceUrl(fileUrl);
-    }
-    setShowModal(true);
-  };
+      useEffect(() => {
+        axiosInstance
+          .post(`/getCaseById/${caseId}`)
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+                setUserDetails(res.data.data);
+            } else {
+              setData({});
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error);
+          });
 
-  const handleClose = () => setShowModal(false);
+      }, [caseId]);
+    
+      const handleEvidenceClick = () => {
+        const evidence = data.caseId.evidence || {};
+        const fileUrl = evidence.filename
+          ? `${imageUrl}/${evidence.filename}`
+          : null;
+        if (!fileUrl) {
+          setFileType("none");
+          setEvidenceUrl(null);
+        } else {
+          const fileExtension = fileUrl.split(".").pop().toLowerCase();
+          setFileType(fileExtension);
+          setEvidenceUrl(fileUrl);
+        }
+        setShowModal(true);
+      };
+    
+      const handleClose = () => setShowModal(false);
+    
+
+      
 
   return (
     <div>
       <div className="adv_view_case_req">
         <div className="container">
-          <div className="d-flex justify-content-end">
-            <div className="adv_view_case_req_action_grps d-flex justify-content-between">
-              <div className="adv_view_case_req_action_btn d-flex">
-                <i className="ri-upload-2-fill"></i>
-                <Link to={`/advocate_addevidence/${data.caseId._id}`}>
-                  <p>Upload Evidence</p>
-                </Link>
-              </div>
-
-              <div className="adv_view_case_req_action_btn d-flex">
-                <i className="ri-file-paper-2-line"></i>
-                <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
-                  <p>Add Case Status</p>
-                </Link>
-              </div>
-              <div className="adv_view_case_req_action_btn d-flex">
-                <i className="ri-bank-card-line"></i>
-                <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
-                  <p>Request Payment</p>
-                </Link>
-              </div>
-            </div>
-          </div>
+         
 
           <div className="row mt-3">
             <div className="col-5">
@@ -97,32 +102,34 @@ function AdvocateViewSingleRecentCase() {
                       <div className="px-3">
                         <img src={icon1} alt="icon1" />
                       </div>
-                      <div>{data.userId.name}</div>
+                      <div>{userDetalis.userId.name}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon2} alt="icon2" />
                       </div>
-                      <div>{data.userId.email}</div>
+                      <div>{userDetalis.userId.email}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon3} alt="icon3" />
                       </div>
-                      <div>{data.userId.contact}</div>
+                      <div>{userDetalis.userId.contact}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon4} alt="icon4" />
                       </div>
-                      <div>{data.userId.address}</div>
+                      <div>{userDetalis.userId.address}</div>
                     </div>
                     <div className="d-flex mt-2">
                       <div className="px-3">
                         <img src={icon5} alt="icon5" />
                       </div>
-                      <div>{data.userId.nationality}</div>
+                      <div>{userDetalis.userId.nationality}</div>
                     </div>
+                  
+                    
                   </div>
                 </div>
               </div>
@@ -174,7 +181,7 @@ function AdvocateViewSingleRecentCase() {
                         <td>Date of Request</td>
                         <td>: {data.caseId.dateOfIncident.slice(0, 10)}</td>
                       </tr>
-                      <tr>
+                     <tr>
                         <td>Evidence</td>
                         <td>
                           :{" "}
@@ -183,25 +190,33 @@ function AdvocateViewSingleRecentCase() {
                           </Link>
                         </td>
                       </tr>
+                      
                     </tbody>
                   </table>
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
-                      <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
-                        Case Status
-                      </button></Link>
+                      <Link
+                        to={`/intern_view_resource_case_status/${data.caseId._id}`}
+                      >
+                        <button className="btn btn-warning btn-style  me-2">
+                          Case Status
+                        </button>
+                      </Link>
                     </div>
                     <div className="col-auto">
-                      <Link to={`/advocate_view_added_evidences/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
-                        Evidences Info
-                      </button></Link>
+                      <Link
+                        to={`/intern_view_resource_evidence_info/${data.caseId._id}`}
+                      >
+                        <button className="btn btn-warning btn-style  me-2">
+                          Evidences Info
+                        </button>
+                      </Link>
                     </div>
                     <div className="col-auto">
-                      <Link to={`/advocate_view_client_payment_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
-                        Payment Info
-                      </button></Link>
+                     
                     </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -234,7 +249,7 @@ function AdvocateViewSingleRecentCase() {
         </Modal>
       </div>
     </div>
-  );
+  )
 }
 
-export default AdvocateViewSingleRecentCase;
+export default InternViewSingleCaseResource

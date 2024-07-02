@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import './Advocate_ViewCaseRequest.css';
-import axiosInstance from "../Constants/BaseUrl";
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
+import axiosInstance from '../Constants/BaseUrl';
 import noData from "../../Assets/noDataFound.json";
-import Lottie from "lottie-react"; 
+import Lottie from "lottie-react";
 
-function Advocate_ViewCaseRequest() {
-  const [data, setData] = useState([]);
-  const id=localStorage.getItem('advocateId');
+function InternViewMentorAllCases() {
+
+    const [data, setData] = useState([]);
+  const {id}=useParams();
 
   useEffect(() => {
     axiosInstance
-      .post(`/getAppointmentReqsForAdv/${id}`)
+      .post(`/getApprovedAppointmentsForAdv/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -25,15 +25,11 @@ function Advocate_ViewCaseRequest() {
       });
   }, [id]);
 
-  console.log(data); 
-
+  console.log(id);
 
   return (
     <div>
-      <div className='junior-heading-div container-fluid'>
-        <label className='junior-reg-title'>Case Request</label>
-        </div>
-    <div className="main-div">
+      <div className="main-div">
       
       {data.length !== 0 ? (
         <div className="table-container table-striped">
@@ -55,16 +51,16 @@ function Advocate_ViewCaseRequest() {
               {data.length ? (
                 data.map((caseReq) => (
                   <tr>
-                    <td className="table-data">{caseReq.caseId.title}</td>
+                    <td className="table-data">{caseReq.caseId.title}</td> 
                     <td className="table-data">{caseReq.userId.name}</td>
                     <td className="table-data">{caseReq.userId.contact}</td>
                     <td className="table-data">{caseReq.caseId.type}</td>
-                    <td className="table-data">{caseReq.caseId.dateOfIncident}</td>
+                    <td className="table-data">{caseReq.caseId.dateOfIncident.slice(0,10)}</td>
                     <td className="table-data">{caseReq.caseId.opponentName?caseReq.caseId.opponentName:'Unknown'}</td>
                     <td className="table-data">{caseReq.caseId.opponentAddress?caseReq.caseId.opponentAddress:'Unknown'}</td>
                     <td className="table-data">{caseReq.caseId.location}</td>
                     <td className="table-data">
-                      <Link to={`/advocate_view_single_case_req/${caseReq._id}`}>
+                      <Link to={`/intern_view_adv_single_case/${caseReq._id}`}>
                         <button className="btn btn-outline-secondary">
                            View Details
                         </button>
@@ -85,7 +81,7 @@ function Advocate_ViewCaseRequest() {
       )}
     </div>
     </div>
-  );
+  )
 }
 
-export default Advocate_ViewCaseRequest;
+export default InternViewMentorAllCases

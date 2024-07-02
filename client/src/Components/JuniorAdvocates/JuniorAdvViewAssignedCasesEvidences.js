@@ -4,8 +4,10 @@ import axiosInstance from '../Constants/BaseUrl';
 import { Modal, Button } from 'react-bootstrap'; 
 import { imageUrl } from '../Constants/Image_Url';
 
-function AdvocateViewAddedEvidences() {
-  const [data, setData] = useState([]);
+
+function JuniorAdvViewAssignedCasesEvidences() {
+
+    const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [fileUrl, setFileUrl] = useState('');
   const { id } = useParams();
@@ -94,7 +96,7 @@ function AdvocateViewAddedEvidences() {
         </Modal.Footer>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default AdvocateViewAddedEvidences;
+export default JuniorAdvViewAssignedCasesEvidences

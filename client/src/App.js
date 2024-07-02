@@ -95,6 +95,18 @@ import AdvocateViewSingleIntern from './Components/Advocates/AdvocateViewSingleI
 import InternViewInternshipAdv from './Components/Interns/InternViewInternshipAdv';
 import InternChatToAdv from './Components/Interns/InternChatToAdv';
 import InternGroupChat from './Components/Interns/InternGroupChat';
+import JuniorAdvViewAllAdvCases from './Components/JuniorAdvocates/JuniorAdvViewAllAdvCases';
+import JuniorAdvViewAdvDetailCase from './Components/JuniorAdvocates/JuniorAdvViewAdvDetailCase';
+import InternViewMentorAllCases from './Components/Interns/InternViewMentorAllCases';
+import InternViewSingleCaseOfMentor from './Components/Interns/InternViewSingleCaseOfMentor';
+import JuniorAdvViewAssignedCasesEvidences from './Components/JuniorAdvocates/JuniorAdvViewAssignedCasesEvidences';
+import JuniorAdvChatToUser from './Components/JuniorAdvocates/JuniorAdvChatToUser';
+import UserChatToJuniorAdv from './Components/User/UserChatToJuniorAdv';
+import AdvocateViewResourceReq from './Components/Advocates/AdvocateViewResourceReq';
+import InternViewApprovedCaseResource from './Components/Interns/InternViewApprovedCaseResource';
+import InternViewSingleCaseResource from './Components/Interns/InternViewSingleCaseResource';
+import InternViewResourceCaseStatus from './Components/Interns/InternViewResourceCaseStatus';
+import InternViewResourceAddedEvidences from './Components/Interns/InternViewResourceAddedEvidences';
 
 
 function App() {
@@ -124,6 +136,8 @@ function App() {
           <Route path="/user_pay_adv_req/:id" element={[<UserNavbar />,<UserPayAdvReq />,<UserFooter/>]} />
           <Route path="/user_add_complaint" element={[<UserNavbar />,<UserAddComplaints />,<UserFooter/>]} />
 
+          <Route path="/user_chat_to_jnr_adv/:cid" element={[<UserNavbar />,<UserChatToJuniorAdv />,<UserFooter/>]} />
+
 
           {/* Advocate routes */}
           <Route path="/AdvcateReg" element={[<LandingNavbar />, <AdvcateReg />]} />
@@ -152,12 +166,13 @@ function App() {
           <Route path="/advocate_view_intern_profile/:id" element={[<AdvocateNavbar />, <AdvocateViewSingleIntern />, <UserFooter />]} />
           <Route path="/advocate_view_client_payment_status/:id" element={[<AdvocateNavbar />, <AdvocateViewClientPaymentStatus />, <UserFooter />]} />
           <Route path="/advocate_view_case_status/:id" element={[<AdvocateNavbar />, <AdvocateViewCaseStatus />, <UserFooter />]} />
-          <Route path="/advocate_assign_cases_to_jnradv" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
+          <Route path="/advocate_assign_cases_to_jnradv/:jid" element={[<AdvocateNavbar />,<FormHead title="Advocate Assign Cases" />, <AdvAssignCasesToJnrAdv />, <UserFooter />]} />
           <Route path="/advocate_view_all_jnr_adv" element={[<AdvocateNavbar />, <AdvovatedViewApprovedJnrAdv />, <UserFooter />]} />
           <Route path="/advocate_add_complaints" element={[<AdvocateNavbar />, <AdvocateAddComplaints />, <UserFooter />]} />
           <Route path="/advocate_add_articles" element={[<AdvocateNavbar />, <AdvocateAddArticle />, <UserFooter />]} />
           <Route path="/advocate_view_articles" element={[<AdvocateNavbar />,<FormHead title="View Articles" />, <AdvocateViewArticles />, <UserFooter />]} />
           <Route path="/advocate_edit_articles/:id" element={[<AdvocateNavbar />, <AdvocateEditArticle />, <UserFooter />]} />
+          <Route path="/advocate_view_case_req_access" element={[<AdvocateNavbar />, <AdvocateViewResourceReq />, <UserFooter />]} />
 
 
           {/* Bar council routes */}
@@ -167,6 +182,8 @@ function App() {
           <Route path="/AdminLogin" element={[<LandingNavbar />, <FormHead title="Admin Login" />, <AdminLogin />, <AdminFooter />]} />
           <Route path="/admin-dashboard" element={[<AdminNav />, <AdminMain data="admindashboard" />, <AdminFooter />]} />
           <Route path="/admin-viewalladvocates" element={[<AdminNav />, <AdminMain data="adminviewalladvocates" />, <AdminFooter />]} />
+          <Route path="/admin-viewallusers" element={[<AdminNav />, <AdminMain data="adminviewallusers" />, <AdminFooter />]} />
+          <Route path="/admin_view_single_user/:id" element={[<AdminNav />, <AdminMain data="singleUser" />, <AdminFooter />]} />
           <Route path="/adminviewadvocaterequest" element={[<AdminNav />, <AdminMain data="approvereject" />, <AdminFooter />]} />
           <Route path="/adminviewrequest/:id" element={[<AdminNav />, <AdminMain data="adminviewrequest" />, <AdminFooter />]} />
           <Route path="/admin_view_single_advocate/:id" element={[<AdminNav />, <AdminMain data="adminviewsingleadvocate" />, <AdminFooter />]} />
@@ -197,9 +214,13 @@ function App() {
           <Route path="/JuniorAdvocate-requestmentorship/:id" element={[<JuniorAdvocateNavbar/>,<JuAdvocate_RequestMentorshop />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_mentor" element={[<JuniorAdvocateNavbar/>,<JuniorAdvocateViewMentor />,<UserFooter />]} /> 
           <Route path="/junior_adv_chat_to_adv/:aid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvChatToAdv />,<UserFooter />]} /> 
+          <Route path="/junior_adv_chat_to_user/:aid/:cid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvChatToUser />,<UserFooter />]} /> 
           <Route path="/junior_adv_view_assigned_cases" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCases />,<UserFooter />]} /> 
-          <Route path="/junior_adv_view_assigned_cases_details" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCasesDetails />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_assigned_cases_details/:id/:cid" element={[<JuniorAdvocateNavbar/>,<JuniorAdvViewAssignedCasesDetails />,<UserFooter />]} /> 
           <Route path="/junior_adv_add_complaint" element={[<JuniorAdvocateNavbar/>,<JuniorAdvAddComplaints />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_adv_cases/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAllAdvCases />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_adv_single_case/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Cases of Mentor" />,<JuniorAdvViewAdvDetailCase />,<UserFooter />]} /> 
+          <Route path="/junior_adv_view_assigned_case_evidences/:id" element={[<JuniorAdvocateNavbar/>,<FormHead title="Evidences" />,<JuniorAdvViewAssignedCasesEvidences />,<UserFooter />]} /> 
 
 
           {/* Intern Routes */}
@@ -212,9 +233,16 @@ function App() {
           <Route path="/intern_view_advocate" element={[<InternNavbar />,<InternViewAdv/>,<UserFooter />]} />
           <Route path="/intern_req_internship/:id" element={[<InternNavbar />,<InternRequestInternship/>,<UserFooter />]} />
           <Route path="/intern_view_internship_adv" element={[<InternNavbar />,<InternViewInternshipAdv/>,<UserFooter />]} />
+          <Route path="/intern_view_adv_cases/:id" element={[<InternNavbar />,<FormHead title="Cases of Mentor" />,<InternViewMentorAllCases/>,<UserFooter />]} />
+          <Route path="/intern_view_adv_single_case/:id" element={[<InternNavbar />,<FormHead title="Cases of Mentor" />,<InternViewSingleCaseOfMentor/>,<UserFooter />]} />
+          
           <Route path="/intern_chat_to_adv/:aid" element={[<InternNavbar />,<InternChatToAdv/>,<UserFooter />]} />
           <Route path="/intern_group_chat" element={[<InternNavbar />,<InternGroupChat type={'noChat'} />,<UserFooter />]} />
           <Route path="/intern_single_chat/:id" element={[<InternNavbar />,<InternGroupChat type={'group'} />,<UserFooter />]} />
+          <Route path="/intern_view_approved_case_resource" element={[<InternNavbar />,<InternViewApprovedCaseResource />,<UserFooter />]} />
+          <Route path="/intern_view_approved_single_case_resource/:id" element={[<InternNavbar />,<InternViewSingleCaseResource />,<UserFooter />]} />
+          <Route path="/intern_view_resource_case_status/:id" element={[<InternNavbar />,<InternViewResourceCaseStatus />,<UserFooter />]} />
+          <Route path="/intern_view_resource_evidence_info/:id" element={[<InternNavbar />,<InternViewResourceAddedEvidences />,<UserFooter />]} />
 
 
 

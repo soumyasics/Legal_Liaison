@@ -23,7 +23,7 @@ function InternViewInternshipAdv() {
             }
           })
           .catch(() => {
-            console.log("Failed to Add Case");
+            console.log("Failed to Add Case"); 
           });
       }, [id]);
     
@@ -191,7 +191,18 @@ function InternViewInternshipAdv() {
                         Chat Now
                       </button>
                     </Link>
+                    <Link to={`/intern_view_adv_cases/${advocate._id}`}>
+                      <button className="btn btn-warning button-style-appoinment mx-2">
+                        View Cases
+                      </button>
+                    </Link>
+                    <Link to={`/intern_view_approved_case_resource`}>
+                      <button className="btn btn-warning button-style-appoinment">
+                      Case Resources
+                      </button>
+                    </Link>
                   </div>
+                  
                 </div>
               </div>
             </div>

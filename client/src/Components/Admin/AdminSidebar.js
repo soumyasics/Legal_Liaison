@@ -40,7 +40,9 @@ function AdminSidebar() {
                 <label className='label-general'>General</label>
                 <div className='adjust-space'>
                 <img src={userimg} className='image-adjust-1 img1-padding each' alt='User image'/>{' '},{' '},{' '}
-                    <label className='label-sub'>Users</label>
+                <Link to={'/admin-viewallusers'}>
+                <label className='label-sub'>Users</label>
+                </Link>
                 </div>
                 <div className='adjust-space'>
                 <img src={advocateimg} className='img2-padding' alt='User image'/>{' '},{' '},{' '}

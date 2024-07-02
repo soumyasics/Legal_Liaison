@@ -13,19 +13,19 @@ function JuniorAdvViewAssignedCases() {
   const id = localStorage.getItem("junioradvocateId");
 
   useEffect(() => {
-    // axiosInstance
-    //   .post(`/getApprovedJnrAppointmentsForAdv/${id}`)
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.data.status === 200) {
-    //       setData(res.data.data || []);
-    //     } else {
-    //       setData([]);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error!", error);
-    //   });
+    axiosInstance
+      .post(`/getCasesAssignedForJrId/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setData(res.data.data || []);
+        } else {
+          setData([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
   }, [id]);
 
   return (
@@ -41,8 +41,7 @@ function JuniorAdvViewAssignedCases() {
               <thead>
                 <tr>
                   <th className="table-header">Case Title</th>
-                  <th className="table-header">Client Name</th>
-                  <th className="table-header">Phone Number</th>
+               
                   <th className="table-header">Case Type</th>
                   <th className="table-header">Date of Incident</th>
                   <th className="table-header">Opponent Name</th>
@@ -55,33 +54,31 @@ function JuniorAdvViewAssignedCases() {
                 {data.length ? (
                   data.map((juadvocatereq) => (
                     <tr>
-                      <td className="table-data">{juadvocatereq.jrId.name}</td>
+                      <td className="table-data">{juadvocatereq.caseId.title}</td>
                       <td className="table-data">
-                        {juadvocatereq.jrId.specialization}
+                        {juadvocatereq.caseId.type}
                       </td>
                       <td className="table-data">
-                        {juadvocatereq.jrId.institute}
+                        {juadvocatereq.caseId.dateOfIncident.slice(0,10)}
                       </td>
                       <td className="table-data">
-                        {juadvocatereq.jrId.qualification}
+                        {juadvocatereq.caseId.opponentName} 
                       </td>
                       <td className="table-data">
-                        {juadvocatereq.jrId.contact}
+                        {juadvocatereq.caseId.opponentAddress}
                       </td>
 
-                      <td className="table-data">{juadvocatereq.jrId.bcNo}</td>
+                      {/* <td className="table-data">{juadvocatereq.jrId.caseId}</td> */}
                       <td className="table-data">
-                        {juadvocatereq.jrId.dateOfEnrollment}
+                        {juadvocatereq.caseId.location}
                       </td>
-                      <td className="table-data">
-                       location
-                      </td>
+                      
                       <td className="table-data">
                       <Link
-                          to={`/advocate_assign_cases_to_jnradv`}
+                          to={`/junior_adv_view_assigned_cases_details/${juadvocatereq._id}/${juadvocatereq.caseId._id}`}
                         >
                           <button className=" btn btn-outline-secondary">
-                            Add Cases Update
+                            More
                           </button>
                         </Link>
                       </td>

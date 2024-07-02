@@ -80,7 +80,7 @@ const registerUser = async (req, res) => {
 //User Registration -- finished
 
 // View User by ID
-const viewUserById = (req, res) => {
+const  viewUserById = (req, res) => {
   Users.findById({ _id: req.params.id })
       .exec()
       .then(data => {

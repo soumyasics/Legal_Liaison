@@ -20,6 +20,7 @@ function UserViewCaseUpdates() {
   });
 
   const [review, setReview] = useState("");
+  const [isJunior, setIsJunior] = useState([]);
 
   // Function to update review state when textarea value changes
   const handleReviewChange = (event) => {
@@ -32,7 +33,9 @@ function UserViewCaseUpdates() {
   const [evidenceUrl, setEvidenceUrl] = useState("");
   const [reviews, setReviews] = useState([]);
 
-  const uid=localStorage.getItem('userId')
+  const uid = localStorage.getItem("userId");
+
+  // console.log("caseId", id);
 
   useEffect(() => {
     axiosInstance
@@ -49,6 +52,35 @@ function UserViewCaseUpdates() {
         console.error("Error!", error);
       });
   }, [id]);
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/checkIfJrInchat`, { userId: uid, caseId: id })
+      .then((res) => {
+        if (res.data.status === 200) {
+          setIsJunior(res.data.data);
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/getAppointmentReqsByUserId/${uid}`,)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setIsJunior(res.data.data);
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  }, []);
 
   const handleEvidenceClick = () => {
     setEvidenceUrl(`${imageUrl}/${data.evidence.filename}`);
@@ -73,7 +105,6 @@ function UserViewCaseUpdates() {
   };
   const [reloadReviews, setReloadReviews] = useState(false);
 
-
   useEffect(() => {
     axiosInstance
       .post(`/viewAllreviewsByAdvId/${data.advocateId._id}`)
@@ -89,30 +120,31 @@ function UserViewCaseUpdates() {
         console.error("Error!", error);
       });
   }, [reloadReviews]);
-  
 
   let a = data.advocateId.rating ? data.advocateId.rating : 0;
 
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log('Review:', review);
-  axiosInstance
-    .post(`/addReview`, { userId: uid, advId: data.advocateId._id, review: review })
-    .then((res) => {
-      if (res.data.status === 200) {
-        toast.success("Review Added");
-        setReview('');
-        setReloadReviews(prev => !prev); 
-      } else {
-        console.log("Failed to add review");
-      }
-    })
-    .catch((error) => {
-      console.error("Error!", error);
-    });
-};
-  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // console.log("Review:", review);
+    axiosInstance
+      .post(`/addReview`, {
+        userId: uid,
+        advId: data.advocateId._id,
+        review: review,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          toast.success("Review Added");
+          setReview("");
+          setReloadReviews((prev) => !prev);
+        } else {
+          console.log("Failed to add review");
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+  };
 
   return (
     <div>
@@ -235,6 +267,13 @@ const handleSubmit = (event) => {
                   </table>
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
+                      <Link to={`/user_chat_to_jnr_adv/${data._id}`}>
+                        <button className="btn btn-warning btn-style me-2">
+                          Chat to Junior
+                        </button>
+                      </Link>
+                    </div>
+                    <div className="col-auto">
                       <Link to={`/user_view_case_status/${data._id}`}>
                         <button className="btn btn-warning btn-style me-2">
                           Case Status
@@ -284,28 +323,31 @@ const handleSubmit = (event) => {
                   </div>
                 </div>
               </form>
-              {
-                reviews.length?reviews.map((e)=>{
-                  return(
+              {reviews.length ? (
+                reviews.map((e) => {
+                  return (
                     <div className="view_review_container mt-1">
-                <div className="d-flex">
-                  <p>
-                    <i class="ri-star-fill"></i>
-                  </p>
-                  <p className="px-2">
-                    {e.review}
-                  </p>
-                </div>
-                <div className="d-flex justify-content-end">
-                  <p>
-                    <small>{e.userId.name}. {e.date.slice(0,10)}</small>
-                  </p>
-                </div>
-              </div>
-                  )
-                }):<p id="min-h" className="mt-3"  >No Reviews Found</p>
-              }
-              
+                      <div className="d-flex">
+                        <p>
+                          <i class="ri-star-fill"></i>
+                        </p>
+                        <p className="px-2">{e.review}</p>
+                      </div>
+                      <div className="d-flex justify-content-end">
+                        <p>
+                          <small>
+                            {e.userId.name}. {e.date.slice(0, 10)}
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <p id="min-h" className="mt-3">
+                  No Reviews Found
+                </p>
+              )}
             </div>
           </div>
         </div>

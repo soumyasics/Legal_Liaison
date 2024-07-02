@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { imageUrl } from '../Constants/Image_Url';
 
-function JuniorAdvChatToAdv() { 
-
-    const jid = localStorage.getItem("junioradvocateId"); 
+function JuniorAdvChatToUser() {
+    const jid = localStorage.getItem("junioradvocateId");
   const { aid } = useParams();
+  const { cid } = useParams();
   console.log(jid);
 
   const [messageList, setMessageList] = useState([]);
@@ -25,7 +25,7 @@ function JuniorAdvChatToAdv() {
 
   useEffect(() => {
     axiosInstance
-      .post(`viewChatBetweenAdvAndJr`, { advId: aid, jrId: jid })
+      .post(`viewChatBetweenAdvAndJr`, { userId: aid, jrId: jid })
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -38,7 +38,7 @@ function JuniorAdvChatToAdv() {
       });
 
     axiosInstance
-      .post(`viewAdvocateById/${aid}`)
+      .post(`viewUserById/${aid}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -60,9 +60,10 @@ function JuniorAdvChatToAdv() {
       .post(`chatting`, {
         msg: inputValue,
         from: "jradvocate",
-        to: "advocates",
-        advId: aid,
+        to: "user",
+        userId: aid,
         jrId: jid,
+        caseId:cid
       })
       .then((res) => {
         console.log(res);
@@ -78,7 +79,6 @@ function JuniorAdvChatToAdv() {
   };
 
   console.log(messageList);
-
   return (
     <div className="user_chat">
       <div className="chat-container">
@@ -104,7 +104,7 @@ function JuniorAdvChatToAdv() {
                 <div className="message-header">
                   <span className="username">
                     <small>
-                      {msg.from == "jradvocate" ? msg.jrId.name : msg.advId.name}
+                      {msg.from == "jradvocate" ? msg.jrId.name : msg.userId.name}
                     </small>
                   </span>
                   <span className="timestamp">
@@ -141,4 +141,4 @@ function JuniorAdvChatToAdv() {
   )
 }
 
-export default JuniorAdvChatToAdv
+export default JuniorAdvChatToUser
