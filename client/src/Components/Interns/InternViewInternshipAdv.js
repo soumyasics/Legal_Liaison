@@ -196,6 +196,11 @@ function InternViewInternshipAdv() {
                         View Cases
                       </button>
                     </Link>
+                    <Link to={`/intern_view_approved_case_resource`}>
+                      <button className="btn btn-warning button-style-appoinment">
+                      Case Resources
+                      </button>
+                    </Link>
                   </div>
                   
                 </div>

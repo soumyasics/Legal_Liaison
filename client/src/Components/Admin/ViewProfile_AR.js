@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../Constants/BaseUrl";
 import "../Admin/ViewProfile_AR.css";
 import img from "../../Assets/image 21.png";
-import { imageUrl } from '../Constants/Image_Url'
+import { imageUrl } from '../Constants/Image_Url' 
 
 function ViewProfile_AR({ view }) {
   const [advocate, setAdvocate] = useState(null);

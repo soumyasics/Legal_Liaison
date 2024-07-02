@@ -155,7 +155,7 @@ function AdvocateHome() {
                     {advocate.name}
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
-                    <span className="text-gold">Senior Advocate</span> of {advocate.bcState}
+                    <span className="text-gold">{advocate.specialization}</span>
                   </p>
                   <p className="advocate_home_profile_container_head_subtitle mt-1">
                     <span className="text-gold">{advocate.experience}</span> Years Of Experience

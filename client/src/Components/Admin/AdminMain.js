@@ -17,6 +17,8 @@ import AdminViewInternRequest from "./AdminViewInternRequest";
 import AdminViewInternProfile from "./AdminViewInternProfile";
 import AdminViewApprovedInterns from "./AdminViewApprovedInterns";
 import AdminViewComplaints from "./AdminViewComplaints";
+import AdminViewUsers from "./AdminViewUsers";
+import AdminViewSingleUsers from "./AdminViewSingleUsers";
 
 function AdminMain({ data }) {
   const navigate = useNavigate(); 
@@ -65,6 +67,10 @@ function AdminMain({ data }) {
             <AdminViewInternProfile view="view" />
           ) : data === "complaints" ? (
             <AdminViewComplaints />
+          ) : data === "adminviewallusers" ? (
+            <AdminViewUsers />
+          ) : data === "singleUser" ? (
+            <AdminViewSingleUsers />
           ) : (
             <AdminLogin />
           )}

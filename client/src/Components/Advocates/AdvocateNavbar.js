@@ -17,7 +17,7 @@ function AdvocateNavbar() {
     window.location.reload();
   };
 
-  return (
+  return ( 
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark landing_custom_navbar" style={{minHeight:'10vh'}} >
         <div className="container">
@@ -79,7 +79,8 @@ function AdvocateNavbar() {
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/advocate_viewjuadvocatereq' className="dropdown-item" >Request</Link>
-                <Link to='/advocate_view_all_jnr_adv' className="dropdown-item" >View</Link>
+                <Link to='/advocate_view_all_jnr_adv' className="dropdown-item" >View Advocates</Link>
+                <Link to='/advocate_view_case_req_access' className="dropdown-item" >Resource Request</Link>
                 
               </div>
             </li>

@@ -186,7 +186,8 @@ router.post('/internacceptInternCaseReqbyAdv/:id',InternReqs.acceptReqbyAdv)
 router.post('/internrejectCaseReqbyAdv/:id',InternReqs.rejectReqbyAdv)
 router.post('/interngetCaseAppointmentReqsById/:id',InternReqs.getAppointmentReqsById)
 router.post('/interngetApprovedInternCasereqsForAdv/:id',InternReqs.getApprovedAppointmentsForAdv)
-router.post('/getAppointmentReqsForAdv/:id',InternReqs.getAppointmentReqsForAdv)
+router.post('/getAppointmentCaseReqsForAdv/:id',InternReqs.getAppointmentReqsForAdv)
+router.post('/getApprovedAppointmentsForIntern/:id',InternReqs.getApprovedAppointmentsForIntern)
 
 //Junior cases reqs
 router.post('/assignCaseforJr',JuniorCases.assignCaseforJr)
