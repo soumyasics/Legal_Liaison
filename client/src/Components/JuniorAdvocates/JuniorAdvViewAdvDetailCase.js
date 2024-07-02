@@ -12,7 +12,7 @@ import icon5 from "../../Assets/location.png";
 
 function JuniorAdvViewAdvDetailCase() {
   const [data, setData] = useState({
-    userId: {},
+    userId: {profilePic:{filename:''}},
     caseId: { dateOfIncident: "", evidence: { filename: "" } },
   });
   const { id } = useParams();
@@ -110,7 +110,7 @@ function JuniorAdvViewAdvDetailCase() {
                 </div>
                 <div className="adv_case_req_left_container1_content d-flex">
                   <div className="adv_case_req_left_container1_content_img">
-                    <img src={img} alt="Client" />
+                  <img src={`${imageUrl}/${data.userId.profilePic.filename}`} alt="Client" />
                   </div>
                   <div>
                     <div className="d-flex mt-2">

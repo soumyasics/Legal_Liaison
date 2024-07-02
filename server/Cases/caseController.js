@@ -60,7 +60,7 @@ const createCase = async (req, res) => {
 // Get all cases
 const getAllCases = async (req, res) => {
   try {
-    const cases = await Case.find();
+    const cases = await Case.find().populate('userId').populate('advocateId');
     res.json({
       status: 200,
       data: cases,

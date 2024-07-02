@@ -136,7 +136,6 @@ const acceptReqbyAdv = async (req, res) => {
         msg: 'Appointment request not found'
       });
     }
-    console.log("caseid",caseId._id);
    
     res.json({
       status: 200,

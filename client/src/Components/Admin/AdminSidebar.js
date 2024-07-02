@@ -24,14 +24,17 @@ function AdminSidebar() {
     <div className='row-4'>
         <div className='admin-sidebar'>
         <div className='profile-div'>
+            <Link to={'/admin-dashboard'}>
             <div className='row'>
                 <div className='col-md-4 col-sm-12'>
                     <img className='img-style' src={profile} alt='Profile' />
                 </div>
                 <div className='col-md-8 col-sm-12'>
-                    <label className='profile-label'>Administrator</label>
+                    <label className='profile-label text-light'>Administrator</label>
                 </div>
             </div>
+            </Link>
+            
         </div>
         
             <div className='content-div'>
@@ -52,7 +55,10 @@ function AdminSidebar() {
                 </div>
                 <div className='adjust-space'>
                 <img src={casesimg} className='image-adjust-1 padding each' alt='User image'/>{' '},{' '},{' '}
-                    <label className='label-sub'>Cases</label>
+                <Link to={'/admin_view_cases'}>
+                <label className='label-sub'>Cases</label>
+
+                </Link>
                 </div>
                
                 <div className='adjust-space'>

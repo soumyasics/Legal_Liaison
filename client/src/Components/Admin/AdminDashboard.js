@@ -9,6 +9,8 @@ import axiosInstance from "../Constants/BaseUrl";
 function AdminDashboard() {
   const [userCount, setUserCount] = useState(0);
   const [advocateCount, setAdvocateCount] = useState(0);
+  const [cases, setCases] = useState(0);
+  const [complaints, setComplaints] = useState(0);
 
   useEffect(() => {
     axiosInstance
@@ -28,6 +30,28 @@ function AdminDashboard() {
         console.log("Response from backend:", response.data);
         if (response.data.status === 200 && response.data.data) {
           setAdvocateCount(response.data.data.length);
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the user data!", error);
+      });
+    axiosInstance
+      .post("/getAllCases")
+      .then((response) => {
+        console.log("Response from backend:", response.data);
+        if (response.data.status === 200 && response.data.data) {
+          setCases(response.data.data.length);
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the user data!", error);
+      });
+    axiosInstance
+      .post("/viewAllComplaints")
+      .then((response) => {
+        console.log("Response from backend:", response.data);
+        if (response.data.status === 200 && response.data.data) {
+          setComplaints(response.data.data.length);
         }
       })
       .catch((error) => {
@@ -54,7 +78,7 @@ function AdminDashboard() {
             <div className="dashbord-box">
               <img className="image-adjust" src={casesimg} />
               <div className="text-container">
-                <label className="count-label">0</label>
+                <label className="count-label">{cases}</label>
                 <label className="content-label">Cases</label>
               </div>
             </div>
@@ -74,7 +98,7 @@ function AdminDashboard() {
             <div className="dashbord-box">
               <img className="image-adjust" src={complaintimg} />
               <div className="text-container">
-                <label className="count-label">0</label>
+                <label className="count-label">{complaints}</label>
                 <label className="content-label">Complaints</label>
               </div>
             </div>

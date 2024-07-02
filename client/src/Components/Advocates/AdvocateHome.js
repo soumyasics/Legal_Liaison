@@ -35,6 +35,9 @@ function AdvocateHome() {
   const toggleModal = () => setShowModal(!showModal);
 
   const [data, setData] = useState([]);
+  const [intern, setIntern] = useState([]);
+  const [jr, setJr] = useState([]);
+  const [resource, setResource] = useState([]);
 
   useEffect(() => {
     axiosInstance
@@ -45,6 +48,45 @@ function AdvocateHome() {
           setData(res.data.data || []);
         } else {
           setData([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+    axiosInstance
+      .post(`/interngetAppointmentReqsForAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setIntern(res.data.data || []);
+        } else {
+          setIntern([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+    axiosInstance
+      .post(`/getAppointmentReqsJnrForAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setJr(res.data.data || []);
+        } else {
+          setJr([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+      });
+    axiosInstance
+      .post(`/getAppointmentCaseReqsForAdv/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === 200) {
+          setResource(res.data.data || []);
+        } else {
+          setResource([]);
         }
       })
       .catch((error) => {
@@ -74,27 +116,27 @@ function AdvocateHome() {
             <div className="col-lg-8 col-md-6 col-sm-12 mt-3">
               <div className="container advocate_home_container1">
                 <div className="advocate_home_container_card">
-                  <p className="advocate_home_container_card_count">40</p>
+                  <p className="advocate_home_container_card_count">{data.length}</p>
                   <p className="advocate_home_container_card_title">
                     Case Requests
                   </p>
                 </div>
                 <div className="advocate_home_container_card">
-                  <p className="advocate_home_container_card_count">21</p>
+                  <p className="advocate_home_container_card_count">{intern.length}</p>
                   <p className="advocate_home_container_card_title">
                     Intern Requests
                   </p>
                 </div>
                 <div className="advocate_home_container_card">
-                  <p className="advocate_home_container_card_count">60</p>
+                  <p className="advocate_home_container_card_count">{jr.length}</p>
                   <p className="advocate_home_container_card_title">
-                    Advocate Requests
+                    Jr Advocate Requests
                   </p>
                 </div>
                 <div className="advocate_home_container_card">
-                  <p className="advocate_home_container_card_count">58</p>
+                  <p className="advocate_home_container_card_count">{resource.length}</p>
                   <p className="advocate_home_container_card_title">
-                    Advocate Requests
+                    Resource Request
                   </p>
                 </div>
               </div>
