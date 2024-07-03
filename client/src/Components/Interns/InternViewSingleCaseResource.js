@@ -22,7 +22,7 @@ function InternViewSingleCaseResource() {
       const iId = localStorage.getItem("internId");
       const [showModal, setShowModal] = useState(false);
       const [caseId, setcaseId] = useState('');
-      const [userDetalis, setUserDetails] = useState({ userId: {}});
+      const [userDetalis, setUserDetails] = useState({ userId: {profilePic:{filename:''}}});
       const [evidenceUrl, setEvidenceUrl] = useState("");
       const [fileType, setFileType] = useState(""); // State to store the file type
     
@@ -95,7 +95,7 @@ function InternViewSingleCaseResource() {
                 </div>
                 <div className="adv_case_req_left_container1_content d-flex">
                   <div className="adv_case_req_left_container1_content_img">
-                    <img src={img} alt="Client" />
+                  <img src={`${imageUrl}/${userDetalis.userId.profilePic.filename}`} alt="Client" />
                   </div>
                   <div>
                     <div className="d-flex mt-2">

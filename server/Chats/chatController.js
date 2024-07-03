@@ -265,8 +265,8 @@ let arr=[]
         console.log(x);
 if(x.from=="jradvocate"&&x.to=="user" )
   arr.push(x)
-// if(x.from=="user"&&x.to=="jradvocate" )
-  // arr.push(x)
+ if(x.from=="user"&&x.to=="jradvocate" )
+   arr.push(x)
 
       })
       res.json({

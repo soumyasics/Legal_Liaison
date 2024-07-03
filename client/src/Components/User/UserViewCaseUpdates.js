@@ -57,20 +57,6 @@ function UserViewCaseUpdates() {
     axiosInstance
       .post(`/checkIfJrInchat`, { userId: uid, caseId: id })
       .then((res) => {
-        if (res.data.status === 200) {
-          setIsJunior(res.data.data);
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.error("Error!", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axiosInstance
-      .post(`/getAppointmentReqsByUserId/${uid}`,)
-      .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
           setIsJunior(res.data.data);
@@ -81,6 +67,21 @@ function UserViewCaseUpdates() {
         console.error("Error!", error);
       });
   }, []);
+
+  // useEffect(() => {
+  //   axiosInstance
+  //     .post(`/getAppointmentReqsByUserId/${uid}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.data.status === 200) {
+  //         setIsJunior(res.data.data);
+  //       } else {
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error!", error);
+  //     });
+  // }, []);
 
   const handleEvidenceClick = () => {
     setEvidenceUrl(`${imageUrl}/${data.evidence.filename}`);
@@ -266,13 +267,19 @@ function UserViewCaseUpdates() {
                     </tbody>
                   </table>
                   <div className="row justify-content-center mt-4 arr">
-                    <div className="col-auto">
-                      <Link to={`/user_chat_to_jnr_adv/${data._id}`}>
-                        <button className="btn btn-warning btn-style me-2">
-                          Chat to Junior
-                        </button>
-                      </Link>
-                    </div>
+                    {console.log(isJunior)}
+                    {isJunior.length > 0 ? (
+                      <div className="col-auto">
+                        <Link to={`/user_chat_to_jnr_adv/${data._id}`}>
+                          <button className="btn btn-warning btn-style me-2">
+                            Chat to Junior
+                          </button>
+                        </Link>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
                     <div className="col-auto">
                       <Link to={`/user_view_case_status/${data._id}`}>
                         <button className="btn btn-warning btn-style me-2">

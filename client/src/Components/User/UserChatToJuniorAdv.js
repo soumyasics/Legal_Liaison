@@ -6,16 +6,15 @@ import { toast } from 'react-toastify';
 
 function UserChatToJuniorAdv() {
 
-    const uid = localStorage.getItem("userId"); 
+  const uid = localStorage.getItem("userId"); 
   const { cid } = useParams();
-  let jid
-  console.log(jid);
 
   const [messageList, setMessageList] = useState([]);
   const [userDetalis, setUserDetails] = useState({
     profilePic: { filename: "" },
   });
   const [inputValue, setInputValue] = useState("");
+  const [jrId, setJrId] = useState("");
   const chatBodyRef = useRef(null);
 
   useEffect(() => {
@@ -26,11 +25,12 @@ function UserChatToJuniorAdv() {
 
   useEffect(() => {
     axiosInstance
-      .post(`viewChatBetweenAdvAndJr`, { userId: uid, jrId: jid })
+      .post(`checkIfJrInchat`, { userId: uid, caseId: cid })
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
           setMessageList(res.data.data);
+          extractJrId(res.data.data);
         } else {
         }
       })
@@ -38,8 +38,21 @@ function UserChatToJuniorAdv() {
         console.log(err);
       });
 
+    
+  }, []);
+
+  const extractJrId = (messages) => {
+    for (let message of messages) {
+      if (message.jrId && message.jrId._id) {
+        setJrId(message.jrId._id);
+        break;
+      }
+    }
+  };
+
+  useEffect(()=>{
     axiosInstance
-      .post(`viewAdvocateById/${uid}`)
+      .post(`viewJuniorAdvocateById/${jrId}`)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
@@ -50,27 +63,30 @@ function UserChatToJuniorAdv() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  },[jrId])
 
   const handleSend = (e) => {
     e.preventDefault();
     console.log(inputValue);
 
-    console.log(jid);
     axiosInstance
       .post(`chatting`, {
         msg: inputValue,
-        from: "jradvocate",
-        to: "advocates",
+        from: "user",
+        to: "jradvocate",
         userId: uid,
-        jrId: jid,
-        caseId:cid
+        caseId: cid,
+        jrId:jrId
       })
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
           setInputValue('');
-              setMessageList(prevMessageList => [...prevMessageList, res.data.data]);
+          setMessageList(prevMessageList => {
+            const newMessageList = [...prevMessageList, res.data.data];
+            extractJrId(newMessageList);
+            return newMessageList;
+          });
         } else {
         }
       })
@@ -80,18 +96,18 @@ function UserChatToJuniorAdv() {
   };
 
   console.log(messageList);
+  console.log("JrId:", jrId); // For debugging purposes
 
   return (
     <div className="user_chat">
       <div className="chat-container">
         <div className="chat-header">
-          {/* <img
+          <img
             src={`${imageUrl}/${userDetalis.profilePic.filename}`}
             className="img-fluid"
             alt="Advocate"
-          /> */}
-
-          {/* <span className="fs-5 px-3">{userDetalis.name}</span> */}
+          />
+          <span className="fs-5 px-3">{userDetalis.name}</span>
         </div>
 
         <div className="chat-body" ref={chatBodyRef}>
@@ -100,13 +116,13 @@ function UserChatToJuniorAdv() {
               <div
                 key={msg.id}
                 className={`chat-message ${
-                  msg.from == "jradvocate" ? "sent" : "received"
+                  msg.from === "jradvocate" ? "received" : "sent"
                 }`}
               >
                 <div className="message-header">
                   <span className="username">
                     <small>
-                      {msg.from == "jradvocate" ? msg.jrId.name : msg.userId.name}
+                      {msg.from === "jradvocate" ? msg.jrId.name : msg.userId.name}
                     </small>
                   </span>
                   <span className="timestamp">

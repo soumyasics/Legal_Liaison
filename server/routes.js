@@ -73,6 +73,8 @@ router.post('/deleteCase/:id',cases.deleteCase)
 router.post('/getAllCases',cases.getAllCases)
 
 
+
+
 router.post('/createAppointment',appointments.createAppointment)
 router.post('/getAppointmentReqsByUserId/:id',appointments.getAppointmentReqsByUserId)
 router.post('/getAppointmentReqsForAdv/:id',appointments.getAppointmentReqsForAdv)

@@ -197,6 +197,11 @@ function App() {
           <Route path="/admin_view_intern_details/:id" element={[<AdminNav />, <AdminMain data="interndetails" />, <AdminFooter />]} />
           <Route path="/admin_view_approved_interns" element={[<AdminNav />, <AdminMain data="approvedInterns" />, <AdminFooter />]} />
           <Route path="/admin_view_complaints" element={[<AdminNav />, <AdminMain data="complaints" />, <AdminFooter />]} />
+          <Route path="/admin_view_cases" element={[<AdminNav />, <AdminMain data="viewCases" />, <AdminFooter />]} />
+          <Route path="/admin_view_single_case/:id" element={[<AdminNav />, <AdminMain data="viewSingleCase" />, <AdminFooter />]} />
+          <Route path="/admin_view_case_status/:id" element={[<AdminNav />, <AdminMain data="status" />, <AdminFooter />]} />
+          <Route path="/admin_view_added_evidences/:id" element={[<AdminNav />, <AdminMain data="evidence" />, <AdminFooter />]} />
+          <Route path="/admin_view_client_payment_status/:id" element={[<AdminNav />, <AdminMain data="payment" />, <AdminFooter />]} />
 
 
           <Route path="/adminviewjunioradvocaterequest" element={[<AdminNav />,<AdminMain data='approverejectjunioradvocate'/>, <AdminFooter />]} />

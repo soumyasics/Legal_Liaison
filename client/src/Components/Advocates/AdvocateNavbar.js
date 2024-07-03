@@ -70,7 +70,9 @@ function AdvocateNavbar() {
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/advocate_view_intern_req' className="dropdown-item" >New Request</Link>
-                <Link to='/advocate_view_all_interns' className="dropdown-item" >View</Link>
+                <Link to='/advocate_view_all_interns' className="dropdown-item" >View Interns</Link>
+                <Link to='/advocate_view_case_req_access' className="dropdown-item" >Resource Request</Link>
+
               </div>
             </li>
               <li className="nav-item dropdown">
@@ -80,7 +82,6 @@ function AdvocateNavbar() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to='/advocate_viewjuadvocatereq' className="dropdown-item" >Request</Link>
                 <Link to='/advocate_view_all_jnr_adv' className="dropdown-item" >View Advocates</Link>
-                <Link to='/advocate_view_case_req_access' className="dropdown-item" >Resource Request</Link>
                 
               </div>
             </li>
