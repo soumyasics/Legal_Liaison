@@ -70,6 +70,7 @@ router.post('/getCaseType',cases.getCaseType)
 router.post('/getCaseByUserId/:id',cases.getCaseByUserId)
 router.post('/getCaseById/:id',cases.getCaseById)
 router.post('/deleteCase/:id',cases.deleteCase)
+router.post('/getAllCases',cases.getAllCases)
 
 
 router.post('/createAppointment',appointments.createAppointment)
