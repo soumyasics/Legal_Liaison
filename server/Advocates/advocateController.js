@@ -119,7 +119,7 @@ const viewAdvocates = (req, res) => {
 
 // View all advocates
 const viewAdvocatesBySpecializn = (req, res) => {
-    Advocate.find({specialization:req.body.specialization})
+    Advocate.find({specialization:req.body.specialization}).sort({rating:-1}).limit(5)
         .exec()
         .then(data => {
             if (data.length > 0) {

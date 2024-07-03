@@ -32,7 +32,7 @@ const addReview = (req, res) => {
 }
 
 const viewAllreviewsByAdvId = (req, res) => {
-  reviewSchema.find()
+  reviewSchema.find({advId:req.params.id})
     .populate('advId')
    
     .populate('userId')
