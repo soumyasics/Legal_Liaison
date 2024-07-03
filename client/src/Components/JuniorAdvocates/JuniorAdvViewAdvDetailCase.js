@@ -63,43 +63,7 @@ function JuniorAdvViewAdvDetailCase() {
       <div className="adv_view_case_req">
         <div className="container">
           <div className="d-flex justify-content-end">
-            {a == true ? (
-              <div className="adv_view_case_req_action_grps d-flex justify-content-between">
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-upload-2-fill"></i>
-
-                  <Link to={`/advocate_addevidence/${data.caseId._id}`}>
-                    <p>Upload Evidence</p>
-                  </Link>
-                </div>
-
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-file-paper-2-line"></i>
-                  <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
-                    <p>Add Case Status</p>
-                  </Link>
-                </div>
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-bank-card-line"></i>
-                  <Link to={`/advocate_paymentreq/${data.caseId._id}`}>
-                    <p>Request Payment</p>
-                  </Link>
-                </div>
-              </div>
-            ) : (
-                <div className="adv_view_case_req_action_grps d-flex justify-content-end">
-                <div className="adv_view_case_req_action_btn d-flex">
-                  <i className="ri-upload-2-fill"></i>
-
-                  <Link to={``}>
-                    <p>Request Access</p>
-                  </Link>
-                </div>
-
-                
-               
-              </div>
-            )}
+         
           </div>
 
           <div className="row mt-3">
