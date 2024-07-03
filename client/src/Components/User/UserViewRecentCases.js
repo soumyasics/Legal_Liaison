@@ -74,8 +74,8 @@ function UserViewRecentCases() {
                     <tbody>
                       {array.map((e) => {
                         const fileUrl = e.evidence ? `${imageUrl}/${e.evidence.filename}` : null;
-                        const formattedDate = e.datoOfIncident
-                          ? new Date(e.datoOfIncident).toLocaleDateString()
+                        const formattedDate = e.dateOfIncident
+                          ? new Date(e.dateOfIncident).toLocaleDateString()
                           : "Unknown";
 
                         return (
