@@ -1,4 +1,7 @@
 const Advocate = require('./advocateSchema');
+const JuniorAdvocate=require('../JuniorAdvocate/junioradvocateSchema')
+const Users=require('../User/userSchema')
+const Interns=require('../Interns/internsSchema')
 const jwt = require('jsonwebtoken');
 const secret = 'advocate'; 
 
@@ -361,7 +364,19 @@ const deleteAdvocateById = (req, res) => {
 };
 
 // Forgot Password for advocate
-const forgotPassword = (req, res) => {
+const forgotPassword =async (req, res) => {
+
+    let userData=null,type="nil"
+   const adv= await Advocate.findOne({email: req.body.email })
+
+const jnr=await JuniorAdvocate.findOne({  email: req.body.email })
+  
+
+ const intern= await  Interns.findOne({  email: req.body.email })
+
+    const user=await Users.findOne({  email: req.body.email })
+
+    if(adv){
     Advocate.findOneAndUpdate({ email: req.body.email }, {
         password: req.body.password
     })
@@ -385,8 +400,87 @@ const forgotPassword = (req, res) => {
                 Error: err
             });
         });
-};
 
+}else if(jnr){
+    JuniorAdvocate.findOneAndUpdate({ email: req.body.email }, {
+        password: req.body.password
+    })
+        .exec()
+        .then(data => {
+            if (data != null)
+                res.json({
+                    status: 200,
+                    msg: "Updated successfully"
+                });
+            else
+                res.json({
+                    status: 500,
+                    msg: "User Not Found"
+                });
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not Updated",
+                Error: err
+            });
+        });
+}else if(user){
+    Users.findOneAndUpdate({ email: req.body.email }, {
+        password: req.body.password
+    })
+        .exec()
+        .then(data => {
+            if (data != null)
+                res.json({
+                    status: 200,
+                    msg: "Updated successfully"
+                });
+            else
+                res.json({
+                    status: 500,
+                    msg: "User Not Found"
+                });
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not Updated",
+                Error: err
+            });
+        });
+}
+else if(intern){
+    Interns.findOneAndUpdate({ email: req.body.email }, {
+        password: req.body.password
+    })
+        .exec()
+        .then(data => {
+            if (data != null)
+                res.json({
+                    status: 200,
+                    msg: "Updated successfully"
+                });
+            else
+                res.json({
+                    status: 500,
+                    msg: "User Not Found"
+                });
+        })
+        .catch(err => {
+            res.status(500).json({
+                status: 500,
+                msg: "Data not Updated",
+                Error: err
+            });
+        });
+}else{
+    res.status(405).json({
+        status: 405,
+        msg: "User Not Found"
+    })
+}
+}
 // Reset Password for advocate
 const resetPassword = async (req, res) => {
     let pwdMatch = false;
@@ -442,34 +536,55 @@ const createToken = (user) => {
 };
 
 //advocate login
-const login = (req, res) => {
+const login =async (req, res) => {
     const { email, password } = req.body;
+let userData=null,type="nil"
+   const adv= await Advocate.findOne({ email })
 
-    Advocate.findOne({ email }).then(user => {
+const jnr=await JuniorAdvocate.findOne({ email })
+  
 
-        if (!user) {
-            return res.json({ status: 405, msg: 'User not found' });
-        }
+ const intern= await  Interns.findOne({ email })
 
-        if (user.password != password) {
-            return res.json({ status: 405, msg: 'Password Mismatch !!' });
-        }
-        if (user.adminApproved==false ||user.isActive==false) {  
-                      return res.json({ status: 405, msg: 'Please get Approval From Admin!!' });
-        }
-        const token = createToken(user);
+    const user=await Users.findOne({ email })
+   
+if(user){
+    type="user"
+    userData=user
+}
+else if(jnr){
+    type="junior"
+    userData=jnr
+}else if(intern){
+    type="intern"
+    userData=intern
+}else if(adv){
+    type="advocate"
+    userData=adv
+}else{
+    return res.json({ status: 405, msg: 'User not found' });
+}
+   if(userData){
+      if (userData.password!=password) {
+        return res.json({ status:405,msg: 'Password Mismatch !!' });
+      }if (type=="user" && userData.isActive==false) {
+        return res.json({ status:405,msg: 'Please contact Admin !!' });
+      }
+     
+      if (type!="user" && (userData.adminApproved==false ||userData.isActive==false)) {
+        return res.json({ status:405,msg: 'Please contact Admin !!' });
+      }
+      const token = createToken(userData);
 
-        res.json({
-            status: 200,
-            data: user,
-            token
-        });
+      res.json({
+          status:200,
+          data:userData, 
+          type:type,
+          token });
+      }
 
-    }).catch(err => {
-        console.log(err);
-        return res.json({ status: 500, msg: 'Something went wrong' });
-    })
-};
+ 
+}
 
 // Validate
 const requireAuth = (req, res, next) => {
