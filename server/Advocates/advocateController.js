@@ -490,6 +490,7 @@ const requireAuth = (req, res, next) => {
 
 
 //
+
 const addRating = (req, res) => {
     let newRate = parseInt(req.body.rating);
     let rating = 0;
