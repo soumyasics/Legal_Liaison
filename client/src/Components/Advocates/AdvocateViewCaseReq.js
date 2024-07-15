@@ -14,7 +14,7 @@ import { imageUrl } from "../Constants/Image_Url";
 
 function AdvocateViewCaseReq() {
   const [data, setData] = useState({
-    userId: {},
+    userId: {profilePic:{filename:''}},
     caseId: { dateOfIncident: "", evidence: {} },
   });
   const { id } = useParams();
@@ -95,12 +95,12 @@ function AdvocateViewCaseReq() {
         <div className="row">
           <div className="col-5">
             <div className="adv_case_req_left_container1">
-              <div className="adv_case_req_left_container1_head">
+              <div className="adv_case_req_left_container1_head"> 
                 <p>Client Details</p>
               </div>
               <div className="adv_case_req_left_container1_content d-flex">
                 <div className="adv_case_req_left_container1_content_img">
-                  <img src={img} alt="Client" />
+                <img src={`${imageUrl}/${data.userId.profilePic.filename}`} alt="Client" />
                 </div>
                 <div>
                   <div className="d-flex mt-2">

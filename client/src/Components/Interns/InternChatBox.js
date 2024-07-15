@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is includ
 
 function InternChatBox() {
   const { id } = useParams();
-  const iId = localStorage.getItem("internId");
+  const iId = localStorage.getItem("internId"); 
   const  navigate=useNavigate();
 
   const [messageList, setMessageList] = useState([]);
