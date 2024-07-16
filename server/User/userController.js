@@ -4,6 +4,7 @@ const multer = require('multer')
 const jwt = require('jsonwebtoken');
 const advocateSchema = require('../Advocates/advocateSchema');
 const juniors = require('../JuniorAdvocate/junioradvocateSchema');
+const internsSchema = require('../Interns/internsSchema');
 
 const secret="user"
 
@@ -27,18 +28,19 @@ const registerUser = async (req, res) => {
 
 
 
-  // let existingUser1= await Users({email:req.body.email});
-  //   let existingUser2 = await advocateSchema({email:req.body.email});
-  //   let existingUser3 = await juniors({email:req.body.email});
+  let existingUser1= await Users({email:req.body.email});
+    let existingUser2 = await advocateSchema({email:req.body.email});
+    let existingUser3 = await juniors({email:req.body.email});
+    let existingUser = await internsSchema({email:req.body.email});
 
-  //   if(existingUser1||existingUser2||existingUser3){
-  //     console.log("here",existingUser1,"sc",existingUser2,"tid",existingUser3);
-  //       return res.json ({
-  //           status : 409,
-  //           msg : "Email Already Registered With Us !!",
-  //           data : null
-  //       })
-  //   }  
+    if(existingUser1||existingUser2||existingUser3||existingUser){
+      console.log("here",existingUser1,"sc",existingUser2,"tid",existingUser3);
+        return res.json ({
+            status : 409,
+            msg : "Email Already Registered With Us !!",
+            data : null
+        })
+    }  
     // else{
       const newUser = new Users({
         name: req.body.name,
@@ -52,6 +54,7 @@ const registerUser = async (req, res) => {
         profilePic: req.file
     
       })
+
     await newUser.save().then(data => {
       return res.json({
         status: 200,
