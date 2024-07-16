@@ -18,9 +18,11 @@ import { Link } from "react-router-dom";
 
 function UserViewRecentCases() {
   const [array, setArray] = useState([]);
+  const [filteredArray, setFilteredArray] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileType, setFileType] = useState(""); // State to store the file type
+  const [selectedMonth, setSelectedMonth] = useState("");
   const id = localStorage.getItem("userId");
 
   useEffect(() => {
@@ -29,7 +31,9 @@ function UserViewRecentCases() {
       .then((response) => {
         console.log("Response Data:", response.data.data);
         if (response.status === 200) {
-          setArray(response.data.data);
+          const reversedArray = response.data.data.reverse();
+          setArray(reversedArray);
+          setFilteredArray(reversedArray);
         }
       })
       .catch((err) => {
@@ -55,14 +59,53 @@ function UserViewRecentCases() {
     setFileType("");
   };
 
+  const handleMonthChange = (e) => {
+    const month = e.target.value;
+    setSelectedMonth(month);
+
+    if (month === "") {
+      setFilteredArray(array);
+    } else {
+      const filtered = array.filter((e) => {
+        const date = new Date(e.dateOfIncident);
+        return date.getMonth() === parseInt(month);
+      });
+      setFilteredArray(filtered);
+    }
+  };
+
   return (
     <div>
       <div className="user_view_recent_cases pt-5">
         <div className="container">
+          <div className="row mb-3 w-25">
+            <div className="col-12 d-flex">
+              <p>Sort </p>
+              <select
+                value={selectedMonth}
+                onChange={handleMonthChange}
+                className="form-select mx-3"
+              >
+                <option value="">Select Month</option>
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+            </div>
+          </div>
           <div className="row">
             <div className="col-12">
               <div className="user_recent_cases_container">
-                {array.length > 0 ? (
+                {filteredArray.length > 0 ? (
                   <table className="table table-striped table-bordered">
                     <thead>
                       <tr>
@@ -72,7 +115,7 @@ function UserViewRecentCases() {
                       </tr>
                     </thead>
                     <tbody>
-                      {array.map((e) => {
+                      {filteredArray.map((e) => {
                         const fileUrl = e.evidence ? `${imageUrl}/${e.evidence.filename}` : null;
                         const formattedDate = e.dateOfIncident
                           ? new Date(e.dateOfIncident).toLocaleDateString()
@@ -144,20 +187,6 @@ function UserViewRecentCases() {
                                     [View Evidence]
                                   </div>
                                 </div>
-                                {/* <div className="d-flex mt-2">
-                                  <div className="px-2">
-                                    {e.advocateStatus == false ? (
-                                      <Link
-                                        to='' className="d-flex text-decoration-none text-dark"
-                                      >
-                                        <img src={icon9} alt="icon9" className="mx-2" />
-                                        <div>Remove</div>
-                                      </Link>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </div>
-                                </div> */}
                                 <div className="d-flex">
                                   <div className="px-2">
                                     {e.advocateStatus == false ? (
