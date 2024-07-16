@@ -96,30 +96,7 @@ function User_BookAppoinment() {
             <div>
               <table className="table ju-custom-table">
                 <tbody>
-                  <tr>
-                    <td className="left-alignn">
-                      <label className="ju-sub-label">
-                        No of Case Attended
-                      </label>
-                    </td>
-                    <td className="left-alignn">:</td>
-                    <td className="left-alignn">
-                      <label className="ju-sub-label">
-                        0
-                      </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="left-alignn">
-                      <label className="ju-sub-label">No of Case Won </label>
-                    </td>
-                    <td className="left-alignn">:</td>
-                    <td className="left-alignn">
-                      <label className="ju-sub-label">
-                        0
-                      </label>
-                    </td>
-                  </tr>
+                 
                   <tr>
                     <td className="left-alignn">
                       <label className="ju-sub-label">

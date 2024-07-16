@@ -94,7 +94,7 @@ function AdvocateForgotPassword() {
         <div>
             <div className="user_registration">
                 <div className='heading-div container-fluid'>
-                    <label className='reg-title'>Advocate Forgot Password</label>
+                    <label className='reg-title'>Forgot Password</label>
                 </div>
                 <div className="user_registration_container">
                     <div className="user_registration_box1">

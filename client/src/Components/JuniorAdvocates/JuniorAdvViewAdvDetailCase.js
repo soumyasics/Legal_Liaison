@@ -13,7 +13,7 @@ import icon5 from "../../Assets/location.png";
 function JuniorAdvViewAdvDetailCase() {
   const [data, setData] = useState({
     userId: {profilePic:{filename:''}},
-    caseId: { dateOfIncident: "", evidence: { filename: "" } },
+    caseId: { _id:'',dateOfIncident: "", evidence: { filename: "" } },
   });
   const { id } = useParams();
   const navigate = useNavigate();
@@ -154,6 +154,10 @@ function JuniorAdvViewAdvDetailCase() {
                 <div className="adv_case_req_left_container1_content">
                   <table>
                     <tbody>
+                      <tr>
+                        <td>Case Number</td>
+                        <td>: NO{data.caseId._id.slice(19,24)}</td>
+                      </tr>
                       <tr>
                         <td>Case Title</td>
                         <td>: {data.caseId.title}</td>

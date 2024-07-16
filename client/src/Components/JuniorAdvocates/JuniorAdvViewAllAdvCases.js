@@ -37,6 +37,7 @@ function JuniorAdvViewAllAdvCases() {
           <table className="table-change container-fluid">
             <thead>
               <tr>
+                <th className="table-header">Case No</th>
                 <th className="table-header">Case Title</th>
                 <th className="table-header">Client Name</th>
                 <th className="table-header">Phone Number</th>
@@ -52,7 +53,7 @@ function JuniorAdvViewAllAdvCases() {
               {data.length ? (
                 data.map((caseReq) => (
                   <tr>
-                    <td className="table-data">{caseReq.caseId.title}</td> 
+                    <td className="table-data">NO{caseReq.caseId._id.slice(19,24)}</td> 
                     <td className="table-data">{caseReq.userId.name}</td>
                     <td className="table-data">{caseReq.userId.contact}</td>
                     <td className="table-data">{caseReq.caseId.type}</td>

@@ -40,6 +40,7 @@ function JuniorAdvViewAssignedCases() {
             <table className="table-change container-fluid">
               <thead>
                 <tr>
+                  <th className="table-header">Case No</th>
                   <th className="table-header">Case Title</th>
                
                   <th className="table-header">Case Type</th>
@@ -54,6 +55,7 @@ function JuniorAdvViewAssignedCases() {
                 {data.length ? (
                   data.map((juadvocatereq) => (
                     <tr>
+                      <td className="table-data">NO{juadvocatereq.caseId._id.slice(19,24)}</td>
                       <td className="table-data">{juadvocatereq.caseId.title}</td>
                       <td className="table-data">
                         {juadvocatereq.caseId.type}

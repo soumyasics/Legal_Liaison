@@ -37,7 +37,7 @@ function UserRegistration() {
                             onClose: () => setToastVisible(false),
                         });
                     }
-                    navigate('/UserLogin');
+                    navigate('/AdvocateLogin');
                 } else if (res.data.status === 409) {
                     if (!isToastVisible) {
                         setToastVisible(true);

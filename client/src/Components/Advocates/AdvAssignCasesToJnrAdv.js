@@ -14,7 +14,7 @@ function AdvAssignCasesToJnrAdv() {
   const navigate=useNavigate()
 
   const [selectedCase, setSelectedCase] = useState('');
-  const [caseDetails, setCaseDetails] = useState({ dateOfIncident: '' });
+  const [caseDetails, setCaseDetails] = useState({ dateOfIncident: '',_id:'' });
   const [allowChat, setAllowChat] = useState(false);
 
   const id = localStorage.getItem("advocateId");
@@ -114,7 +114,7 @@ function AdvAssignCasesToJnrAdv() {
                     ? data.map((e) => {
                       return (
                         <option key={e.caseId._id} value={e.caseId._id}>
-                          {e.caseId.title}
+                          NO{e.caseId._id.slice(19,24)}
                         </option>
                       );
                     })
@@ -128,6 +128,10 @@ function AdvAssignCasesToJnrAdv() {
                   <h3>Case Details</h3>
                 </div>
                 <div className="adv_assign_cases_container_content text-start">
+                  <div className="d-flex justify-content-between ">
+                    <p>Case Number</p>
+                    <p>NO{caseDetails._id.slice(19,24)}</p>
+                  </div>
                   <div className="d-flex justify-content-between ">
                     <p>Case Title</p>
                     <p>{caseDetails.title}</p>

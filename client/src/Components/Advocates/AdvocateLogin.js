@@ -50,12 +50,30 @@ function AdvocateLogin() {
             axiosInstance.post('/loginAdvocate', data)
                 .then(response => {
                     console.log("Response:", response);
-                    if (response.data.status === 200) {
+                    if (response.data.status === 200&&response.data.type=='advocate') {
                         console.log("Login Successful");
                         alert("Login Successful");
                         navigate('/advocate_home')
                         localStorage.setItem('advocateId',response.data.data._id)
-                    } else if(response.data.status==405){
+                    } else if (response.data.status === 200&&response.data.type=='user') {
+                        console.log("Login Successful");
+                        alert("Login Successful");
+                        localStorage.setItem('userId',response.data.data._id)
+                        navigate('/user_home');
+                    }else if (response.data.status === 200&&response.data.type=='junior') {
+                        console.log("Login Successful");
+                        alert("Login Successful");
+                        navigate('/JuniorAdvocate-homepage')
+                        localStorage.setItem('junioradvocateId',response.data.data._id)
+                    }else if (response.data.status === 200&&response.data.type=='intern') {
+                        console.log("Login Successful");
+                        alert("Login Successful");
+                        navigate('/intern_home');
+                        localStorage.setItem('internId', response.data.data._id);
+                    }
+                    
+                    
+                    else if(response.data.status==405){
                         console.log("Login Failed");
                         alert(response.data.msg);
                     }else{
@@ -78,7 +96,7 @@ function AdvocateLogin() {
         <div>
             <div className="user_registration">
             <div className='heading-div container-fluid'>
-        <label className='reg-title'>Advocate Login</label>
+        <label className='reg-title'>Login</label>
       </div>
                 <div className="user_registration_container">
                     <div className="user_registration_box1">
@@ -122,7 +140,7 @@ function AdvocateLogin() {
                                     <button type="button" onClick={handleReset}>Reset</button>
                                 </div>
                             </form>
-                            <div className="mt-4">
+                            {/* <div className="mt-4">
                                 <p>
                                     Don't have an account?{" "}
                                     <Link
@@ -132,7 +150,7 @@ function AdvocateLogin() {
                                         Register here.
                                     </Link>
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="user_registration_box2 justify-content-center">

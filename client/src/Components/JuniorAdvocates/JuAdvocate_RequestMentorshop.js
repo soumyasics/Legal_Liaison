@@ -91,7 +91,7 @@ function JuAdvocate_RequestMentorshop() {
                         <div>
                             <table className="table ju-custom-table">
                                 <tbody>
-                                    <tr>
+                                    {/* <tr>
                                         <td className="left-alignn">
                                             <label className="ju-sub-label">
                                                 No of Case Attended
@@ -114,7 +114,7 @@ function JuAdvocate_RequestMentorshop() {
                                                 0
                                             </label>
                                         </td>
-                                    </tr>
+                                    </tr> */}
                                     <tr>
                                         <td className="left-alignn">
                                             <label className="ju-sub-label">

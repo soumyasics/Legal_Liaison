@@ -9,7 +9,6 @@ import LandingNavbar from './Components/LandingPage/LandingNavbar';
 import LandingServices from './Components/LandingPage/LandingServices';
 import UserLogin from './Components/User/UserLogin';
 import UserRegistration from './Components/User/UserRegistration';
-import AdvcateReg from './Components/Advocates/AdvocateReg';
 import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
 import AdminLogin from './Components/Admin/AdminLogin';
@@ -37,6 +36,7 @@ import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNav
 import UserProfile from './Components/User/UserProfile';
 import UserAddCases from './Components/User/UserAddCases';
 import UserViewRecentCases from './Components/User/UserViewRecentCases';
+import AdvcateReg from './Components/Advocates/AdvocateReg';
 
 import AdvocateViewCaseReq from './Components/Advocates/AdvocateViewCaseReq';
 import AdvocateViewAllCaseReq from './Components/Advocates/AdvocateViewAllCaseReq';
@@ -153,6 +153,7 @@ function App() {
           <Route path="/advocate_view_all_recent_case" element={[<AdvocateNavbar />,<FormHead title="Recent Cases" />, <AdvocateViewAllRecentCases />,<UserFooter />]} />
           <Route path="/advocate_view_all_interns" element={[<AdvocateNavbar />,<FormHead title="Interns" />, <AdvocateViewApprovedInterns />,<UserFooter />]} />
           <Route path="/advocate_view_single_recent_case/:id" element={[<AdvocateNavbar />,<FormHead title="Case Tittle" />, <AdvocateViewSingleRecentCase />,<UserFooter />]} />
+          
           <Route path="/advocate_chat" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat type='noChat' />,<UserFooter />]} />
           <Route path="/advocate_single_chat/:uid/:type" element={[<AdvocateNavbar />,<FormHead title="Chat" />, <AdvocateChat />,<UserFooter />]} />
 
