@@ -9,7 +9,6 @@ import LandingNavbar from './Components/LandingPage/LandingNavbar';
 import LandingServices from './Components/LandingPage/LandingServices';
 import UserLogin from './Components/User/UserLogin';
 import UserRegistration from './Components/User/UserRegistration';
-import AdvcateReg from './Components/Advocates/AdvocateReg';
 import AdvocateLogin from './Components/Advocates/AdvocateLogin';
 import BarCouncilLogin from './Components/BarCouncil/BarCouncilLogin';
 import AdminLogin from './Components/Admin/AdminLogin';
@@ -37,6 +36,7 @@ import JuniorAdvocateNavbar from './Components/JuniorAdvocates/JuniorAdvocateNav
 import UserProfile from './Components/User/UserProfile';
 import UserAddCases from './Components/User/UserAddCases';
 import UserViewRecentCases from './Components/User/UserViewRecentCases';
+import AdvcateReg from './Components/Advocates/AdvocateReg';
 
 import AdvocateViewCaseReq from './Components/Advocates/AdvocateViewCaseReq';
 import AdvocateViewAllCaseReq from './Components/Advocates/AdvocateViewAllCaseReq';

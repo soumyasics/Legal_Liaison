@@ -31,16 +31,19 @@ function LandingNavbar() {
             <li className="nav-item">
               <Link className="nav-link" to="/services">Services</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/AdvocateLogin">Login</Link>
+            </li>
           
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login
+                Sign Up
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to='/UserLogin' className="dropdown-item" >Client</Link>
-                <Link to={'/AdvocateLogin'}  className="dropdown-item" >Advocates</Link>
-                <Link to='/JuniorAdvocateLogin'  className="dropdown-item" >Junior Advocates</Link>
-                <Link to={'/intern_login'} className="dropdown-item" >Students</Link>
+                <Link to='/UserRegistration' className="dropdown-item" >Client</Link>
+                <Link to={'/AdvcateRegister'}  className="dropdown-item" >Advocates</Link>
+                <Link to='/JuniorAdvocateRegister'  className="dropdown-item" >Junior Advocates</Link>
+                <Link to={'/intern_registration'} className="dropdown-item" >Students</Link>
               </div>
             </li>
           </ul>

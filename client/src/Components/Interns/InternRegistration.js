@@ -29,7 +29,7 @@ function InternRegistration() {
                             onClose: () => setToastVisible(false),
                         });
                     }
-                    navigate('/intern_login');
+                    navigate('/AdvocateLogin');
                 } else if (res.data.status === 409) {
                     if (!isToastVisible) {
                         setToastVisible(true);
