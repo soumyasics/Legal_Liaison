@@ -80,7 +80,7 @@ const registerJuniorAdvocate = async (req, res) => {
         else if(existingJuniorAdvocate4) {
             return res.json({
                 status: 409,
-                msg: "You Have Already registered as JuniorAdvocate. Please Login to Continue !!",
+                msg: "You Have Already registered as Intern. Please Login to Continue !!",
                 data: null
             });
         }
