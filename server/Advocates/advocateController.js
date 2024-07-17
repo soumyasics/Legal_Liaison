@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const secret = 'advocate'; 
 
 const multer = require("multer");
+const internsSchema = require('../Interns/internsSchema');
+const userSchema = require('../User/userSchema');
+const junioradvocateSchema = require('../JuniorAdvocate/junioradvocateSchema');
 
 
 const storage = multer.diskStorage({
@@ -48,6 +51,10 @@ const registerAdvocate = async (req, res) => {
             idProof:req.files[1],
             profilePic:req.files[0]
         });
+        let existingAdvocate3 = await Advocate.findOne({ email });
+        let existingAdvocate4 = await internsSchema.findOne({ email });
+        let existingAdvocate5 = await userSchema.findOne({ email });
+        let existingAdvocate6 = await junioradvocateSchema.findOne({ email });
 
         let existingAdvocate = await Advocate.findOne({ bcNo });
         let existingAdvocate2 = await Advocate.findOne({ contact });
@@ -62,6 +69,12 @@ const registerAdvocate = async (req, res) => {
             return res.json({
                 status: 409,
                 msg: "Contact Number Already Registered With Us !!",
+                data: null
+            });
+        }   else if(existingAdvocate3||existingAdvocate4||existingAdvocate5||existingAdvocate6) {
+            return res.json({
+                status: 409,
+                msg: "Email Already Registered With Us !!",
                 data: null
             });
         }
