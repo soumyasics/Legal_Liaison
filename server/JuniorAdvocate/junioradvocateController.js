@@ -5,6 +5,7 @@ const secret = 'junioradvocate';
 const multer = require("multer");
 const advocateSchema = require('../Advocates/advocateSchema');
 const internsSchema = require('../Interns/internsSchema');
+const userSchema = require('../User/userSchema');
 
 
 const storage = multer.diskStorage({

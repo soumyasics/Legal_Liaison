@@ -28,10 +28,10 @@ const registerUser = async (req, res) => {
 
 
 
-  let existingUser1= await Users({email:req.body.email});
-    let existingUser2 = await advocateSchema({email:req.body.email});
-    let existingUser3 = await juniors({email:req.body.email});
-    let existingUser = await internsSchema({email:req.body.email});
+  let existingUser1= await Users.findOne({email:req.body.email});
+    let existingUser2 = await advocateSchema.findOne({email:req.body.email});
+    let existingUser3 = await juniors.findOne({email:req.body.email});
+    let existingUser = await internsSchema.findOne({email:req.body.email});
 
     if(existingUser1||existingUser2||existingUser3||existingUser){
       console.log("here",existingUser1,"sc",existingUser2,"tid",existingUser3);
