@@ -38,7 +38,7 @@ function UserNavbar() {
         <div className="collapse navbar-collapse" id="navbarNav"> 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/user_home">Home</Link>
+              <Link className="nav-link" to="/user_home">Home</Link> 
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,6 +53,9 @@ function UserNavbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/client-viewalladvocate">Advocate</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/client-viewblogs">Articles</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/user_add_complaint">Complaint</Link>

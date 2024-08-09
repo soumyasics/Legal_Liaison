@@ -4,6 +4,8 @@ import axiosMultipartInstance from "../Constants/FormDataUrl";
 import { imageUrl } from "../Constants/Image_Url";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import Rating from "react-rating";
+
 
 function User_ViewAllAdvocates() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -80,12 +82,26 @@ function User_ViewAllAdvocates() {
                       </Link>
                       <br />
                       <div className="d-flex justify-content-center pb-2">
-                        <ReactStars
+                        {/* <ReactStars
                           count={5}
                           value={advocate.rating ? advocate.rating : 0}
                           size={24}
                           activeColor="#F1B31C"
                           edit={false}
+                        /> */}
+                        <Rating
+                          initialRating={advocate.rating}
+                          readonly
+                          fullSymbol={
+                            <span
+                              style={{ fontSize: "24px", color: "#F1B31C" }}
+                            >
+                              ★
+                            </span>
+                          }
+                          emptySymbol={
+                            <span style={{ fontSize: "24px" }}>☆</span>
+                          }
                         />
                       </div>
                     </div>

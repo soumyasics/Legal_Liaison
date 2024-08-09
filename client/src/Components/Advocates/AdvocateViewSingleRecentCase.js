@@ -70,7 +70,7 @@ function AdvocateViewSingleRecentCase() {
               <div className="adv_view_case_req_action_btn d-flex">
                 <i className="ri-file-paper-2-line"></i>
                 <Link to={`/advocate_update_casestatus/${data.caseId._id}`}>
-                  <p>Add Case Status</p>
+                  <p>Add Updates</p>
                 </Link>
               </div>
               <div className="adv_view_case_req_action_btn d-flex">
@@ -188,7 +188,7 @@ function AdvocateViewSingleRecentCase() {
                   <div className="row justify-content-center mt-4 arr">
                     <div className="col-auto">
                       <Link to={`/advocate_view_case_status/${data.caseId._id}`}><button className="btn btn-warning btn-style  me-2">
-                        Case Status
+                        Case Updates
                       </button></Link>
                     </div>
                     <div className="col-auto">

@@ -39,7 +39,7 @@ function Advocate_UpdateCaseStatus() {
   return (
     <div>
       <div className="junior-heading-div container-fluid">
-        <label className="junior-reg-title">Case Status</label>
+        <label className="junior-reg-title">Case Updates</label>
       </div>
       <div className="payment-card-center">
         <div className="card card-style-change">

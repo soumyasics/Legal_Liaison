@@ -283,7 +283,7 @@ function UserViewCaseUpdates() {
                     <div className="col-auto">
                       <Link to={`/user_view_case_status/${data._id}`}>
                         <button className="btn btn-warning btn-style me-2">
-                          Case Status
+                          Case Updates
                         </button>
                       </Link>
                     </div>
