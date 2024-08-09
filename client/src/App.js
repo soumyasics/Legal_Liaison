@@ -107,6 +107,7 @@ import InternViewApprovedCaseResource from './Components/Interns/InternViewAppro
 import InternViewSingleCaseResource from './Components/Interns/InternViewSingleCaseResource';
 import InternViewResourceCaseStatus from './Components/Interns/InternViewResourceCaseStatus';
 import InternViewResourceAddedEvidences from './Components/Interns/InternViewResourceAddedEvidences';
+import UserViewBlogs from './Components/User/UserViewBlogs';
 
 
 function App() {
@@ -137,6 +138,8 @@ function App() {
           <Route path="/user_add_complaint" element={[<UserNavbar />,<UserAddComplaints />,<UserFooter/>]} />
 
           <Route path="/user_chat_to_jnr_adv/:cid" element={[<UserNavbar />,<UserChatToJuniorAdv />,<UserFooter/>]} />
+          <Route path="/client-viewblogs" element={[<UserNavbar />,<FormHead title="View Articles" />, <UserViewBlogs />,<UserFooter/>]} />
+
 
 
           {/* Advocate routes */}
@@ -179,7 +182,7 @@ function App() {
           {/* Bar council routes */}
           <Route path="/BarCouncilLogin" element={[<LandingNavbar />, <BarCouncilLogin />]} />
 
-          {/* Admin routes */}
+          {/* Admin routes */} 
           <Route path="/AdminLogin" element={[<LandingNavbar />, <FormHead title="Admin Login" />, <AdminLogin />, <AdminFooter />]} />
           <Route path="/admin-dashboard" element={[<AdminNav />, <AdminMain data="admindashboard" />, <AdminFooter />]} />
           <Route path="/admin-viewalladvocates" element={[<AdminNav />, <AdminMain data="adminviewalladvocates" />, <AdminFooter />]} />

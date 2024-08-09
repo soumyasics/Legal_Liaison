@@ -4,6 +4,8 @@ import axiosInstance from "../Constants/BaseUrl";
 import { imageUrl } from "../Constants/Image_Url";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import noReqFound from "../../Assets/noReqFound.json";
+import Lottie from "lottie-react";
 
 function AdvocateViewArticles() {
     const [data, setData] = useState([]);
@@ -94,7 +96,13 @@ function AdvocateViewArticles() {
               </div>
             </div>
                     )
-                }):''
+                }):<div className="no_data_animation">
+                <Lottie
+                  animationData={noReqFound}
+                  className="no_data_animation"
+                />
+                {/* <h1 className="text-center">No Articles Found</h1> */}
+              </div>
             }
 
             
